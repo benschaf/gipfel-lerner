@@ -1,6 +1,15 @@
-Question: I won't really have an "Add Item to basket" functionality - nor will a basket really be applicable for this project... Instead there will be an option to like a couple of tutors but it won't really make sense to add up their costs. problem?
-
 # Gipfel Tutor
+
+[Experience our live website here!](#)
+
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/t/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/commits/main)
+[![GitHub last commit](https://img.shields.io/github/last-commit/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/commits/main)
+[![GitHub issues](https://img.shields.io/github/issues/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/issues)
+[![GitHub closed issues](https://img.shields.io/github/issues-closed/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule/issues?q=is%3Aissue+is%3Aclosed)
+[![GitHub repo size](https://img.shields.io/github/repo-size/benschaf/waste-schedule)](https://github.com/benschaf/waste-schedule)
+[![Python version](https://img.shields.io/badge/python-3.12.2-blue?logo=python)](https://www.python.org/downloads/release/python-3121/)
+[![npm version](https://img.shields.io/badge/npm-8.1.0-blue?logo=npm)](https://www.npmjs.com/package/npm)
+[![Heroku](https://img.shields.io/badge/heroku-eco-purple?logo=heroku)](#)
 
 Welcome to Gipfel Tutor, the pinnacle of personalized tutoring for Swiss students! Our Django-powered marketplace pairs you with the perfect tutor to conquer your academic peaks. Quick, simple, and effective — scale new heights in learning with us!
 
@@ -20,7 +29,7 @@ Welcome to Gipfel Tutor, the pinnacle of personalized tutoring for Swiss student
 ## Tools and Technologies
 - ![calendly_api](https://img.shields.io/badge/-Calendly%20API-1A1A1A?style=flat&logo=calendly)
 > [!Note]
-> I mainly want to use the simpler embed feature of Calendly. It would be really cool though to use the api v2 they provide mainly to enable searching tutors based on their avaliability. Also without using the api webhooks, smooth cancellations are basically impossible.
+> I mainly want to use the simpler embed feature of Calendly. It would be really cool though to use the api v2 they provide mainly to enable searching tutors based on their avaliability. Also without using the api webhooks, smooth cancellations are basically impossible. (seems like future feature stuff)
 
 ## Marketing
 
