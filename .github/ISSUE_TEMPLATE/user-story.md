@@ -2,7 +2,7 @@
 name: User Story
 about: Generate a new user story issue
 title: 'USER STORY: title'
-labels: enhancement, user-story, must-have
+labels: enhancement, must-have, user-story
 assignees: benschaf
 
 ---
