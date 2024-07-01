@@ -1,7 +1,7 @@
 {
   "devDependencies": {
-    "jest": "^29.7.0",
-    "markdown-link-check": "^3.12.2"
+    "markdown-link-check": "^3.12.2",
+    "sass": "^1.77.6"
   },
   "name": "gipfel-tutor",
   "description": "[Experience our live website here!](#)",
@@ -13,6 +13,7 @@
     "async": "^3.2.5",
     "basic-ftp": "^5.0.5",
     "boolbase": "^1.0.0",
+    "bootstrap": "^5.3.3",
     "chalk": "^5.3.0",
     "cheerio": "^1.0.0-rc.12",
     "cheerio-select": "^2.1.0",
@@ -73,7 +74,9 @@
     "universalify": "^2.0.1"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "sass-dev": "sass --watch --update --style=expanded sass/main.scss:static/css/my_bootstrap.css",
+    "sass-prod": "sass --no-source-map --style=compressed sass/main.scss:static/css/my_bootstrap.css"
   },
   "repository": {
     "type": "git",
