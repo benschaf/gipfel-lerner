@@ -21,4 +21,6 @@ from django.urls.conf import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
+    path('tutors/', include('tutor_market.urls')),
+    path('', include('core.urls')),
 ]
