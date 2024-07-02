@@ -2,6 +2,7 @@
 This script generates a list of credits from the project files and updates
 the README file with the credit information.
 """
+
 import os
 import urllib.parse
 
@@ -17,10 +18,10 @@ credit_lines.append(
 
 # Define comment symbols for different file types
 comment_symbols = {
-    ".py": "#",
-    ".html": "<!--",
-    ".js": "//",
-    ".css": "/*",
+    ".py": ["#"],
+    ".html": ["<!--", "//"],
+    ".js": ["//"],
+    ".css": ["/*"],
 }
 
 # Define the base URL for the files in your GitHub repository
@@ -49,31 +50,36 @@ for root, dirs, files in os.walk("."):
                 continue
             # Iterate over the lines with an index
             for i in range(len(lines)):
-                # If a line starts with "# -> Credit", add it to the list
-                if lines[i].strip().startswith(comment_symbols[ext] + " -> Credit"):  # noqa
-                    # Split the credit line into description and URL
-                    credit_parts = (
-                        lines[i]
-                        .strip()
-                        .replace(" -> Credits for ", "")
-                        .replace(" -> Credits ", "")
-                        .replace(" -> Credit for ", "")
-                        .replace(" -> Credit ", "")
-                        .replace("-->", "")
-                        .replace("*/", "")
-                        .replace("# noqa", "")
-                        .strip()[len(comment_symbols[ext]):]
-                        .split(": ")
-                    )
+                # Check against all comment symbols for the current file extension
+                for symbol in comment_symbols[ext]:
+                    # If a line starts with a comment symbol, followed by " -> Credit"
+                    if lines[i].strip().startswith(symbol + " -> Credit"):
+                        # Split the credit line into description and URL
+                        credit_parts = (
+                            lines[i]
+                            .strip()
+                            .replace(" -> Credits for ", "")
+                            .replace(" -> Credits ", "")
+                            .replace(" -> Credit for ", "")
+                            .replace(" -> Credit ", "")
+                            .replace("-->", "")
+                            .replace("*/", "")
+                            .replace("# noqa", "")
+                            .strip()[len(symbol) :]
+                            .split(": ")
+                        )
                     description = credit_parts[0]
                     url = credit_parts[1] if len(credit_parts) > 1 else ""
 
                     # Parse the URL to get the website name
-                    website_name = (urllib.parse.urlparse(url).netloc
-                                    if url else "")
+                    website_name = urllib.parse.urlparse(url).netloc if url else ""
 
                     # Format the credit line as a row in the markdown table
-                    credit_line = (f"| [{file}: Line {i+1}]({base_url + os.path.join(root, file).replace('./', '')}#L{i+1}) | {description} | [{website_name if website_name else 'Link'}]({url}) |" if url else f"| [{file}: Line {i+1}]({base_url + os.path.join(root, file).replace('./', '')}#L{i+1}) | {description} |")  # noqa
+                    credit_line = (
+                        f"| [{file}: Line {i+1}]({base_url + os.path.join(root, file).replace('./', '')}#L{i+1}) | {description} | [{website_name if website_name else 'Link'}]({url}) |"
+                        if url
+                        else f"| [{file}: Line {i+1}]({base_url + os.path.join(root, file).replace('./', '')}#L{i+1}) | {description} |"
+                    )  # noqa
                     credit_lines.append(credit_line)
 
 # Open the README file
@@ -83,8 +89,7 @@ with open("README.md", "r") as readme_file:
 
 # Find the index of the line with the "<!-- CREDITS_START -->" comment
 credits_index = next(
-    i for i, line in enumerate(readme_lines)
-    if "<!-- CREDITS_START -->" in line
+    i for i, line in enumerate(readme_lines) if "<!-- CREDITS_START -->" in line
 )
 
 # Find the index of the line with the "<!-- CREDITS_END -->" comment
