@@ -10,6 +10,7 @@ django-storages==1.14.3
 gunicorn==22.0.0
 jmespath==1.0.1
 oauthlib==3.2.2
+pillow==10.4.0
 psycopg2==2.9.9
 PyJWT==2.8.0
 requests-oauthlib==2.0.0
