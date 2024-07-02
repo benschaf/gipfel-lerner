@@ -71,6 +71,39 @@
               <li class="nav-item">
                 <a class="nav-link disabled" aria-disabled="true">Disabled</a>
               </li>
+              {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <i class="fa-{% if request.resolver_match.view_name == 'dashboard' %}
+
+                        solid
+
+                      {% else %}
+
+                        regular
+
+                      {% endif %} fa-rectangle-list">
+
+                    </i>
+                    Dashboard
+                  </a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-regular fa-user"></i> {{ user }}</a>
+                  <ul class="dropdown-menu">
+                    <li class="nav-item">
+                      <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
+                    </li>
+                  </ul>
+                </li>
+              {% else %}
+                <li class="nav-item">
+                  <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page" href="{% url 'account_signup' %}">Register</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page" href="{% url 'account_login' %}">Login</a>
+                </li>
+              {% endif %}
             </ul>
             <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
@@ -82,6 +115,7 @@
     </header>
 
     <!-- -> Credit for message code by Code Institute: https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/master/templates/base.html -->
+    {% comment %}
     {% if messages %}
       <div class="message-container">
         {% for message in messages %}
@@ -99,12 +133,17 @@
         {% endfor %}
       </div>
     {% endif %}
+    {% endcomment %}
 
     {% block page_header %}
       <div class="container header-container"></div>
     {% endblock %}
 
     {% block content %}
+
+    {% endblock %}
+
+    {% block post_content %}
 
     {% endblock %}
 
