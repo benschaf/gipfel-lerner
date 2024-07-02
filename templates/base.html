@@ -98,9 +98,13 @@
           {% endwith %}
         {% endfor %}
       </div>
-    {% endif %} {% block page_header %}
+    {% endif %}
 
-    {% endblock %} {% block content %}
+    {% block page_header %}
+      <div class="container header-container"></div>
+    {% endblock %}
+
+    {% block content %}
 
     {% endblock %}
 
