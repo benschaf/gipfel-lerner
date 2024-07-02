@@ -30,6 +30,7 @@ Welcome to Gipfel Tutor, the pinnacle of personalized tutoring for Swiss student
 - ![calendly_api](https://img.shields.io/badge/-Calendly%20API-1A1A1A?style=flat&logo=calendly)
 > [!Note]
 > I mainly want to use the simpler embed feature of Calendly. It would be really cool though to use the api v2 they provide mainly to enable searching tutors based on their avaliability. Also without using the api webhooks, smooth cancellations are basically impossible. (seems like future feature stuff)
+- ![django template support](https://img.shields.io/badge/-Django%20Template%20Support-092E20?style=flat&logo=django) used to format the template .html files
 
 ## Marketing
 
