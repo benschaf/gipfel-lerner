@@ -1,5 +1,45 @@
 {% extends "base.html" %}
+{% load static %}
+
+<!-- -> Credit for adaptable page header: https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/master/home/templates/home/index.html -->
+{% block page_header %}
+<div class="container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
 
 {% block content %}
-<h1 class="text-primary">Hi</h1>
+<div class="container-fluid p-0 d-flex justify-content-center">
+    <img src="{% static 'images/hero-image-gipfel-4.webp' %}"
+        alt="Design image of a mountain peak with a house in front of it" class="img-fluid">
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+<script>
+    // Transparent navbar when at the top of the page
+    $('.navbar').removeClass('bg-body-tertiary');
+    $(window).scroll(function () {
+        if ($(this).scrollTop() === 0) {
+            $('.navbar').removeClass('bg-body-tertiary');
+        } else {
+            $('.navbar').addClass('bg-body-tertiary');
+        }
+    });
+
+    // -> Credit for the aria-expanded attribute check: https://getbootstrap.com/docs/5.3/components/navbar/#scrolling
+    $('.navbar-toggler').click(function () {
+        if ($(this).attr('aria-expanded') === 'true') {
+            $('.navbar').addClass('bg-body-tertiary');
+        } else {
+            if ($(window).scrollTop() === 0) {
+                $('.navbar').removeClass('bg-body-tertiary');
+            }
+        }
+    });
+
+
+</script>
 {% endblock %}
