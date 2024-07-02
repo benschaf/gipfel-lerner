@@ -47,12 +47,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'allauth',
     'allauth.account',
+    'crispy_forms',
+    'crispy_bootstrap5',
     # 'allauth.socialaccount',
     # 'allauth.socialaccount.providers.google',
     'storages',
     'core',
     'tutor_market',
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
