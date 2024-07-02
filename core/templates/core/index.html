@@ -70,7 +70,8 @@
 {% endblock %}
 
 {% block postloadjs %}
-<script>
+{{ block.super }}
+<script type="text/javascript">
     // Transparent navbar when at the top of the page
     $('.navbar').removeClass('bg-body-tertiary');
     $(window).scroll(function () {
@@ -91,7 +92,5 @@
             }
         }
     });
-
-
 </script>
 {% endblock %}
