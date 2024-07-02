@@ -1,96 +1,83 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
 
 <!-- -> Credit for adaptable page header: https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/master/home/templates/home/index.html -->
 {% block page_header %}
+
 {% endblock %}
 
 {% block content %}
+  <!-- Hero image -->
+  <div class="container-fluid p-0 d-flex justify-content-center">
+    <img src="{% static 'images/hero-image-gipfel-4.webp' %}" alt="Design image of a mountain peak with a house in front of it" class="img-fluid" />
+  </div>
 
-<!-- Hero image -->
-<div class="container-fluid p-0 d-flex justify-content-center">
-    <img src="{% static 'images/hero-image-gipfel-4.webp' %}"
-        alt="Design image of a mountain peak with a house in front of it" class="img-fluid">
-</div>
-
-<!-- CTA Section -->
-<div class="container mt-5">
+  <!-- CTA Section -->
+  <div class="container mt-5">
     <div class="row">
-        <div class="col">
-            <a href="#" class="btn btn-primary">Find the Tutor for You</a>
-        </div>
-        <div class="col">
-            Learn from the best tutors in the world. Find the perfect tutor for you.
-        </div>
+      <div class="col">
+        <a href="#" class="btn btn-primary">Find the Tutor for You</a>
+      </div>
+      <div class="col">Learn from the best tutors in the world. Find the perfect tutor for you.</div>
     </div>
-</div>
+  </div>
 
-<!-- Bento information Section -->
-<div class="container mt-5">
+  <!-- Bento information Section -->
+  <div class="container mt-5">
     <!-- -> Credit for CSS Grid (generation): https://cssgrid-generator.netlify.app/ -->
     <div class="parent">
-        <div class="div1 card">
-            <div class="card-body">
-                Learn your way!
-            </div>
-        </div>
-        <div class="div2 card">
-            <div class="card-body">
-                Schedule
-            </div>
-        </div>
-        <div class="div3 card">
-            <div class="card-body">
-                Pay safe and cheap
-            </div>
-        </div>
-        <div class="div4 card">
-            <div class="card-body">
-                image placeholder
-            </div>
-        </div>
-        <div class="div5 card">
-            <div class="card-body">
-                Find the perfect tutor for you.
-            </div>
-        </div>
-        <div class="div6 card">
-            <div class="card-body">
-                Start climbing today!
-            </div>
-        </div>
+      <div class="div1 card">
+        <div class="card-body">Learn your way!</div>
+      </div>
+      <div class="div2 card">
+        <div class="card-body">Schedule</div>
+      </div>
+      <div class="div3 card">
+        <div class="card-body">Pay safe and cheap</div>
+      </div>
+      <div class="div4 card">
+        <div class="card-body">image placeholder</div>
+      </div>
+      <div class="div5 card">
+        <div class="card-body">Find the perfect tutor for you.</div>
+      </div>
+      <div class="div6 card">
+        <div class="card-body">Start climbing today!</div>
+      </div>
     </div>
-</div>
-
+  </div>
 {% endblock %}
 
 {% block postloadjs %}
-{{ block.super }}
-<script type="text/javascript">
-    // Transparent navbar when at the top of the page
-    $('.navbar').removeClass('bg-body-tertiary');
-    $(window).scroll(function () {
-        console.log($(this).scrollTop());
+  {{ block.super }}
+  <script type="text/javascript">
+    window.onload = function () {
+      // Transparent navbar when at the top of the page
+      $('.navbar').removeClass('bg-body-tertiary')
+      $('.navbar-container').removeClass('bg-body-tertiary')
+      $(window).scroll(function () {
+        console.log($(this).scrollTop())
         if ($(this).scrollTop() == 0) {
-            $('.navbar').removeClass('bg-body-tertiary');
-            $('.navbar-container').removeClass('bg-body-tertiary');
+          $('.navbar').removeClass('bg-body-tertiary')
+          $('.navbar-container').removeClass('bg-body-tertiary')
         } else {
-            $('.navbar').addClass('bg-body-tertiary');
-            $('.navbar-container').addClass('bg-body-tertiary');
+          $('.navbar').addClass('bg-body-tertiary')
+          $('.navbar-container').addClass('bg-body-tertiary')
         }
-    });
+      })
 
-    // -> Credit for the aria-expanded attribute check: https://getbootstrap.com/docs/5.3/components/navbar/#scrolling
-    $('.navbar-toggler').click(function () {
+      // -> Credit for the aria-expanded attribute check: https://getbootstrap.com/docs/5.3/components/navbar/#scrolling
+      $('.navbar-toggler').click(function () {
         if ($(this).attr('aria-expanded') === 'true') {
-            $('.navbar').addClass('bg-body-tertiary');
-            $('.navbar-container').addClass('bg-body-tertiary');
+          $('.navbar').addClass('bg-body-tertiary')
+          $('.navbar-container').addClass('bg-body-tertiary')
         } else {
-            if ($(window).scrollTop() === 0) {
-                $('.navbar').removeClass('bg-body-tertiary');
-                $('.navbar').removeClass('bg-body-tertiary');
-            }
+          if ($(window).scrollTop() === 0) {
+            $('.navbar').removeClass('bg-body-tertiary')
+            $('.navbar').removeClass('bg-body-tertiary')
+          }
         }
-    });
-</script>
+      })
+    }
+  </script>
 {% endblock %}
