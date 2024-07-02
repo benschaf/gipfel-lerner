@@ -75,10 +75,13 @@
     // Transparent navbar when at the top of the page
     $('.navbar').removeClass('bg-body-tertiary');
     $(window).scroll(function () {
-        if ($(this).scrollTop() === 0) {
+        console.log($(this).scrollTop());
+        if ($(this).scrollTop() == 0) {
             $('.navbar').removeClass('bg-body-tertiary');
+            $('.navbar-container').removeClass('bg-body-tertiary');
         } else {
             $('.navbar').addClass('bg-body-tertiary');
+            $('.navbar-container').addClass('bg-body-tertiary');
         }
     });
 
@@ -86,8 +89,10 @@
     $('.navbar-toggler').click(function () {
         if ($(this).attr('aria-expanded') === 'true') {
             $('.navbar').addClass('bg-body-tertiary');
+            $('.navbar-container').addClass('bg-body-tertiary');
         } else {
             if ($(window).scrollTop() === 0) {
+                $('.navbar').removeClass('bg-body-tertiary');
                 $('.navbar').removeClass('bg-body-tertiary');
             }
         }
