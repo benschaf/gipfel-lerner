@@ -27,7 +27,7 @@ class TutorDetailView(DetailView):
     context_object_name = 'tutor'
 
 
-class TutorCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+class TutorCreateView(LoginRequiredMixin, CreateView):
     """
     View for creating a new tutor profile.
     """
@@ -35,7 +35,6 @@ class TutorCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Tutor
     form_class = TutorForm
     template_name = 'tutor_market/add_tutor.html'
-    permission_required = 'tutor_market.add_tutor'
 
     def form_valid(self, form):
         """

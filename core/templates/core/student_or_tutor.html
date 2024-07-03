@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <a href="{% url 'tutor_list' %}">I am a student</a>
+        </div>
+        <div class="col">
+            <a href="{% url 'add_tutor' %}">I am a tutor</a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
