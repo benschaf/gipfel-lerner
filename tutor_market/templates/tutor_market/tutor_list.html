@@ -18,7 +18,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-4">
-                  <img src="{% static 'tutor.profile_image' %}" alt="" />
+                  <img src="{{ tutor.profile_image.url }}" alt="Profile image of {{ tutor }}" class="img-fluid">
                 </div>
                 <div class="col-8">
                   <div class="row row-cols-1">

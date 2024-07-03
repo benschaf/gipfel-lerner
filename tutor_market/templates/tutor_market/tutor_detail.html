@@ -7,7 +7,7 @@
     <h1>{{ tutor.display_name }}</h1>
     <div class="row">
       <div class="col-3">
-        <img src="{% static tutor.profile_image %}" alt="Image of {{ tutor.display_name }}" />
+        <img src="{{ tutor.profile_image.url }}" alt="Image of {{ tutor.display_name }}" class="img-fluid">
       </div>
       <div class="col-9">
         <div class="row">
