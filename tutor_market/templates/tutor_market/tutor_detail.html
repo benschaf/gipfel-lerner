@@ -4,7 +4,17 @@
 {% block content %}
   <!-- Tutor details -->
   <div class="container">
-    <h1>{{ tutor.display_name }}</h1>
+    <div class="row">
+      <div class="col d-flex justify-content-between">
+        <h1>{{ tutor.display_name }}</h1>
+        <div>
+          {% if schedule.author == user or user.is_superuser %}
+            <a href="{% url 'edit_tutor' tutor.pk %}" class="btn btn-secondary">Edit your Profile</a>
+            <a href="{% url 'delete_tutor' tutor.pk %}" class="btn btn-danger">Delete your Profile</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-3">
         {% if tutor.profile_image %}

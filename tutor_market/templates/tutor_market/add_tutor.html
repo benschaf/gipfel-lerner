@@ -1,0 +1,11 @@
+{% extends 'form_dialogue_lg.html' %}
+{% load crispy_forms_tags %}
+
+{% block form %}
+  <h1>Tell your future Students about yourself</h1>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary">Add your Profile</button>
+  </form>
+{% endblock %}

@@ -8,6 +8,7 @@ class Tutor(models.Model):
     Represents a tutor in the tutoring marketplace.
 
     Attributes:
+        user (OneToOneField): The user associated with the tutor.
         display_name (str): The display name of the tutor.
         subjects (ManyToManyField): The subjects that the tutor teaches.
         hourly_rate (DecimalField): The hourly rate charged by the tutor.
@@ -17,6 +18,7 @@ class Tutor(models.Model):
         ratings (ManyToManyField): The ratings received by the tutor.
     """
 
+    user = models.OneToOneField('auth.User', on_delete=models.CASCADE, related_name='tutor')
     display_name = models.CharField(max_length=200)
     subjects = models.ManyToManyField('Subject', related_name='tutors')
     # -> Credit for decimal fields: https://docs.djangoproject.com/en/5.0/ref/models/fields/#decimalfield  # noqa
