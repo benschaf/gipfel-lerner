@@ -23,7 +23,7 @@ class Tutor(models.Model):
     hourly_rate = models.DecimalField(max_digits=6, decimal_places=2)
     catch_phrase = models.CharField(max_length=200, default='Tutoring with a smile!')
     description = models.TextField()
-    profile_image = models.ImageField(upload_to='tutor_images')
+    profile_image = models.ImageField(upload_to='tutor_images', null=True, blank=True)
     values = models.ManyToManyField('Value', related_name='tutors')
     ratings = models.ManyToManyField('Rating', related_name='tutors', blank=True)
 
