@@ -139,7 +139,7 @@ The user stories are based on the user personas and the features of the app. The
 | User Story | Acceptance Criteria |
 | --- | --- |
 | As a **first time visitor**, I want to be able to understand the purpose of the site so that I can decide if I want to sign up. | 1. The homepage should clearly explain the purpose of the site. <br> 2. The homepage should have a call-to-action button to sign up. |
-| As a **student**, I want to be able to view a list of tutors so that I can choose the best tutor for my needs. | 1. The site should have a page that lists all available tutors. <br> 2. Each tutor should have at least their profile picture, name, and hourly rate displayed. |
+| As a **student**, I want to be able to view a list of tutors so that I can choose the best tutor for my needs. | 1. The site should have a page that lists all available tutors. <br> 2. Each tutor should have at least their profile picture, name, and hourly rate displayed.<br> 3. There should be obvious "book trial lesson" CTA Buttons. |
 | _NOT MVP:_ As a **student**, I want to be able to like and save tutors so that I can easily find them later. | |
 
 ### Searching, filtering, and sorting

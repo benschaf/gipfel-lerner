@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.db.models import Avg
 
 
 class Tutor(models.Model):
@@ -20,10 +21,18 @@ class Tutor(models.Model):
     subjects = models.ManyToManyField('Subject', related_name='tutors')
     # -> Credit for decimal fields: https://docs.djangoproject.com/en/5.0/ref/models/fields/#decimalfield  # noqa
     hourly_rate = models.DecimalField(max_digits=6, decimal_places=2)
+    catch_phrase = models.CharField(max_length=200, default='Tutoring with a smile!')
     description = models.TextField()
     profile_image = models.ImageField(upload_to='tutor_images')
     values = models.ManyToManyField('Value', related_name='tutors')
-    ratings = models.ManyToManyField('Rating', related_name='tutors')
+    ratings = models.ManyToManyField('Rating', related_name='tutors', blank=True)
+
+    def average_rating(self):
+        """
+        Returns the average rating of the tutor from all related Rating
+        objects.
+        """
+        return self.ratings.aggregate(Avg('score', default=None))
 
     def __str__(self):
         return self.display_name

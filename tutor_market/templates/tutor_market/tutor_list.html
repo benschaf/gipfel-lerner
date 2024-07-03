@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="container">
+    <h1>Find <span class="text-primary">your</span> tutor</h1>
+  </div>
+
+  <!-- Search form -->
+  <div class="container">Search form</div>
+
+  <!-- Tutor list -->
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-2">
+      {% for tutor in tutor_list %}
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-4">
+                  <img src="{% static 'tutor.profile_image' %}" alt="" />
+                </div>
+                <div class="col-8">
+                  <div class="row row-cols-1">
+                    <div class="col">
+                      <h5>{{ tutor.display_name }}</h5>
+                      <p>
+                        {% for value in tutor.values.all %}
+                          <span class="badge rounded-pill text-bg-secondary">{{ value }}</span>
+                        {% endfor %}
+                      </p>
+                      <p>
+                        {% for subject in tutor.subjects.all %}
+                          <span class="badge rounded-pill text-bg-secondary">{{ subject }}</span>
+                        {% endfor %}
+                      </p>
+                    </div>
+                    <div class="col">
+                      <p>{{ tutor.hourly_rate }}</p>
+                      <p>
+                        {% if tutor.average_rating.score__avg %}
+                          Average Rating: {{ tutor.average_rating }} |
+                        {% endif %}
+                        {{ tutor.ratings.count }} reviews
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">{{ tutor.catch_phrase }}</div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a href="#"class="btn btn-primary">Book a trial lesson!</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
