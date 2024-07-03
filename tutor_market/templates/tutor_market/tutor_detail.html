@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <!-- Tutor details -->
+  <div class="container">
+    <h1>{{ tutor.display_name }}</h1>
+    <div class="row">
+      <div class="col-3">
+        <img src="{% static tutor.profile_image %}" alt="Image of {{ tutor.display_name }}" />
+      </div>
+      <div class="col-9">
+        <div class="row">
+          <div class="col">
+            <p>{{ tutor.catch_phrase }}</p>
+            <p>
+              my values:{% for value in tutor.values.all %}
+                <span class="badge rounded-pill text-bg-secondary">{{ value }}</span>
+              {% endfor %}
+            </p>
+            <p>
+              my subjects:{% for subject in tutor.subjects.all %}
+                <span class="badge rounded-pill text-bg-secondary">{{ subject }}</span>
+              {% endfor %}
+            </p>
+          </div>
+          <div class="col">
+            <p>{{ tutor.hourly_rate }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p>{{ tutor.description }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p>
+          {% if tutor.average_rating.score__avg %}
+            Average Rating: {{ tutor.average_rating.score__avg }} |
+          {% endif %}
+          {{ tutor.ratings.count }} reviews
+        </p>
+        {% if tutor.ratings.all.count %}
+          {{ tutor.ratings.count }}
+          {% for review in tutor.ratings.all %}
+            <p>{{ review }}</p>
+          {% endfor %}
+        {% else %}
+          <p>No reviews yet</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

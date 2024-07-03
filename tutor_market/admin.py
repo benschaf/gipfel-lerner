@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from tutor_market.models import Rating, Subject, Tutor, Value
+from tutor_market.models import Rating, Student, Subject, Tutor, Value
 
 
 admin.site.site_header = 'Gipfel Tutor Administration'
@@ -11,3 +11,4 @@ admin.site.register(Tutor)
 admin.site.register(Rating)
 admin.site.register(Subject)
 admin.site.register(Value)
+admin.site.register(Student)

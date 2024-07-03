@@ -48,7 +48,7 @@ class Student(models.Model):
     """
 
     display_name = models.CharField(max_length=200)
-    profile_image = models.ImageField(upload_to='student_images')
+    profile_image = models.ImageField(upload_to='student_images', null=True, blank=True)
 
     def __str__(self):
         return self.display_name
@@ -63,9 +63,6 @@ class Rating(models.Model):
         student (Student): The student who gave the rating.
         score (int): The score given by the student (between 0 and 5).
         comment (str): Additional comment provided by the student.
-
-    Methods:
-        __str__(): Returns a string representation of the rating.
     """
 
     tutor = models.ForeignKey(Tutor, on_delete=models.CASCADE)
