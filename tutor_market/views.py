@@ -1,11 +1,14 @@
-from django.shortcuts import redirect, render
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
+from typing import Any
+from django.contrib.auth.decorators import login_required
 
-from tutor_market.forms import TutorForm
-from tutor_market.models import Tutor
+from tutor_market.forms import RatingForm, TutorForm
+from tutor_market.models import Tutor, Rating
 
 
 class TutorList(ListView):
@@ -18,13 +21,50 @@ class TutorList(ListView):
     paginate_by = 6
 
 
-class TutorDetailView(DetailView):
+def tutor_detail_view(request, pk):
     """
     View for displaying the details (Profile) of a tutor.
+    If a POST request is made, a new review is added to the tutor's profile.
     """
-    model = Tutor
-    template_name = 'tutor_market/tutor_detail.html'
-    context_object_name = 'tutor'
+    tutor = get_object_or_404(Tutor, pk=pk)
+    existing_rating = None
+    if request.user.is_authenticated:
+        existing_rating = Rating.objects.filter(tutor=tutor, user=request.user).first()
+
+    if request.method == 'POST':
+        review_form = RatingForm(request.POST)
+
+        # how do I do proper form validation?
+        # If I do it witha CBV the invalid form will reload the page and add
+        # a specific error message on the invalid fields.
+        if not review_form.is_valid():
+            messages.error(request, 'Form was not valid. Please try again.')
+
+        # Update the old review and reload the view
+        if existing_rating:
+            existing_rating.score = review_form.cleaned_data['score']
+            existing_rating.comment = review_form.cleaned_data['comment']
+            existing_rating.save()
+            return redirect('tutor_detail', pk=pk)
+
+        review = review_form.save(commit=False)
+        review.tutor = tutor
+        review.user = request.user
+        review.save()
+        messages.success(request, 'Review added successfully.')
+        return redirect('tutor_detail', pk=pk)
+
+    form = RatingForm()
+    reviews = tutor.rating_set.all()
+    rating_exists = Rating.objects.filter(tutor=tutor, user=request.user).exists()
+    context = {
+        'tutor': tutor,
+        'form': form,
+        'reviews': reviews,
+        'existing_review': rating_exists,
+    }
+    return render(request, 'tutor_market/tutor_detail.html', context)
+
 
 
 class TutorCreateView(LoginRequiredMixin, CreateView):

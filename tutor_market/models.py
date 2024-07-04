@@ -68,7 +68,7 @@ class Rating(models.Model):
     """
 
     tutor = models.ForeignKey(Tutor, on_delete=models.CASCADE)
-    student = models.ForeignKey('Student', on_delete=models.CASCADE)
+    user = models.OneToOneField('auth.User', on_delete=models.CASCADE, related_name='rating', default=None)
     score = models.IntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(5)])
     comment = models.TextField()
