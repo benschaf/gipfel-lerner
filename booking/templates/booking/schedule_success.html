@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="container mt-5">
+    <!-- Success Message -->
+    <div class="alert alert-success" role="alert">Congratulations! Lesson Scheduled Successfully</div>
+    <!-- Session Details -->
+    <div class="row">
+      <div class="col-md-6">
+        <h5>Session Information</h5>
+        <p>
+          <strong>Your Tutor:</strong> {{ session.tutor }}
+        </p>
+        <p>
+          <strong>Provided Email:</strong> {{ session.invitee_email }}
+        </p>
+        <p>
+          <strong>Session Name:</strong> {{ session.session_name }}
+        </p>
+        <p>
+          <strong>Start Time:</strong> {{ session.start_time }}
+        </p>
+        <p>
+          <strong>Session Duration:</strong> {{ session.duration }} minutes
+        </p>
+        <p>
+          <strong>Subject:</strong> {{ session.subject }}
+        </p>
+        <p>
+          <strong>Invitee Notes:</strong> {{ session.invitee_notes }}
+        </p>
+        <p>
+          <strong>Session Status:</strong> {{ session.get_session_status_display }}
+        </p>
+        <a href="{{ session.cancel_url }}" class="btn btn-secondary"><i class="fas fa-times"></i> Cancel Lesson</a>
+        <a href="{{ session.reschedule_url }}" class="btn btn-secondary"><i class="fas fa-calendar-alt"></i> Reschedule Lesson</a>
+        <a href="{{ session.location_url }}" class="btn btn-secondary"><i class="fas fa-video"></i> Go to Lesson Videocall</a>
+      </div>
+      <div class="col-md-6">
+        <h5>Payment Information</h5>
+        <p>
+          <strong>Price:</strong> {{ session.price }}
+        </p>
+        <p>
+          <strong>Payment Complete:</strong> {{ session.payment_complete }}
+        </p>
+        <p>
+          <strong>Payment ID:</strong> {{ session.payment_id }}
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
