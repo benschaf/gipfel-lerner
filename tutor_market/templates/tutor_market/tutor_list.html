@@ -27,7 +27,7 @@
                 <div class="col-8">
                   <div class="row row-cols-1">
                     <div class="col">
-                      <h5>{{ tutor.display_name }}</h5>
+                      <h5><a href="{% url 'tutor_detail' tutor.pk %}">{{ tutor.display_name }}</a></h5>
                       <p>
                         {% for value in tutor.values.all %}
                           <span class="badge rounded-pill text-bg-secondary">{{ value }}</span>
@@ -56,14 +56,12 @@
               </div>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-primary">Book a trial lesson!</a>
+              <a href="{% url 'tutor_detail' tutor.pk %}" class="btn btn-primary">Book a trial lesson!</a>
             </div>
           </div>
         </div>
       {% empty %}
-      <p>
-        No tutors found. Please try again later.
-      </p>
+        <p>No tutors found. Please try again later.</p>
       {% endfor %}
     </div>
   </div>
