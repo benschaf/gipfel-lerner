@@ -82,10 +82,10 @@ class Subject(models.Model):
     Represents a subject in the tutor market.
     """
 
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, default='Other')
 
     def __str__(self):
-        return self.name
+        return f"{self.name} - {self.id}"
 
 
 class Value(models.Model):
