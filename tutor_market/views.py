@@ -1,3 +1,4 @@
+import json
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
@@ -7,8 +8,11 @@ from django.contrib import messages
 from typing import Any
 from django.contrib.auth.decorators import login_required
 
-from tutor_market.forms import RatingForm, TutorForm
+
+from gipfel_tutor import settings
+from tutor_market.forms import CalendlyUriForm, RatingForm, TutorForm
 from tutor_market.models import Tutor, Rating
+import requests
 
 
 class TutorList(ListView):
@@ -55,15 +59,39 @@ def tutor_detail_view(request, pk):
         return redirect('tutor_detail', pk=pk)
 
     form = RatingForm()
+    calendly_form = CalendlyUriForm()
     reviews = tutor.rating_set.all()
     rating_exists = Rating.objects.filter(tutor=tutor, user=request.user).exists()
     context = {
         'tutor': tutor,
         'form': form,
+        'calendly_form': calendly_form,
         'reviews': reviews,
         'existing_review': rating_exists,
     }
     return render(request, 'tutor_market/tutor_detail.html', context)
+
+def _get_json_from_calendly_uri(uri):
+    headers = {'Authorization': f'Bearer {settings.PERSONAL_CALENDLY_TOKEN}'}
+    response = requests.get(uri, headers=headers)
+    if response.status_code == 200:
+        print(f"success: {json.dumps(response.json())}")
+    else:
+        # Handle error
+        print(f"error: {response.status_code}")
+
+def fetch_calendly_data_view(request: HttpRequest, pk: int) -> HttpResponse:
+    """
+    View for fetching and displaying the tutor's Calendly data.
+    """
+    tutor = get_object_or_404(Tutor, pk=pk)
+    form = CalendlyUriForm(request.POST)
+    if form.is_valid():
+        event_uri = form.cleaned_data['event_uri']
+        invitee_uri = form.cleaned_data['invitee_uri']
+        _get_json_from_calendly_uri(event_uri)
+        _get_json_from_calendly_uri(invitee_uri)
+    return redirect('tutor_detail', pk=pk)
 
 
 
