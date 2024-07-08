@@ -10,6 +10,7 @@ from booking.forms import CalendlyUriForm
 from booking.models import TutoringSession
 from gipfel_tutor import settings
 from tutor_market.models import Tutor
+import stripe
 
 def _get_json_from_calendly_uri(uri):
     headers = {'Authorization': f'Bearer {settings.PERSONAL_CALENDLY_TOKEN}'}
@@ -91,11 +92,24 @@ def payment_view(request, pk):
         messages.error(request, 'No sessions to pay for.')
         return redirect('dashboard')
 
-    total_price = sum([session.price for session in sessions_to_pay])
+    total_price = round(sum([session.price for session in sessions_to_pay]))
+
+    STRIPE_PUBLIC_KEY = settings.STRIPE_PUBLIC_KEY
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    intent = stripe.PaymentIntent.create(
+        amount=total_price,
+        currency=settings.STRIPE_CURRENCY,
+    )
+    CLIENT_SECRET = intent.client_secret
+
+    print(f"intent {intent}")
+
 
     context = {
         'sessions': sessions_to_pay,
         'total_price': total_price,
+        'STRIPE_PUBLIC_KEY': STRIPE_PUBLIC_KEY,
+        'CLIENT_SECRET': CLIENT_SECRET,
     }
     return render(request, 'booking/payment.html', context)
 
