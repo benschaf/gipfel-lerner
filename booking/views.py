@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 import requests
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView
+from django.contrib import messages
 
 from booking.forms import CalendlyUriForm
 from booking.models import TutoringSession
@@ -78,6 +79,26 @@ class ScheduleSuccessView(DetailView):
     model = TutoringSession
     template_name = 'booking/schedule_success.html'
     context_object_name = 'session'
+
+
+def payment_view(request, pk):
+    """
+    View for handling the payment of a tutoring session.
+    """
+    sessions_to_pay = TutoringSession.objects.filter(student=request.user, payment_complete=False)
+
+    if not sessions_to_pay:
+        messages.error(request, 'No sessions to pay for.')
+        return redirect('dashboard')
+
+    total_price = sum([session.price for session in sessions_to_pay])
+
+    context = {
+        'sessions': sessions_to_pay,
+        'total_price': total_price,
+    }
+    return render(request, 'booking/payment.html', context)
+
 
 
 
