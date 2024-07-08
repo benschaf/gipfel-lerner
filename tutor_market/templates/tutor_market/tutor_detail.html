@@ -3,168 +3,192 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<!-- -> Credit for using Calendly embeds: https://developer.calendly.com/api-docs/6a743888e5649-getting-started-with-embeds -->
   <div class="container">
-    <h1>Tutor Scheudle</h1>
-    <div id="calendly" style="min-width:320px;height:700px;"></div>
-
-    <div class="d-none">
-      <form id="calenly_form_hidden" action="{% url 'fetch_calendly_data' tutor.pk %}" method="POST">
-        {% csrf_token %}
-        {{ calendly_form }}
-      </form>
-    </div>
-
-    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
-    <script type="text/javascript">
-      function isCalendlyEvent(e) {
-        return e.data.event && e.data.event.indexOf('calendly') === 0
-      }
-
-      // -> Credit for posting a form using javascript: https://stackoverflow.com/questions/133925/javascript-post-request-like-a-form-submit
-      window.addEventListener('message', function (e) {
-        if (isCalendlyEvent(e) && e.data.event === 'calendly.event_scheduled') {
-          console.log('Event was scheduled');
-          const eventUri = e.data.payload.event.uri;
-          const inviteeUri = e.data.payload.invitee.uri;
-          const form = document.getElementById('calenly_form_hidden');
-
-          // -> Credit for submitting a form and setting values: https://www.w3schools.com/jsref/dom_obj_form.asp
-          // Use form.elements to directly access the inputs by name
-          form.elements['event_uri'].value = eventUri;
-          form.elements['invitee_uri'].value = inviteeUri;
-
-          // Submit the form
-          form.submit();
-        }
-      });
-
-      Calendly.initInlineWidget({
-        url: 'https://calendly.com/benibschafer/30min/?hide_event_type_details=1',
-        parentElement: document.getElementById('calendly'),
-        prefill: {
-          name: '{{ user }}',
-          email: '{{ user.email }}'
-        },
-        utm: {}
-      })
-    </script>
-  </div>
-  <!-- Tutor details -->
-  <div class="container">
-    <div class="row">
-      <div class="col d-flex justify-content-between">
-        <h1>{{ tutor.display_name }}</h1>
-        <div>
-          {% if schedule.author == user or user.is_superuser %}
-            <a href="{% url 'edit_tutor' tutor.pk %}" class="btn btn-secondary">Edit your Profile</a>
-            <a href="{% url 'delete_tutor' tutor.pk %}" class="btn btn-danger">Delete your Profile</a>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-3">
-        {% if tutor.profile_image %}
-          <img src="{{ tutor.profile_image.url }}" alt="Image of {{ tutor.display_name }}" class="img-fluid" />
-        {% else %}
-          <img src="https://gipfel-tutor-768a610dc54f.s3.eu-north-1.amazonaws.com/media/tutor_images/default_profile_image.png" alt="Default profile image" class="img-fluid" />
-        {% endif %}
-      </div>
-      <div class="col-9">
+    <div class="row justify-content-between">
+      <!-- Tutor Profile -->
+      <div class="col">
         <div class="row">
           <div class="col">
-            <p>{{ tutor.catch_phrase }}</p>
-            <p>
-              my values:{% for value in tutor.values.all %}
-                <span class="badge rounded-pill text-bg-secondary">{{ value }}</span>
-              {% endfor %}
-            </p>
-            <p>
-              my subjects:{% for subject in tutor.subjects.all %}
-                <span class="badge rounded-pill text-bg-secondary">{{ subject }}</span>
-              {% endfor %}
-            </p>
+            <div class="row">
+              <div class="col d-flex justify-content-between">
+                <h1>{{ tutor.display_name }}</h1>
+                <div>
+                  {% if schedule.author == user or user.is_superuser %}
+                    <a href="{% url 'edit_tutor' tutor.pk %}" class="btn btn-secondary">Edit your Profile</a>
+                    <a href="{% url 'delete_tutor' tutor.pk %}" class="btn btn-danger">Delete your Profile</a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-3">
+                {% if tutor.profile_image %}
+                  <img src="{{ tutor.profile_image.url }}" alt="Image of {{ tutor.display_name }}" class="img-fluid" />
+                {% else %}
+                  <img src="https://gipfel-tutor-768a610dc54f.s3.eu-north-1.amazonaws.com/media/tutor_images/default_profile_image.png" alt="Default profile image" class="img-fluid" />
+                {% endif %}
+              </div>
+              <div class="col-9">
+                <div class="row">
+                  <div class="col">
+                    <p>{{ tutor.catch_phrase }}</p>
+                    <p>
+                      my values:{% for value in tutor.values.all %}
+                        <span class="badge rounded-pill text-bg-secondary">{{ value }}</span>
+                      {% endfor %}
+                    </p>
+                    <p>
+                      my subjects:{% for subject in tutor.subjects.all %}
+                        <span class="badge rounded-pill text-bg-secondary">{{ subject }}</span>
+                      {% endfor %}
+                    </p>
+                  </div>
+                  <div class="col">
+                    <p>{{ tutor.hourly_rate }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p>{{ tutor.description }}</p>
+              </div>
+            </div>
           </div>
+        </div>
+        <!-- Reviews Section -->
+        <!-- -> Credit for reviews section: https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/templates/wasteschedules/schedule_detail.html -->
+        <div class="row">
           <div class="col">
-            <p>{{ tutor.hourly_rate }}</p>
+            <div class="row">
+              <div class="col">
+                <h2>Reviews</h2>
+                <p>
+                  {% if tutor.average_rating.score__avg %}
+                    Average Rating: {{ tutor.average_rating.score__avg }} |
+                  {% endif %}
+                  {{ tutor.ratings.count }} reviews
+                </p>
+                {% if tutor.ratings.all.count %}
+                  {{ tutor.ratings.count }}
+                  {% for review in tutor.ratings.all %}
+                    <p>{{ review }}</p>
+                  {% endfor %}
+                {% else %}
+                  <p>No reviews yet</p>
+                {% endif %}
+              </div>
+            </div>
+
+            <!-- Creating new Review -->
+            <!-- -> Credit for crispy forms: https://github.com/Code-Institute-Solutions/blog/tree/main/12_views_part_3/01_posting_to_database -->
+            <div class="row row-cols-1 row-cols-md-2">
+              <div class="col mb-3 order-md-2">
+                <div class="card-body sticky-md-top">
+                  {% if user.is_authenticated %}
+                    {% if existing_review %}
+                      <h4>Change your review</h4>
+                      <span class="text-muted">you already posted a review</span>
+                    {% else %}
+                      <h4>Leave a review:</h4>
+                    {% endif %}
+                    <p>Posting as: {{ user }}</p>
+                    <form action="{% url 'tutor_detail' tutor.pk %}" method="POST">
+                      {% csrf_token %}
+                      {{ form|crispy }}
+                      <button id="submitButton" type="submit" class="btn btn-primary">Leave Review</button>
+                    </form>
+                  {% else %}
+                    <p>
+                      <a href="{% url 'account_login' %}">Log in</a> to leave a review
+                    </p>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="col">
+                <ul class="list-group list-group-flush">
+                  {% for review in reviews %}
+                    <li class="list-group-item ps-0">
+                      <p>
+                        <i class="fa-regular fa-user"></i>
+                        &#160;&#160;
+                        {{ review.user }}
+                        {% if review.user == request.user %}(you){% endif %}
+                      </p>
+                      <p>{{ review.score }}</p>
+                      <p>{{ review.comment }}</p>
+                    </li>
+                  {% empty %}
+                    No reviews yet.
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <p>{{ tutor.description }}</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <p>
-          {% if tutor.average_rating.score__avg %}
-            Average Rating: {{ tutor.average_rating.score__avg }} |
+      <div class="col-12 col-lg-5 col-xl-4">
+        <!-- -> Credit for using Calendly embeds: https://developer.calendly.com/api-docs/6a743888e5649-getting-started-with-embeds -->
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-1">
+          {% if upcoming_sessions %}
+            <div class="col">
+              <h5>Your upcoming Lessons with {{ tutor }}</h5>
+              <ul class="list-group">
+                {% for session in upcoming_sessions %}
+                  <li class="list-group-item">{{ session.start_time }}</li>
+                {% endfor %}
+              </ul>
+              <p>See all of your upcoming Lessons on your <a href="#">Dashboard</a></p>
+            </div>
           {% endif %}
-          {{ tutor.ratings.count }} reviews
-        </p>
-        {% if tutor.ratings.all.count %}
-          {{ tutor.ratings.count }}
-          {% for review in tutor.ratings.all %}
-            <p>{{ review }}</p>
-          {% endfor %}
-        {% else %}
-          <p>No reviews yet</p>
-        {% endif %}
-      </div>
-    </div>
-  </div>
+          <div class="col mt-3">
+            <h5>Select a date below to book a lesson with {{ tutor }}</h5>
+            <div id="calendly" style="min-width:320px;height:700px;"></div>
 
-  <!-- Reviews Section -->
-  <!-- -> Credit for reviews section: https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/templates/wasteschedules/schedule_detail.html -->
-  <div class="container mt-5">
-    <h2>Reviews</h2>
-
-    <!-- Creating New Comments -->
-    <!-- -> Credit for crispy forms: https://github.com/Code-Institute-Solutions/blog/tree/main/12_views_part_3/01_posting_to_database -->
-    <div class="row row-cols-1 row-cols-md-2">
-      <div class="col mb-3 order-md-2">
-        <div class="card-body sticky-md-top">
-          {% if user.is_authenticated %}
-            {% if existing_review %}
-              <h4>Change your review</h4>
-              <span class="text-muted">you already posted a review</span>
-            {% else %}
-              <h4>Leave a review:</h4>
-            {% endif %}
-            <p>Posting as: {{ user }}</p>
-            <form action="{% url 'tutor_detail' tutor.pk %}" method="POST">
-              {% csrf_token %}
-              {{ form|crispy }}
-              <button id="submitButton" type="submit" class="btn btn-primary">Leave Review</button>
-            </form>
-          {% else %}
-            <p>
-              <a href="{% url 'account_login' %}">Log in</a> to leave a review
-            </p>
-          {% endif %}
+            <div class="d-none">
+              <form id="calenly_form_hidden" action="{% url 'fetch_calendly_data' tutor.pk %}" method="POST">
+                {% csrf_token %}
+                {{ calendly_form }}
+              </form>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col">
-        <ul class="list-group list-group-flush">
-          {% for review in reviews %}
-            <li class="list-group-item ps-0">
-              <p>
-                <i class="fa-regular fa-user"></i>
-                &#160;&#160;
-                {{ review.user }}
-                {% if review.user == request.user %}(you){% endif %}
-              </p>
-              <p>{{ review.score }}</p>
-              <p>{{ review.comment }}</p>
-            </li>
-          {% empty %}
-            No reviews yet.
-          {% endfor %}
-        </ul>
-      </div>
+
+      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
+      <script type="text/javascript">
+        function isCalendlyEvent(e) {
+          return e.data.event && e.data.event.indexOf('calendly') === 0
+        }
+
+        // -> Credit for posting a form using javascript: https://stackoverflow.com/questions/133925/javascript-post-request-like-a-form-submit
+        window.addEventListener('message', function (e) {
+          if (isCalendlyEvent(e) && e.data.event === 'calendly.event_scheduled') {
+            console.log('Event was scheduled')
+            const eventUri = e.data.payload.event.uri
+            const inviteeUri = e.data.payload.invitee.uri
+            const form = document.getElementById('calenly_form_hidden')
+
+            // -> Credit for submitting a form and setting values: https://www.w3schools.com/jsref/dom_obj_form.asp
+            // Use form.elements to directly access the inputs by name
+            form.elements['event_uri'].value = eventUri
+            form.elements['invitee_uri'].value = inviteeUri
+
+            // Submit the form
+            form.submit()
+          }
+        })
+
+        Calendly.initInlineWidget({
+          url: 'https://calendly.com/benibschafer/30min/?hide_event_type_details=1',
+          parentElement: document.getElementById('calendly'),
+          prefill: {
+            name: '{{ user }}',
+            email: '{{ user.email }}'
+          },
+          utm: {}
+        })
+      </script>
     </div>
   </div>
 {% endblock %}

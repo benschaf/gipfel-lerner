@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 
 from booking.forms import CalendlyUriForm
+from booking.models import TutoringSession
 from gipfel_tutor import settings
 from tutor_market.forms import RatingForm, TutorForm
 from tutor_market.models import Tutor, Rating
@@ -33,10 +34,16 @@ def tutor_detail_view(request, pk):
     """
     tutor = get_object_or_404(Tutor, pk=pk)
     existing_rating = None
+    upcoming_sessions = None
     if request.user.is_authenticated:
         existing_rating = Rating.objects.filter(tutor=tutor, user=request.user).first()
+        upcoming_sessions = TutoringSession.objects.filter(tutor__user=tutor.user, student=request.user)
 
     if request.method == 'POST':
+        if not request.user.is_authenticated:
+            messages.error(request, 'You must be logged in to leave a review.')
+            return redirect('tutor_detail', pk=pk)
+
         review_form = RatingForm(request.POST)
 
         # how do I do proper form validation?
@@ -62,13 +69,14 @@ def tutor_detail_view(request, pk):
     form = RatingForm()
     calendly_form = CalendlyUriForm()
     reviews = tutor.rating_set.all()
-    rating_exists = Rating.objects.filter(tutor=tutor, user=request.user).exists()
+    rating_exists = True if existing_rating else False
     context = {
         'tutor': tutor,
         'form': form,
         'calendly_form': calendly_form,
         'reviews': reviews,
         'existing_review': rating_exists,
+        'upcoming_sessions': upcoming_sessions,
     }
     return render(request, 'tutor_market/tutor_detail.html', context)
 
