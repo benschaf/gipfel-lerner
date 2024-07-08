@@ -33,6 +33,7 @@
         <p>
           <strong>Session Status:</strong> {{ session.get_session_status_display }}
         </p>
+        <a href="{% url 'tutor_detail' pk=session.tutor.id %}" class="btn btn-primary"> Schedule another lesson with {{ session.tutor }}</a>
         <a href="{{ session.cancel_url }}" class="btn btn-secondary"><i class="fas fa-times"></i> Cancel Lesson</a>
         <a href="{{ session.reschedule_url }}" class="btn btn-secondary"><i class="fas fa-calendar-alt"></i> Reschedule Lesson</a>
         <a href="{{ session.location_url }}" class="btn btn-secondary"><i class="fas fa-video"></i> Go to Lesson Videocall</a>
@@ -48,6 +49,7 @@
         <p>
           <strong>Payment ID:</strong> {{ session.payment_id }}
         </p>
+        <a href="{% url 'payments' pk=session.student.id %}" class="btn btn-primary"> Go to Payments</a>
       </div>
     </div>
   </div>
