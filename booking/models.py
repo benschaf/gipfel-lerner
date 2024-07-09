@@ -51,10 +51,15 @@ class Payment(models.Model):
 
     PAYMENT_CHOICES = [
         ("pending", "Pending"),
-        ("completed", "Completed"),
+        ("succeeded", "Succeeded"),
         ("failed", "Failed"),
         ("refunded", "Refunded"),
     ]
 
     status = models.CharField(max_length=20, choices=PAYMENT_CHOICES, default="pending")
     date = models.DateTimeField(auto_now_add=True)
+
+    # Stripe fields
+    client_secret = models.CharField(max_length=200, default='')
+    currency = models.CharField(max_length=3, default="eur")
+    stripe_id = models.CharField(max_length=200, default='')
