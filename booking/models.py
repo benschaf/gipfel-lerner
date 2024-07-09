@@ -12,7 +12,8 @@ class TutoringSession(models.Model):
     )
     price = models.DecimalField(max_digits=6, decimal_places=2)
     payment_complete = models.BooleanField(default=False)
-    payment_id = models.CharField(max_length=200, blank=True, null=True)
+    # -> Credit for model.SET_NULL: https://stackoverflow.com/questions/70395921/is-there-any-other-option-for-on-delete-other-than-models-cascade-for-a-foreignk  # noqa
+    payment = models.ForeignKey("booking.Payment", on_delete=models.SET_NULL, null=True, blank=True, related_name="sessions")
     subject = models.ForeignKey("tutor_market.Subject", on_delete=models.CASCADE, default=1)
 
     # Calendly json fields
@@ -42,3 +43,18 @@ class TutoringSession(models.Model):
 
     def duration(self) -> timedelta:
         return self.end_time - self.start_time
+
+
+class Payment(models.Model):
+    user = models.ForeignKey("auth.User", on_delete=models.CASCADE)  # cascade has to be changed because payments should not be deleted when a user is deleted (probably)
+    amount = models.DecimalField(max_digits=6, decimal_places=2)
+
+    PAYMENT_CHOICES = [
+        ("pending", "Pending"),
+        ("completed", "Completed"),
+        ("failed", "Failed"),
+        ("refunded", "Refunded"),
+    ]
+
+    status = models.CharField(max_length=20, choices=PAYMENT_CHOICES, default="pending")
+    date = models.DateTimeField(auto_now_add=True)
