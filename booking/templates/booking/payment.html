@@ -84,6 +84,7 @@
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault()
+      $('#submit').attr('disabled', true)
 
       const { error } = await stripe.confirmPayment({
         //`Elements` instance that was used to create the Payment Element
@@ -98,7 +99,9 @@
         // confirming the payment. Show error to your customer (for example, payment
         // details incomplete)
         const messageContainer = document.querySelector('#error-message')
-        messageContainer.textContent = error.message
+        messageContainer.classList.add('alert', 'alert-danger')
+        messageContainer.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + error.message
+        $('#submit').attr('disabled', false)
       } else {
         // Your customer will be redirected to your `return_url`. For some payment
         // methods like iDEAL, your customer will be redirected to an intermediate
