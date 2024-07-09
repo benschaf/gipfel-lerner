@@ -86,6 +86,7 @@ class ScheduleSuccessView(DetailView):
     context_object_name = 'session'
 
 
+@login_required
 def payment_view(request, pk):
     """
     View for handling the payment of a tutoring session.
@@ -129,8 +130,24 @@ class PaymentCreateView(CreateView):
         return context
 
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        response = super().form_valid(form)
+
         # update the sessions
-        return super().form_valid(form)
+        sessions_to_pay = TutoringSession.objects.filter(student=self.request.user, payment_complete=False)
+
+        # validate payment sum
+        total_price = round(sum([session.price for session in sessions_to_pay]))
+        if total_price != form.cleaned_data['amount']:
+            messages.error(self.request, 'Payment amount does not match the total price.')
+            # somehow the payment would have to be reverted here ...
+            return redirect('payments')
+
+        for session in sessions_to_pay:
+            session.payment_complete = True
+            session.payment = self.object
+            session.save()
+
+        return response
 
     def get_success_url(self) -> str:
         return reverse('payment_success', kwargs={'pk': self.object.pk})
@@ -141,3 +158,8 @@ class PaymentDetailView(DetailView):
     model = Payment
     template_name = 'booking/payment_success.html'
     context_object_name = 'payment'
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['sessions'] = TutoringSession.objects.filter(payment=self.object)
+        return context

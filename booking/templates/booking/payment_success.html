@@ -9,24 +9,42 @@
     <p>A confirmation email will be sent to {{ user.email }} shortly.</p>
 
     <h2>Payment Overview</h2>
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Payment Details</h5>
-        <p class="card-text">
-          <strong>User:</strong> {{ payment.user.username }}
-        </p>
-        <p class="card-text">
-          <strong>Amount:</strong> €{{ payment.amount }}
-        </p>
-        <p class="card-text">
-          <strong>Status:</strong> {{ payment.get_status_display }}
-        </p>
-        <p class="card-text">
-          <strong>Date:</strong> {{ payment.date|date:'d M Y H:i' }}
-        </p>
-        <p class="card-text">
-          <strong>Currency:</strong> {{ payment.currency }}
-        </p>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Payment Details</h5>
+            <p class="card-text">
+              <strong>User:</strong> {{ payment.user.username }}
+            </p>
+            <p class="card-text">
+              <strong>Amount:</strong> €{{ payment.amount }}
+            </p>
+            <p class="card-text">
+              <strong>Status:</strong> {{ payment.get_status_display }}
+            </p>
+            <p class="card-text">
+              <strong>Date:</strong> {{ payment.date|date:'d M Y H:i' }}
+            </p>
+            <p class="card-text">
+              <strong>Currency:</strong> {{ payment.currency }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">With this payment you paid for:</h5>
+            <ul class="list-group">
+              {% for session in sessions %}
+                <li class="list-group-item">
+                  Lesson with {{ session.tutor.display_name }} on {{ session.start_time|date:'d M Y' }} at {{ session.start_time|date:'H:i' }}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>

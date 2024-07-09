@@ -90,7 +90,8 @@
         //`Elements` instance that was used to create the Payment Element
         elements,
         confirmParams: {
-          return_url: '{% url 'payment_create' %}?user_id={{ user.id }}',
+          // change this url to dynamic when deploying
+          return_url: 'http://127.0.0.1:8000/{% url 'payment_create' %}?user_id={{ user.id }}',
         }
       })
 
