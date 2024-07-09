@@ -1,13 +1,17 @@
 import json
+from typing import Any
+from django.forms import BaseModelForm
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
 import requests
 from django.contrib.auth.decorators import login_required
-from django.views.generic import DetailView
+from django.views.generic import DetailView, CreateView
 from django.contrib import messages
+from django.contrib.auth.models import User
 
-from booking.forms import CalendlyUriForm
-from booking.models import TutoringSession
+from booking.forms import CalendlyUriForm, PaymentForm
+from booking.models import Payment, TutoringSession
 from gipfel_tutor import settings
 from tutor_market.models import Tutor
 import stripe
@@ -112,6 +116,25 @@ def payment_view(request, pk):
         'CLIENT_SECRET': CLIENT_SECRET,
     }
     return render(request, 'booking/payment.html', context)
+
+
+class PaymentCreateView(CreateView):
+    model = Payment
+    form_class = PaymentForm
+    template_name = 'booking/payment_create.html'
+
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['STRIPE_PUBLIC_KEY'] = settings.STRIPE_PUBLIC_KEY
+        return context
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        # update the sessions
+        return super().form_valid(form)
+
+    def get_success_url(self) -> str:
+        return reverse('payment_success', kwargs={'pk': self.object.pk})
+
 
 
 
