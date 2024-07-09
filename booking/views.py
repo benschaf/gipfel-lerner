@@ -137,5 +137,7 @@ class PaymentCreateView(CreateView):
 
 
 
-
-
+class PaymentDetailView(DetailView):
+    model = Payment
+    template_name = 'booking/payment_success.html'
+    context_object_name = 'payment'

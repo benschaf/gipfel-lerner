@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <div id="message" class="alert alert-success" role="alert">
+      <p>Your Payment has come through!</p>
+      <p>Thank you very much for ordering these lessons!</p>
+    </div>
+    <p>A confirmation email will be sent to {{ user.email }} shortly.</p>
+
+    <h2>Payment Overview</h2>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Payment Details</h5>
+        <p class="card-text">
+          <strong>User:</strong> {{ payment.user.username }}
+        </p>
+        <p class="card-text">
+          <strong>Amount:</strong> €{{ payment.amount }}
+        </p>
+        <p class="card-text">
+          <strong>Status:</strong> {{ payment.get_status_display }}
+        </p>
+        <p class="card-text">
+          <strong>Date:</strong> {{ payment.date|date:'d M Y H:i' }}
+        </p>
+        <p class="card-text">
+          <strong>Currency:</strong> {{ payment.currency }}
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
