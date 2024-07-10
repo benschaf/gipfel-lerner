@@ -133,14 +133,8 @@ class PaymentCreateView(CreateView):
         response = super().form_valid(form)
 
         # update the sessions
-        sessions_to_pay = TutoringSession.objects.filter(student=self.request.user, payment_complete=False)
-
-        # validate payment sum
-        total_price = round(sum([session.price for session in sessions_to_pay]))
-        if total_price != form.cleaned_data['amount']:
-            messages.error(self.request, 'Payment amount does not match the total price.')
-            # somehow the payment would have to be reverted here ...
-            return redirect('payments')
+        session_ids = form.cleaned_data['sessions'].split(',')
+        sessions_to_pay = TutoringSession.objects.filter(pk__in=session_ids)
 
         for session in sessions_to_pay:
             session.payment_complete = True

@@ -85,13 +85,18 @@
     form.addEventListener('submit', async (event) => {
       event.preventDefault()
       $('#submit').attr('disabled', true)
+      session_objects = []
+      {% for session in sessions %}
+        session_objects.push({{ session.id }})
+      {% endfor %}
+      session_ids = session_objects.join(',')
 
       const { error } = await stripe.confirmPayment({
         //`Elements` instance that was used to create the Payment Element
         elements,
         confirmParams: {
           // change this url to dynamic when deploying
-          return_url: 'http://127.0.0.1:8000/{% url 'payment_create' %}?user_id={{ user.id }}',
+          return_url: `http://127.0.0.1:8000/{% url 'payment_create' %}?user_id={{ user.id }}&sessions=${session_ids}`,
         }
       })
 

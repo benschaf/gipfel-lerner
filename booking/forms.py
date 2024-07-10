@@ -10,6 +10,7 @@ class CalendlyUriForm(forms.Form):
 
 
 class PaymentForm(forms.ModelForm):
+    sessions = forms.CharField(max_length=200, required=False)
 
     class Meta:
         model = Payment

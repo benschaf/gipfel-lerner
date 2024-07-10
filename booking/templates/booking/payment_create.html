@@ -28,6 +28,7 @@
   <script type="text/javascript">
     function fillOutForm(paymentIntent) {
         const user_id = new URLSearchParams(window.location.search).get('user_id');
+        const sessions = new URLSearchParams(window.location.search).get('sessions');
         const form = $('#payment-form');
 
         // -> Credit for setting form values: https://www.w3schools.com/jsref/dom_obj_form.asp
@@ -37,6 +38,7 @@
         form.find('[name="client_secret"]').val(paymentIntent.client_secret);
         form.find('[name="currency"]').val(paymentIntent.currency);
         form.find('[name="stripe_id"]').val(paymentIntent.id);
+        form.find('[name="sessions"]').val(sessions);
 
         form.submit();
     }
