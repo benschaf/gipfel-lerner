@@ -4,6 +4,7 @@ import stripe
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
+from booking.webhook_handler import StripeWH_Handler
 from gipfel_tutor import settings
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -30,21 +31,22 @@ def webhook(request):
             print('⚠️  Webhook signature verification failed.' + str(e))
             return JsonResponse({'success': False}, status=400)
 
-    # Handle the event
-    if event and event['type'] == 'payment_intent.succeeded':
-        # contains a stripe.PaymentIntent
-        payment_intent = event['data']['object']
-        print('Payment for {} succeeded'.format(payment_intent['amount']))
-        # Then define and call a method to handle the successful payment intent.
-        # handle_payment_intent_succeeded(payment_intent)
-    elif event['type'] == 'payment_intent.payment_failed':
-        payment_intent = event['data']['object']
-        print('Payment for {} failed'.format(payment_intent['amount']))
-    elif event['type'] == 'payment_intent.processing':
-        payment_intent = event['data']['object']
-        print('Payment for {} processing'.format(payment_intent['amount']))
-    else:
-        # Unexpected event type
-        print('Unhandled event type {}'.format(event['type']))
+    # Set up a webhook handler
+    handler = StripeWH_Handler(request)
 
-    return JsonResponse({'success': True})
+    # Map webhook events to relevant handler functions
+    event_map = {
+        'payment_intent.succeeded': handler.handle_payment_intent_succeeded,
+        'payment_intent.payment_failed': handler.handle_payment_intent_payment_failed,
+    }
+
+    # Get the event type from Stripe
+    event_type = event['type']
+
+    # If there's a handler for it, get it from the event map
+    # Use the generic one by default
+    event_handler = event_map.get(event_type, handler.handle_event)
+
+    # Call the event handler with the event
+    response = event_handler(event)
+    return response
