@@ -7,10 +7,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.contrib import messages
 from typing import Any
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.utils import timezone
 
 
 from booking.forms import CalendlyUriForm
-from booking.models import TutoringSession
+from booking.models import Payment, TutoringSession
 from gipfel_tutor import settings
 from tutor_market.forms import RatingForm, TutorForm
 from tutor_market.models import Tutor, Rating
@@ -153,3 +155,57 @@ class TutorDeleteView(UserPassesTestMixin, DeleteView):
         """
         if self.request.user == self.get_object().user:
             return True
+
+
+def student_dashboard(request, user):
+    """
+    View for displaying the student's dashboard.
+    """
+    booking_history = TutoringSession.objects.filter(student=user)
+    # -> Credit for greater or equal to lookup (gte): https://docs.djangoproject.com/en/5.0/ref/models/querysets/#gte
+    upcoming_sessions = booking_history.filter(start_time__gte=timezone.now())
+    # add payment details (future feature)
+    # add liked tutors (future feature)
+    payment_history = Payment.objects.filter(user=user)
+    context = {
+        'upcoming_sessions': upcoming_sessions,
+        'booking_history': booking_history,
+        'payment_history': payment_history,
+    }
+    return render(request, 'tutor_market/student_dashboard.html', context)
+
+def tutor_dashboard(request, user):
+    """
+    View for displaying the tutors's dashboard.
+    """
+    tutor = Tutor.objects.get(user=user)
+    booking_history = TutoringSession.objects.filter(tutor=tutor).order_by('start_time')
+    upcoming_sessions = booking_history.filter(start_time__gte=timezone.now())[:3]
+    users = User.objects.filter(sessions__tutor=tutor)
+    users_and_sessions = {}
+    for user in users:
+        sessions = booking_history.filter(student=user)
+        users_and_sessions[user] = sessions
+
+    context = {
+        'booking_history': booking_history,
+        'upcoming_sessions': upcoming_sessions,
+        'users_and_sessions': users_and_sessions,
+    }
+    return render(request, 'tutor_market/tutor_dashboard.html', context)
+
+def dashboard_view(request,pk):
+    """
+    Redirects to the correct dashboard based on the user's role.
+    """
+    # CAN I DO THIS WEIRD VIEW THAT IS ONLY HALF A VIEW AND REDIRECTS TO THE APPROPRIATE SECOND HALF?
+    user = get_object_or_404(User, pk=pk)
+    connected_tutor_profile = Tutor.objects.filter(user=user).first()
+    print(connected_tutor_profile)
+    # connected_tutor_profile = False
+    if connected_tutor_profile:
+        print('TUTOR')
+        return tutor_dashboard(request, user)
+    else:
+        print('STUDENT')
+        return student_dashboard(request, user)

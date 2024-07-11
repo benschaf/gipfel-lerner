@@ -7,4 +7,5 @@ urlpatterns = [
     path('add-tutor/', views.TutorCreateView.as_view(), name='add_tutor'),
     path('edit-tutor/<int:pk>/', views.TutorUpdateView.as_view(), name='edit_tutor'),
     path('delete-tutor/<int:pk>/', views.TutorDeleteView.as_view(), name='delete_tutor'),
+    path('dashboard/<int:pk>/', views.dashboard_view, name='dashboard')
 ]
