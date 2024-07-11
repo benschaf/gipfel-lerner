@@ -88,14 +88,56 @@ def fetch_calendly_data_view(request: HttpRequest, pk: int) -> HttpResponse:
 
     form = CalendlyUriForm(request.POST)
     if form.is_valid():
+        # get the uris
         event_uri = form.cleaned_data['event_uri']
         invitee_uri = form.cleaned_data['invitee_uri']
+
+        #get the data from the uris using the calendly api2
         event_data = _get_json_from_calendly_uri(event_uri)
         invitee_data = _get_json_from_calendly_uri(invitee_uri)
 
         session = _write_calendly_data_to_db(event_data, invitee_data, tutor, student)
 
     return redirect('schedule_success', pk=session.pk)
+
+
+def _update_users_sessions(user: User):
+    """
+    function that gets called periodically to update the user's sessions from their
+    calendly data.
+    """
+    sessions_to_update = []
+    if Tutor.objects.filter(user=user).exists():
+        print('User is a tutor')
+        sessions_to_update = TutoringSession.objects.filter(tutor__user=user)
+    else:
+        print('User is a student')
+        sessions_to_update = TutoringSession.objects.filter(student=user)
+
+    for session in sessions_to_update:
+        try:
+            event_data = _get_json_from_calendly_uri(session.event_uri)
+            invitee_data = _get_json_from_calendly_uri(session.invitee_uri)
+
+            # Calendly json fields
+            session.start_time = event_data['resource']['start_time']
+            session.end_time = event_data['resource']['end_time']
+            session.location_url = event_data['resource']['location']['join_url']
+            session.session_name = event_data['resource']['name']
+            session.cancel_url = invitee_data['resource']['cancel_url']
+            session.reschedule_url = invitee_data['resource']['reschedule_url']
+            session.invitee_email = invitee_data['resource']['email']
+
+            session.save()
+            print(f"Session {session.pk} updated.")
+        except Exception as e:
+            print(f"Error updating session {session.pk}: {e}")
+
+
+
+
+
+
 
 
 class ScheduleSuccessView(DetailView):
