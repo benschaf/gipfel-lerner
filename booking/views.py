@@ -141,6 +141,7 @@ class PaymentCreateView(CreateView):
     model = Payment
     form_class = PaymentForm
     template_name = 'booking/payment_create.html'
+    success_message = 'Payment successful.'
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
