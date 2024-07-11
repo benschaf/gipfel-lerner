@@ -28,6 +28,7 @@ class Tutor(models.Model):
     profile_image = models.ImageField(upload_to='tutor_images', null=True, blank=True)
     values = models.ManyToManyField('Value', related_name='tutors')
     ratings = models.ManyToManyField('Rating', related_name='tutors', blank=True)
+    iban = models.CharField(max_length=34, null=True, blank=True)
 
     def average_rating(self):
         """
