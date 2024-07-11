@@ -36,7 +36,7 @@
         <a href="{% url 'tutor_detail' pk=session.tutor.id %}" class="btn btn-primary"> Schedule another lesson with {{ session.tutor }}</a>
         <a href="{{ session.cancel_url }}" class="btn btn-secondary"><i class="fas fa-times"></i> Cancel Lesson</a>
         <a href="{{ session.reschedule_url }}" class="btn btn-secondary"><i class="fas fa-calendar-alt"></i> Reschedule Lesson</a>
-        <a href="{{ session.location_url }}" class="btn btn-secondary"><i class="fas fa-video"></i> Go to Lesson Videocall</a>
+      <a href="{{ session.location_url }}" class="btn btn-secondary"><i class="fas fa-video"></i> Join Lesson</a>
       </div>
       <div class="col-md-6">
         <h5>Payment Information</h5>
