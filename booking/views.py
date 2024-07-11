@@ -2,6 +2,7 @@ import json
 from typing import Any
 from django.forms import BaseModelForm
 from django.http import HttpRequest, HttpResponse
+from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 import requests
@@ -15,6 +16,23 @@ from booking.models import Payment, TutoringSession
 from gipfel_tutor import settings
 from tutor_market.models import Tutor
 import stripe
+
+@require_POST
+def cache_payment_data(request):
+    print('reached the view')
+    try:
+        payment_intent_id = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        session_id_string = request.POST.get('sessions')
+        user_id = request.POST.get('user')
+        stripe.PaymentIntent.modify(payment_intent_id, metadata={
+            'user_id': user_id,
+            'sessions': session_id_string,
+        })
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(request, 'An error occurred while processing your payment.')
+        return HttpResponse(content=e, status=400)
 
 def _get_json_from_calendly_uri(uri):
     headers = {'Authorization': f'Bearer {settings.PERSONAL_CALENDLY_TOKEN}'}

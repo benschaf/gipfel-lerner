@@ -9,4 +9,5 @@ urlpatterns = [
     path('payments/create/', views.PaymentCreateView.as_view(), name='payment_create'),
     path('payments/success/<int:pk>', views.PaymentDetailView.as_view(), name='payment_success'),
     path('wh/', webhook, name='webhook'),
+    path('cache-payment-data/', views.cache_payment_data, name='cache_payment_data'),
 ]

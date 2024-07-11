@@ -46,6 +46,7 @@
       <div class="col col-md-3">
         <h5>Pay now</h5>
         <form id="payment-form">
+          {% csrf_token %}
           <div id="payment-element">
             <!-- Elements will create form elements here -->
           </div>
@@ -84,35 +85,56 @@
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault()
-      $('#submit').attr('disabled', true)
-      session_objects = []
+      $('#submit').attr('disabled', true);
+
+      session_objects = [];
       {% for session in sessions %}
-        session_objects.push({{ session.id }})
+        session_objects.push({{ session.id }});
       {% endfor %}
-      session_ids = session_objects.join(',')
+      session_ids = session_objects.join(',');
 
-      const { error } = await stripe.confirmPayment({
-        //`Elements` instance that was used to create the Payment Element
-        elements,
-        confirmParams: {
-          // change this url to dynamic when deploying
-          return_url: `http://127.0.0.1:8000/{% url 'payment_create' %}?user_id={{ user.id }}&sessions=${session_ids}`,
+      const csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+      console.log('CSRF: ' + csrfToken);
+
+      const postData = {
+        csrfmiddlewaretoken: csrfToken,
+        client_secret: options.clientSecret,
+        user: '{{ user.id }}',
+        sessions: session_ids,
+      };
+      console.log(postData);
+
+      var url = "{% url 'cache_payment_data' %}";
+      console.log(url);
+
+      $.post(url, postData).done(async function() {
+        console.log('starting stripe function')
+        const { error } = await stripe.confirmPayment({
+          //`Elements` instance that was used to create the Payment Element
+          elements,
+          confirmParams: {
+            // change this url to dynamic when deploying
+            return_url: `http://127.0.0.1:8000/{% url 'payment_create' %}?user_id={{ user.id }}&sessions=${session_ids}`,
+          }
+        })
+
+        if (error) {
+          // This point will only be reached if there is an immediate error when
+          // confirming the payment. Show error to your customer (for example, payment
+          // details incomplete)
+          const messageContainer = document.querySelector('#error-message')
+          messageContainer.classList.add('alert', 'alert-danger')
+          messageContainer.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + error.message
+          $('#submit').attr('disabled', false)
+        } else {
+          // Your customer will be redirected to your `return_url`. For some payment
+          // methods like iDEAL, your customer will be redirected to an intermediate
+          // site first to authorize the payment, then redirected to the `return_url`.
         }
-      })
-
-      if (error) {
-        // This point will only be reached if there is an immediate error when
-        // confirming the payment. Show error to your customer (for example, payment
-        // details incomplete)
-        const messageContainer = document.querySelector('#error-message')
-        messageContainer.classList.add('alert', 'alert-danger')
-        messageContainer.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + error.message
-        $('#submit').attr('disabled', false)
-      } else {
-        // Your customer will be redirected to your `return_url`. For some payment
-        // methods like iDEAL, your customer will be redirected to an intermediate
-        // site first to authorize the payment, then redirected to the `return_url`.
-      }
-    })
+      }).fail(function(jqXHR, textStatus, errorThrown) {
+        console.log('error');
+        {% comment %} location.reload(); {% endcomment %}
+      });
+    });
   </script>
 {% endblock %}
