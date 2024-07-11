@@ -191,6 +191,7 @@ def tutor_dashboard(request, user):
         'booking_history': booking_history,
         'upcoming_sessions': upcoming_sessions,
         'users_and_sessions': users_and_sessions,
+        'tutor': tutor,
     }
     return render(request, 'tutor_market/tutor_dashboard.html', context)
 

@@ -3,8 +3,61 @@
   <div class="container mt-5">
     <h2 class="mb-4">Tutor Dashboard</h2>
     <div class="row">
-      <div class="col-md-6">
-        <h3>Profile</h3>
+      <div class="col">
+        <p class="text-muted">
+          How others see your profile:
+        </p>
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col d-flex justify-content-between">
+                <h2>{{ tutor.display_name }}</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-3">
+                {% if tutor.profile_image %}
+                  <img src="{{ tutor.profile_image.url }}" alt="Image of {{ tutor.display_name }}" class="img-fluid" />
+                {% else %}
+                  <img src="https://gipfel-tutor-768a610dc54f.s3.eu-north-1.amazonaws.com/media/tutor_images/default_profile_image.png" alt="Default profile image" class="img-fluid" />
+                {% endif %}
+              </div>
+              <div class="col-9">
+                <div class="row">
+                  <div class="col">
+                    <p>{{ tutor.catch_phrase }}</p>
+                    <p>
+                      my values:{% for value in tutor.values.all %}
+                        <span class="badge rounded-pill text-bg-secondary">{{ value }}</span>
+                      {% endfor %}
+                    </p>
+                    <p>
+                      my subjects:{% for subject in tutor.subjects.all %}
+                        <span class="badge rounded-pill text-bg-secondary">{{ subject }}</span>
+                      {% endfor %}
+                    </p>
+                  </div>
+                  <div class="col">
+                    <p>{{ tutor.hourly_rate }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p>{{ tutor.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+<div class="float-end mt-1">
+          <a href="{% url 'tutor_detail' tutor.pk %}" class="btn btn-secondary btn-sm"><i class="fas fa-user"></i> View your Profile</a>
+          <a href="{% url 'edit_tutor' tutor.pk %}" class="btn btn-secondary btn-sm"><i class="fas fa-edit"></i> Edit</a>
+          <a href="{% url 'delete_tutor' tutor.pk %}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</a>
+</div>
+      </div>
+      <div class="col-lg-6">
+        <h3>Your Personal Information</h3>
         <table class="table">
           <tbody>
             <tr>
@@ -34,9 +87,9 @@
             </tr>
             <tr>
               <td>
-                <strong>Bank details:</strong>
+                <strong>Bank details (IBAN):</strong>
               </td>
-              <td></td>
+              <td>{{ tutor.iban }}</td>
               <td></td>
             </tr>
           </tbody>
@@ -76,7 +129,7 @@
                 <div class="card-body">
                   <h5 class="card-title">{{ student }}</h5>
                   <p class="text-muted">Upcoming Lessons</p>
-                  <ul class="list-group">
+                  <ul class="list-group list-group-flush">
                     {% for session in sessions %}
                       <li class="list-group-item">
                         <strong>Subject:</strong> {{ session.subject }}<br />
