@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container mt-5">
+    <h2 class="mb-4">Student Dashboard</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Profile</h3>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>
+                <strong>Name:</strong>
+              </td>
+              <td>{{ user }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Email:</strong>
+              </td>
+              <td>{{ user.email }}</td>
+              <td>
+                <a href="{% url 'account_email' %}" class="btn btn-light btn-sm"><i class="fa fa-pencil"></i></a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Password:</strong>
+              </td>
+              <td>**********</td>
+              <td>
+                <a href="{% url 'account_change_password' %}" class="btn btn-light btn-sm"><i class="fa fa-pencil"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Upcoming Lessons</h3>
+        <ul class="list-group">
+          {% for session in upcoming_sessions %}
+            <li class="list-group-item">
+              <strong>Subject:</strong> {{ session.subject }}<br />
+              <strong>Date:</strong> {{ session.start_time|date:'D, d M Y H:i' }}<br />
+              <strong>Duration:</strong> {{ session.duration }} minutes<br />
+              <strong>Tutor:</strong> {{ session.tutor.display_name }}
+              <div class="float-right">
+                <a href="{{ session.location_url }}" class="btn btn-primary btn-sm"><i class="fas fa-video"></i> Join</a>
+                <a href="{{ session.cancel_url }}" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Cancel <span class="text-muted">future feature</span></a>
+                <a href="{{ session.reschedule_url }}" class="btn btn-warning btn-sm"><i class="fas fa-calendar-alt"></i> Reschedule</a>
+              </div>
+            </li>
+          {% empty %}
+            <li class="list-group-item">No upcoming lessons.</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h3>Booking History</h3>
+        <ul class="list-group">
+          {% for session in booking_history %}
+            <li class="list-group-item">
+              <strong>Subject:</strong> {{ session.subject }}<br />
+              <strong>Date:</strong> {{ session.start_time|date:'D, d M Y H:i' }}<br />
+              <strong>Tutor:</strong> {{ session.tutor.display_name }}<br />
+              <strong>Status:</strong> {{ session.session_status }}<br />
+              <strong>Payment status:</strong> {% if session.payment_complete %}
+                Complete
+              {% else %}
+                Pending <a href="{% url 'payments' user.id %}" class="btn btn-secondary">Pay now</a>
+              {% endif %}
+            </li>
+          {% empty %}
+            <li class="list-group-item">No past bookings.</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <h3>Payment History</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for payment in payment_history %}
+              <tr>
+                <td>{{ payment.date|date:'D, d M Y H:i' }}</td>
+                <td>${{ payment.amount }}</td>
+                <td>{{ payment.status }}</td>
+              </tr>
+            {% empty %}
+              <tr>
+                <td colspan="3">No payment history.</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}

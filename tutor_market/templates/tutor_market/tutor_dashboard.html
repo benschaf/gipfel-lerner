@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container mt-5">
+    <h2 class="mb-4">Tutor Dashboard</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Profile</h3>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>
+                <strong>Name:</strong>
+              </td>
+              <td>{{ user }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Email:</strong>
+              </td>
+              <td>{{ user.email }}</td>
+              <td>
+                <a href="{% url 'account_email' %}" class="btn btn-light btn-sm"><i class="fa fa-pencil"></i></a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Password:</strong>
+              </td>
+              <td>**********</td>
+              <td>
+                <a href="{% url 'account_change_password' %}" class="btn btn-light btn-sm"><i class="fa fa-pencil"></i></a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Bank details:</strong>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-6">
+        <h3>Upcoming Lessons</h3>
+        <p class="text-muted">Your next 3 Lessons</p>
+        <ul class="list-group">
+          {% for session in upcoming_sessions %}
+            <li class="list-group-item">
+              <strong>Subject:</strong> {{ session.subject }}<br />
+              <strong>Date:</strong> {{ session.start_time|date:'D, d M Y H:i' }}<br />
+              <strong>Duration:</strong> {{ session.duration }} minutes<br />
+              <strong>Tutor:</strong> {{ session.tutor.display_name }} <br />
+              <div class="float-end mt-1">
+                <a href="{{ session.location_url }}" class="btn btn-primary btn-sm"><i class="fas fa-video"></i> Join</a>
+                <a href="{{ session.cancel_url }}" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Cancel <span class="text-muted">future feature</span></a>
+                <a href="{{ session.reschedule_url }}" class="btn btn-warning btn-sm"><i class="fas fa-calendar-alt"></i> Reschedule</a>
+              </div>
+            </li>
+          {% empty %}
+            <li class="list-group-item">No upcoming lessons.</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="row"></div>
+    <div class="row mt-4">
+      <div class="col">
+        <h3>Your Students</h3>
+        <!-- -> Credit for iterating over dictionaries (tuples): https://forum.djangoproject.com/t/loop-through-dictionary-of-lists/2849 -->
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+          {% for student, sessions in users_and_sessions.items %}
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">{{ student }}</h5>
+                  <p class="text-muted">Upcoming Lessons</p>
+                  <ul class="list-group">
+                    {% for session in sessions %}
+                      <li class="list-group-item">
+                        <strong>Subject:</strong> {{ session.subject }}<br />
+                        <strong>Date:</strong> {{ session.start_time|date:'D, d M Y H:i' }}<br />
+                        <strong>Status:</strong> {{ session.session_status }}<br />
+                        <strong>Payment status:</strong> {% if session.payment_complete %}
+                          Complete
+                        {% else %}
+                          Pending
+                        {% endif %}<br />
+                        <div class="float-end mt-1">
+                          <a href="{{ session.location_url }}" class="btn btn-primary btn-sm"><i class="fas fa-video"></i> Join</a>
+                          <a href="{{ session.cancel_url }}" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Cancel <span class="text-muted">future feature</span></a>
+                          <a href="{{ session.reschedule_url }}" class="btn btn-warning btn-sm"><i class="fas fa-calendar-alt"></i> Reschedule</a>
+                        </div>
+                      </li>
+                    {% empty %}
+                      <p>No upcoming Lessons</p>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          {% empty %}
+            <p>You currently have no students.</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Booking History</h3>
+        <ul class="list-group">
+          {% for session in booking_history %}
+            <li class="list-group-item">
+              <strong>Subject:</strong> {{ session.subject }}<br />
+              <strong>Date:</strong> {{ session.start_time|date:'D, d M Y H:i' }}<br />
+              <strong>Status:</strong> {{ session.session_status }}<br />
+              <strong>Payment status:</strong> {% if session.payment_complete %}
+                Complete
+              {% else %}
+                Pending
+              {% endif %}
+            </li>
+          {% empty %}
+            <li class="list-group-item">No past bookings.</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endblock %}
