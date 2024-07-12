@@ -1,40 +1,70 @@
+
+:root {
+    --my-blue-green: #219EBC;
+    --my-prussian-blue: #023047;
+    --my-ut-oragne: #FB8500;
+}
+
 .header-container {
     margin-top: 80px;
 }
+
+/* BENTO SECTION */
 
 .parent {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
+    grid-column-gap: 1.5rem;
+    grid-row-gap: 1.5rem;
 }
 
 .parent>div {
-    background-color: #f0f0f0;
-    border: 1px solid #000;
+    border-style: none;
+    padding: 2rem;
 }
 
 .div1 {
     grid-area: 1 / 1 / 3 / 2;
+    background-color: var(--bs-primary);
+}
+
+.div1 .card-body {
+    padding-top: 1.5rem !important;
 }
 
 .div2 {
     grid-area: 1 / 2 / 2 / 4;
+    background-color: var(--my-prussian-blue);
+    color: var(--bs-light);
+}
+
+.div2 img {
+    /* offset the image */
+    margin-top: -80px;
+    margin-left: 20px;
 }
 
 .div3 {
     grid-area: 2 / 2 / 3 / 3;
+    background-color: var(--my-ut-oragne);
 }
 
 .div4 {
     grid-area: 2 / 3 / 3 / 4;
+    padding: 0 !important;
 }
 
 .div5 {
     grid-area: 3 / 1 / 4 / 3;
+    background-color: var(--my-blue-green);
+}
+
+.div5 .card-body {
+    padding-left: 1.5rem !important;
 }
 
 .div6 {
     grid-area: 3 / 3 / 4 / 4;
+    background-color: var(--bs-secondary);
 }
