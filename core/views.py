@@ -15,7 +15,9 @@ class LandingPageView(TemplateView):
 
     def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
         if request.user.is_authenticated:
-            _update_users_sessions(request.user)
+            pass
+            # need to find a better place to update the sessions in the background
+            # _update_users_sessions(request.user)
         return super().get(request, *args, **kwargs)
 
 
