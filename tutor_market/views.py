@@ -32,6 +32,7 @@ def tutor_list_view(request):
     subjects= None
     values = None
     query = None
+    sorting = None
 
     if request.GET:
         if 'subject' in request.GET:
@@ -58,16 +59,16 @@ def tutor_list_view(request):
             tutor_list = tutor_list.filter(queries).distinct()
 
         if 'sorting' in request.GET:
-            sorting = request.GET.getlist('sorting')
-            if 'name' in sorting:
+            sorting = request.GET['sorting']
+            if sorting == 'name':
                 tutor_list = tutor_list.order_by('display_name')
-            if 'cheapest' in sorting:
+            if sorting == 'cheapest':
                 tutor_list = tutor_list.order_by('hourly_rate')
-            if 'highest-rated' in sorting:
+            if sorting == 'highest-rated':
                 tutor_list = tutor_list.annotate(avg_rating=Avg('ratings__score')).order_by('-avg_rating')
-            if 'most-reviews' in sorting:
+            if sorting == 'most-reviews':
                 tutor_list = tutor_list.annotate(num_reviews=Count('ratings')).order_by('-num_reviews')
-            if 'most-expensive' in sorting:
+            if sorting == 'most-expensive':
                 tutor_list = tutor_list.order_by('-hourly_rate')
 
     # Pagination
@@ -81,6 +82,7 @@ def tutor_list_view(request):
         'subjects': subjects,
         'values': values,
         'query': query,
+        'sorting': sorting,
         'tutor_list': tutor_list,
     }
     return render(request, 'tutor_market/tutor_list.html', context)
