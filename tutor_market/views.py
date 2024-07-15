@@ -9,6 +9,9 @@ from typing import Any
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.core.paginator import Paginator
+from django.db.models import Q
+
 
 
 from booking.forms import CalendlyUriForm
@@ -17,16 +20,38 @@ from gipfel_tutor import settings
 from tutor_market.forms import RatingForm, TutorForm
 from tutor_market.models import Tutor, Rating
 import requests
+from django.urls import reverse_lazy
 
 
-class TutorList(ListView):
+def tutor_list_view(request):
     """
-    View for listing all tutors in the system.
+    Function-based view for listing all tutors in the system.
     """
-    model = Tutor
-    template_name = 'tutor_market/tutor_list.html'
-    context_object_name = 'tutor_list'
-    paginate_by = 6
+    tutor_list = Tutor.objects.all()
+    query = None
+
+    if request.GET:
+        if 'q' in request.GET:
+            query = request.GET['q']
+            if not query:
+                messages.error(request, "You didn't enter a search term.")
+                return redirect(reverse('tutor_list'))
+
+            queries = Q(display_name__icontains=query) | Q(description__icontains=query)
+            tutor_list = tutor_list.filter(queries)
+
+    # Pagination
+    paginator = Paginator(tutor_list, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'page_obj': page_obj,
+        'search_term': query,
+        'tutor_list': tutor_list,
+    }
+    return render(request, 'tutor_market/tutor_list.html', context)
+
 
 
 def tutor_detail_view(request, pk):

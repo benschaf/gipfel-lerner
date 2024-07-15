@@ -28,9 +28,13 @@
   <div class="container mt-5">
     <div class="row">
       <div class="col">
-        <a href="{% url 'tutor_list' %}" class="btn btn-primary">Find the Tutor for You</a>
+        <form action="{% url 'tutor_list' %}" method="GET">
+          <div class="input-group">
+            <input type="text" name="q" placeholder="Search for a tutor" />
+            <button type="submit">Search</button>
+          </div>
+        </form>
       </div>
-      <div class="col">Learn from the best tutors in the world. Find the perfect tutor for you.</div>
     </div>
   </div>
 

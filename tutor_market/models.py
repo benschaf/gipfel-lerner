@@ -40,6 +40,10 @@ class Tutor(models.Model):
     def __str__(self):
         return self.display_name
 
+    class Meta:
+        ordering = ['display_name']
+
+
 
 class Student(models.Model):
     """
