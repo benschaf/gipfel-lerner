@@ -12,9 +12,7 @@
       <!-- Search Bar -->
       <div class="row">
         <div class="col">
-          <div class="input-group">
             <input type="text" name="q" placeholder="Search for a tutor" {% if query %}value="{{ query }}"{% endif %} />
-          </div>
         </div>
       </div>
 
@@ -50,8 +48,37 @@
         </div>
       </div>
       <button type="submit">Submit</button>
+
+      <!-- Sorting -->
+      <div class="row">
+        <div class="col">
+          <input type="radio" class="btn-check" name="sorting" value="name" id="option-0" autocomplete="off" {% if sorting == 'name' %}checked{% endif %}>
+          <label class="btn" for="option-0">Name</label>
+          <input type="radio" class="btn-check" name="sorting" value="cheapest" id="option-1" autocomplete="off" {% if sorting == 'cheapest' %}checked{% endif %}>
+          <label class="btn" for="option-1">Cheapest</label>
+          <input type="radio" class="btn-check" name="sorting" value="highest-rated" id="option-2" autocomplete="off" {% if sorting == 'highest-rated' %}checked{% endif %}>
+          <label class="btn" for="option-2">Highest Rated</label>
+          <input type="radio" class="btn-check" name="sorting" value="most-reviews" id="option-3" autocomplete="off" {% if sorting == 'most-reviews' %}checked{% endif %}>
+          <label class="btn" for="option-3">Most Reviews</label>
+          <input type="radio" class="btn-check" name="sorting" value="most-expensive" id="option-4" autocomplete="off" {% if sorting == 'most-expensive' %}checked{% endif %}>
+          <label class="btn" for="option-4">Most Expensive</label>
+        </div>
+      </div>
     </form>
   </div>
+
+  <script type="text/javascript">
+    const radio_btns = document.querySelectorAll('.btn-check');
+    const form = document.querySelector('form');
+    radio_btns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        form.submit();
+      });
+    });
+
+  </script>
+
+
 
   <!-- Tutor list -->
   <div class="container">

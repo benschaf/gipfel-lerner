@@ -27,7 +27,6 @@ class Tutor(models.Model):
     description = models.TextField()
     profile_image = models.ImageField(upload_to='tutor_images', null=True, blank=True)
     values = models.ManyToManyField('Value', related_name='tutors')
-    ratings = models.ManyToManyField('Rating', related_name='tutors', blank=True)
     iban = models.CharField(max_length=34, null=True, blank=True)
 
     def average_rating(self):
@@ -35,7 +34,7 @@ class Tutor(models.Model):
         Returns the average rating of the tutor from all related Rating
         objects.
         """
-        return self.ratings.aggregate(Avg('score', default=None))
+        return Rating.objects.filter(tutor=self).aggregate(Avg('score'))
 
     def __str__(self):
         return self.display_name
@@ -72,8 +71,8 @@ class Rating(models.Model):
         comment (str): Additional comment provided by the student.
     """
 
-    tutor = models.ForeignKey(Tutor, on_delete=models.CASCADE)
-    user = models.OneToOneField('auth.User', on_delete=models.CASCADE, related_name='rating', default=None)
+    tutor = models.ForeignKey(Tutor, on_delete=models.CASCADE, related_name='ratings')
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='ratings', default=None)
     score = models.IntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(5)])
     comment = models.TextField()

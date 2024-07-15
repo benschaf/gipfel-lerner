@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.db.models import Count, Avg
 
 
 
@@ -55,6 +56,19 @@ def tutor_list_view(request):
             queries = Q(display_name__icontains=query) | Q(description__icontains=query) | Q(catch_phrase__icontains=query) | Q(subjects__name__icontains=query) | Q(values__name__icontains=query)
             # -> Credit for returning distinct results: https://docs.djangoproject.com/en/5.0/ref/models/querysets/#distinct  # noqa
             tutor_list = tutor_list.filter(queries).distinct()
+
+        if 'sorting' in request.GET:
+            sorting = request.GET.getlist('sorting')
+            if 'name' in sorting:
+                tutor_list = tutor_list.order_by('display_name')
+            if 'cheapest' in sorting:
+                tutor_list = tutor_list.order_by('hourly_rate')
+            if 'highest-rated' in sorting:
+                tutor_list = tutor_list.annotate(avg_rating=Avg('ratings__score')).order_by('-avg_rating')
+            if 'most-reviews' in sorting:
+                tutor_list = tutor_list.annotate(num_reviews=Count('ratings')).order_by('-num_reviews')
+            if 'most-expensive' in sorting:
+                tutor_list = tutor_list.order_by('-hourly_rate')
 
     # Pagination
     paginator = Paginator(tutor_list, 6)
