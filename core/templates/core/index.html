@@ -26,6 +26,7 @@
 
   <!-- Search Section -->
   <div class="container mt-5">
+    <!-- Search Bar -->
     <div class="row">
       <div class="col">
         <form action="{% url 'tutor_list' %}" method="GET">
@@ -33,6 +34,35 @@
             <input type="text" name="q" placeholder="Search for a tutor" />
             <button type="submit">Search</button>
           </div>
+        </form>
+      </div>
+    </div>
+    <!-- Subjects -->
+    <div class="row">
+      <div class="col">
+        <a href="{% url 'tutor_list' %}?subject=english">English</a>
+        <a href="{% url 'tutor_list' %}?subject=math">Math</a>
+        <a href="{% url 'tutor_list' %}?subject=science">Science</a>
+        <a href="{% url 'tutor_list' %}?subject=history">History</a>
+        <a href="{% url 'tutor_list' %}?subject=biology">Biology</a>
+        <a href="{% url 'tutor_list' %}?subject=chemistry">Chemistry</a>
+      </div>
+    </div>
+    <!-- Value Tags -->
+    <div class="row">
+      <div class="col">
+        <!-- -> Credit for listing query parameters: https://stackoverflow.com/questions/22672182/parameter-list-to-a-query-string-html-form -->
+        <form action="{% url 'tutor_list' %}" method="GET">
+          <input type="checkbox" name="teaching-value" value="self-learning" class="btn-check" autocomplete="off" id="btn-check-1" />
+          <label class="btn" for="btn-check-1">Self-Learning</label>
+          <input type="checkbox" name="teaching-value" value="repetition" class="btn-check" autocomplete="off" id="btn-check-2" />
+          <label class="btn" for="btn-check-2">Repetition</label>
+          <input type="checkbox" name="teaching-value" value="engagement" class="btn-check" autocomplete="off" id="btn-check-3" />
+          <label class="btn" for="btn-check-3">Engagement</label>
+          <input type="checkbox" name="teaching-value" value="urgency" class="btn-check" autocomplete="off" id="btn-check-4" />
+          <label class="btn" for="btn-check-4">Urgency</label>
+
+          <button type="submit">Submit</button>
         </form>
       </div>
     </div>

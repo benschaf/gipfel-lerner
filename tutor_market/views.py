@@ -18,7 +18,7 @@ from booking.forms import CalendlyUriForm
 from booking.models import Payment, TutoringSession
 from gipfel_tutor import settings
 from tutor_market.forms import RatingForm, TutorForm
-from tutor_market.models import Tutor, Rating
+from tutor_market.models import Subject, Tutor, Rating
 import requests
 from django.urls import reverse_lazy
 
@@ -29,8 +29,27 @@ def tutor_list_view(request):
     """
     tutor_list = Tutor.objects.all()
     query = None
+    subject = None
 
     if request.GET:
+        if 'subject' in request.GET:
+            subject = request.GET['subject']
+            if not subject:
+                messages.error(request, "You didn't select a subject.")
+                return redirect(reverse('tutor_list'))
+            tutor_list = tutor_list.filter(subjects__name__icontains=subject)
+            if tutor_list:
+                subject = Subject.objects.get(name__icontains=subject)
+
+        if 'teaching-value' in request.GET:
+            # -> Credit for getting values from a list of query parameters: https://docs.djangoproject.com/en/5.0/ref/request-response/#querydict-objects
+            values = request.GET.getlist('teaching-value')
+            q_arguments = Q()
+            for value in values:
+                # -> Credit for |= operator: https://docs.djangoproject.com/en/5.0/ref/models/querysets/#or
+                q_arguments |= Q(values__name__icontains=value)
+            tutor_list = tutor_list.filter(q_arguments).distinct()
+
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
@@ -49,6 +68,7 @@ def tutor_list_view(request):
     context = {
         'page_obj': page_obj,
         'search_term': query,
+        'subject': subject,
         'tutor_list': tutor_list,
     }
     return render(request, 'tutor_market/tutor_list.html', context)
