@@ -37,8 +37,9 @@ def tutor_list_view(request):
                 messages.error(request, "You didn't enter a search term.")
                 return redirect(reverse('tutor_list'))
 
-            queries = Q(display_name__icontains=query) | Q(description__icontains=query)
-            tutor_list = tutor_list.filter(queries)
+            queries = Q(display_name__icontains=query) | Q(description__icontains=query) | Q(catch_phrase__icontains=query) | Q(subjects__name__icontains=query) | Q(values__name__icontains=query)
+            # -> Credit for returning distinct results: https://docs.djangoproject.com/en/5.0/ref/models/querysets/#distinct  # noqa
+            tutor_list = tutor_list.filter(queries).distinct()
 
     # Pagination
     paginator = Paginator(tutor_list, 6)
