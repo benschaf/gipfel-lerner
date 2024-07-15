@@ -18,7 +18,7 @@
       <div class="col-md-6 d-flex justify-content-center align-items-center">
         <div>
           <a href="{% url 'tutor_list' %}" class="btn btn-primary btn-lg my-gradient">Find the Tutor for You</a>
-          <div>Learn from the best tutors in the world. Find the perfect tutor for you.</div>
+          <div class="mt-5">Learn from a tutor that just feels like the perfect fit.</div>
         </div>
       </div>
     </div>
@@ -27,35 +27,44 @@
   <!-- Search Section -->
   <div class="container mt-5">
     <!-- Subjects -->
-    <div class="row">
+    <div class="row mt-3">
       <div class="col">
-        <a href="{% url 'tutor_list' %}?subject=english">English</a>
-        <a href="{% url 'tutor_list' %}?subject=math">Math</a>
-        <a href="{% url 'tutor_list' %}?subject=science">Science</a>
-        <a href="{% url 'tutor_list' %}?subject=history">History</a>
-        <a href="{% url 'tutor_list' %}?subject=biology">Biology</a>
-        <a href="{% url 'tutor_list' %}?subject=chemistry">Chemistry</a>
+        <a href="{% url 'tutor_list' %}?subject=english" class="btn btn-outline-primary">English</a>
+        <a href="{% url 'tutor_list' %}?subject=math" class="btn btn-outline-primary">Math</a>
+        <a href="{% url 'tutor_list' %}?subject=science" class="btn btn-outline-primary">Science</a>
+        <a href="{% url 'tutor_list' %}?subject=history" class="btn btn-outline-primary">History</a>
+        <a href="{% url 'tutor_list' %}?subject=biology" class="btn btn-outline-primary">Biology</a>
+        <a href="{% url 'tutor_list' %}?subject=chemistry" class="btn btn-outline-primary">Chemistry</a>
       </div>
     </div>
     <!-- Value Tags -->
-    <div class="row">
+    <div class="row mt-3">
       <div class="col">
-        <!-- -> Credit for listing query parameters: https://stackoverflow.com/questions/22672182/parameter-list-to-a-query-string-html-form -->
         <form action="{% url 'tutor_list' %}" method="GET">
           <input type="checkbox" name="teaching-value" value="self-learning" class="btn-check" autocomplete="off" id="btn-check-1" />
-          <label class="btn" for="btn-check-1">Self-Learning</label>
+          <label class="btn btn-outline-primary" for="btn-check-1">Self-Learning</label>
           <input type="checkbox" name="teaching-value" value="repetition" class="btn-check" autocomplete="off" id="btn-check-2" />
-          <label class="btn" for="btn-check-2">Repetition</label>
+          <label class="btn btn-outline-primary" for="btn-check-2">Repetition</label>
           <input type="checkbox" name="teaching-value" value="engagement" class="btn-check" autocomplete="off" id="btn-check-3" />
-          <label class="btn" for="btn-check-3">Engagement</label>
+          <label class="btn btn-outline-primary" for="btn-check-3">Engagement</label>
           <input type="checkbox" name="teaching-value" value="urgency" class="btn-check" autocomplete="off" id="btn-check-4" />
-          <label class="btn" for="btn-check-4">Urgency</label>
-
-          <button type="submit">Submit</button>
+          <label class="btn btn-outline-primary" for="btn-check-4">Urgency</label>
+          <button type="submit" class="btn btn-primary mt-3" id="values-submit-btn">Search</button>
         </form>
       </div>
     </div>
   </div>
+
+  <script>
+    $(document).ready(function () {
+      const submitButton = $('#values-submit-btn');
+      const input = $('input[type="checkbox"]');
+      input.change(function () {
+        submitButton.removeClass('d-none');
+      });
+      submitButton.addClass('d-none');
+    });
+  </script>
 
   <!-- Bento information Section -->
   <div class="container mt-5 p-5">
