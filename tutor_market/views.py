@@ -130,7 +130,7 @@ def tutor_detail_view(request, pk):
 
     form = RatingForm()
     calendly_form = CalendlyUriForm()
-    reviews = tutor.rating_set.all()
+    reviews = tutor.ratings.all()
     rating_exists = True if existing_rating else False
     context = {
         'tutor': tutor,
