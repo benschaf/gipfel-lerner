@@ -12,56 +12,60 @@
       <!-- Search Bar -->
       <div class="row">
         <div class="col">
-            <input type="text" name="q" placeholder="Search for a tutor" {% if query %}value="{{ query }}"{% endif %} />
+          <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search for a tutor" {% if query %}value="{{ query }}"{% endif %} />
+            <button class="btn btn-primary" type="submit">Search</button>
+          </div>
         </div>
       </div>
 
       <!-- Subjects -->
-      <div class="row">
+      <div class="row mt-3">
         <div class="col">
-          <input type="checkbox" name="subject" value="english" class="btn-check" autocomplete="off" id="btn-subject-check-1" {% if 'english' in subjects %}checked{% endif %} />
-          <label class="btn" for="btn-subject-check-1">English</label>
-          <input type="checkbox" name="subject" value="math" class="btn-check" autocomplete="off" id="btn-subject-check-2" {% if 'math' in subjects %}checked{% endif %} />
-          <label class="btn" for="btn-subject-check-2">Math</label>
-          <input type="checkbox" name="subject" value="science" class="btn-check" autocomplete="off" id="btn-subject-check-3" {% if 'science' in subjects %}checked{% endif %} />
-          <label class="btn" for="btn-subject-check-3">Science</label>
-          <input type="checkbox" name="subject" value="history" class="btn-check" autocomplete="off" id="btn-subject-check-4" {% if 'history' in subjects %}checked{% endif %} />
-          <label class="btn" for="btn-subject-check-4">History</label>
-          <input type="checkbox" name="subject" value="biology" class="btn-check" autocomplete="off" id="btn-subject-check-5" {% if 'biology' in subjects %}checked{% endif %} />
-          <label class="btn" for="btn-subject-check-5">Biology</label>
-          <input type="checkbox" name="subject" value="chemistry" class="btn-check" autocomplete="off" id="btn-subject-check-6" {% if 'chemistry' in subjects %}checked{% endif %} />
-          <label class="btn" for="btn-subject-check-6">Chemistry</label>
+        <input type="checkbox" name="subject" value="english" class="btn-check" autocomplete="off" id="btn-subject-check-1" {% if 'english' in subjects %}checked{% endif %} />
+        <label class="btn btn-outline-primary btn-pill" for="btn-subject-check-1">English</label>
+        <input type="checkbox" name="subject" value="math" class="btn-check" autocomplete="off" id="btn-subject-check-2" {% if 'math' in subjects %}checked{% endif %} />
+        <label class="btn btn-outline-primary btn-pill" for="btn-subject-check-2">Math</label>
+        <input type="checkbox" name="subject" value="science" class="btn-check" autocomplete="off" id="btn-subject-check-3" {% if 'science' in subjects %}checked{% endif %} />
+        <label class="btn btn-outline-primary btn-pill" for="btn-subject-check-3">Science</label>
+        <input type="checkbox" name="subject" value="history" class="btn-check" autocomplete="off" id="btn-subject-check-4" {% if 'history' in subjects %}checked{% endif %} />
+        <label class="btn btn-outline-primary btn-pill" for="btn-subject-check-4">History</label>
+        <input type="checkbox" name="subject" value="biology" class="btn-check" autocomplete="off" id="btn-subject-check-5" {% if 'biology' in subjects %}checked{% endif %} />
+        <label class="btn btn-outline-primary btn-pill" for="btn-subject-check-5">Biology</label>
+        <input type="checkbox" name="subject" value="chemistry" class="btn-check" autocomplete="off" id="btn-subject-check-6" {% if 'chemistry' in subjects %}checked{% endif %} />
+        <label class="btn btn-outline-primary btn-pill" for="btn-subject-check-6">Chemistry</label>
         </div>
       </div>
 
       <!-- Value Tags -->
-      <div class="row">
+      <div class="row mt-3">
         <div class="col">
-          <input type="checkbox" name="teaching-value" value="self-learning" class="btn-check" autocomplete="off" id="btn-check-1" {% if 'self-learning' in values %}checked{% endif %} />
-          <label class="btn" for="btn-check-1">Self-Learning</label>
-          <input type="checkbox" name="teaching-value" value="repetition" class="btn-check" autocomplete="off" id="btn-check-2" {% if 'repetition' in values %}checked{% endif %} />
-          <label class="btn" for="btn-check-2">Repetition</label>
-          <input type="checkbox" name="teaching-value" value="engagement" class="btn-check" autocomplete="off" id="btn-check-3" {% if 'engagement' in values %}checked{% endif %} />
-          <label class="btn" for="btn-check-3">Engagement</label>
-          <input type="checkbox" name="teaching-value" value="urgency" class="btn-check" autocomplete="off" id="btn-check-4" {% if 'urgency' in values %}checked{% endif %} />
-          <label class="btn" for="btn-check-4">Urgency</label>
+        <input type="checkbox" name="teaching-value" value="self-learning" class="btn-check" autocomplete="off" id="btn-check-1" {% if 'self-learning' in values %}checked{% endif %} />
+        <label class="btn btn-outline-primary btn-pill" for="btn-check-1">Self-Learning</label>
+        <input type="checkbox" name="teaching-value" value="repetition" class="btn-check" autocomplete="off" id="btn-check-2" {% if 'repetition' in values %}checked{% endif %} />
+        <label class="btn btn-outline-primary btn-pill" for="btn-check-2">Repetition</label>
+        <input type="checkbox" name="teaching-value" value="engagement" class="btn-check" autocomplete="off" id="btn-check-3" {% if 'engagement' in values %}checked{% endif %} />
+        <label class="btn btn-outline-primary btn-pill" for="btn-check-3">Engagement</label>
+        <input type="checkbox" name="teaching-value" value="urgency" class="btn-check" autocomplete="off" id="btn-check-4" {% if 'urgency' in values %}checked{% endif %} />
+        <label class="btn btn-outline-primary btn-pill" for="btn-check-4">Urgency</label>
         </div>
       </div>
-      <button type="submit">Submit</button>
 
       <!-- Sorting -->
-      <div class="row">
+      <div class="row mt-3">
         <div class="col">
-          <input type="radio" class="btn-check" name="sorting" value="name" id="option-0" autocomplete="off" {% if sorting == 'name' %}checked{% endif %}>
-          <label class="btn" for="option-0">Name</label>
-          <input type="radio" class="btn-check" name="sorting" value="cheapest" id="option-1" autocomplete="off" {% if sorting == 'cheapest' %}checked{% endif %}>
-          <label class="btn" for="option-1">Cheapest</label>
-          <input type="radio" class="btn-check" name="sorting" value="highest-rated" id="option-2" autocomplete="off" {% if sorting == 'highest-rated' %}checked{% endif %}>
-          <label class="btn" for="option-2">Highest Rated</label>
-          <input type="radio" class="btn-check" name="sorting" value="most-reviews" id="option-3" autocomplete="off" {% if sorting == 'most-reviews' %}checked{% endif %}>
-          <label class="btn" for="option-3">Most Reviews</label>
-          <input type="radio" class="btn-check" name="sorting" value="most-expensive" id="option-4" autocomplete="off" {% if sorting == 'most-expensive' %}checked{% endif %}>
-          <label class="btn" for="option-4">Most Expensive</label>
+          <div class="btn-group" role="group">
+            <input type="radio" class="btn-check" name="sorting" value="name" id="option-0" autocomplete="off" {% if sorting == 'name' %}checked{% endif %}>
+            <label class="btn btn-outline-primary" for="option-0">Name</label>
+            <input type="radio" class="btn-check" name="sorting" value="cheapest" id="option-1" autocomplete="off" {% if sorting == 'cheapest' %}checked{% endif %}>
+            <label class="btn btn-outline-primary" for="option-1">Cheapest</label>
+            <input type="radio" class="btn-check" name="sorting" value="highest-rated" id="option-2" autocomplete="off" {% if sorting == 'highest-rated' %}checked{% endif %}>
+            <label class="btn btn-outline-primary" for="option-2">Highest Rated</label>
+            <input type="radio" class="btn-check" name="sorting" value="most-reviews" id="option-3" autocomplete="off" {% if sorting == 'most-reviews' %}checked{% endif %}>
+            <label class="btn btn-outline-primary" for="option-3">Most Reviews</label>
+            <input type="radio" class="btn-check" name="sorting" value="most-expensive" id="option-4" autocomplete="off" {% if sorting == 'most-expensive' %}checked{% endif %}>
+            <label class="btn btn-outline-primary" for="option-4">Most Expensive</label>
+          </div>
         </div>
       </div>
     </form>
