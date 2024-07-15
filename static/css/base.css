@@ -9,6 +9,10 @@
     margin-top: 80px;
 }
 
+.my-gradient {
+    background: linear-gradient(90deg, var(--bs-primary) 0%, var(--my-ut-oragne) 100%);
+}
+
 /* BENTO SECTION */
 
 .parent {

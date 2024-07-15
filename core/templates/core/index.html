@@ -7,12 +7,24 @@
 {% endblock %}
 
 {% block content %}
-  <!-- Hero image -->
-  <div class="container-fluid p-0 d-flex justify-content-center">
-    <img src="{% static 'images/hero-gipfel.webp' %}" alt="Design image of a mountain peak with a house in front of it" class="img-fluid" />
+  <div class="container-fluid p-0">
+    <div class="row no-gutters">
+      <!-- Hero image -->
+      <div class="col-md-6 d-flex justify-content-center align-items-center">
+        <img src="{% static 'images/hero-gipfel.webp' %}" alt="Design image of a mountain peak with a house in front of it" class="img-fluid" />
+      </div>
+
+      <!-- CTA Section -->
+      <div class="col-md-6 d-flex justify-content-center align-items-center">
+        <div>
+          <a href="{% url 'tutor_list' %}" class="btn btn-primary btn-lg my-gradient">Find the Tutor for You</a>
+          <div>Learn from the best tutors in the world. Find the perfect tutor for you.</div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- CTA Section -->
+  <!-- Search Section -->
   <div class="container mt-5">
     <div class="row">
       <div class="col">

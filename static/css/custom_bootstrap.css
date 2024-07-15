@@ -19,7 +19,8 @@
   --bs-secondary-shaded: #ABD8ED;
 
   --bs-border-style: none;
-  --bs-border-radius-sm: 0.25rem;
+  --bs-border-radius: 1.125rem;
+  --bs-border-radius-lg: 2rem;
 
   --bs-font-sans-serif: "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
@@ -116,8 +117,7 @@
   --bs-border-width: 1px;
   --bs-border-color: #dee2e6;
   --bs-border-color-translucent: rgba(0, 0, 0, 0.175);
-  --bs-border-radius: 1.125rem;
-  --bs-border-radius-lg: 0.5rem;
+  --bs-border-radius-sm: 0.25rem;
   --bs-border-radius-xl: 1rem;
   --bs-border-radius-xxl: 2rem;
   --bs-border-radius-2xl: var(--bs-border-radius-xxl);
