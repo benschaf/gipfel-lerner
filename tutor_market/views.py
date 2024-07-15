@@ -98,6 +98,7 @@ def tutor_detail_view(request, pk):
     tutor = get_object_or_404(Tutor, pk=pk)
     existing_rating = None
     upcoming_sessions = None
+
     if request.user.is_authenticated:
         existing_rating = Rating.objects.filter(tutor=tutor, user=request.user).first()
         upcoming_sessions = TutoringSession.objects.filter(tutor__user=tutor.user, student=request.user)
@@ -120,6 +121,7 @@ def tutor_detail_view(request, pk):
             existing_rating.score = review_form.cleaned_data['score']
             existing_rating.comment = review_form.cleaned_data['comment']
             existing_rating.save()
+            messages.success(request, 'Review updated successfully.')
             return redirect('tutor_detail', pk=pk)
 
         review = review_form.save(commit=False)
@@ -152,6 +154,7 @@ class TutorCreateView(LoginRequiredMixin, CreateView):
     model = Tutor
     form_class = TutorForm
     template_name = 'tutor_market/add_tutor.html'
+    success_message = 'Tutor profile created successfully.'
 
     def form_valid(self, form):
         """
@@ -183,6 +186,7 @@ class TutorUpdateView(UserPassesTestMixin, UpdateView):
     form_class = TutorForm
     template_name = 'tutor_market/edit_tutor.html'
     permission_required = 'tutor_market.change_tutor'
+    success_message = 'Tutor profile updated successfully.'
 
     def test_func(self):
         """
@@ -190,6 +194,9 @@ class TutorUpdateView(UserPassesTestMixin, UpdateView):
         """
         if self.request.user == self.get_object().user:
             return True
+        else:
+            messages.error(self.request, 'You do not have permission to update this profile.')
+            return False
 
     def get_success_url(self):
         """
@@ -209,6 +216,7 @@ class TutorDeleteView(UserPassesTestMixin, DeleteView):
     template_name = 'tutor_market/tutor_confirm_delete.html'
     permission_required = 'tutor_market.delete_tutor'
     success_url = reverse_lazy('tutor_list')
+    success_message = 'Tutor profile deleted successfully.'
 
     def test_func(self):
         """
@@ -216,6 +224,9 @@ class TutorDeleteView(UserPassesTestMixin, DeleteView):
         """
         if self.request.user == self.get_object().user:
             return True
+        else:
+            messages.error(self.request, 'You do not have permission to delete this profile.')
+            return False
 
 
 def student_dashboard(request, user):
@@ -284,8 +295,7 @@ def update_session_status(request, pk):
         messages.error(request, 'You do not have permission to update this session.')
         return redirect('dashboard', pk=session.tutor.user.pk)
 
-    if request.method == 'POST':
-        session.session_status = request.POST['status']
-        session.save()
-        return redirect('dashboard', pk=session.tutor.user.pk)
+    session.session_status = request.POST['status']
+    session.save()
+    messages.success(request, 'Session status updated successfully.')
     return redirect('dashboard', pk=session.tutor.user.pk)

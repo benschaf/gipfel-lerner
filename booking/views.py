@@ -40,14 +40,11 @@ def _get_json_from_calendly_uri(uri):
     if response.status_code == 200:
         return response.json()
     else:
-        # Handle error
-        print(f"error: {response.status_code}")
+        messages.error('Error fetching data from Calendly.')
 
 
 def _write_calendly_data_to_db(event_data, invitee_data, tutor, student):
     # Create a new session
-    print(f"EVENT_DATA: {event_data}")
-    print(f"INVITEE_DATA: {invitee_data}")
 
     questions_and_answers = ''
     if invitee_data['resource']['questions_and_answers']:
@@ -73,6 +70,7 @@ def _write_calendly_data_to_db(event_data, invitee_data, tutor, student):
         invitee_notes = questions_and_answers
     )
     session.save()
+    messages.success('Session created successfully.')
     return session
 
 @login_required
@@ -134,12 +132,6 @@ def _update_users_sessions(user: User):
             print(f"Error updating session {session.pk}: {e}")
 
 
-
-
-
-
-
-
 class ScheduleSuccessView(DetailView):
     model = TutoringSession
     template_name = 'booking/schedule_success.html'
@@ -166,9 +158,6 @@ def payment_view(request, pk):
         currency=settings.STRIPE_CURRENCY,
     )
     CLIENT_SECRET = intent.client_secret
-
-    print(f"intent {intent}")
-
 
     context = {
         'sessions': sessions_to_pay,
