@@ -32,13 +32,14 @@ class TutoringSession(models.Model):
     invitee_notes = models.TextField(blank=True, null=True)
 
     STATUS_CHOICES = [
+        ("pending", "Pending"),
         ("scheduled", "Scheduled"),
         ("completed", "Completed"),
         ("cancelled", "Cancelled"),
         ("rescheduled", "Rescheduled"),
     ]
     session_status = models.CharField(
-        max_length=20, choices=STATUS_CHOICES, default="scheduled"
+        max_length=20, choices=STATUS_CHOICES, default="pending"
     )
 
     def duration(self) -> timedelta:

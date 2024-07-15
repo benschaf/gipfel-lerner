@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.contrib import messages
 from typing import Any
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.core.paginator import Paginator
@@ -240,7 +241,8 @@ def tutor_dashboard(request, user):
     """
     tutor = Tutor.objects.get(user=user)
     booking_history = TutoringSession.objects.filter(tutor=tutor).order_by('start_time')
-    upcoming_sessions = booking_history.filter(start_time__gte=timezone.now())[:3]
+    upcoming_sessions = booking_history.filter(start_time__gte=timezone.now()).filter(session_status='scheduled')[:3]
+    pending_sessions = booking_history.filter(session_status='pending')
     users = User.objects.filter(sessions__tutor=tutor)
     users_and_sessions = {}
     for user in users:
@@ -249,13 +251,14 @@ def tutor_dashboard(request, user):
 
     context = {
         'booking_history': booking_history,
+        'pending_sessions': pending_sessions,
         'upcoming_sessions': upcoming_sessions,
         'users_and_sessions': users_and_sessions,
         'tutor': tutor,
     }
     return render(request, 'tutor_market/tutor_dashboard.html', context)
 
-def dashboard_view(request,pk):
+def dashboard_view(request, pk):
     """
     Redirects to the correct dashboard based on the user's role.
     """
@@ -265,8 +268,24 @@ def dashboard_view(request,pk):
     print(connected_tutor_profile)
     # connected_tutor_profile = False
     if connected_tutor_profile:
-        print('TUTOR')
         return tutor_dashboard(request, user)
     else:
-        print('STUDENT')
         return student_dashboard(request, user)
+
+@require_POST
+@login_required
+def update_session_status(request, pk):
+    """
+    View for updating the status of a tutoring session.
+    """
+    session = get_object_or_404(TutoringSession, pk=pk)
+
+    if session.tutor.user != request.user:
+        messages.error(request, 'You do not have permission to update this session.')
+        return redirect('dashboard', pk=session.tutor.user.pk)
+
+    if request.method == 'POST':
+        session.session_status = request.POST['status']
+        session.save()
+        return redirect('dashboard', pk=session.tutor.user.pk)
+    return redirect('dashboard', pk=session.tutor.user.pk)

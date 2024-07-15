@@ -4,9 +4,7 @@
     <h2 class="mb-4">Tutor Dashboard</h2>
     <div class="row">
       <div class="col">
-        <p class="text-muted">
-          How others see your profile:
-        </p>
+        <p class="text-muted">How others see your profile:</p>
         <div class="card">
           <div class="card-body">
             <div class="row">
@@ -50,11 +48,11 @@
             </div>
           </div>
         </div>
-<div class="float-end mt-1">
+        <div class="float-end mt-1">
           <a href="{% url 'tutor_detail' tutor.pk %}" class="btn btn-secondary btn-sm"><i class="fas fa-user"></i> View your Profile</a>
           <a href="{% url 'edit_tutor' tutor.pk %}" class="btn btn-secondary btn-sm"><i class="fas fa-edit"></i> Edit</a>
           <a href="{% url 'delete_tutor' tutor.pk %}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</a>
-</div>
+        </div>
       </div>
       <div class="col-lg-6">
         <h3>Your Personal Information</h3>
@@ -94,6 +92,36 @@
             </tr>
           </tbody>
         </table>
+      </div>
+      <div class="col-md-6">
+        <h3>Pending Lessons</h3>
+        <p class="text-muted">The following Lessons were requested by students:</p>
+        <ul class="listgroup">
+          {% for session in pending_sessions %}
+            <li class="list-group-item">
+              <strong>Subject:</strong> {{ session.subject }}<br />
+              <strong>Date:</strong> {{ session.start_time|date:'D, d M Y H:i' }}<br />
+              <strong>Duration:</strong> {{ session.duration }} minutes<br />
+              <strong>Tutor:</strong> {{ session.tutor.display_name }} <br />
+              <div class="mt-1 float-end d-flex align-items-stretch gap-2">
+                <!-- Status Update Form -->
+                <form action="{% url 'update_session_status' session.id %}" method="post">
+                  {% csrf_token %}
+                  <input type="hidden" name="status" value="scheduled" />
+                  <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-check"></i> Schedule</button>
+                </form>
+                <form action="{% url 'update_session_status' session.id %}" method="post">
+                  {% csrf_token %}
+                  <input type="hidden" name="status" value="cancelled" />
+                  <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Cancel</button>
+                </form>
+                <a href="{{ session.reschedule_url }}" class="btn btn-warning btn-sm"><i class="fas fa-calendar-alt"></i> Reschedule</a>
+              </div>
+            </li>
+          {% empty %}
+            <li class="list-group-item">No pending lessons.</li>
+          {% endfor %}
+        </ul>
       </div>
       <div class="col-md-6">
         <h3>Upcoming Lessons</h3>
