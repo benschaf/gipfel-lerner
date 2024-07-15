@@ -24,48 +24,6 @@
     </div>
   </div>
 
-  <!-- Search Section -->
-  <div class="container mt-5">
-    <!-- Subjects -->
-    <div class="row mt-3">
-      <div class="col">
-        <a href="{% url 'tutor_list' %}?subject=english" class="btn btn-outline-primary">English</a>
-        <a href="{% url 'tutor_list' %}?subject=math" class="btn btn-outline-primary">Math</a>
-        <a href="{% url 'tutor_list' %}?subject=science" class="btn btn-outline-primary">Science</a>
-        <a href="{% url 'tutor_list' %}?subject=history" class="btn btn-outline-primary">History</a>
-        <a href="{% url 'tutor_list' %}?subject=biology" class="btn btn-outline-primary">Biology</a>
-        <a href="{% url 'tutor_list' %}?subject=chemistry" class="btn btn-outline-primary">Chemistry</a>
-      </div>
-    </div>
-    <!-- Value Tags -->
-    <div class="row mt-3">
-      <div class="col">
-        <form action="{% url 'tutor_list' %}" method="GET">
-          <input type="checkbox" name="teaching-value" value="self-learning" class="btn-check" autocomplete="off" id="btn-check-1" />
-          <label class="btn btn-outline-primary" for="btn-check-1">Self-Learning</label>
-          <input type="checkbox" name="teaching-value" value="repetition" class="btn-check" autocomplete="off" id="btn-check-2" />
-          <label class="btn btn-outline-primary" for="btn-check-2">Repetition</label>
-          <input type="checkbox" name="teaching-value" value="engagement" class="btn-check" autocomplete="off" id="btn-check-3" />
-          <label class="btn btn-outline-primary" for="btn-check-3">Engagement</label>
-          <input type="checkbox" name="teaching-value" value="urgency" class="btn-check" autocomplete="off" id="btn-check-4" />
-          <label class="btn btn-outline-primary" for="btn-check-4">Urgency</label>
-          <button type="submit" class="btn btn-primary mt-3" id="values-submit-btn">Search</button>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    $(document).ready(function () {
-      const submitButton = $('#values-submit-btn');
-      const input = $('input[type="checkbox"]');
-      input.change(function () {
-        submitButton.removeClass('d-none');
-      });
-      submitButton.addClass('d-none');
-    });
-  </script>
-
   <!-- Bento information Section -->
   <div class="container mt-5 p-5">
     <!-- -> Credit for CSS Grid (generation): https://cssgrid-generator.netlify.app/ -->
@@ -73,8 +31,15 @@
       <div class="div1 card">
         <img src="{% static 'images/bento-paths.webp' %}" alt="Image of multiple paths leading up a mountain summit." class="img-fluid rounded" />
         <div class="card-body p-0">
-          <h5>Customized Learning Paths</h5>
-          <p>Unlock your full potential with personalized tutoring plans tailored to your learning style and goals.</p>
+          <h5>A wide range of Subjects</h5>
+          <p>Find an expert for the field that you want to know more about.</p>
+          <p>Pick a subject below:</p>
+          <a href="{% url 'tutor_list' %}?subject=english" class="btn btn-dark mt-2">English</a>
+          <a href="{% url 'tutor_list' %}?subject=math" class="btn btn-dark mt-2">Math</a>
+          <a href="{% url 'tutor_list' %}?subject=science" class="btn btn-dark mt-2">Science</a>
+          <a href="{% url 'tutor_list' %}?subject=history" class="btn btn-dark mt-2">History</a>
+          <a href="{% url 'tutor_list' %}?subject=biology" class="btn btn-dark mt-2">Biology</a>
+          <a href="{% url 'tutor_list' %}?subject=chemistry" class="btn btn-dark mt-2">Chemistry</a>
         </div>
       </div>
       <div class="div2 card">
@@ -82,11 +47,34 @@
           <div class="col">
             <div class="card-body p-0">
               <h5>Find your perfect Match</h5>
-              <p>Find the ideal tutor for your needs with our matching system, ensuring effective and enjoyable learning experiences.</p>
+              <p>Find the ideal tutor for your needs with our matching system.</p>
+              <p>Pick Teaching Values that are important to you below:</p>
+              <form action="{% url 'tutor_list' %}" method="GET">
+                <input type="checkbox" name="teaching-value" value="self-learning" class="btn-check" autocomplete="off" id="btn-check-1" />
+                <label class="btn btn-light mt-2" for="btn-check-1">Self-Learning</label>
+                <input type="checkbox" name="teaching-value" value="repetition" class="btn-check" autocomplete="off" id="btn-check-2" />
+                <label class="btn btn-light mt-2" for="btn-check-2">Repetition</label>
+                <input type="checkbox" name="teaching-value" value="engagement" class="btn-check" autocomplete="off" id="btn-check-3" />
+                <label class="btn btn-light mt-2" for="btn-check-3">Engagement</label>
+                <input type="checkbox" name="teaching-value" value="urgency" class="btn-check" autocomplete="off" id="btn-check-4" />
+                <label class="btn btn-light mt-2" for="btn-check-4">Urgency</label>
+                <br />
+                <button type="submit" class="btn btn-primary mt-3" id="values-submit-btn">Find your match</button>
+              </form>
+              <script>
+                $(document).ready(function () {
+                  const submitButton = $('#values-submit-btn')
+                  const input = $('input[type="checkbox"]')
+                  input.change(function () {
+                    submitButton.removeClass('d-none')
+                  })
+                  submitButton.addClass('d-none')
+                })
+              </script>
             </div>
           </div>
           <div class="col">
-            <img src="{% static 'images/bento-match.webp' %}" alt="A wallet" class="img-fluid rounded" />
+            <img src="{% static 'images/bento-match.webp' %}" alt="A tutor that is video chatting on a laptop" class="img-fluid rounded" />
           </div>
         </div>
       </div>
