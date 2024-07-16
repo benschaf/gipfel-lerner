@@ -132,3 +132,32 @@
         grid-area: 3 / 3 / 4 / 4;
     }
 }
+
+/* Tutor List */
+
+.sorting-badge {
+    background-color: var(--bs-gray-200);
+    color: #000;
+    font-weight: 700;
+}
+
+.subject-btn {
+    background-color: var(--bs-gray-400);
+}
+
+.subject-btn:hover+.btn {
+    background-color: var(--bs-gray-200);
+}
+
+.subject-btn:checked+.btn {
+    background-color: var(--my-ut-oragne);
+}
+
+.list-value-btn:hover+.btn {
+    background-color: var(--bs-btn-light-shaded);
+}
+
+.list-value-btn:checked+.btn {
+    background-color: var(--my-prussian-blue);
+    color: var(--bs-light);
+}
