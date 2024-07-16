@@ -9,4 +9,5 @@ urlpatterns = [
     path('delete-tutor/<int:pk>/', views.TutorDeleteView.as_view(), name='delete_tutor'),
     path('dashboard/<int:pk>/', views.dashboard_view, name='dashboard'),
     path('update-session-status/<int:pk>/', views.update_session_status, name='update_session_status'),
+    path('calendly-information/', views.CalendlyInformationView.as_view(), name='calendly_information'),
 ]

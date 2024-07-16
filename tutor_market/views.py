@@ -2,7 +2,7 @@ import json
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
-from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView
+from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from typing import Any
@@ -300,3 +300,7 @@ def update_session_status(request, pk):
     session.save()
     messages.success(request, 'Session status updated successfully.')
     return redirect('dashboard', pk=session.tutor.user.pk)
+
+
+class CalendlyInformationView(TemplateView):
+    template_name = 'tutor_market/calendly_information.html'
