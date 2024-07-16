@@ -28,6 +28,8 @@ class Tutor(models.Model):
     profile_image = models.ImageField(upload_to='tutor_images', null=True, blank=True)
     values = models.ManyToManyField('Value', related_name='tutors')
     iban = models.CharField(max_length=34, null=True, blank=True)
+    calendly_event_url = models.URLField(null=True, blank=True)
+    calendly_personal_token = models.CharField(max_length=600, null=True, blank=True)
 
     def average_rating(self):
         """

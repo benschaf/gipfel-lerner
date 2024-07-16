@@ -34,16 +34,20 @@ def cache_payment_data(request):
         messages.warning(request, 'An error occurred while processing your payment.')
         return HttpResponse(content=e, status=400)
 
-def _get_json_from_calendly_uri(uri):
-    headers = {'Authorization': f'Bearer {settings.PERSONAL_CALENDLY_TOKEN}'}
+def _get_json_from_calendly_uri(uri, tutor, request):
+    calendly_personal_token = tutor.calendly_personal_token.strip()
+    print(calendly_personal_token)
+    headers = {'Authorization': f'Bearer {calendly_personal_token}'}
     response = requests.get(uri, headers=headers)
     if response.status_code == 200:
         return response.json()
     else:
-        messages.warning('Error fetching data from Calendly.')
+        if request:
+            messages.warning(request, f'An error occured while loading the event data. ${response}')
+        return None
 
 
-def _write_calendly_data_to_db(event_data, invitee_data, tutor, student):
+def _write_calendly_data_to_db(event_data, invitee_data, tutor, student, request):
     # Create a new session
 
     questions_and_answers = ''
@@ -70,7 +74,7 @@ def _write_calendly_data_to_db(event_data, invitee_data, tutor, student):
         invitee_notes = questions_and_answers
     )
     session.save()
-    messages.success('Session created successfully.')
+    messages.success(request, 'Session created successfully.')
     return session
 
 @login_required
@@ -91,10 +95,10 @@ def fetch_calendly_data_view(request: HttpRequest, pk: int) -> HttpResponse:
         invitee_uri = form.cleaned_data['invitee_uri']
 
         #get the data from the uris using the calendly api2
-        event_data = _get_json_from_calendly_uri(event_uri)
-        invitee_data = _get_json_from_calendly_uri(invitee_uri)
+        event_data = _get_json_from_calendly_uri(event_uri, tutor, request)
+        invitee_data = _get_json_from_calendly_uri(invitee_uri, tutor, request)
 
-        session = _write_calendly_data_to_db(event_data, invitee_data, tutor, student)
+        session = _write_calendly_data_to_db(event_data, invitee_data, tutor, student, request)
 
     return redirect('schedule_success', pk=session.pk)
 
@@ -105,7 +109,9 @@ def _update_users_sessions(user: User):
     calendly data.
     """
     sessions_to_update = []
+    tutor = None
     if Tutor.objects.filter(user=user).exists():
+        tutor = Tutor.objects.filter(user=user)
         print('User is a tutor')
         sessions_to_update = TutoringSession.objects.filter(tutor__user=user)
     else:
@@ -114,8 +120,8 @@ def _update_users_sessions(user: User):
 
     for session in sessions_to_update:
         try:
-            event_data = _get_json_from_calendly_uri(session.event_uri)
-            invitee_data = _get_json_from_calendly_uri(session.invitee_uri)
+            event_data = _get_json_from_calendly_uri(session.event_uri, tutor, None)
+            invitee_data = _get_json_from_calendly_uri(session.invitee_uri, tutor, None)
 
             # Calendly json fields
             session.start_time = event_data['resource']['start_time']

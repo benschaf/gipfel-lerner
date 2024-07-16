@@ -133,12 +133,14 @@ def tutor_detail_view(request, pk):
 
     form = RatingForm()
     calendly_form = CalendlyUriForm()
+    calendly_event_url = tutor.calendly_event_url
     reviews = tutor.ratings.all()
     rating_exists = True if existing_rating else False
     context = {
         'tutor': tutor,
         'form': form,
         'calendly_form': calendly_form,
+        'calendly_event_url': calendly_event_url,
         'reviews': reviews,
         'existing_review': rating_exists,
         'upcoming_sessions': upcoming_sessions,
@@ -276,7 +278,6 @@ def dashboard_view(request, pk):
     # CAN I DO THIS WEIRD VIEW THAT IS ONLY HALF A VIEW AND REDIRECTS TO THE APPROPRIATE SECOND HALF?
     user = get_object_or_404(User, pk=pk)
     connected_tutor_profile = Tutor.objects.filter(user=user).first()
-    print(connected_tutor_profile)
     # connected_tutor_profile = False
     if connected_tutor_profile:
         return tutor_dashboard(request, user)

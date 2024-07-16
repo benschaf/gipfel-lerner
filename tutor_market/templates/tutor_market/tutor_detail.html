@@ -180,7 +180,7 @@
         })
 
         Calendly.initInlineWidget({
-          url: 'https://calendly.com/benibschafer/30min/?hide_event_type_details=1',
+          url: '{{ calendly_event_url }}?hide_event_type_details=1',
           parentElement: document.getElementById('calendly'),
           prefill: {
             name: '{{ user }}',
