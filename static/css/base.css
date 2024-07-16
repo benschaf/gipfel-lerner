@@ -16,6 +16,12 @@
     padding: 1rem 9rem;
 }
 
+@media(max-width: 500px) {
+    .hero-image {
+        padding: 0.5rem;
+    }
+}
+
 @media(min-width: 768px) {
     .hero-image {
         padding: 1rem;
