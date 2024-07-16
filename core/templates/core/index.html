@@ -10,16 +10,14 @@
   <div class="container-fluid p-0">
     <div class="row no-gutters">
       <!-- Hero image -->
-      <div class="col-md-6 d-flex justify-content-center align-items-center">
+      <div class="col-md-6 d-flex justify-content-center align-items-center hero-image">
         <img src="{% static 'images/hero-gipfel.webp' %}" alt="Design image of a mountain peak with a house in front of it" class="img-fluid" />
       </div>
 
       <!-- CTA Section -->
-      <div class="col-md-6 d-flex justify-content-center align-items-center">
-        <div>
+      <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
           <a href="{% url 'tutor_list' %}" class="btn btn-primary btn-lg my-gradient">Find the Tutor for You</a>
           <div class="mt-5">Learn from a tutor that just feels like the perfect fit.</div>
-        </div>
       </div>
     </div>
   </div>

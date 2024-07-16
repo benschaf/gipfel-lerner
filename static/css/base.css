@@ -12,6 +12,16 @@
     background: linear-gradient(90deg, var(--bs-primary) 0%, var(--my-ut-oragne) 100%);
 }
 
+.hero-image {
+    padding: 1rem 9rem;
+}
+
+@media(min-width: 768px) {
+    .hero-image {
+        padding: 1rem;
+    }
+}
+
 /* BENTO SECTION */
 .parent>div {
     border-style: none;
