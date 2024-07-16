@@ -105,7 +105,7 @@ def tutor_detail_view(request, pk):
 
     if request.method == 'POST':
         if not request.user.is_authenticated:
-            messages.error(request, 'You must be logged in to leave a review.')
+            messages.warning(request, 'You must be logged in to leave a review.')
             return redirect('tutor_detail', pk=pk)
 
         review_form = RatingForm(request.POST)
@@ -114,7 +114,7 @@ def tutor_detail_view(request, pk):
         # If I do it witha CBV the invalid form will reload the page and add
         # a specific error message on the invalid fields.
         if not review_form.is_valid():
-            messages.error(request, 'Form was not valid. Please try again.')
+            messages.warning(request, 'Form was not valid. Please try again.')
 
         # Update the old review and reload the view
         if existing_rating:
@@ -164,7 +164,7 @@ class TutorCreateView(LoginRequiredMixin, CreateView):
         Sets the user field of the form instance to the current user.
         """
         if Tutor.objects.filter(user=self.request.user).exists():
-            messages.error(self.request, 'You already have a tutor profile.')
+            messages.warning(self.request, 'You already have a tutor profile.')
             return redirect('tutor_detail', pk=self.request.user.tutor.pk)
 
         form.instance.user = self.request.user
@@ -195,7 +195,7 @@ class TutorUpdateView(UserPassesTestMixin, UpdateView):
         if self.request.user == self.get_object().user:
             return True
         else:
-            messages.error(self.request, 'You do not have permission to update this profile.')
+            messages.warning(self.request, 'You do not have permission to update this profile.')
             return False
 
     def get_success_url(self):
@@ -225,7 +225,7 @@ class TutorDeleteView(UserPassesTestMixin, DeleteView):
         if self.request.user == self.get_object().user:
             return True
         else:
-            messages.error(self.request, 'You do not have permission to delete this profile.')
+            messages.warning(self.request, 'You do not have permission to delete this profile.')
             return False
 
 
@@ -292,7 +292,7 @@ def update_session_status(request, pk):
     session = get_object_or_404(TutoringSession, pk=pk)
 
     if session.tutor.user != request.user:
-        messages.error(request, 'You do not have permission to update this session.')
+        messages.warning(request, 'You do not have permission to update this session.')
         return redirect('dashboard', pk=session.tutor.user.pk)
 
     session.session_status = request.POST['status']

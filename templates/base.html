@@ -86,38 +86,31 @@
       </nav>
     </header>
 
-    <!-- -> Credit for message code by Code Institute: https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/master/templates/base.html -->
-    {% comment %}
     {% if messages %}
-      <div class="message-container">
-        {% for message in messages %}
-          {% with level=message.level %}
-            {% if level == 40 %}
-              {% include 'includes/toasts/toast_error.html' %}
-            {% elif level == 30 %}
-              {% include 'includes/toasts/toast_warning.html' %}
-            {% elif level == 25 %}
-              {% include 'includes/toasts/toast_success.html' %}
-            {% else %}
-              {% include 'includes/toasts/toast_info.html' %}
-            {% endif %}
-          {% endwith %}
-        {% endfor %}
-      </div>
-    {% endif %}
-    {% endcomment %}
-    {% if messages %}
-      <div class="message-container">
-        {% for message in messages %}
-          <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-              <strong class="me-auto">{{ message.tags }}</strong>
-              <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      <div class="row fixed-bottom px-2">
+        <div class="col col-sm-9 col-md-8 col-lg-5">
+          {% for message in messages %}
+          <!-- Note: Django messages with the error tag don't work with this but all the other ones do, so use those -->
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show rounded-pill border-0 shadow" role="alert">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <!-- -> Credit for capfirst filter: https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#capfirst -->
+                  <strong>{{ message.tags|capfirst }}</strong>
+                </div>
+                <div class="col">{{ message }}</div>
+                <div class="col-auto">
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              </div>
             </div>
-            <div class="toast-body">{{ message }}</div>
-          </div>
-        {% endfor %}
+          {% endfor %}
+        </div>
       </div>
+      <script>
+        setTimeout(function () {
+          $('.alert').alert('close')
+        }, 5000)
+      </script>
     {% endif %}
 
     {% block page_header %}

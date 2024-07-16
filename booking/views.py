@@ -31,7 +31,7 @@ def cache_payment_data(request):
         })
         return HttpResponse(status=200)
     except Exception as e:
-        messages.error(request, 'An error occurred while processing your payment.')
+        messages.warning(request, 'An error occurred while processing your payment.')
         return HttpResponse(content=e, status=400)
 
 def _get_json_from_calendly_uri(uri):
@@ -40,7 +40,7 @@ def _get_json_from_calendly_uri(uri):
     if response.status_code == 200:
         return response.json()
     else:
-        messages.error('Error fetching data from Calendly.')
+        messages.warning('Error fetching data from Calendly.')
 
 
 def _write_calendly_data_to_db(event_data, invitee_data, tutor, student):
@@ -146,7 +146,7 @@ def payment_view(request, pk):
     sessions_to_pay = TutoringSession.objects.filter(student=request.user, payment_complete=False)
 
     if not sessions_to_pay:
-        messages.error(request, 'No sessions to pay for.')
+        messages.warning(request, 'No sessions to pay for.')
         return redirect('dashboard')
 
     total_price = round(sum([session.price for session in sessions_to_pay]))
