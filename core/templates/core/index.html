@@ -50,26 +50,26 @@
               <p>Find the ideal tutor for your needs with our matching system.</p>
               <p>Pick Teaching Values that are important to you below:</p>
               <form action="{% url 'tutor_list' %}" method="GET">
-                <input type="checkbox" name="teaching-value" value="self-learning" class="btn-check" autocomplete="off" id="btn-check-1" />
+                <input type="checkbox" name="teaching-value" value="self-learning" class="btn-check value-btn" autocomplete="off" id="btn-check-1" />
                 <label class="btn btn-light mt-2" for="btn-check-1">Self-Learning</label>
-                <input type="checkbox" name="teaching-value" value="repetition" class="btn-check" autocomplete="off" id="btn-check-2" />
+                <input type="checkbox" name="teaching-value" value="repetition" class="btn-check value-btn" autocomplete="off" id="btn-check-2" />
                 <label class="btn btn-light mt-2" for="btn-check-2">Repetition</label>
-                <input type="checkbox" name="teaching-value" value="engagement" class="btn-check" autocomplete="off" id="btn-check-3" />
+                <input type="checkbox" name="teaching-value" value="engagement" class="btn-check value-btn" autocomplete="off" id="btn-check-3" />
                 <label class="btn btn-light mt-2" for="btn-check-3">Engagement</label>
-                <input type="checkbox" name="teaching-value" value="urgency" class="btn-check" autocomplete="off" id="btn-check-4" />
+                <input type="checkbox" name="teaching-value" value="urgency" class="btn-check value-btn" autocomplete="off" id="btn-check-4" />
                 <label class="btn btn-light mt-2" for="btn-check-4">Urgency</label>
                 <br />
-                <button type="submit" class="btn btn-primary mt-3" id="values-submit-btn">Find your match</button>
+                <button type="submit" class="btn btn-primary mt-3 value-btn-hidden" id="values-submit-btn">Find your match</button>
               </form>
               <script>
                 $(document).ready(function () {
-                  const submitButton = $('#values-submit-btn')
-                  const input = $('input[type="checkbox"]')
+                  const submitButton = $('#values-submit-btn');
+                  const input = $('input[type="checkbox"]');
                   input.change(function () {
-                    submitButton.removeClass('d-none')
-                  })
-                  submitButton.addClass('d-none')
-                })
+                      submitButton.addClass('value-btn-visible')
+                      submitButton.removeClass('value-btn-hidden')
+                  });
+              });
               </script>
             </div>
           </div>

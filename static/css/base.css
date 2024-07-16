@@ -49,6 +49,23 @@
     margin-left: 20px;
 }
 
+.value-btn:hover+.btn {
+    background-color: var(--bs-btn-light-shaded);
+}
+
+.value-btn:checked+.btn {
+    background-color: var(--my-ut-oragne);
+}
+
+.value-btn-visible {
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+.value-btn-hidden {
+    opacity: 0;
+}
+
 .div3 {
     grid-area: 2 / 2 / 3 / 3;
     background-color: var(--my-ut-oragne);
