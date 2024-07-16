@@ -24,8 +24,9 @@
     </div>
   </div>
 
+
   <!-- Bento information Section -->
-  <div class="container mt-5 p-5">
+  <div class="container mt-5 p-md-5">
     <!-- -> Credit for CSS Grid (generation): https://cssgrid-generator.netlify.app/ -->
     <div class="parent">
       <div class="div1 card">
@@ -44,6 +45,9 @@
       </div>
       <div class="div2 card">
         <div class="row g-0">
+          <div class="col-12 col-md-5 order-md-2">
+            <img src="{% static 'images/bento-match.webp' %}" alt="A tutor that is video chatting on a laptop" class="img-fluid rounded" />
+          </div>
           <div class="col">
             <div class="card-body p-0">
               <h5>Find your perfect Match</h5>
@@ -73,9 +77,6 @@
               </script>
             </div>
           </div>
-          <div class="col">
-            <img src="{% static 'images/bento-match.webp' %}" alt="A tutor that is video chatting on a laptop" class="img-fluid rounded" />
-          </div>
         </div>
       </div>
       <div class="div3 card">
@@ -88,8 +89,8 @@
         <img src="{% static 'images/bento-wallet.webp' %}" alt="A wallet" class="img-fluid rounded" />
       </div>
       <div class="div5 card">
-        <div class="row g-0">
-          <div class="col">
+        <div class="row g-0 row-gap-3">
+          <div class="col-12 col-md-5">
             <img src="{% static 'images/bento-start-now.webp' %}" alt="A wallet" class="img-fluid rounded" />
           </div>
           <div class="col">
