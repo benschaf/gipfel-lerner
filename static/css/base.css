@@ -134,30 +134,37 @@
 }
 
 /* Tutor List */
+.my-gray-background {
+    background-color: #f2f2f2;
+    color: var(--bs-black);
+}
 
 .sorting-badge {
-    background-color: var(--bs-gray-200);
-    color: #000;
-    font-weight: 700;
+    background-color: #f2f2f2;
+    color: var(--bs-black);
 }
 
-.subject-btn {
-    background-color: var(--bs-gray-400);
+.sorting-badge:hover+.btn {
+    background-color: #e5e5e5;
 }
 
-.subject-btn:hover+.btn {
-    background-color: var(--bs-gray-200);
+.sorting-badge:checked+.btn {
+    background-color: var(--my-blue-green);
+    border-color: var(--my-blue-green);
+}
+
+.subject-btn:hover+.btn,
+.list-value-btn:hover+.btn {
+    background-color: #e2e2e2;
 }
 
 .subject-btn:checked+.btn {
     background-color: var(--my-ut-oragne);
-}
-
-.list-value-btn:hover+.btn {
-    background-color: var(--bs-btn-light-shaded);
+    border-color: var(--my-ut-oragne);
 }
 
 .list-value-btn:checked+.btn {
     background-color: var(--my-prussian-blue);
+    border-color: var(--my-prussian-blue);
     color: var(--bs-light);
 }

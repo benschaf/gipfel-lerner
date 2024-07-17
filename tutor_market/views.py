@@ -33,7 +33,7 @@ def tutor_list_view(request):
     subjects= None
     values = None
     query = None
-    sorting = None
+    sorting = 'name'
 
     if request.GET:
         if 'subject' in request.GET:

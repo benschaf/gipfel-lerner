@@ -7,8 +7,10 @@
 [data-bs-theme=light] {
 
   /* Custom Styles */
-  --bs-body-bg: #f8f9ff;
-  --bs-body-bg-rgb: 248, 249, 255;
+  --bs-black: #0f0f0f;
+
+  --bs-body-bg: #fff;
+  --bs-body-bg-rgb: 255, 255, 255;
 
   --bs-primary: #FFB703;
   --bs-primary-rgb: 255, 183, 3;
@@ -44,7 +46,6 @@
   --bs-green: #198754;
   --bs-teal: #20c997;
   --bs-cyan: #0dcaf0;
-  --bs-black: #000;
   --bs-white: #fff;
   --bs-gray: #6c757d;
   --bs-gray-dark: #343a40;
