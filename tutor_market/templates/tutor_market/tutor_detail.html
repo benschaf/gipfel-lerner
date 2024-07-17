@@ -8,53 +8,8 @@
       <!-- Tutor Profile -->
       <div class="col">
         <div class="row">
-          <div class="col">
-            <div class="row">
-              <div class="col d-flex justify-content-between">
-                <h1>{{ tutor.display_name }}</h1>
-                <div>
-                  {% if schedule.author == user or user.is_superuser %}
-                    <a href="{% url 'edit_tutor' tutor.pk %}" class="btn btn-secondary">Edit your Profile</a>
-                    <a href="{% url 'delete_tutor' tutor.pk %}" class="btn btn-danger">Delete your Profile</a>
-                  {% endif %}
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-3">
-                {% if tutor.profile_image %}
-                  <img src="{{ tutor.profile_image.url }}" alt="Image of {{ tutor.display_name }}" class="img-fluid" />
-                {% else %}
-                  <img src="https://gipfel-tutor-768a610dc54f.s3.eu-north-1.amazonaws.com/media/tutor_images/default_profile_image.png" alt="Default profile image" class="img-fluid" />
-                {% endif %}
-              </div>
-              <div class="col-9">
-                <div class="row">
-                  <div class="col">
-                    <p>{{ tutor.catch_phrase }}</p>
-                    <p>
-                      my values:{% for value in tutor.values.all %}
-                        <span class="badge rounded-pill text-bg-secondary">{{ value }}</span>
-                      {% endfor %}
-                    </p>
-                    <p>
-                      my subjects:{% for subject in tutor.subjects.all %}
-                        <span class="badge rounded-pill text-bg-secondary">{{ subject }}</span>
-                      {% endfor %}
-                    </p>
-                  </div>
-                  <div class="col">
-                    <p>{{ tutor.hourly_rate }}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <p>{{ tutor.description }}</p>
-              </div>
-            </div>
-          </div>
+          <!-- Credit for include with: https://www.w3schools.com/django/django_tags_include.php -->
+          {% include "tutor_market/includes/tutor_card.html" with page="tutor_detail" %}
         </div>
         <!-- Reviews Section -->
         <!-- -> Credit for reviews section: https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/templates/wasteschedules/schedule_detail.html -->
