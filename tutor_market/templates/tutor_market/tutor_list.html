@@ -82,25 +82,27 @@
 <div class="container mt-2">
   <!-- Sorting -->
   <div class="row">
-    <div class="col d-flex ms-auto gap-1 flex-wrap">
+    <div class="col d-flex gap-1">
       <div class="me-2">
         <i class="fa-solid fa-arrow-up-wide-short"></i>
       </div>
-      <input type="radio" class="btn-check sorting-badge" name="sorting" value="name" id="option-0" autocomplete="off"
-        {% if sorting == 'name' %}checked{% endif %}>
-      <label class="btn badge rounded-pill my-gray-background" for="option-0">Name (A-Z)</label>
-      <input type="radio" class="btn-check sorting-badge" name="sorting" value="cheapest" id="option-1"
-        autocomplete="off" {% if sorting == 'cheapest' %}checked{% endif %}>
-      <label class="btn badge rounded-pill my-gray-background" for="option-1">Cheapest</label>
-      <input type="radio" class="btn-check sorting-badge" name="sorting" value="highest-rated" id="option-2"
-        autocomplete="off" {% if sorting == 'highest-rated' %}checked{% endif %}>
-      <label class="btn badge rounded-pill my-gray-background" for="option-2">Highest Rated</label>
-      <input type="radio" class="btn-check sorting-badge" name="sorting" value="most-reviews" id="option-3"
-        autocomplete="off" {% if sorting == 'most-reviews' %}checked{% endif %}>
-      <label class="btn badge rounded-pill my-gray-background" for="option-3">Most Reviews</label>
-      <input type="radio" class="btn-check sorting-badge" name="sorting" value="most-expensive" id="option-4"
-        autocomplete="off" {% if sorting == 'most-expensive' %}checked{% endif %}>
-      <label class="btn badge rounded-pill my-gray-background" for="option-4">Most Expensive</label>
+      <div class="d-flex flex-wrap gap-2">
+        <input type="radio" class="btn-check sorting-badge" name="sorting" value="name" id="option-0" autocomplete="off"
+          {% if sorting == 'name' %}checked{% endif %}>
+        <label class="btn badge rounded-pill my-gray-background" for="option-0">Name (A-Z)</label>
+        <input type="radio" class="btn-check sorting-badge" name="sorting" value="cheapest" id="option-1"
+          autocomplete="off" {% if sorting == 'cheapest' %}checked{% endif %}>
+        <label class="btn badge rounded-pill my-gray-background" for="option-1">Cheapest</label>
+        <input type="radio" class="btn-check sorting-badge" name="sorting" value="highest-rated" id="option-2"
+          autocomplete="off" {% if sorting == 'highest-rated' %}checked{% endif %}>
+        <label class="btn badge rounded-pill my-gray-background" for="option-2">Highest Rated</label>
+        <input type="radio" class="btn-check sorting-badge" name="sorting" value="most-reviews" id="option-3"
+          autocomplete="off" {% if sorting == 'most-reviews' %}checked{% endif %}>
+        <label class="btn badge rounded-pill my-gray-background" for="option-3">Most Reviews</label>
+        <input type="radio" class="btn-check sorting-badge" name="sorting" value="most-expensive" id="option-4"
+          autocomplete="off" {% if sorting == 'most-expensive' %}checked{% endif %}>
+        <label class="btn badge rounded-pill my-gray-background" for="option-4">Most Expensive</label>
+      </div>
     </div>
   </div>
   </form>
