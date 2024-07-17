@@ -2,154 +2,187 @@
 {% load static %}
 
 {% block content %}
-  <div class="container">
-    <h1>Find <span class="text-primary">your</span> tutor</h1>
-  </div>
+<div class="container">
+  <h1>Find <span class="text-primary my-gradient-text">your</span> tutor</h1>
+</div>
 
-  <!-- Search form -->
-  <div class="container mt-3 p-4 rounded-2 my-gray-background">
-    <form action="{% url 'tutor_list' %}" method="GET">
-      <!-- Search Bar -->
-      <div class="row">
-        <div class="col col-md-6">
-          <div class="input-group">
-            <input type="text" name="q" class="form-control" placeholder="Search for a tutor"{% if query %} value="{{ query }}"{% endif %} />
-            <button class="btn btn-primary" type="submit">Search</button>
+<!-- Search form -->
+<div class="container mt-3 p-4 rounded-2 my-gray-background">
+  <form action="{% url 'tutor_list' %}" method="GET">
+    <!-- Search Bar -->
+    <div class="row">
+      <div class="col col-md-6">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search for a tutor" {% if query %}
+            value="{{ query }}" {% endif %} />
+          <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+      </div>
+      <div class="col d-flex justify-content-end">
+        <a href="{% url 'tutor_list' %}" class="btn my-reset-button">
+          <i class="fa-solid fa-undo"></i> Reset Filters
+        </a>
+      </div>
+    </div>
+
+    <!-- Subjects -->
+    <div class="row row-cols-1 row-cols-md-2 mt-3 row-gap-3">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <p><strong>I want to learn:</strong></p>
+            <div class="d-flex flex-wrap gap-2 row-gap-3">
+              <input type="checkbox" name="subject" value="english" class="btn-check subject-btn" autocomplete="off"
+                id="btn-subject-check-1" {% if 'english' in subjects %}checked{% endif %} />
+              <label class="btn btn-pill my-gray-background" for="btn-subject-check-1">English</label>
+              <input type="checkbox" name="subject" value="math" class="btn-check subject-btn" autocomplete="off"
+                id="btn-subject-check-2" {% if 'math' in subjects %}checked{% endif %} />
+              <label class="btn btn-pill my-gray-background" for="btn-subject-check-2">Math</label>
+              <input type="checkbox" name="subject" value="science" class="btn-check subject-btn" autocomplete="off"
+                id="btn-subject-check-3" {% if 'science' in subjects %}checked{% endif %} />
+              <label class="btn btn-pill my-gray-background" for="btn-subject-check-3">Science</label>
+              <input type="checkbox" name="subject" value="history" class="btn-check subject-btn" autocomplete="off"
+                id="btn-subject-check-4" {% if 'history' in subjects %}checked{% endif %} />
+              <label class="btn btn-pill my-gray-background" for="btn-subject-check-4">History</label>
+              <input type="checkbox" name="subject" value="biology" class="btn-check subject-btn" autocomplete="off"
+                id="btn-subject-check-5" {% if 'biology' in subjects %}checked{% endif %} />
+              <label class="btn btn-pill my-gray-background" for="btn-subject-check-5">Biology</label>
+              <input type="checkbox" name="subject" value="chemistry" class="btn-check subject-btn" autocomplete="off"
+                id="btn-subject-check-6" {% if 'chemistry' in subjects %}checked{% endif %} />
+              <label class="btn btn-pill my-gray-background" for="btn-subject-check-6">Chemistry</label>
+            </div>
           </div>
         </div>
       </div>
-
-      <!-- Subjects -->
-      <div class="row row-cols-1 row-cols-md-2 mt-3 row-gap-3">
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-          <p><strong>I want to learn:</strong></p>
-          <div class="d-flex flex-wrap gap-2 row-gap-3">
-            <input type="checkbox" name="subject" value="english" class="btn-check subject-btn" autocomplete="off" id="btn-subject-check-1" {% if 'english' in subjects %}checked{% endif %} />
-            <label class="btn btn-pill my-gray-background" for="btn-subject-check-1">English</label>
-            <input type="checkbox" name="subject" value="math" class="btn-check subject-btn" autocomplete="off" id="btn-subject-check-2" {% if 'math' in subjects %}checked{% endif %} />
-            <label class="btn btn-pill my-gray-background" for="btn-subject-check-2">Math</label>
-            <input type="checkbox" name="subject" value="science" class="btn-check subject-btn" autocomplete="off" id="btn-subject-check-3" {% if 'science' in subjects %}checked{% endif %} />
-            <label class="btn btn-pill my-gray-background" for="btn-subject-check-3">Science</label>
-            <input type="checkbox" name="subject" value="history" class="btn-check subject-btn" autocomplete="off" id="btn-subject-check-4" {% if 'history' in subjects %}checked{% endif %} />
-            <label class="btn btn-pill my-gray-background" for="btn-subject-check-4">History</label>
-            <input type="checkbox" name="subject" value="biology" class="btn-check subject-btn" autocomplete="off" id="btn-subject-check-5" {% if 'biology' in subjects %}checked{% endif %} />
-            <label class="btn btn-pill my-gray-background" for="btn-subject-check-5">Biology</label>
-            <input type="checkbox" name="subject" value="chemistry" class="btn-check subject-btn" autocomplete="off" id="btn-subject-check-6" {% if 'chemistry' in subjects %}checked{% endif %} />
-            <label class="btn btn-pill my-gray-background" for="btn-subject-check-6">Chemistry</label>
-          </div>
-        </div>
-          </div>
-        </div>
 
       <!-- Value Tags -->
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-          <p><strong>Teaching Values that are important to me:</strong></p>
-          <div class="d-flex flex-wrap gap-2">
-        <input type="checkbox" name="teaching-value" value="self-learning" class="btn-check list-value-btn" autocomplete="off" id="btn-check-1" {% if 'self-learning' in values %}checked{% endif %} />
-        <label class="btn btn-pill my-gray-background" for="btn-check-1">Self-Learning</label>
-        <input type="checkbox" name="teaching-value" value="repetition" class="btn-check list-value-btn" autocomplete="off" id="btn-check-2" {% if 'repetition' in values %}checked{% endif %} />
-        <label class="btn btn-pill my-gray-background" for="btn-check-2">Repetition</label>
-        <input type="checkbox" name="teaching-value" value="engagement" class="btn-check list-value-btn" autocomplete="off" id="btn-check-3" {% if 'engagement' in values %}checked{% endif %} />
-        <label class="btn btn-pill my-gray-background" for="btn-check-3">Engagement</label>
-        <input type="checkbox" name="teaching-value" value="urgency" class="btn-check list-value-btn" autocomplete="off" id="btn-check-4" {% if 'urgency' in values %}checked{% endif %} />
-        <label class="btn btn-pill my-gray-background" for="btn-check-4">Urgency</label>
-          </div></div>
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <p><strong>Teaching Values that are important to me:</strong></p>
+            <div class="d-flex flex-wrap gap-2">
+              <input type="checkbox" name="teaching-value" value="self-learning" class="btn-check list-value-btn"
+                autocomplete="off" id="btn-check-1" {% if 'self-learning' in values %}checked{% endif %} />
+              <label class="btn btn-pill my-gray-background" for="btn-check-1">Self-Learning</label>
+              <input type="checkbox" name="teaching-value" value="repetition" class="btn-check list-value-btn"
+                autocomplete="off" id="btn-check-2" {% if 'repetition' in values %}checked{% endif %} />
+              <label class="btn btn-pill my-gray-background" for="btn-check-2">Repetition</label>
+              <input type="checkbox" name="teaching-value" value="engagement" class="btn-check list-value-btn"
+                autocomplete="off" id="btn-check-3" {% if 'engagement' in values %}checked{% endif %} />
+              <label class="btn btn-pill my-gray-background" for="btn-check-3">Engagement</label>
+              <input type="checkbox" name="teaching-value" value="urgency" class="btn-check list-value-btn"
+                autocomplete="off" id="btn-check-4" {% if 'urgency' in values %}checked{% endif %} />
+              <label class="btn btn-pill my-gray-background" for="btn-check-4">Urgency</label>
+            </div>
           </div>
         </div>
       </div>
-  </div>
-  <div class="container mt-2">
-      <!-- Sorting -->
-      <div class="row">
-        <div class="col d-flex ms-auto gap-1 flex-wrap">
-            <div class="me-2">
-              <i class="fa-solid fa-arrow-up-wide-short"></i>
-            </div>
-            <input type="radio" class="btn-check sorting-badge" name="sorting" value="name" id="option-0" autocomplete="off" {% if sorting == 'name' %}checked{% endif %}>
-            <label class="btn badge rounded-pill my-gray-background" for="option-0">Name (A-Z)</label>
-            <input type="radio" class="btn-check sorting-badge" name="sorting" value="cheapest" id="option-1" autocomplete="off" {% if sorting == 'cheapest' %}checked{% endif %}>
-            <label class="btn badge rounded-pill my-gray-background" for="option-1">Cheapest</label>
-            <input type="radio" class="btn-check sorting-badge" name="sorting" value="highest-rated" id="option-2" autocomplete="off" {% if sorting == 'highest-rated' %}checked{% endif %}>
-            <label class="btn badge rounded-pill my-gray-background" for="option-2">Highest Rated</label>
-            <input type="radio" class="btn-check sorting-badge" name="sorting" value="most-reviews" id="option-3" autocomplete="off" {% if sorting == 'most-reviews' %}checked{% endif %}>
-            <label class="btn badge rounded-pill my-gray-background" for="option-3">Most Reviews</label>
-            <input type="radio" class="btn-check sorting-badge" name="sorting" value="most-expensive" id="option-4" autocomplete="off" {% if sorting == 'most-expensive' %}checked{% endif %}>
-            <label class="btn badge rounded-pill my-gray-background" for="option-4">Most Expensive</label>
-        </div>
+    </div>
+</div>
+<div class="container mt-2">
+  <!-- Sorting -->
+  <div class="row">
+    <div class="col d-flex ms-auto gap-1 flex-wrap">
+      <div class="me-2">
+        <i class="fa-solid fa-arrow-up-wide-short"></i>
       </div>
-    </form>
+      <input type="radio" class="btn-check sorting-badge" name="sorting" value="name" id="option-0" autocomplete="off"
+        {% if sorting == 'name' %}checked{% endif %}>
+      <label class="btn badge rounded-pill my-gray-background" for="option-0">Name (A-Z)</label>
+      <input type="radio" class="btn-check sorting-badge" name="sorting" value="cheapest" id="option-1"
+        autocomplete="off" {% if sorting == 'cheapest' %}checked{% endif %}>
+      <label class="btn badge rounded-pill my-gray-background" for="option-1">Cheapest</label>
+      <input type="radio" class="btn-check sorting-badge" name="sorting" value="highest-rated" id="option-2"
+        autocomplete="off" {% if sorting == 'highest-rated' %}checked{% endif %}>
+      <label class="btn badge rounded-pill my-gray-background" for="option-2">Highest Rated</label>
+      <input type="radio" class="btn-check sorting-badge" name="sorting" value="most-reviews" id="option-3"
+        autocomplete="off" {% if sorting == 'most-reviews' %}checked{% endif %}>
+      <label class="btn badge rounded-pill my-gray-background" for="option-3">Most Reviews</label>
+      <input type="radio" class="btn-check sorting-badge" name="sorting" value="most-expensive" id="option-4"
+        autocomplete="off" {% if sorting == 'most-expensive' %}checked{% endif %}>
+      <label class="btn badge rounded-pill my-gray-background" for="option-4">Most Expensive</label>
+    </div>
   </div>
+  </form>
+</div>
 
-  <script type="text/javascript">
-    const radio_btns = document.querySelectorAll('.btn-check');
-    const form = document.querySelector('form');
-    radio_btns.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        form.submit();
-      });
+<script type="text/javascript">
+  const radio_btns = document.querySelectorAll('.btn-check');
+  const form = document.querySelector('form');
+  radio_btns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      form.submit();
     });
-  </script>
+  });
+</script>
 
-
-
-  <!-- Tutor list -->
-  <div class="container mt-5">
-    <div class="row row-cols-1 row-cols-md-2">
-      {% for tutor in tutor_list %}
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
+<!-- Tutor list -->
+<div class="container mt-5">
+  <div class="row row-cols-1 row-cols-lg-2">
+    {% for tutor in tutor_list %}
+    <div class="col">
+      <div class="card border-0 bg-light">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-3">
+              {% if tutor.profile_image %}
+              <img src="{{ tutor.profile_image.url }}" alt="Image of {{ tutor.display_name }}" class="img-fluid rounded" />
+              {% else %}
+              <img
+                src="https://gipfel-tutor-768a610dc54f.s3.eu-north-1.amazonaws.com/media/tutor_images/default_profile_image.png"
+                alt="Default profile image" class="img-fluid rounded" />
+              {% endif %}
+            </div>
+            <div class="col">
               <div class="row">
-                <div class="col-4">
-                  {% if tutor.profile_image %}
-                    <img src="{{ tutor.profile_image.url }}" alt="Image of {{ tutor.display_name }}" class="img-fluid" />
-                  {% else %}
-                    <img src="https://gipfel-tutor-768a610dc54f.s3.eu-north-1.amazonaws.com/media/tutor_images/default_profile_image.png" alt="Default profile image" class="img-fluid" />
-                  {% endif %}
+                <div class="col">
+                  <h5><a href="{% url 'tutor_detail' tutor.pk %}" class="">{{ tutor.display_name }}</a></h5>
                 </div>
-                <div class="col-8">
-                  <div class="row row-cols-1">
-                    <div class="col">
-                      <h5><a href="{% url 'tutor_detail' tutor.pk %}">{{ tutor.display_name }}</a></h5>
-                      <p>
-                        {% for value in tutor.values.all %}
-                          <span class="badge rounded-pill text-bg-secondary">{{ value }}</span>
-                        {% endfor %}
-                      </p>
-                      <p>
-                        {% for subject in tutor.subjects.all %}
-                          <span class="badge rounded-pill text-bg-secondary">{{ subject }}</span>
-                        {% endfor %}
-                      </p>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="d-flex">
+                    <div class="me-2">
+                      <span class="text-muted"><i class="fa-solid fa-scale-balanced"></i></span>
                     </div>
-                    <div class="col">
-                      <p>{{ tutor.hourly_rate }}</p>
-                      <p>
-                        {% if tutor.average_rating.score__avg %}
-                          Average Rating: {{ tutor.average_rating }} |
-                        {% endif %}
-                        {{ tutor.ratings.count }} reviews
-                      </p>
+                    <div>
+                      {% for value in tutor.values.all %}
+                      <span class="badge rounded-pill my-value-pill">{{ value }}</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="d-flex mt-2">
+                    <div class="me-2">
+                      <span class="text-muted"><i class="fa-solid fa-graduation-cap"></i></span>
+                    </div>
+                    <div>
+                      {% for subject in tutor.subjects.all %}
+                      <span class="badge rounded-pill my-subject-pill">{{ subject.name }}</span>
+                      {% endfor %}
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col">{{ tutor.catch_phrase }}</div>
+                <div class="col-5">
+                  <p>
+                      {% include "includes/average_rating.html" %}
+                  </p>
+                  <p>€{{ tutor.hourly_rate }} per lesson</p>
+                </div>
               </div>
             </div>
-            <div class="card-footer">
+          </div>
+          <div class="row mt-2">
+            <div class="col">{{ tutor.catch_phrase }}</div>
+            <div class="col d-flex justify-content-end">
               <a href="{% url 'tutor_detail' tutor.pk %}" class="btn btn-primary">Book a trial lesson!</a>
             </div>
           </div>
         </div>
-      {% empty %}
-        <p>No tutors found. Please try again later.</p>
-      {% endfor %}
+      </div>
     </div>
+    {% empty %}
+    <p>No tutors found. Please try again later.</p>
+    {% endfor %}
   </div>
+</div>
 {% endblock %}

@@ -12,6 +12,13 @@
     background: linear-gradient(90deg, var(--bs-primary) 0%, var(--my-ut-oragne) 100%);
 }
 
+/* -> Credit for Gradient text: https://cssgradient.io/blog/css-gradient-text/ */
+.my-gradient-text {
+    background: linear-gradient(90deg, var(--bs-primary) 0%, var(--my-ut-oragne) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .hero-image {
     padding: 1rem 9rem;
 }
@@ -139,6 +146,10 @@
     color: var(--bs-black);
 }
 
+.my-reset-button:hover {
+    background-color: #e2e2e2;
+}
+
 .sorting-badge {
     background-color: #f2f2f2;
     color: var(--bs-black);
@@ -167,4 +178,23 @@
     background-color: var(--my-prussian-blue);
     border-color: var(--my-prussian-blue);
     color: var(--bs-light);
+}
+
+h5>a {
+    text-decoration: none;
+    color: var(--bs-black);
+}
+
+.my-value-pill,
+.my-subject-pill {
+    font-weight: 500;
+}
+
+.my-value-pill {
+    background-color: var(--my-prussian-blue);
+}
+
+.my-subject-pill {
+    background-color: var(--my-ut-oragne);
+    color: var(--bs-black);
 }
