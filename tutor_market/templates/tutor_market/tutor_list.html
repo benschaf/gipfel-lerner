@@ -30,7 +30,7 @@
       <div class="col">
         <div class="card">
           <div class="card-body">
-            <p><strong>I want to learn:</strong></p>
+            <p><span class="text-muted"><i class="fa-solid fa-graduation-cap"></i> I want to learn:</span></p>
             <div class="d-flex flex-wrap gap-2 row-gap-3">
               <input type="checkbox" name="subject" value="english" class="btn-check subject-btn" autocomplete="off"
                 id="btn-subject-check-1" {% if 'english' in subjects %}checked{% endif %} />
@@ -59,7 +59,7 @@
       <div class="col">
         <div class="card">
           <div class="card-body">
-            <p><strong>Teaching Values that are important to me:</strong></p>
+            <p><span class="text-muted"><i class="fa-solid fa-scale-balanced"></i> Teaching Values that are important to me:</span></p>
             <div class="d-flex flex-wrap gap-2">
               <input type="checkbox" name="teaching-value" value="self-learning" class="btn-check list-value-btn"
                 autocomplete="off" id="btn-check-1" {% if 'self-learning' in values %}checked{% endif %} />
