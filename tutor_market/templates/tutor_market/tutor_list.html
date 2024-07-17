@@ -120,7 +120,7 @@
 
 <!-- Tutor list -->
 <div class="container mt-5">
-  <div class="row row-cols-1 row-cols-lg-2">
+  <div class="row row-cols-1 row-cols-lg-2 row-gap-3">
     {% for tutor in tutor_list %}
     <div class="col">
       <div class="card border-0 bg-light">
@@ -142,7 +142,13 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col">
+                <div class="col-12 col-md-5 order-md-2">
+                  <p>
+                      {% include "includes/average_rating.html" %}
+                  </p>
+                  <p>€{{ tutor.hourly_rate }} per lesson</p>
+                </div>
+                <div class="col order-md-1">
                   <div class="d-flex">
                     <div class="me-2">
                       <span class="text-muted"><i class="fa-solid fa-scale-balanced"></i></span>
@@ -163,12 +169,6 @@
                       {% endfor %}
                     </div>
                   </div>
-                </div>
-                <div class="col-5">
-                  <p>
-                      {% include "includes/average_rating.html" %}
-                  </p>
-                  <p>€{{ tutor.hourly_rate }} per lesson</p>
                 </div>
               </div>
             </div>
