@@ -198,3 +198,10 @@ h5>a {
     background-color: var(--my-ut-oragne);
     color: var(--bs-black);
 }
+
+
+/* Tutor Detail */
+.progress,
+.progress>div {
+    height: .75rem;
+}
