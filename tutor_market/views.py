@@ -116,6 +116,7 @@ def tutor_detail_view(request, pk):
         # a specific error message on the invalid fields.
         if not review_form.is_valid():
             messages.warning(request, 'Form was not valid. Please try again.')
+            return redirect('tutor_detail', pk=pk)
 
         # Update the old review and reload the view
         if existing_rating:

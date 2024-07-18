@@ -24,7 +24,15 @@ class TutorForm(forms.ModelForm):
 
 
 class RatingForm(forms.ModelForm):
+    comment = forms.CharField(widget=forms.Textarea(attrs={'rows': 2}))
 
     class Meta:
         model = Rating
         fields = ['score', 'comment']
+
+    def __init__(self, *args, **kwargs):
+        super(RatingForm, self).__init__(*args, **kwargs)
+        self.fields['score'].widget.attrs.update({'min': 1, 'max': 5, 'placeholder': 'Select a score between 1 and 5.'})
+        self.fields['comment'].widget.attrs.update({'placeholder': 'Leave a comment about your experience.'})
+        self.fields['score'].label = False
+        self.fields['comment'].label = False
