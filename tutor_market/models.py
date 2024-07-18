@@ -76,7 +76,7 @@ class Rating(models.Model):
     tutor = models.ForeignKey(Tutor, on_delete=models.CASCADE, related_name='ratings')
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='ratings', default=None)
     score = models.IntegerField(
-        validators=[MinValueValidator(0), MaxValueValidator(5)])
+        validators=[MinValueValidator(1), MaxValueValidator(5)])
     comment = models.TextField()
 
     def __str__(self):

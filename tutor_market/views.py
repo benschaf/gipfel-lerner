@@ -132,17 +132,30 @@ def tutor_detail_view(request, pk):
         messages.success(request, 'Review added successfully.')
         return redirect('tutor_detail', pk=pk)
 
+    review_counts = {}
+
+
     form = RatingForm()
     calendly_form = CalendlyUriForm()
     calendly_event_url = tutor.calendly_event_url
-    reviews = tutor.ratings.all()
     rating_exists = True if existing_rating else False
+    reviews = tutor.ratings.all()
+
+    total_reviews = reviews.count()
+    review_counts = {1: {}, 2: {}, 3: {}, 4: {}, 5: {}}
+    for score in range(1, 6):
+        count = reviews.filter(score=score).count()
+        percentage = (count / total_reviews * 100) if total_reviews > 0 else 0
+
+        review_counts[score] = {'count': count, 'percentage': percentage}
+
     context = {
         'tutor': tutor,
         'form': form,
         'calendly_form': calendly_form,
         'calendly_event_url': calendly_event_url,
         'reviews': reviews,
+        'review_counts': review_counts,
         'existing_review': rating_exists,
         'upcoming_sessions': upcoming_sessions,
     }
