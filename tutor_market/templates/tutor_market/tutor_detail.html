@@ -66,17 +66,19 @@
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row mt-5">
           <div class="col">
             <ul class="list-group list-group-flush">
               {% for review in reviews %}
                 <li class="list-group-item ps-0">
-                  <p>
-                    <i class="fa-regular fa-user"></i>
+                  <div class="d-flex align-items-center gap-3">
+                    <span class="badge text-bg-primary"><i class="fa-regular fa-user"></i>
                     {{ review.user }}
-                    {% if review.user == request.user %}(you){% endif %}
-                  </p>
-                  <p>{{ review.score }}</p>
+                    {% if review.user == request.user %}(you)</span>{% else %}</span>{% endif %}
+                    <div>
+                      <i class="fas fa-star"></i> <span>{{ review.score }}</span>
+                    </div>
+                  </div>
                   <p>{{ review.comment }}</p>
                 </li>
               {% empty %}
@@ -89,6 +91,19 @@
       <div class="col-12 col-lg-5 col-xl-4">
         <!-- -> Credit for using Calendly embeds: https://developer.calendly.com/api-docs/6a743888e5649-getting-started-with-embeds -->
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-1">
+          <div class="col mt-3">
+            <h5>Select a date below to book a lesson with {{ tutor }}</h5>
+            <p class="text-muted">See your tutors live avaliability - made possible by Calendly</p>
+            <div id="calendly" style="min-width:320px;height:700px;"></div>
+            <div class="d-none">
+              <form id="calenly_form_hidden"
+                    action="{% url 'fetch_calendly_data' tutor.pk %}"
+                    method="post">
+                {% csrf_token %}
+                {{ calendly_form }}
+              </form>
+            </div>
+          </div>
           {% if upcoming_sessions %}
             <div class="col">
               <h5>Your upcoming Lessons with {{ tutor }}</h5>
@@ -100,18 +115,6 @@
               </p>
             </div>
           {% endif %}
-          <div class="col mt-3">
-            <h5>Select a date below to book a lesson with {{ tutor }}</h5>
-            <div id="calendly" style="min-width:320px;height:700px;"></div>
-            <div class="d-none">
-              <form id="calenly_form_hidden"
-                    action="{% url 'fetch_calendly_data' tutor.pk %}"
-                    method="post">
-                {% csrf_token %}
-                {{ calendly_form }}
-              </form>
-            </div>
-          </div>
         </div>
       </div>
       <script type="text/javascript"
