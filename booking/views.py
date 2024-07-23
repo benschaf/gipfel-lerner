@@ -1,3 +1,4 @@
+from decimal import Decimal
 import json
 from typing import Any
 from django.forms import BaseModelForm
@@ -156,11 +157,12 @@ def payment_view(request, pk):
         return redirect('dashboard')
 
     total_price = round(sum([session.price for session in sessions_to_pay]))
+    total_price_in_cents = total_price * 100
 
     STRIPE_PUBLIC_KEY = settings.STRIPE_PUBLIC_KEY
     stripe.api_key = settings.STRIPE_SECRET_KEY
     intent = stripe.PaymentIntent.create(
-        amount=total_price,
+        amount=total_price_in_cents,
         currency=settings.STRIPE_CURRENCY,
     )
     CLIENT_SECRET = intent.client_secret
@@ -186,9 +188,13 @@ class PaymentCreateView(CreateView):
         return context
 
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        # -> Credit for Decimal conversion: https://stackoverflow.com/questions/316238/python-float-to-decimal-conversion
+        amount_in_euros = Decimal(form.cleaned_data['amount']) / Decimal('100.00')
+        form.instance.amount = amount_in_euros
+
         response = super().form_valid(form)
 
-        # update the sessions
+        # update the sessions after the payment model is created
         session_ids = form.cleaned_data['sessions'].split(',')
         sessions_to_pay = TutoringSession.objects.filter(pk__in=session_ids)
 
