@@ -1,0 +1,25 @@
+<li class="list-group-item py-4">
+    <strong>Subject:</strong> {{ session.subject.name }}
+    <br />
+    <strong>Date:</strong> {{ session.start_time|date:'D, d M Y, H:i' }}
+    <br />
+    <strong>Duration:</strong> {{ session.duration }} minutes
+    <br />
+    <strong>Student:</strong> {{ session.student }}
+    <br />
+    <div class="mt-1">
+        {% if button == "join" %}
+            <a href="{{ session.location_url }}" class="btn btn-primary btn-sm"><i class="fas fa-video"></i> Join</a>
+        {% else %}
+            <form action="{% url 'update_session_status' session.id %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <input type="hidden" name="status" value="scheduled" />
+                <button type="submit" class="btn btn-success btn-sm">
+                    <i class="fas fa-check"></i> Schedule
+                </button>
+            </form>
+        {% endif %}
+        <a href="{{ session.cancel_url }}" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Cancel</a>
+        <a href="{{ session.reschedule_url }}" class="btn btn-secondary btn-sm"><i class="fas fa-calendar-alt"></i> Reschedule</a>
+    </div>
+</li>

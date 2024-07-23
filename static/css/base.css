@@ -205,3 +205,12 @@ h5>a {
 .progress>div {
     height: .75rem;
 }
+
+/* Tutor Dashboard */
+.danger-zone {
+    border: 1px solid red;
+}
+
+.danger-zone .alert-heading {
+    color: red;
+}

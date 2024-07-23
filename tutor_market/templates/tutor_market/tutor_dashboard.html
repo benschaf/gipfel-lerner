@@ -4,59 +4,21 @@
     <h2 class="mb-4">Tutor Dashboard</h2>
     <div class="row">
       <div class="col">
-        <p class="text-muted">How others see your profile:</p>
-        <div class="card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col d-flex justify-content-between">
-                <h2>{{ tutor.display_name }}</h2>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-3">
-                {% if tutor.profile_image %}
-                  <img src="{{ tutor.profile_image.url }}" alt="Image of {{ tutor.display_name }}" class="img-fluid" />
-                {% else %}
-                  <img src="https://gipfel-tutor-768a610dc54f.s3.eu-north-1.amazonaws.com/media/tutor_images/default_profile_image.png" alt="Default profile image" class="img-fluid" />
-                {% endif %}
-              </div>
-              <div class="col-9">
-                <div class="row">
-                  <div class="col">
-                    <p>{{ tutor.catch_phrase }}</p>
-                    <p>
-                      my values:{% for value in tutor.values.all %}
-                        <span class="badge rounded-pill text-bg-secondary">{{ value }}</span>
-                      {% endfor %}
-                    </p>
-                    <p>
-                      my subjects:{% for subject in tutor.subjects.all %}
-                        <span class="badge rounded-pill text-bg-secondary">{{ subject }}</span>
-                      {% endfor %}
-                    </p>
-                  </div>
-                  <div class="col">
-                    <p>{{ tutor.hourly_rate }}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <p>{{ tutor.description }}</p>
-              </div>
-            </div>
+        {% include "tutor_market/includes/tutor_card.html" with page="tutor_detail" %}
+        <div class="col">
+          <div class="text-muted">
+            <i class="fas fa-arrow-up"></i> How others see your profile when they
+            search for it.
+          </div>
+          <div class="mt-3">
+            <a href="{% url 'tutor_detail' tutor.pk %}"
+               class="btn btn-secondary btn-sm"><i class="fas fa-user"></i> View your full Profile Page</a>
+            <a href="{% url 'edit_tutor' tutor.pk %}"
+               class="btn btn-secondary btn-sm"><i class="fas fa-pencil"></i> Edit Your Profile</a>
           </div>
         </div>
-        <div class="float-end mt-1">
-          <a href="{% url 'tutor_detail' tutor.pk %}" class="btn btn-secondary btn-sm"><i class="fas fa-user"></i> View your Profile</a>
-          <a href="{% url 'edit_tutor' tutor.pk %}" class="btn btn-secondary btn-sm"><i class="fas fa-pencil"></i> Edit</a>
-          <a href="{% url 'delete_tutor' tutor.pk %}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</a>
-        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-">
+      <div class="col">
         <h3>Your Personal Information</h3>
         <table class="table">
           <tbody>
@@ -82,7 +44,8 @@
               </td>
               <td>**********</td>
               <td>
-                <a href="{% url 'account_change_password' %}" class="btn btn-light btn-sm"><i class="fa fa-pencil"></i></a>
+                <a href="{% url 'account_change_password' %}"
+                   class="btn btn-light btn-sm"><i class="fa fa-pencil"></i></a>
               </td>
             </tr>
             <tr>
@@ -105,7 +68,12 @@
               </td>
               <!-- -> Credit for slicing the string: https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#slice -->
               {% if tutor.calendly_event_url %}
-                <td><a href="{{ tutor.calendly_event_url }}" aria-label="Link to the Calendly Event URL" rel="noopener noreferrer" target="_blank">{{ tutor.calendly_event_url }}</a></td>
+                <td>
+                  <a href="{{ tutor.calendly_event_url }}"
+                     aria-label="Link to the Calendly Event URL"
+                     rel="noopener noreferrer"
+                     target="_blank">{{ tutor.calendly_event_url }}</a>
+                </td>
               {% else %}
                 <td>Add your Calendly Event URL</td>
               {% endif %}
@@ -119,7 +87,7 @@
               </td>
               <!-- -> Credit for slicing the string: https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#slice -->
               {% if tutor.calendly_event_url %}
-              <td>********{{ tutor.calendly_personal_token|slice:'-4:' }}</td>
+                <td>********{{ tutor.calendly_personal_token|slice:'-4:' }}</td>
               {% else %}
                 <td>Add your Calendly personal token</td>
               {% endif %}
@@ -131,53 +99,29 @@
         </table>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-6">
-        <h3>Pending Lessons</h3>
-        <p class="text-muted">The following Lessons were requested by students:</p>
-        <ul class="listgroup">
-          {% for session in pending_sessions %}
-            <li class="list-group-item">
-              <strong>Subject:</strong> {{ session.subject }}<br />
-              <strong>Date:</strong> {{ session.start_time|date:'D, d M Y H:i' }}<br />
-              <strong>Duration:</strong> {{ session.duration }} minutes<br />
-              <strong>Tutor:</strong> {{ session.tutor.display_name }} <br />
-              <div class="mt-1 float-end d-flex align-items-stretch gap-2">
-                <!-- Status Update Form -->
-                <form action="{% url 'update_session_status' session.id %}" method="post">
-                  {% csrf_token %}
-                  <input type="hidden" name="status" value="scheduled" />
-                  <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-check"></i> Schedule</button>
-                </form>
-                <form action="{% url 'update_session_status' session.id %}" method="post">
-                  {% csrf_token %}
-                  <input type="hidden" name="status" value="cancelled" />
-                  <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Cancel</button>
-                </form>
-                <a href="{{ session.reschedule_url }}" class="btn btn-warning btn-sm"><i class="fas fa-calendar-alt"></i> Reschedule</a>
-              </div>
-            </li>
-          {% empty %}
-            <li class="list-group-item">No pending lessons.</li>
-          {% endfor %}
-        </ul>
-      </div>
-      <div class="col-md-6">
+    <div class="row mt-5">
+      {% if pending_sessions %}
+        <div class="col">
+          <h3>Pending Lessons</h3>
+          <p class="text-muted">
+            The following Lessons were requested by students and are waiting for
+            your confirmation:
+          </p>
+          <ul class="list-group">
+            {% for session in pending_sessions %}
+              {% include "tutor_market/includes/lesson_list_item.html" with button="schedule" %}
+            {% empty %}
+              <li class="list-group-item">No pending lessons.</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+      <div class="col">
         <h3>Upcoming Lessons</h3>
-        <p class="text-muted">Your next 3 Lessons</p>
+        <p class="text-muted">Your next 3 Scheduled Lessons</p>
         <ul class="list-group">
           {% for session in upcoming_sessions %}
-            <li class="list-group-item">
-              <strong>Subject:</strong> {{ session.subject }}<br />
-              <strong>Date:</strong> {{ session.start_time|date:'D, d M Y H:i' }}<br />
-              <strong>Duration:</strong> {{ session.duration }} minutes<br />
-              <strong>Tutor:</strong> {{ session.tutor.display_name }} <br />
-              <div class="float-end mt-1">
-                <a href="{{ session.location_url }}" class="btn btn-primary btn-sm"><i class="fas fa-video"></i> Join</a>
-                <a href="{{ session.cancel_url }}" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Cancel <span class="text-muted">future feature</span></a>
-                <a href="{{ session.reschedule_url }}" class="btn btn-warning btn-sm"><i class="fas fa-calendar-alt"></i> Reschedule</a>
-              </div>
-            </li>
+            {% include "tutor_market/includes/lesson_list_item.html" with button="join" %}
           {% empty %}
             <li class="list-group-item">No upcoming lessons.</li>
           {% endfor %}
@@ -185,34 +129,23 @@
       </div>
     </div>
     <div class="row"></div>
-    <div class="row mt-4">
+    <div class="row mt-5">
       <div class="col">
-        <h3>Your Students</h3>
+        <h3>All of your upcoming Lessons</h3>
+        <p class="text-muted">Grouped by Student</p>
         <!-- -> Credit for iterating over dictionaries (tuples): https://forum.djangoproject.com/t/loop-through-dictionary-of-lists/2849 -->
-        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-gap-3">
           {% for student, sessions in users_and_sessions.items %}
             <div class="col">
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">{{ student }}</h5>
-                  <p class="text-muted">Upcoming Lessons</p>
+                  <span class="text-muted">Email:</span> <a href="mailto:{{ student.email }}">{{ student.email }}</a>
+                  <hr>
+                  <p class="text-muted mt-5 mb-0">Upcoming Lessons:</p>
                   <ul class="list-group list-group-flush">
                     {% for session in sessions %}
-                      <li class="list-group-item">
-                        <strong>Subject:</strong> {{ session.subject }}<br />
-                        <strong>Date:</strong> {{ session.start_time|date:'D, d M Y H:i' }}<br />
-                        <strong>Status:</strong> {{ session.session_status }}<br />
-                        <strong>Payment status:</strong> {% if session.payment_complete %}
-                          Complete
-                        {% else %}
-                          Pending
-                        {% endif %}<br />
-                        <div class="float-end mt-1">
-                          <a href="{{ session.location_url }}" class="btn btn-primary btn-sm"><i class="fas fa-video"></i> Join</a>
-                          <a href="{{ session.cancel_url }}" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Cancel <span class="text-muted">future feature</span></a>
-                          <a href="{{ session.reschedule_url }}" class="btn btn-warning btn-sm"><i class="fas fa-calendar-alt"></i> Reschedule</a>
-                        </div>
-                      </li>
+                      {% include "tutor_market/includes/lesson_list_item.html" with button="join" %}
                     {% empty %}
                       <p>No upcoming Lessons</p>
                     {% endfor %}
@@ -226,25 +159,56 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row mt-5">
       <div class="col-md-6">
-        <h3>Booking History</h3>
-        <ul class="list-group">
-          {% for session in booking_history %}
-            <li class="list-group-item">
-              <strong>Subject:</strong> {{ session.subject }}<br />
-              <strong>Date:</strong> {{ session.start_time|date:'D, d M Y H:i' }}<br />
-              <strong>Status:</strong> {{ session.session_status }}<br />
-              <strong>Payment status:</strong> {% if session.payment_complete %}
-                Complete
-              {% else %}
-                Pending
-              {% endif %}
-            </li>
-          {% empty %}
-            <li class="list-group-item">No past bookings.</li>
-          {% endfor %}
-        </ul>
+        <div class="accordion" id="bookingHistoryAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                Booking History
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#bookingHistoryAccordion">
+              <div class="accordion-body">
+                <ul class="list-group list-group-flush">
+                  {% for session in booking_history %}
+                    <li class="list-group-item">
+                      <strong>Subject:</strong> {{ session.subject }}
+                      <br />
+                      <strong>Date:</strong> {{ session.start_time|date:'D, d M Y H:i' }}
+                      <br />
+                      <strong>Status:</strong> {{ session.session_status }}
+                      <br />
+                      <strong>Payment status:</strong>
+                      {% if session.payment_complete %}
+                        Complete
+                      {% else %}
+                        Pending
+                      {% endif %}
+                    </li>
+                  {% empty %}
+                    <li class="list-group-item">No past bookings.</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col">
+        <div class="alert danger-zone">
+          <h4 class="alert-heading">Danger Zone</h4>
+          <p>Be careful! Actions performed in this area cannot be undone. This will permanently delete your tutor profile and all associated data.</p>
+          <hr>
+          <div class="d-flex justify-content-between">
+            <span><strong>Proceed with caution.</strong></span>
+            <a href="{% url 'delete_tutor' tutor.pk %}" class="btn btn-outline-danger btn-sm">
+              <i class="fas fa-trash"></i> Delete Your Tutor Profile
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
