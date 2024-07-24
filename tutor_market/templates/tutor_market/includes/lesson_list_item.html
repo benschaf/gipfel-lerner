@@ -5,13 +5,21 @@
     <br />
     <strong>Duration:</strong> {{ session.duration }} minutes
     <br />
-    <strong>Student:</strong> {{ session.student }}
-    <br />
+    {% if student_tutor == "student" %}
+        <strong>Student:</strong> {{ session.student }}
+        <br />
+    {% elif student_tutor == "tutor" %}
+        <strong>Tutor:</strong> {{ session.tutor }}
+        <br />
+    {% else %}
+    {% endif %}
     <div class="mt-1">
         {% if button == "join" %}
             <a href="{{ session.location_url }}" class="btn btn-primary btn-sm"><i class="fas fa-video"></i> Join</a>
         {% else %}
-            <form action="{% url 'update_session_status' session.id %}" method="post" class="d-inline">
+            <form action="{% url 'update_session_status' session.id %}"
+                  method="post"
+                  class="d-inline">
                 {% csrf_token %}
                 <input type="hidden" name="status" value="scheduled" />
                 <button type="submit" class="btn btn-success btn-sm">
