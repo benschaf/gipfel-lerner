@@ -54,9 +54,9 @@
               </td>
               <!-- -> Credit for slicing the string: https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#slice -->
               {% if tutor.iban %}
-                <td>**** ******** **** {{ tutor.iban|slice:'-4:' }}</td>
+                <td>Ends in: {{ tutor.iban|slice:'-4:' }}</td>
               {% else %}
-                <td>Add your IBAN, it's the way we pay you.</td>
+                <td>Add your IBAN, it's how we will pay you.</td>
               {% endif %}
               <td>
                 <a href="{% url 'edit_tutor' tutor.pk %}"
@@ -89,7 +89,7 @@
               </td>
               <!-- -> Credit for slicing the string: https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#slice -->
               {% if tutor.calendly_event_url %}
-                <td>********{{ tutor.calendly_personal_token|slice:'-4:' }}</td>
+                <td>Ends in: {{ tutor.calendly_personal_token|slice:'-4:' }}</td>
               {% else %}
                 <td>Add your Calendly personal token</td>
               {% endif %}
@@ -112,7 +112,7 @@
           </p>
           <ul class="list-group">
             {% for session in pending_sessions %}
-              {% include "tutor_market/includes/lesson_list_item.html" with button="schedule" %}
+              {% include "tutor_market/includes/lesson_list_item.html" with button="schedule" student_tutor="student" %}
             {% empty %}
               <li class="list-group-item">No pending lessons.</li>
             {% endfor %}
@@ -124,7 +124,7 @@
         <p class="text-muted">Your next 3 Scheduled Lessons</p>
         <ul class="list-group">
           {% for session in upcoming_sessions %}
-            {% include "tutor_market/includes/lesson_list_item.html" with button="join" %}
+            {% include "tutor_market/includes/lesson_list_item.html" with button="join" student_tutor="student" %}
           {% empty %}
             <li class="list-group-item">No upcoming lessons.</li>
           {% endfor %}
