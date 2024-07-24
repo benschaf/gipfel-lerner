@@ -1,19 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
   <div class="container mt-5">
     <!-- Success Message -->
-    <div class="alert alert-success" role="alert">Congratulations! Lesson Scheduled Successfully</div>
+    <div class="alert alert-success">Congratulations! Your Lesson was scheduled successfully</div>
     <!-- Session Details -->
-    <div class="row">
-      <div class="col-md-6">
-        <h5>Session Information</h5>
+    <div class="row row-gap-5 mt-5">
+      <div class="col-md-7">
+        <h4>Session Information</h4>
         <p>
           <strong>Your Tutor:</strong> {{ session.tutor }}
         </p>
         <p>
-          <strong>Provided Email:</strong> {{ session.invitee_email }}
+          <strong>Your Email:</strong> {{ session.invitee_email }}
         </p>
         <p>
           <strong>Session Name:</strong> {{ session.session_name }}
@@ -25,31 +24,41 @@
           <strong>Session Duration:</strong> {{ session.duration }} minutes
         </p>
         <p>
-          <strong>Subject:</strong> {{ session.subject }}
+          <strong>Subject:</strong> {{ session.subject.name }}
         </p>
         <p>
-          <strong>Invitee Notes:</strong> {{ session.invitee_notes }}
+          <strong>Invitee Notes:</strong>
+          {% if session.invitee_notes %}
+            {{ session.invitee_notes }}
+          {% else %}
+            -
+          {% endif %}
         </p>
         <p>
           <strong>Session Status:</strong> {{ session.get_session_status_display }}
         </p>
-        <a href="{% url 'tutor_detail' pk=session.tutor.id %}" class="btn btn-primary"> Schedule another lesson with {{ session.tutor }}</a>
-        <a href="{{ session.cancel_url }}" class="btn btn-secondary"><i class="fas fa-times"></i> Cancel Lesson</a>
-        <a href="{{ session.reschedule_url }}" class="btn btn-secondary"><i class="fas fa-calendar-alt"></i> Reschedule Lesson</a>
-      <a href="{{ session.location_url }}" class="btn btn-secondary"><i class="fas fa-video"></i> Join Lesson</a>
+        <div class="d-flex flex-wrap gap-2">
+          <a href="{% url 'tutor_detail' pk=session.tutor.id %}"
+             class="btn btn-primary"><i class="fa-solid fa-plus"></i> Schedule another lesson with {{ session.tutor }}</a>
+          <a href="{{ session.reschedule_url }}" class="btn btn-secondary"><i class="fas fa-calendar-alt"></i> Reschedule Lesson</a>
+          <a href="{{ session.cancel_url }}" class="btn btn-danger"><i class="fas fa-times"></i> Cancel Lesson</a>
+        </div>
       </div>
-      <div class="col-md-6">
-        <h5>Payment Information</h5>
+      <div class="col-md-5">
+        <h4>Payment Information</h4>
         <p>
           <strong>Price:</strong> {{ session.price }}
         </p>
         <p>
-          <strong>Payment Complete:</strong> {{ session.payment_complete }}
+          <strong>Payment:</strong>
+          {% if session.payment_complete %}
+            Complete
+          {% else %}
+            Due
+          {% endif %}
         </p>
-        <p>
-          <strong>Payment ID:</strong> {{ session.payment_id }}
-        </p>
-        <a href="{% url 'payments' pk=session.student.id %}" class="btn btn-primary"> Go to Payments</a>
+        <a href="{% url 'payments' pk=session.student.id %}"
+           class="btn btn-secondary"><i class="fas fa-euro-sign"></i> Go to Payments</a>
       </div>
     </div>
   </div>
