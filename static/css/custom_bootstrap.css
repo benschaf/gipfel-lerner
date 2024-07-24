@@ -165,8 +165,8 @@
   --bs-btn-bg: var(--bs-gray-300);
   --bs-btn-border-color: var(--bs-gray-300);
   --bs-btn-hover-color: var(--bs-black);
-  --bs-btn-hover-bg: var(--bs-secondary-shaded);
-  --bs-btn-hover-border-color: var(--bs-secondary-shaded);
+  --bs-btn-hover-bg: var(--bs-gray-400);
+  --bs-btn-hover-border-color: var(--bs-gray-400);
   --bs-btn-focus-shadow-rgb: var(--bs-light-rgb);
   --bs-btn-active-color: var(--bs-btn-hover-color);
   --bs-btn-active-bg: var(--bs-gray-300);
@@ -210,6 +210,20 @@
   --bs-btn-active-color: var(--bs-dark);
   --bs-btn-active-bg: var(--bs-btn-light-shaded);
   --bs-btn-active-border-color: var(--bs-btn-light-shaded);
+}
+
+.btn-outline-light {
+  --bs-btn-color: var(--bs-dark);
+  --bs-btn-bg: var(--bs-white);
+  --bs-btn-border-color: var(--bs-gray-300);
+  --bs-btn-hover-color: var(--bs-dark);
+  --bs-btn-hover-bg: var(--bs-gray-300);
+  --bs-btn-hover-border-color: var(--bs-gray-300);
+  --bs-btn-focus-shadow-rgb: var(--bs-btn-light-rgb);
+  --bs-btn-active-color: var(--bs-dark);
+  --bs-btn-active-bg: var(--bs-btn-light);
+  --bs-btn-active-border-color: var(--bs-btn-light-rgb);
+
 }
 
 .btn-success {
