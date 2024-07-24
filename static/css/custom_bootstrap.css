@@ -156,7 +156,7 @@
   --bs-btn-hover-border-color: var(--bs-primary-shaded);
   --bs-btn-focus-shadow-rgb: var(--bs-primary-rgb);
   --bs-btn-active-color: var(--bs-btn-hover-color);
-  --bs-btn-active-bg: var(--bs-primary-shaded);
+  --bs-btn-active-bg: var(--bs-primary);
   --bs-btn-active-border-color: var(--bs-primary-shaded);
 }
 

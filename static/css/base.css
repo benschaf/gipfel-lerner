@@ -4,6 +4,14 @@
     --my-ut-oragne: #FB8500;
 }
 
+.cta-tutor-list-active {
+    background-color: transparent;
+}
+
+.cta-tutor-list-active:hover {
+    background-color: transparent;
+}
+
 .header-container {
     margin-top: 80px;
 }
