@@ -28,7 +28,10 @@
     {% endif %}
     <div class="mt-1">
         {% if button == "join" %}
-            <a href="{{ session.location_url }}" class="btn btn-primary btn-sm"><i class="fas fa-video"></i> Join</a>
+            <a href="{{ session.location_url }}"
+               class="btn btn-primary btn-sm"
+               rel="noopener noreferrer"
+               target="_blank"><i class="fas fa-video"></i> Join</a>
         {% else %}
             <form action="{% url 'update_session_status' session.id %}"
                   method="post"
@@ -41,7 +44,7 @@
             </form>
         {% endif %}
         {% if not session.payment_complete and user != session.tutor.user %}
-        <a href="{% url 'payments' user.id %}" class="btn btn-secondary btn-sm"><i class="fas fa-euro-sign"></i> Pay now</a>
+            <a href="{% url 'payments' user.id %}" class="btn btn-secondary btn-sm"><i class="fas fa-euro-sign"></i> Pay now</a>
         {% endif %}
         <a href="{{ session.reschedule_url }}" class="btn btn-secondary btn-sm"><i class="fas fa-calendar-alt"></i> Reschedule</a>
         <a href="{{ session.cancel_url }}" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Cancel</a>
