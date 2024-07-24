@@ -1,8 +1,8 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% block content %}
   <div class="container mt-5">
     <h2 class="mb-4">Tutor Dashboard</h2>
-    <div class="row">
+    <div class="row row-cols-1 row-cols-lg-2 row-gap-5">
       <div class="col">
         {% include "tutor_market/includes/tutor_card.html" with page="tutor_detail" %}
         <div class="col">
@@ -59,7 +59,8 @@
                 <td>Add your IBAN, it's the way we pay you.</td>
               {% endif %}
               <td>
-                <a href="{% url 'edit_tutor' tutor.pk %}" class="btn btn-outline-light btn-sm"><i class="fas fa-pencil"></i></a>
+                <a href="{% url 'edit_tutor' tutor.pk %}"
+                   class="btn btn-outline-light btn-sm"><i class="fas fa-pencil"></i></a>
               </td>
             </tr>
             <tr>
@@ -78,7 +79,8 @@
                 <td>Add your Calendly Event URL</td>
               {% endif %}
               <td>
-                <a href="{% url 'edit_tutor' tutor.pk %}" class="btn btn-outline-light btn-sm"><i class="fas fa-pencil"></i></a>
+                <a href="{% url 'edit_tutor' tutor.pk %}"
+                   class="btn btn-outline-light btn-sm"><i class="fas fa-pencil"></i></a>
               </td>
             </tr>
             <tr>
@@ -92,14 +94,15 @@
                 <td>Add your Calendly personal token</td>
               {% endif %}
               <td>
-                <a href="{% url 'edit_tutor' tutor.pk %}" class="btn btn-outline-light btn-sm"><i class="fas fa-pencil"></i></a>
+                <a href="{% url 'edit_tutor' tutor.pk %}"
+                   class="btn btn-outline-light btn-sm"><i class="fas fa-pencil"></i></a>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-    <div class="row mt-5">
+    <div class="row row-cols-1 row-cols-md-2 row-gap-5 mt-5">
       {% if pending_sessions %}
         <div class="col">
           <h3>Pending Lessons</h3>
@@ -128,7 +131,6 @@
         </ul>
       </div>
     </div>
-    <div class="row"></div>
     <div class="row mt-5">
       <div class="col">
         <h3>All of your upcoming Lessons</h3>
@@ -139,8 +141,12 @@
             <div class="col">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">{{ student }}</h5>
-                  <span class="text-muted">Email:</span> <a href="mailto:{{ student.email }}">{{ student.email }}</a>
+                  <div class="d-flex gap-3 align-items-baseline">
+                    <h5 class="card-title">
+                      <span class="text-muted">Student:</span> {{ student }}
+                    </h5>
+                    <a href="mailto:{{ student.email }}">{{ student.email }}</a>
+                  </div>
                   <hr>
                   <p class="text-muted mt-5 mb-0">Upcoming Lessons:</p>
                   <ul class="list-group list-group-flush">
@@ -164,11 +170,17 @@
         <div class="accordion" id="bookingHistoryAccordion">
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                Booking History
-              </button>
+              <button class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne"
+                      aria-expanded="false"
+                      aria-controls="collapseOne">Booking History</button>
             </h2>
-            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#bookingHistoryAccordion">
+            <div id="collapseOne"
+                 class="accordion-collapse collapse"
+                 aria-labelledby="headingOne"
+                 data-bs-parent="#bookingHistoryAccordion">
               <div class="accordion-body">
                 <ul class="list-group list-group-flush">
                   {% for session in booking_history %}
@@ -200,11 +212,14 @@
       <div class="col">
         <div class="alert danger-zone">
           <h4 class="alert-heading">Danger Zone</h4>
-          <p>Be careful! Actions performed in this area cannot be undone. This will permanently delete your tutor profile and all associated data.</p>
+          <p>
+            Be careful! Actions performed in this area cannot be undone. This will permanently delete your tutor profile and all associated data.
+          </p>
           <hr>
           <div class="d-flex justify-content-between">
             <span><strong>Proceed with caution.</strong></span>
-            <a href="{% url 'delete_tutor' tutor.pk %}" class="btn btn-outline-danger btn-sm">
+            <a href="{% url 'delete_tutor' tutor.pk %}"
+               class="btn btn-outline-danger btn-sm">
               <i class="fas fa-trash"></i> Delete Your Tutor Profile
             </a>
           </div>
