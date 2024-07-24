@@ -252,14 +252,16 @@ def student_dashboard(request, user):
     """
     booking_history = TutoringSession.objects.filter(student=user)
     # -> Credit for greater or equal to lookup (gte): https://docs.djangoproject.com/en/5.0/ref/models/querysets/#gte
-    upcoming_sessions = booking_history.filter(start_time__gte=timezone.now())
+    upcoming_sessions = booking_history.filter(start_time__gte=timezone.now()).filter(session_status='scheduled')
     # add payment details (future feature)
     # add liked tutors (future feature)
     payment_history = Payment.objects.filter(user=user)
+    amount_of_unpaid_sessions = booking_history.filter(payment_complete=False).count()
     context = {
         'upcoming_sessions': upcoming_sessions,
         'booking_history': booking_history,
         'payment_history': payment_history,
+        'amount_of_unpaid_sessions': amount_of_unpaid_sessions,
     }
     return render(request, 'tutor_market/student_dashboard.html', context)
 

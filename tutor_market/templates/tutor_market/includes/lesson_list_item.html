@@ -1,4 +1,4 @@
-<li class="list-group-item py-4">
+<li class="list-group-item pb-4">
     <strong>Subject:</strong> {{ session.subject.name }}
     <br />
     <strong>Date:</strong> {{ session.start_time|date:'D, d M Y, H:i' }}
@@ -12,6 +12,19 @@
         <strong>Tutor:</strong> {{ session.tutor }}
         <br />
     {% else %}
+    {% endif %}
+    {% if status %}
+        <strong>Status:</strong> {{ session.get_session_status_display }}
+        <br>
+    {% endif %}
+    {% if payment_status %}
+        <strong>Payment status:</strong>
+        {% if session.payment_complete %}
+            Complete
+        {% else %}
+            Pending
+        {% endif %}
+        <br>
     {% endif %}
     <div class="mt-1">
         {% if button == "join" %}
@@ -27,7 +40,10 @@
                 </button>
             </form>
         {% endif %}
-        <a href="{{ session.cancel_url }}" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Cancel</a>
+        {% if not session.payment_complete and user != session.tutor.user %}
+        <a href="{% url 'payments' user.id %}" class="btn btn-secondary btn-sm"><i class="fas fa-euro-sign"></i> Pay now</a>
+        {% endif %}
         <a href="{{ session.reschedule_url }}" class="btn btn-secondary btn-sm"><i class="fas fa-calendar-alt"></i> Reschedule</a>
+        <a href="{{ session.cancel_url }}" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Cancel</a>
     </div>
 </li>

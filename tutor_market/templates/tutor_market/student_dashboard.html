@@ -2,9 +2,9 @@
 {% block content %}
   <div class="container mt-5">
     <h2 class="mb-4">Student Dashboard</h2>
-    <div class="row">
-      <div class="col-md-6">
-        <h3>Profile</h3>
+    <div class="row mt-5">
+      <div class="col col-md-9 col-lg-7">
+        <h3>Your Personal Information</h3>
         <table class="table">
           <tbody>
             <tr>
@@ -20,7 +20,7 @@
               </td>
               <td>{{ user.email }}</td>
               <td>
-                <a href="{% url 'account_email' %}" class="btn btn-light btn-sm"><i class="fa fa-pencil"></i></a>
+                <a href="{% url 'account_email' %}" class="btn btn-outline-light btn-sm"><i class="fa fa-pencil"></i></a>
               </td>
             </tr>
             <tr>
@@ -29,7 +29,8 @@
               </td>
               <td>**********</td>
               <td>
-                <a href="{% url 'account_change_password' %}" class="btn btn-light btn-sm"><i class="fa fa-pencil"></i></a>
+                <a href="{% url 'account_change_password' %}"
+                   class="btn btn-outline-light btn-sm"><i class="fa fa-pencil"></i></a>
               </td>
             </tr>
             <tr>
@@ -37,7 +38,7 @@
                 <strong>Become a tutor</strong>
               </td>
               <td>
-                <a href="{% url 'add_tutor' %}" class="btn btn-light btn-sm"><i class="fa fa-pencil"></i> Click here to Create your tutor Profile</a>
+                <a href="{% url 'add_tutor' %}" class="btn btn-outline-light btn-sm"><i class="fa-solid fa-plus"></i> Click here to Create your tutor Profile</a>
               </td>
               <td></td>
             </tr>
@@ -45,42 +46,22 @@
         </table>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-6">
+    <div class="row mt-5 row-cols-1 row-cols-md-2">
+      <div class="col">
         <h3>Upcoming Lessons</h3>
         <ul class="list-group">
           {% for session in upcoming_sessions %}
-            <li class="list-group-item">
-              <strong>Subject:</strong> {{ session.subject }}<br />
-              <strong>Date:</strong> {{ session.start_time|date:'D, d M Y H:i' }}<br />
-              <strong>Duration:</strong> {{ session.duration }} minutes<br />
-              <strong>Tutor:</strong> {{ session.tutor.display_name }}
-              <div class="float-right">
-                <a href="{{ session.location_url }}" class="btn btn-primary btn-sm"><i class="fas fa-video"></i> Join</a>
-                <a href="{{ session.cancel_url }}" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Cancel <span class="text-muted">future feature</span></a>
-                <a href="{{ session.reschedule_url }}" class="btn btn-warning btn-sm"><i class="fas fa-calendar-alt"></i> Reschedule</a>
-              </div>
-            </li>
+            {% include "tutor_market/includes/lesson_list_item.html" with button="join" student_tutor="tutor" %}
           {% empty %}
             <li class="list-group-item">No upcoming lessons.</li>
           {% endfor %}
         </ul>
       </div>
-      <div class="col-md-6">
+      <div class="col">
         <h3>Booking History</h3>
         <ul class="list-group">
           {% for session in booking_history %}
-            <li class="list-group-item">
-              <strong>Subject:</strong> {{ session.subject }}<br />
-              <strong>Date:</strong> {{ session.start_time|date:'D, d M Y H:i' }}<br />
-              <strong>Tutor:</strong> {{ session.tutor.display_name }}<br />
-              <strong>Status:</strong> {{ session.session_status }}<br />
-              <strong>Payment status:</strong> {% if session.payment_complete %}
-                Complete
-              {% else %}
-                Pending <a href="{% url 'payments' user.id %}" class="btn btn-secondary">Pay now</a>
-              {% endif %}
-            </li>
+            {% include "tutor_market/includes/lesson_list_item.html" with button="join" student_tutor="tutor" status="display" payment_status="display" %}
           {% empty %}
             <li class="list-group-item">No past bookings.</li>
           {% endfor %}
@@ -90,24 +71,46 @@
     <div class="row mt-4">
       <div class="col-md-12">
         <h3>Payment History</h3>
-        <table class="table">
+        {% if amount_of_unpaid_sessions > 0 %}
+          <span class="text-muted">You have {{ amount_of_unpaid_sessions }} unpaid
+            {% if amount_of_unpaid_sessions > 1 %}
+              lessons.
+            {% else %}
+              lesson.
+            {% endif %}
+            <a href="{% url 'payments' user.id %}"
+               class="btn btn-secondary btn-sm ms-3"><i class="fas fa-euro-sign"></i> Pay now</a>
+          {% endif %}
+        </span>
+        <table class="table mt-4">
           <thead>
             <tr>
               <th scope="col">Date</th>
               <th scope="col">Amount</th>
               <th scope="col">Status</th>
+              <th scope="col">Lessons Paid for</th>
             </tr>
           </thead>
           <tbody>
             {% for payment in payment_history %}
               <tr>
                 <td>{{ payment.date|date:'D, d M Y H:i' }}</td>
-                <td>${{ payment.amount }}</td>
+                <td>{{ payment.amount }} EUR</td>
                 <td>{{ payment.status }}</td>
+                <td>
+                  <ul>
+                    {% for session in payment.sessions.all %}
+                      <li>
+                        {{ session.tutor.display_name }}
+                        on {{ session.start_time|date:'D, d M Y H:i' }}
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </td>
               </tr>
             {% empty %}
               <tr>
-                <td colspan="3">No payment history.</td>
+                <td colspan="4">No payment history.</td>
               </tr>
             {% endfor %}
           </tbody>
