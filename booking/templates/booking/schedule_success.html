@@ -3,11 +3,16 @@
 {% block content %}
   <div class="container mt-5">
     <!-- Success Message -->
-    <div class="alert alert-success">Congratulations! Your Lesson was scheduled successfully</div>
+    <div class="alert alert-success rounded-pill border-0 px-5">
+      <p class="pt-3">
+        <strong>Congratulations! Your Lesson was scheduled successfully</strong>
+      </p>
+      <p>You will receive an email from Calendly with the details of your lesson.</p>
+    </div>
     <!-- Session Details -->
     <div class="row row-gap-5 mt-5">
       <div class="col-md-7">
-        <h4>Session Information</h4>
+        <h4>Lesson Information</h4>
         <p>
           <strong>Your Tutor:</strong> {{ session.tutor }}
         </p>
@@ -15,13 +20,13 @@
           <strong>Your Email:</strong> {{ session.invitee_email }}
         </p>
         <p>
-          <strong>Session Name:</strong> {{ session.session_name }}
+          <strong>Calendly Event Name:</strong> {{ session.session_name }}
         </p>
         <p>
           <strong>Start Time:</strong> {{ session.start_time }}
         </p>
         <p>
-          <strong>Session Duration:</strong> {{ session.duration }} minutes
+          <strong>Duration:</strong> {{ session.duration }} minutes
         </p>
         <p>
           <strong>Subject:</strong> {{ session.subject.name }}
@@ -58,7 +63,12 @@
           {% endif %}
         </p>
         <a href="{% url 'payments' pk=session.student.id %}"
-           class="btn btn-secondary"><i class="fas fa-euro-sign"></i> Go to Payments</a>
+           class="btn btn-secondary mt-3"><i class="fas fa-euro-sign"></i> Go to Payments</a>
+        <p class="mt-1">
+          <span class="text-muted">
+            Payments can be made through the Payments page. You can pay for each of your Lessons individually or in bulk, as you prefer.
+          </span>
+        </p>
       </div>
     </div>
   </div>
