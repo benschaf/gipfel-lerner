@@ -100,7 +100,7 @@
       <p class="text-muted">See your tutors live avaliability - made possible by Calendly</p>
       <div id="calendly" style="min-width:320px;height:700px;"></div>
       <div class="d-none">
-        <form id="calenly_form_hidden"
+        <form id="calendly_form_hidden"
               action="{% url 'fetch_calendly_data' tutor.pk %}"
               method="post">
           {% csrf_token %}
@@ -136,7 +136,7 @@
             console.log('Event was scheduled')
             const eventUri = e.data.payload.event.uri
             const inviteeUri = e.data.payload.invitee.uri
-            const form = document.getElementById('calenly_form_hidden')
+            const form = document.getElementById('calendly_form_hidden')
 
             // -> Credit for submitting a form and setting values: https://www.w3schools.com/jsref/dom_obj_form.asp
             // Use form.elements to directly access the inputs by name
