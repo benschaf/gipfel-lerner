@@ -88,7 +88,7 @@
               {% else %}
                 <li class="nav-item">
                   <a class="nav-link {% if request.path == signup_url %}active{% endif %}"
-                     href="{% url 'account_signup' %}?next=/student-or-tutor/"
+                     href="{% url 'account_signup' %}"
                      aria-current="{% if request.path == signup_url %}page{% endif %}">Register</a>
                 </li>
                 <li class="nav-item">

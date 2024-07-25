@@ -20,9 +20,3 @@ class LandingPageView(TemplateView):
             # _update_users_sessions(request.user)
         return super().get(request, *args, **kwargs)
 
-
-class StudentOrTutorView(TemplateView):
-    """
-    A view that renders the 'student_or_tutor.html' template.
-    """
-    template_name = 'core/student_or_tutor.html'
