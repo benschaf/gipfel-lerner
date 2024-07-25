@@ -47,6 +47,6 @@
             <a href="{% url 'payments' user.id %}" class="btn btn-secondary btn-sm"><i class="fas fa-euro-sign"></i> Pay now</a>
         {% endif %}
         <a href="{{ session.reschedule_url }}" class="btn btn-secondary btn-sm"><i class="fas fa-calendar-alt"></i> Reschedule</a>
-        <a href="{{ session.cancel_url }}" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Cancel</a>
+        <a href="{% url "cancel_session" session.id %}" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Cancel</a>
     </div>
 </li>

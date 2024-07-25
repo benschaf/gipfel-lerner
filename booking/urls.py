@@ -10,4 +10,5 @@ urlpatterns = [
     path('payments/success/<int:pk>', views.PaymentDetailView.as_view(), name='payment_success'),
     path('wh/', webhook, name='webhook'),
     path('cache-payment-data/', views.cache_payment_data, name='cache_payment_data'),
+    path('cancel-session/<int:pk>/', views.cancel_session_view, name='cancel_session'),
 ]

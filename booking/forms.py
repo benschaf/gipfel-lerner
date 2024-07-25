@@ -15,3 +15,6 @@ class PaymentForm(forms.ModelForm):
     class Meta:
         model = Payment
         exclude = []
+
+class CancelForm(forms.Form):
+    cancel_reason = forms.CharField(max_length=200, required=False)

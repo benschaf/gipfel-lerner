@@ -13,15 +13,28 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from booking.forms import CalendlyUriForm, PaymentForm
+from booking.forms import CalendlyUriForm, CancelForm, PaymentForm
 from booking.models import Payment, TutoringSession
 from gipfel_tutor import settings
 from tutor_market.models import Tutor
 import stripe
+from datetime import datetime
 
 @require_POST
 def cache_payment_data(request):
-    print('reached the view')
+    """
+    Cache payment data and modify Stripe PaymentIntent metadata.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response object.
+
+    Raises:
+        Exception: If an error occurs while processing the payment.
+
+    """
     try:
         payment_intent_id = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -38,7 +51,6 @@ def cache_payment_data(request):
 
 def _get_json_from_calendly_uri(uri, tutor, request):
     calendly_personal_token = tutor.calendly_personal_token.strip()
-    print(calendly_personal_token)
     headers = {'Authorization': f'Bearer {calendly_personal_token}'}
     response = requests.get(uri, headers=headers)
     if response.status_code == 200:
@@ -105,6 +117,72 @@ def fetch_calendly_data_view(request: HttpRequest, pk: int) -> HttpResponse:
     return redirect('schedule_success', pk=session.pk)
 
 
+
+def cancel_session_view(request, pk):
+    """
+    View for cancelling a tutoring session.
+    """
+    session = get_object_or_404(TutoringSession, pk=pk)
+    tutor = session.tutor
+    student = session.student
+
+    if not request.user == student or request.user == tutor.user:
+        messages.warning(request, 'You are not authorized to cancel this session.')
+        return redirect('dashboard', pk=student)
+
+    if request.method == 'POST':
+        form = CancelForm(request.POST)
+        if not form.is_valid():
+            messages.warning(request, 'Invalid form data.')
+            return redirect('cancel_session', pk=pk)
+
+
+        url = f"{session.event_uri}/cancellation"
+
+        reason = form.cleaned_data['cancel_reason']
+        canceled_by = request.user.email
+        created_at = datetime.now().isoformat()
+
+        payload = {
+            "reason": reason,
+            "canceled_by":  canceled_by,
+            "created_at": created_at,
+        }
+        headers = {'Authorization': f'Bearer {tutor.calendly_personal_token.strip()}'}
+
+        response = requests.request("POST", url, json=payload, headers=headers)
+
+        print(f"Response: {response}")
+        print(f"Response text: {response.text}")
+
+        import json  # Ensure this import is at the top of your file
+
+        response_data = json.loads(response.text)
+
+        if response.status_code == 201:
+            messages.success(request, 'Session cancelled successfully.')
+            # update the session status
+            session.session_status = 'cancelled'
+            session.save()
+
+        else:
+            messages.warning(request, f'{response_data["title"]}: {response_data["message"]}')
+
+
+
+
+        return redirect('dashboard', pk=student.pk)
+
+    form = CancelForm()
+
+    context = {
+        'session': session,
+        'form': form,
+    }
+
+    return render(request, 'booking/cancel_session.html', context)
+
+
 def _update_users_sessions(user: User):
     """
     function that gets called periodically to update the user's sessions from their
@@ -114,10 +192,8 @@ def _update_users_sessions(user: User):
     tutor = None
     if Tutor.objects.filter(user=user).exists():
         tutor = Tutor.objects.filter(user=user)
-        print('User is a tutor')
         sessions_to_update = TutoringSession.objects.filter(tutor__user=user)
     else:
-        print('User is a student')
         sessions_to_update = TutoringSession.objects.filter(student=user)
 
     for session in sessions_to_update:
@@ -220,5 +296,4 @@ class PaymentDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context['sessions'] = TutoringSession.objects.filter(payment=self.object)
-        print(self.request.user)
         return context
