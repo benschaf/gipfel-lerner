@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView, CreateView
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from booking.forms import CalendlyUriForm, PaymentForm
 from booking.models import Payment, TutoringSession
@@ -177,7 +178,7 @@ def payment_view(request, pk):
     return render(request, 'booking/payment.html', context)
 
 
-class PaymentCreateView(CreateView):
+class PaymentCreateView(LoginRequiredMixin, CreateView):
     model = Payment
     form_class = PaymentForm
     template_name = 'booking/payment_create.html'
@@ -211,7 +212,7 @@ class PaymentCreateView(CreateView):
 
 
 
-class PaymentDetailView(DetailView):
+class PaymentDetailView(LoginRequiredMixin, DetailView):
     model = Payment
     template_name = 'booking/payment_success.html'
     context_object_name = 'payment'
@@ -219,4 +220,5 @@ class PaymentDetailView(DetailView):
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context['sessions'] = TutoringSession.objects.filter(payment=self.object)
+        print(self.request.user)
         return context
