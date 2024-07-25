@@ -26,6 +26,10 @@ Welcome to Gipfel Tutor, the pinnacle of personalized tutoring for Swiss student
 
 [dbdiagram link](https://dbdiagram.io/d/ERD_tutor_service-667c0ec99939893dae536ebe)
 
+## User Journey Flowchart
+[flowchart link](https://drive.google.com/file/d/1k-WFUWeaEafaomXcuk4rCSmGXS4WIFbf/view?usp=sharing)
+
+
 ## Tools and Technologies
 - ![calendly_api](https://img.shields.io/badge/-Calendly%20API-1A1A1A?style=flat&logo=calendly)
 > [!Note]
