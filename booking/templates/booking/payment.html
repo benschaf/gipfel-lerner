@@ -2,32 +2,31 @@
 {% block content %}
   <div class="container">
     <h1>Payment</h1>
-    <div class="row">
+    <div class="row row-gap-5 mt-5">
       <div class="col">
+        <span class="text-muted">
+          The following Lessons are scheduled for payment:
+        </span>
         <table class="table">
           <thead>
             <tr>
               <th>Start Time</th>
-              <th>Price</th>
               <th>Tutor</th>
               <th>Subject</th>
-              <th>Name</th>
+              <th>Event Name</th>
               <th>Status</th>
-              <th>Cancel</th>
+              <th>Price</th>
             </tr>
           </thead>
           <tbody>
             {% for session in sessions %}
               <tr>
                 <td>{{ session.start_time }}</td>
-                <td>{{ session.price }}</td>
                 <td>{{ session.tutor }}</td>
-                <td>{{ session.subject }}</td>
+                <td>{{ session.subject.name }}</td>
                 <td>{{ session.session_name }}</td>
                 <td>{{ session.session_status }}</td>
-                <td>
-                  <a href="{{ session.cancel_url }}" class="btn btn-light"><i class="fas fa-times"></i></a>
-                </td>
+                <td>{{ session.price }} EUR</td>
               </tr>
             {% endfor %}
           </tbody>
@@ -36,22 +35,23 @@
               <td>
                 <strong>Total Balance</strong>
               </td>
+              <td colspan="4"></td>
               <td>
-                <strong>{{ total_price }}</strong>
+                <strong>{{ total_price }} EUR</strong>
               </td>
             </tr>
           </tfoot>
         </table>
       </div>
-      <div class="col col-md-3">
-        <h5>Pay now</h5>
+      <div class="col-12 col-lg-4">
+        <h5>Amount to Pay: <strong>{{ total_price }} EUR</strong></h5>
         <form id="payment-form">
           {% csrf_token %}
-          <div id="payment-element">
+          <div class="mb-3" id="payment-element">
             <!-- Elements will create form elements here -->
           </div>
-          <button id="submit" class="btn btn-primary">Submit</button>
-          <div id="error-message">
+          <button id="submit" class="btn btn-primary">Pay Now</button>
+          <div id="error-message" class="mt-3 rounded-pill border-0">
             <!-- Display error message to your customers here -->
           </div>
         </form>
@@ -59,7 +59,6 @@
     </div>
   </div>
 {% endblock %}
-
 {% block postloadjs %}
   {{ block.super }}
   <script type="text/javascript">
