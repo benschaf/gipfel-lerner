@@ -31,6 +31,10 @@ class Tutor(models.Model):
     calendly_event_url = models.URLField(null=True, blank=True)
     calendly_personal_token = models.CharField(max_length=600, null=True, blank=True)
 
+    calendly_access_token = models.CharField(max_length=600, null=True, blank=True)
+    calendly_refresh_token = models.CharField(max_length=600, null=True, blank=True)
+    calendly_token_expires_at = models.DateTimeField(null=True, blank=True)
+
     def average_rating(self):
         """
         Returns the average rating of the tutor from all related Rating

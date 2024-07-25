@@ -50,8 +50,8 @@ def cache_payment_data(request):
         return HttpResponse(content=e, status=400)
 
 def _get_json_from_calendly_uri(uri, tutor, request):
-    calendly_personal_token = tutor.calendly_personal_token.strip()
-    headers = {'Authorization': f'Bearer {calendly_personal_token}'}
+    calendly_access_token = tutor.calendly_access_token
+    headers = {'Authorization': f'Bearer {calendly_access_token}'}
     response = requests.get(uri, headers=headers)
     if response.status_code == 200:
         return response.json()
@@ -148,7 +148,8 @@ def cancel_session_view(request, pk):
             "canceled_by":  canceled_by,
             "created_at": created_at,
         }
-        headers = {'Authorization': f'Bearer {tutor.calendly_personal_token.strip()}'}
+        calendly_access_token = tutor.calendly_access_token
+        headers = {'Authorization': f'Bearer {calendly_access_token}'}
 
         response = requests.request("POST", url, json=payload, headers=headers)
 

@@ -18,6 +18,7 @@ from django.db.models import Count, Avg
 
 from booking.forms import CalendlyUriForm
 from booking.models import Payment, TutoringSession
+from calendly.views import introspect_access_token
 from gipfel_tutor import settings
 from tutor_market.forms import RatingForm, TutorForm
 from tutor_market.models import Subject, Tutor, Rating
@@ -103,6 +104,12 @@ def tutor_detail_view(request, pk):
     if request.user.is_authenticated:
         existing_rating = Rating.objects.filter(tutor=tutor, user=request.user).first()
         upcoming_sessions = TutoringSession.objects.filter(tutor__user=tutor.user, student=request.user)
+
+        response_data = introspect_access_token(tutor)
+        if 'error' in response_data:
+            messages.warning(request, f"{response_data['error']}: {response_data['error_description']}")
+
+
 
     if request.method == 'POST':
         if not request.user.is_authenticated:
