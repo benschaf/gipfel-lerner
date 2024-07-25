@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'core',
     'tutor_market',
     'booking',
+    'calendly',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -85,6 +86,9 @@ ACCOUNT_USERNAME_MIN_LENGTH = 4
 ACCOUNT_SESSION_REMEMBER = True
 
 PERSONAL_CALENDLY_TOKEN = os.environ.get('PERSONAL_CALENDLY_TOKEN', '')
+CALENDLY_ID = os.environ.get('CALENDLY_ID', '')
+CALENDLY_DEV_CLIENT_ID = os.environ.get('CALENDLY_DEV_CLIENT_ID', '')
+CALENDLY_DEV_CLIENT_SECRET = os.environ.get('CALENDLY_DEV_CLIENT_SECRET', '')
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

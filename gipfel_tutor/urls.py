@@ -24,4 +24,5 @@ urlpatterns = [
     path('tutors/', include('tutor_market.urls')),
     path('', include('core.urls')),
     path('booking/', include('booking.urls')),
+    path('calendly/', include('calendly.urls')),
 ]
