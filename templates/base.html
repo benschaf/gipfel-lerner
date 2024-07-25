@@ -115,7 +115,7 @@
         <div class="col col-sm-9 col-md-8 col-lg-5">
           {% for message in messages %}
             <!-- Note: Django messages with the error tag don't work with this but all the other ones do, so use those -->
-            <div class="alert alert-{{ message.tags }} alert-dismissible fade show rounded-pill border-0 shadow"
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show rounded-pill border-0 shadow alert-disappear-5s"
                  role="alert">
               <div class="row align-items-center">
                 <div class="col-auto">
@@ -136,7 +136,7 @@
       </div>
       <script>
     setTimeout(function () {
-      $('.alert').alert('close')
+      $('.alert-disappear-5s').alert('close')
     }, 5000)
       </script>
     {% endif %}
