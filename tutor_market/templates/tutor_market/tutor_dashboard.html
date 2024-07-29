@@ -159,7 +159,7 @@
                   <p class="text-muted mt-5 mb-0">Upcoming Lessons:</p>
                   <ul class="list-group list-group-flush">
                     {% for session in sessions %}
-                      {% include "tutor_market/includes/lesson_list_item.html" with button="join" %}
+                      {% include "tutor_market/includes/lesson_list_item.html" with button="join" status="show" %}
                     {% empty %}
                       <p>No upcoming Lessons</p>
                     {% endfor %}
