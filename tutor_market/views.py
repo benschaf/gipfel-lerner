@@ -30,7 +30,7 @@ def tutor_list_view(request):
     """
     Function-based view for listing all tutors in the system.
     """
-    tutor_list = Tutor.objects.all()
+    tutor_list = Tutor.objects.filter(profile_status=True)
     subjects= None
     values = None
     query = None
@@ -100,6 +100,10 @@ def tutor_detail_view(request, pk):
     tutor = get_object_or_404(Tutor, pk=pk)
     existing_rating = None
     upcoming_sessions = None
+
+    if not tutor.profile_status:
+        messages.warning(request, 'This tutor has not enabled their profile yet.')
+        return redirect(reverse('tutor_list'))
 
     if request.user.is_authenticated:
         existing_rating = Rating.objects.filter(tutor=tutor, user=request.user).first()
@@ -277,6 +281,15 @@ def tutor_dashboard(request, user):
     View for displaying the tutors's dashboard.
     """
     tutor = Tutor.objects.get(user=user)
+
+    # check if the tutor profile should be enabled or disabled
+    if (tutor.calendly_access_token and tutor.calendly_event_url):
+        tutor.profile_status = True
+        tutor.save()
+    else:
+        tutor.profile_status = False
+        tutor.save()
+
     booking_history = TutoringSession.objects.filter(tutor=tutor).order_by('start_time')
     upcoming_sessions = booking_history.filter(start_time__gte=timezone.now(), session_status='scheduled')[:3]
     pending_sessions = booking_history.filter(session_status='pending')

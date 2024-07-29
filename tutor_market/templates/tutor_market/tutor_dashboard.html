@@ -20,6 +20,13 @@
       </div>
       <div class="col">
         <h3>Your Personal Information</h3>
+        {% if not tutor.profile_status %}
+          <div class="alert alert-warning">
+            Your Profile is incomplete. Please add your Calendly URL and connect your Calendly account if you haven't already.
+            <hr>
+            As long as your profile remains incomplete, it will not be displayed in student's search results.
+          </div>
+        {% endif %}
         <table class="table">
           <tbody>
             <tr>
