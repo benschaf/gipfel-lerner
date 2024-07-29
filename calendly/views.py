@@ -6,6 +6,7 @@ from django.contrib import messages
 import requests
 
 from gipfel_tutor import settings
+from tutor_market.models import Tutor
 
 # Create your views here.
 
@@ -141,6 +142,17 @@ def refresh_access_token(tutor) -> dict:
 
     return response_data
 
+def disconnect_calendly(request: HttpRequest, pk: int) -> HttpResponse:
+    tutor = Tutor.objects.get(pk=pk)
+
+    tutor.calendly_access_token = None
+    tutor.calendly_refresh_token = None
+    tutor.calendly_token_expires_at = None
+    tutor.save()
+
+    messages.info(request, "Calendly disconnected successfully! You can reconnect at any time.")
+
+    return redirect(reverse('dashboard', kwargs={'pk': pk}))
 
 
 
