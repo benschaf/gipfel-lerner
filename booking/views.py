@@ -122,13 +122,17 @@ def cancel_session_view(request, pk):
     """
     View for cancelling a tutoring session.
     """
+    """
+    View for cancelling a tutoring session.
+    """
     session = get_object_or_404(TutoringSession, pk=pk)
+    print(f"Session: {session.tutor.user}, {session.student}, {request.user}")
     tutor = session.tutor
     student = session.student
 
-    if not request.user == student or request.user == tutor.user:
+    if not (request.user == student or request.user == tutor.user):
         messages.warning(request, 'You are not authorized to cancel this session.')
-        return redirect('dashboard', pk=student)
+        return redirect('dashboard', pk=student.id)
 
     if request.method == 'POST':
         form = CancelForm(request.POST)
