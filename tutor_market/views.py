@@ -278,7 +278,7 @@ def tutor_dashboard(request, user):
     """
     tutor = Tutor.objects.get(user=user)
     booking_history = TutoringSession.objects.filter(tutor=tutor).order_by('start_time')
-    upcoming_sessions = booking_history.filter(start_time__gte=timezone.now()).filter(session_status='scheduled')[:3]
+    upcoming_sessions = booking_history.filter(start_time__gte=timezone.now(), session_status='scheduled')[:3]
     pending_sessions = booking_history.filter(session_status='pending')
     users = User.objects.filter(sessions__tutor=tutor)
     users_and_sessions = {}
