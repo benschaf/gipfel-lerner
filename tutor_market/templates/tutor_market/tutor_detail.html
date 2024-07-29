@@ -98,7 +98,11 @@
     <div class="col mt-3">
       <h5>Select a date below to book a lesson with {{ tutor }}</h5>
       <p class="text-muted">See your tutors live avaliability - made possible by Calendly</p>
-      <div id="calendly" style="min-width:320px;height:700px;"></div>
+      {% if user.is_authenticated %}
+        <div id="calendly"></div>
+      {% else %}
+        <a href="{% url 'account_login' %}">Log in</a> to book a lesson
+      {% endif %}
       <div class="d-none">
         <form id="calendly_form_hidden"
               action="{% url 'fetch_calendly_data' tutor.pk %}"
@@ -159,6 +163,4 @@
           resize: true,
         })
 </script>
-</div>
-</div>
 {% endblock content %}
