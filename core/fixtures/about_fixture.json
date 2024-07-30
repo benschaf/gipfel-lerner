@@ -1,0 +1,11 @@
+[
+    {
+        "model": "core.about",
+        "pk": 1,
+        "fields": {
+            "title": "Turoring with the perfect tutor",
+            "content": "We are a tutoring Website that specializes in providing personalized online tutoring services for various subjects.",
+            "is_active": true
+        }
+    }
+]

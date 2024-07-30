@@ -4,11 +4,12 @@ from django.http import HttpRequest
 from django.http.response import HttpResponse as HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, DetailView
 from django.contrib import messages
 
+
 from booking.views import _update_users_sessions
-from core.models import FrequentlyAskedQuestion
+from core.models import About, FrequentlyAskedQuestion
 from gipfel_tutor import settings
 
 
@@ -19,11 +20,15 @@ class LandingPageView(TemplateView):
     template_name = 'core/index.html'
 
 
-class AboutPageView(TemplateView):
-    """
-    A view that renders the about page template.
-    """
-    template_name = 'core/about.html'
+class AboutPageView(DetailView):
+    model = About
+    template_name = "core/about.html"
+
+    def get_object(self):
+        # Return the active About instance
+        return About.objects.filter(is_active=True).first()
+
+
 
 
 class FAQPageView(ListView):
