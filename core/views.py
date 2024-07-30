@@ -16,11 +16,3 @@ class LandingPageView(TemplateView):
     A view that renders the landing page template.
     """
     template_name = 'core/index.html'
-
-    def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
-        if request.user.is_authenticated:
-            pass
-            # need to find a better place to update the sessions in the background
-            # _update_users_sessions(request.user)
-        return super().get(request, *args, **kwargs)
-
