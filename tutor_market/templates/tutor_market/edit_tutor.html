@@ -3,7 +3,8 @@
 
 {% block form %}
   <h1>Edit Your Profile</h1>
-  <form method="POST">
+  <!-- -> Credit for enctype attribute: https://www.geeksforgeeks.org/define-multipart-form-data/ -->
+  <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form|crispy }}
     <button type="submit" class="btn btn-primary">Update</button>

@@ -3,7 +3,7 @@
 
 {% block form %}
   <h1>Tell your future Students about yourself</h1>
-  <form method="POST">
+  <form method="POST" envtype="multipart/form-data">
     {% csrf_token %}
     {{ form|crispy }}
     <button type="submit" class="btn btn-primary">Add your Profile</button>
