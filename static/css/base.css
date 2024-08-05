@@ -154,6 +154,11 @@
     color: var(--bs-black);
 }
 
+.searchbar-card {
+    background-color: white;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+}
+
 .my-reset-button:hover {
     background-color: #e2e2e2;
 }

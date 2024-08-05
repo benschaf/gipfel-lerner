@@ -120,30 +120,38 @@
     <div class="row row-cols-1 row-cols-md-2 row-gap-5 mt-5">
       {% if pending_sessions %}
         <div class="col">
-          <h3>Pending Lessons</h3>
-          <p class="text-muted">
-            The following Lessons were requested by students and are waiting for
-            your confirmation:
-          </p>
-          <ul class="list-group">
-            {% for session in pending_sessions %}
-              {% include "tutor_market/includes/lesson_list_item.html" with button="schedule" student_tutor="student" %}
-            {% empty %}
-              <li class="list-group-item">No pending lessons.</li>
-            {% endfor %}
-          </ul>
+          <div class="card">
+            <div class="card-body">
+              <h3>Pending Lessons</h3>
+              <p class="text-muted">
+                The following Lessons were requested by students and are waiting for
+                your confirmation:
+              </p>
+              <ul class="list-group list-group-flush">
+                {% for session in pending_sessions %}
+                  {% include "tutor_market/includes/lesson_list_item.html" with button="schedule" student_tutor="student" %}
+                {% empty %}
+                  <li class="list-group-item">No pending lessons.</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
         </div>
       {% endif %}
       <div class="col">
         <h3>Upcoming Lessons</h3>
         <p class="text-muted">Your next 3 Scheduled Lessons</p>
-        <ul class="list-group">
-          {% for session in upcoming_sessions %}
-            {% include "tutor_market/includes/lesson_list_item.html" with button="join" student_tutor="student" %}
-          {% empty %}
-            <li class="list-group-item">No upcoming lessons.</li>
-          {% endfor %}
-        </ul>
+        <div class="card">
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              {% for session in upcoming_sessions %}
+                {% include "tutor_market/includes/lesson_list_item.html" with button="join" student_tutor="student" %}
+              {% empty %}
+                <li class="list-group-item">No upcoming lessons.</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
     <div class="row mt-5">
@@ -156,13 +164,10 @@
             <div class="col">
               <div class="card">
                 <div class="card-body">
-                  <div class="d-flex gap-3 align-items-baseline">
-                    <h5 class="card-title">
-                      <span class="text-muted">Student:</span> {{ student }}
-                    </h5>
-                    <a href="mailto:{{ student.email }}">{{ student.email }}</a>
-                  </div>
-                  <hr>
+                  <h5 class="card-title">
+                    <span class="text-muted">Student:</span> {{ student }}
+                  </h5>
+                  <a href="mailto:{{ student.email }}">{{ student.email }}</a>
                   <p class="text-muted mt-5 mb-0">Upcoming Lessons:</p>
                   <ul class="list-group list-group-flush">
                     {% for session in sessions %}

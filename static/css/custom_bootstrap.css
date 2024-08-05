@@ -238,3 +238,30 @@
   --bs-btn-active-bg: var(--bs-success-shaded);
   --bs-btn-active-border-color: var(--bs-success-shaded);
 }
+
+.card {
+  border: none;
+  background-color: var(--bs-light);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.card-header {
+  border-bottom: none;
+  background-color: transparent;
+  padding-bottom: 0.5rem;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-footer {
+  border-top: none;
+  background-color: transparent;
+  padding-top: 0.5rem;
+}
+
+.list-group-item {
+  background-color: transparent;
+}

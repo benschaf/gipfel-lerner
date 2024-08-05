@@ -114,15 +114,19 @@
     </div>
     {% if upcoming_sessions %}
       <div class="col">
-        <h5>Your upcoming Lessons with {{ tutor }}</h5>
-        <ul class="list-group">
-          {% for session in upcoming_sessions %}
-            {% include "tutor_market/includes/lesson_list_item.html" with button="join" %}
-          {% endfor %}
-        </ul>
-        <p class="text-muted">
-          See all of your upcoming Lessons on your <a href="#">Dashboard</a>
-        </p>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="text-muted">Your upcoming Lessons with {{ tutor }}</h5>
+            <ul class="list-group list-group-flush mt-4">
+              {% for session in upcoming_sessions %}
+                {% include "tutor_market/includes/lesson_list_item.html" with button="join" %}
+              {% endfor %}
+            </ul>
+            <p class="text-muted">
+              See all of your upcoming Lessons on your <a href="#">Dashboard</a>
+            </p>
+          </div>
+        </div>
       </div>
     {% endif %}
   </div>
