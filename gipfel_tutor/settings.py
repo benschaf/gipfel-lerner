@@ -49,10 +49,10 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     'crispy_forms',
     'crispy_bootstrap5',
-    # 'allauth.socialaccount',
-    # 'allauth.socialaccount.providers.google',
     'storages',
     'core',
     'tutor_market',
@@ -76,6 +76,7 @@ MIDDLEWARE = [
 ]
 
 SITE_ID = 1
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
@@ -103,25 +104,9 @@ else:
     DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
-
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-
-
-# SOCIALACCOUNT_PROVIDERS = {
-#     'google': {
-#         # For each OAuth based provider, either add a ``SocialApp``
-#         # (``socialaccount`` app) containing the required client
-#         # credentials, or list them here:
-#         # This will be for the Google OAuth2
-#         'APP': {
-#             'client_id': '123',
-#             'secret': '456',
-#             'key': ''
-#         }
-#     }
-# }
 
 ROOT_URLCONF = 'gipfel_tutor.urls'
 
@@ -140,6 +125,8 @@ TEMPLATES = [
         },
     },
 ]
+
+SOCIALACCOUNT_ENABLED = True
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
