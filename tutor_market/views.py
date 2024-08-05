@@ -209,7 +209,7 @@ class TutorCreateView(LoginRequiredMixin, CreateView):
         """
         Builds the URL to the newly created tutor's detail page.
         """
-        return reverse('tutor_detail', kwargs={'pk': self.object.pk})
+        return reverse('dashboard', kwargs={'pk': self.object.pk})
 
 
 class TutorUpdateView(UserPassesTestMixin, UpdateView):
@@ -237,7 +237,7 @@ class TutorUpdateView(UserPassesTestMixin, UpdateView):
         """
         Builds the URL to the updated tutor's detail page.
         """
-        return reverse('tutor_detail', kwargs={'pk': self.object.pk})
+        return reverse('dashboard', kwargs={'pk': self.object.pk})
 
 
 class TutorDeleteView(UserPassesTestMixin, DeleteView):
