@@ -123,6 +123,10 @@ def tutor_detail_view(request, pk):
             messages.warning(request, 'You must be logged in to leave a review.')
             return redirect('tutor_detail', pk=pk)
 
+        if request.user == tutor.user:
+            messages.warning(request, 'You cannot leave a review on your own profile.')
+            return redirect('tutor_detail', pk=pk)
+
         review_form = RatingForm(request.POST)
 
         # how do I do proper form validation?

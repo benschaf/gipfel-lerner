@@ -46,18 +46,24 @@
           <div class="col">
             <div class="card-body sticky-md-top">
               {% if user.is_authenticated %}
-                {% if existing_review %}
-                  <h5>Change your review</h5>
-                  <span class="text-muted">you already posted a review</span>
+                {% if user != tutor.user %}
+                  {% if existing_review %}
+                    <h5>Change your review</h5>
+                    <span class="text-muted">you already posted a review</span>
+                  {% else %}
+                    <h4>Leave a review:</h4>
+                  {% endif %}
+                  <form action="{% url 'tutor_detail' tutor.pk %}" method="post" class="mt-2">
+                    {% csrf_token %}
+                    <!-- -> Credit for crispy forms: https://github.com/Code-Institute-Solutions/blog/tree/main/12_views_part_3/01_posting_to_database -->
+                    {{ form|crispy }}
+                    <button id="submitButton" type="submit" class="btn btn-primary">Leave Review</button>
+                  </form>
                 {% else %}
-                  <h4>Leave a review:</h4>
+                  <p class="text-muted">
+                    Have a look at how your students rated you.
+                  </p>
                 {% endif %}
-                <form action="{% url 'tutor_detail' tutor.pk %}" method="post" class="mt-2">
-                  {% csrf_token %}
-                  <!-- -> Credit for crispy forms: https://github.com/Code-Institute-Solutions/blog/tree/main/12_views_part_3/01_posting_to_database -->
-                  {{ form|crispy }}
-                  <button id="submitButton" type="submit" class="btn btn-primary">Leave Review</button>
-                </form>
               {% else %}
                 <p>
                   <a href="{% url 'account_login' %}">Log in</a> to leave a review
