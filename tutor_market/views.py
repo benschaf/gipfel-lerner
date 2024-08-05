@@ -102,7 +102,7 @@ def tutor_detail_view(request, pk):
     upcoming_sessions = None
 
     if not tutor.profile_status:
-        messages.warning(request, 'This tutor has not enabled their profile yet.')
+        messages.warning(request, 'To activate your profile, please connect your Calendly account via your Dashboard.')
         return redirect(reverse('tutor_list'))
 
     if request.user.is_authenticated:
