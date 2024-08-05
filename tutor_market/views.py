@@ -110,8 +110,11 @@ def tutor_detail_view(request, pk):
         upcoming_sessions = TutoringSession.objects.filter(tutor__user=tutor.user, student=request.user)
 
         response_data = introspect_access_token(tutor)
-        if 'error' in response_data:
+        if response_data:
+            messages.success(request, 'Calendly connection successful.')
+        elif 'error' in response_data:
             messages.warning(request, f"{response_data['error']}: {response_data['error_description']}")
+
 
 
 

@@ -138,8 +138,6 @@ def refresh_access_token(tutor) -> dict:
 
     print(f"NEW TOKEN: {tutor.calendly_access_token}")
 
-    messages.info(requests.request, "Calendly access token refreshed successfully!")
-
     return response_data
 
 def disconnect_calendly(request: HttpRequest, pk: int) -> HttpResponse:
