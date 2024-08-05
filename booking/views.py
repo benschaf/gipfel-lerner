@@ -144,7 +144,7 @@ def cancel_session_view(request, pk):
 
         url = f"{session.event_uri}/cancellation"
 
-        reason = form.cleaned_data['cancel_reason']
+        reason = form.cleaned_data['cancel_reason'] if form.cleaned_data['cancel_reason'] else 'No reason given'
         canceled_by = request.user.email
         created_at = datetime.now().isoformat()
 

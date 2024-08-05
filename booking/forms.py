@@ -18,3 +18,7 @@ class PaymentForm(forms.ModelForm):
 
 class CancelForm(forms.Form):
     cancel_reason = forms.CharField(max_length=200, required=False)
+
+    def __init__(self, *args, **kwargs):
+        super(CancelForm, self).__init__(*args, **kwargs)
+        self.fields['cancel_reason'].label = 'Let your tutor know why you are cancelling the session (not required)'

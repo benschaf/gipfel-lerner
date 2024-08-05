@@ -7,7 +7,7 @@ class TutorForm(forms.ModelForm):
     class Meta:
         model = Tutor
         fields = ['display_name', 'subjects', 'hourly_rate', 'values', 'catch_phrase',
-                  'description', 'profile_image', 'iban', 'calendly_event_url', 'calendly_personal_token']
+                  'description', 'profile_image', 'iban', 'calendly_event_url']
 
     def __init__(self, *args, **kwargs):
         super(TutorForm, self).__init__(*args, **kwargs)
@@ -20,7 +20,6 @@ class TutorForm(forms.ModelForm):
         self.fields['profile_image'].help_text = 'Upload your profile image.'
         self.fields['iban'].help_text = 'Enter your IBAN for payments we make to you after lessons.'
         self.fields['calendly_event_url'].help_text = 'Provide your Calendly event URL for scheduling sessions.'
-        self.fields['calendly_personal_token'].help_text = 'Enter your Calendly personal token so we can schedule lessons for you.'
 
 
 class RatingForm(forms.ModelForm):
