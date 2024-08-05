@@ -18,6 +18,12 @@
       <link rel="stylesheet" href="{% static 'css/custom_bootstrap.css' %}" />
       <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     {% endblock %}
+    {% block favicon %}
+    <!-- -> Credit for favicon: https://fontawesome.com/icons/mountain-sun?f=classic&s=solid -->
+      <link rel="shortcut icon"
+            href="{% static 'images/favicon/favicon-mountain-sun-solid.ico' %}"
+            type="image/x-icon">
+    {% endblock favicon %}
     {% block extra_css %}{% endblock %}
     {% block corejs %}
       <!-- add a fontawesome kit -->
@@ -98,12 +104,12 @@
                 </li>
               {% endif %}
               <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
-                  <a class="btn btn-primary px-3 {% if request.resolver_match.view_name == 'tutor_list' %}cta-tutor-list-active{% endif %}"
-                     href="{% url 'tutor_list' %}"
-                     aria-current="{% if request.resolver_match.view_name == 'tutor_list' %}page{% endif %}">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    Find your Tutor
-                  </a>
+                <a class="btn btn-primary px-3 {% if request.resolver_match.view_name == 'tutor_list' %}cta-tutor-list-active{% endif %}"
+                   href="{% url 'tutor_list' %}"
+                   aria-current="{% if request.resolver_match.view_name == 'tutor_list' %}page{% endif %}">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  Find your Tutor
+                </a>
               </li>
             </ul>
           </div>
@@ -161,7 +167,8 @@
                 <a href="{% url "faq_page" %}" class="nav-link p-0 text-body-secondary">FAQs</a>
               </li>
               <li class="nav-item mb-2">
-                <a href="{% url "about_page" %}" class="nav-link p-0 text-body-secondary">About</a>
+                <a href="{% url "about_page" %}"
+                   class="nav-link p-0 text-body-secondary">About</a>
               </li>
               <li class="nav-item mb-2">
                 <a href="#" class="nav-link p-0 text-body-secondary">Contact</a>
