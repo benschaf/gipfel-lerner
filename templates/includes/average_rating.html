@@ -3,4 +3,4 @@
 {{ tutor.average_rating.score__avg|floatformat:1 }}
 </span>
 <br>
-<span class="text-muted fs-6">{{ tutor.ratings.count }} review{% if tutor.ratings.count > 1 %}s{% endif %}</span>
+<span class="text-muted fs-6">{{ tutor.ratings.count }} review{% if tutor.ratings.count != 1 %}s{% endif %}</span>
