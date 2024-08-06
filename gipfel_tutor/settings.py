@@ -77,6 +77,7 @@ MIDDLEWARE = [
 
 SITE_ID = 1
 
+# -> Credit for retrieving the email address: https://github.com/pennersr/django-allauth/issues/330  # noqa
 SOCIALACCOUNT_PROVIDERS = {
      'google': {
         'SCOPE': [
