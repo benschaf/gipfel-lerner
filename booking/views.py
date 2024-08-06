@@ -249,6 +249,7 @@ def payment_view(request, pk):
         currency=settings.STRIPE_CURRENCY,
     )
     CLIENT_SECRET = intent.client_secret
+    development = 'True' if settings.DEVELOPMENT else 'False'
 
     context = {
         'sessions': sessions_to_pay,
@@ -256,6 +257,7 @@ def payment_view(request, pk):
         'total_price': Decimal(total_price).quantize(Decimal('0.01')),
         'STRIPE_PUBLIC_KEY': STRIPE_PUBLIC_KEY,
         'CLIENT_SECRET': CLIENT_SECRET,
+        'development': development,
     }
     return render(request, 'booking/payment.html', context)
 

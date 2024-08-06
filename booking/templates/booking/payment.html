@@ -4,9 +4,7 @@
     <h1>Payment</h1>
     <div class="row row-gap-5 mt-5">
       <div class="col">
-        <span class="text-muted">
-          The following Lessons are scheduled for payment:
-        </span>
+        <span class="text-muted">The following Lessons are scheduled for payment:</span>
         <table class="table">
           <thead>
             <tr>
@@ -44,7 +42,9 @@
         </table>
       </div>
       <div class="col-12 col-lg-4">
-        <h5>Amount to Pay: <strong>{{ total_price }} EUR</strong></h5>
+        <h5>
+          Amount to Pay: <strong>{{ total_price }} EUR</strong>
+        </h5>
         <form id="payment-form">
           {% csrf_token %}
           <div class="mb-3" id="payment-element">
@@ -86,7 +86,7 @@
       event.preventDefault()
       $('#submit').attr('disabled', true);
 
-      session_objects = [];
+      let session_objects = [];
       {% for session in sessions %}
         session_objects.push({{ session.id }});
       {% endfor %}
@@ -106,6 +106,16 @@
       var url = "{% url 'cache_payment_data' %}";
       console.log(url);
 
+      const development = '{{ development }}' === 'True' ? true : false;
+      console.log('development: ' + development);
+
+      if (development) {
+        return_url = `http://127.0.0.1:8000/{% url 'payment_create' %}?user_id={{ user.id }}&sessions=${session_ids}`;
+      } else {
+        return_url = `https://gipfel-tutor-768a610dc54f.herokuapp.com{% url 'payment_create' %}?user_id={{ user.id }}&sessions=${session_ids}`;
+      }
+
+
       $.post(url, postData).done(async function() {
         console.log('starting stripe function')
         const { error } = await stripe.confirmPayment({
@@ -113,7 +123,7 @@
           elements,
           confirmParams: {
             // change this url to dynamic when deploying
-            return_url: `http://127.0.0.1:8000/{% url 'payment_create' %}?user_id={{ user.id }}&sessions=${session_ids}`,
+            return_url: return_url,
           }
         })
 
