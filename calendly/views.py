@@ -37,7 +37,6 @@ def calendly_auth(request: HttpRequest) -> HttpResponse:
     code = request.GET.get('code')
     print(f"code: {code}")
 
-
     url = "https://auth.calendly.com/oauth/token"
 
     base64_string = get_base64_string()
@@ -61,7 +60,7 @@ def calendly_auth(request: HttpRequest) -> HttpResponse:
 
     if response.status_code != 200:
         messages.warning(request, f"{response_data['error']}: {
-                         response_data['error_description']}")
+                         response_data['error_description']}, please try again.")
         return redirect(reverse('dashboard', kwargs={'pk': request.user.pk}))
 
     messages.success(request, "Calendly connected successfully!")
@@ -141,6 +140,7 @@ def refresh_access_token(tutor) -> dict:
 
     return response_data
 
+
 def disconnect_calendly(request: HttpRequest, pk: int) -> HttpResponse:
     tutor = Tutor.objects.get(pk=pk)
 
@@ -149,9 +149,7 @@ def disconnect_calendly(request: HttpRequest, pk: int) -> HttpResponse:
     tutor.calendly_token_expires_at = None
     tutor.save()
 
-    messages.info(request, "Calendly disconnected successfully! You can reconnect at any time.")
+    messages.info(
+        request, "Calendly disconnected successfully! You can reconnect at any time.")
 
     return redirect(reverse('dashboard', kwargs={'pk': pk}))
-
-
-
