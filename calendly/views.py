@@ -4,6 +4,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.contrib import messages
 import requests
+from django.contrib.auth.decorators import login_required
 
 from gipfel_tutor import settings
 from tutor_market.models import Tutor
@@ -31,11 +32,11 @@ def get_base64_string() -> str:
     return base64_bytes.decode('ascii')
 
 
+@login_required
 def calendly_auth(request: HttpRequest) -> HttpResponse:
     code = request.GET.get('code')
     print(f"code: {code}")
 
-    import requests
 
     url = "https://auth.calendly.com/oauth/token"
 
