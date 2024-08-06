@@ -237,7 +237,7 @@ def payment_view(request, pk):
 
     if not sessions_to_pay:
         messages.warning(request, 'No sessions to pay for.')
-        return redirect('dashboard')
+        return redirect('dashboard', pk=request.user.pk)
 
     total_price = round(sum([session.price for session in sessions_to_pay]))
     total_price_in_cents = total_price * 100
