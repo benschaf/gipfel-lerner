@@ -51,7 +51,7 @@
       <div class="row mt-2">
         <div class="col">{{ tutor.catch_phrase }}</div>
         {% if not page %}
-        <div class="col d-flex justify-content-end">
+        <div class="col d-flex justify-content-end align-items-center">
           <a href="{% url 'tutor_detail' tutor.pk %}" class="btn btn-primary">Book a trial lesson!</a>
         </div>
         {% endif %}
