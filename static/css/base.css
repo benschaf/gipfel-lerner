@@ -339,3 +339,9 @@ h5>a {
   ul:has(.my-social-link) {
     padding-left: 0;
   }
+
+/* Auth app */
+.auth-card {
+    background-color: white;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+}
