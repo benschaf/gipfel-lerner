@@ -14,7 +14,7 @@ class TutoringSession(models.Model):
     payment_complete = models.BooleanField(default=False)
     # -> Credit for model.SET_NULL: https://stackoverflow.com/questions/70395921/is-there-any-other-option-for-on-delete-other-than-models-cascade-for-a-foreignk  # noqa
     payment = models.ForeignKey("booking.Payment", on_delete=models.SET_NULL, null=True, blank=True, related_name="sessions")
-    subject = models.ForeignKey("tutor_market.Subject", on_delete=models.CASCADE, default=1)
+    subject = models.ForeignKey("tutor_market.Subject", on_delete=models.CASCADE, default=2)
 
     # Calendly json fields
     start_time = models.DateTimeField()

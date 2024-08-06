@@ -72,7 +72,7 @@ def _write_calendly_data_to_db(event_data, invitee_data, tutor, student, request
         tutor=tutor,
         student=student,
         price = tutor.hourly_rate,
-        # Subject is left to its default (other) for now
+        subject = tutor.subjects.first(),
 
         # Calendly json fields
         start_time = event_data['resource']['start_time'],
