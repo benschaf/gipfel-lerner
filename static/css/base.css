@@ -55,10 +55,11 @@ body {
 }
 
 /* BENTO SECTION */
-.parent>div {
+.container>.parent>div {
     border-style: none;
     padding: 2rem;
     margin-top: 1rem;
+    margin-bottom: 0;
 }
 
 .div1 {
