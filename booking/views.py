@@ -256,9 +256,11 @@ def payment_view(request, pk):
     )
     CLIENT_SECRET = intent.client_secret
     development = 'True' if settings.DEVELOPMENT else 'False'
+    session_ids = ','.join([str(session.id) for session in sessions_to_pay])
 
     context = {
         'sessions': sessions_to_pay,
+        'session_ids': session_ids,
         # -> Credit for quantize: https://docs.python.org/3/library/decimal.html
         'total_price': Decimal(total_price).quantize(Decimal('0.01')),
         'STRIPE_PUBLIC_KEY': STRIPE_PUBLIC_KEY,
