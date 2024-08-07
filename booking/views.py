@@ -68,6 +68,12 @@ def _write_calendly_data_to_db(event_data, invitee_data, tutor, student, request
     if invitee_data['resource']['questions_and_answers']:
         questions_and_answers = invitee_data['resource']['questions_and_answers'][0]['answer']
 
+    join_url = ''
+    try:
+        join_url = event_data['resource']['location']['join_url']
+    except KeyError:
+        messages.warning(request, 'Ask your tutor to provide a join link for the session.')
+
     session = TutoringSession.objects.create(
         tutor=tutor,
         student=student,
@@ -78,7 +84,7 @@ def _write_calendly_data_to_db(event_data, invitee_data, tutor, student, request
         start_time = event_data['resource']['start_time'],
         end_time = event_data['resource']['end_time'],
         created_at = event_data['resource']['created_at'],
-        location_url = event_data['resource']['location']['join_url'],
+        location_url = join_url,
         session_name = event_data['resource']['name'],
         event_uri = event_data['resource']['uri'],
         invitee_uri = invitee_data['resource']['uri'],
