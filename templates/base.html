@@ -230,23 +230,7 @@
       </footer>
     </div>
     {% block postloadjs %}
-      <script type="text/javascript">
-    $(document).ready(function () {
-      $('.toast').toast('show')
-
-      function updateCopyrightNotice() {
-        console.log('updateCopyrightNotice function called')
-        let getYear = new Date().getFullYear()
-        let yearID = $('#year')[0]
-        if (getYear == 2024) {
-          yearID.innerHTML = getYear
-        } else {
-          yearID.innerHTML = `2024 - ${getYear}`
-        }
-      }
-      updateCopyrightNotice()
-    })
-      </script>
+      <script src="{% static "js/base.js" %}"></script>
     {% endblock postloadjs %}
   </body>
 </html>
