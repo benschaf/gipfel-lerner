@@ -1,50 +1,55 @@
 {% extends 'base.html' %}
 {% load static %}
-
 <!-- -> Credit for adaptable page header: https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/master/home/templates/home/index.html -->
-{% block page_header %}
-
-{% endblock %}
-
+{% block page_header %}{% endblock %}
 {% block content %}
   <div class="container p-0">
     <div class="row no-gutters">
       <!-- Hero image -->
       <div class="col-md-6 d-flex justify-content-center align-items-center hero-image">
-        <img src="{% static 'images/hero-gipfel.webp' %}" alt="Design image of a mountain peak with a house in front of it" class="img-fluid" />
+        <img src="{% static 'images/hero-gipfel.webp' %}"
+             alt="Design image of a mountain peak with a house in front of it"
+             class="img-fluid" />
       </div>
-
       <!-- CTA Section -->
       <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
-          <a href="{% url 'tutor_list' %}" class="btn btn-primary btn-lg my-gradient">Find the Tutor for You</a>
-          <div class="mt-5">Learn from a tutor that just feels like the perfect fit.</div>
+        <a href="{% url 'tutor_list' %}"
+           class="btn btn-primary btn-lg my-gradient">Find the Tutor for You</a>
+        <div class="mt-5">Learn from a tutor that just feels like the perfect fit.</div>
       </div>
     </div>
   </div>
-
-
   <!-- Bento information Section -->
   <div class="container mt-5 p-md-5">
     <!-- -> Credit for CSS Grid (generation): https://cssgrid-generator.netlify.app/ -->
     <div class="parent">
       <div class="div1 card">
-        <img src="{% static 'images/bento-paths.webp' %}" alt="Image of multiple paths leading up a mountain summit." class="img-fluid rounded" />
+        <img src="{% static 'images/bento-paths.webp' %}"
+             alt="Image of multiple paths leading up a mountain summit."
+             class="img-fluid rounded" />
         <div class="card-body p-0">
           <h5>A wide range of Subjects</h5>
           <p>Find an expert for the field that you want to know more about.</p>
           <p>Pick a subject below:</p>
-          <a href="{% url 'tutor_list' %}?subject=english" class="btn btn-dark mt-2">English</a>
+          <a href="{% url 'tutor_list' %}?subject=english"
+             class="btn btn-dark mt-2">English</a>
           <a href="{% url 'tutor_list' %}?subject=math" class="btn btn-dark mt-2">Math</a>
-          <a href="{% url 'tutor_list' %}?subject=science" class="btn btn-dark mt-2">Science</a>
-          <a href="{% url 'tutor_list' %}?subject=history" class="btn btn-dark mt-2">History</a>
-          <a href="{% url 'tutor_list' %}?subject=biology" class="btn btn-dark mt-2">Biology</a>
-          <a href="{% url 'tutor_list' %}?subject=chemistry" class="btn btn-dark mt-2">Chemistry</a>
+          <a href="{% url 'tutor_list' %}?subject=science"
+             class="btn btn-dark mt-2">Science</a>
+          <a href="{% url 'tutor_list' %}?subject=history"
+             class="btn btn-dark mt-2">History</a>
+          <a href="{% url 'tutor_list' %}?subject=biology"
+             class="btn btn-dark mt-2">Biology</a>
+          <a href="{% url 'tutor_list' %}?subject=chemistry"
+             class="btn btn-dark mt-2">Chemistry</a>
         </div>
       </div>
       <div class="div2 card">
         <div class="row g-0">
           <div class="col-12 col-md-5 order-md-2">
-            <img src="{% static 'images/bento-match.webp' %}" alt="A tutor that is video chatting on a laptop" class="img-fluid rounded" />
+            <img src="{% static 'images/bento-match.webp' %}"
+                 alt="A tutor that is video chatting on a laptop"
+                 class="img-fluid rounded" />
           </div>
           <div class="col">
             <div class="card-body p-0">
@@ -52,27 +57,39 @@
               <p>Find the ideal tutor for your needs with our matching system.</p>
               <p>Pick Teaching Values that are important to you below:</p>
               <form action="{% url 'tutor_list' %}" method="GET">
-                <input type="checkbox" name="teaching-value" value="self-learning" class="btn-check value-btn" autocomplete="off" id="btn-check-1" />
+                <input type="checkbox"
+                       name="teaching-value"
+                       value="self-learning"
+                       class="btn-check value-btn"
+                       autocomplete="off"
+                       id="btn-check-1" />
                 <label class="btn btn-light mt-2" for="btn-check-1">Self-Learning</label>
-                <input type="checkbox" name="teaching-value" value="repetition" class="btn-check value-btn" autocomplete="off" id="btn-check-2" />
+                <input type="checkbox"
+                       name="teaching-value"
+                       value="repetition"
+                       class="btn-check value-btn"
+                       autocomplete="off"
+                       id="btn-check-2" />
                 <label class="btn btn-light mt-2" for="btn-check-2">Repetition</label>
-                <input type="checkbox" name="teaching-value" value="engagement" class="btn-check value-btn" autocomplete="off" id="btn-check-3" />
+                <input type="checkbox"
+                       name="teaching-value"
+                       value="engagement"
+                       class="btn-check value-btn"
+                       autocomplete="off"
+                       id="btn-check-3" />
                 <label class="btn btn-light mt-2" for="btn-check-3">Engagement</label>
-                <input type="checkbox" name="teaching-value" value="urgency" class="btn-check value-btn" autocomplete="off" id="btn-check-4" />
+                <input type="checkbox"
+                       name="teaching-value"
+                       value="urgency"
+                       class="btn-check value-btn"
+                       autocomplete="off"
+                       id="btn-check-4" />
                 <label class="btn btn-light mt-2" for="btn-check-4">Urgency</label>
                 <br />
-                <button type="submit" class="btn btn-primary mt-3 value-btn-hidden" id="values-submit-btn">Find your match</button>
+                <button type="submit"
+                        class="btn btn-primary mt-3 value-btn-hidden"
+                        id="values-submit-btn">Find your match</button>
               </form>
-              <script>
-                $(document).ready(function () {
-                  const submitButton = $('#values-submit-btn');
-                  const input = $('input[type="checkbox"]');
-                  input.change(function () {
-                      submitButton.addClass('value-btn-visible')
-                      submitButton.removeClass('value-btn-hidden')
-                  });
-              });
-              </script>
             </div>
           </div>
         </div>
@@ -84,12 +101,16 @@
         </div>
       </div>
       <div class="div4 card">
-        <img src="{% static 'images/bento-wallet.webp' %}" alt="A wallet" class="img-fluid rounded" />
+        <img src="{% static 'images/bento-wallet.webp' %}"
+             alt="A wallet"
+             class="img-fluid rounded" />
       </div>
       <div class="div5 card">
         <div class="row g-0 row-gap-3">
           <div class="col-12 col-md-5">
-            <img src="{% static 'images/bento-start-now.webp' %}" alt="A wallet" class="img-fluid rounded" />
+            <img src="{% static 'images/bento-start-now.webp' %}"
+                 alt="A wallet"
+                 class="img-fluid rounded" />
           </div>
           <div class="col">
             <div class="card-body p-0">
@@ -108,37 +129,7 @@
     </div>
   </div>
 {% endblock %}
-
 {% block postloadjs %}
   {{ block.super }}
-  <script type="text/javascript">
-    window.onload = function () {
-      // Transparent navbar when at the top of the page
-      $('.navbar').removeClass('bg-body-tertiary')
-      $('.navbar-container').removeClass('bg-body-tertiary')
-      $(window).scroll(function () {
-        console.log($(this).scrollTop())
-        if ($(this).scrollTop() == 0) {
-          $('.navbar').removeClass('bg-body-tertiary')
-          $('.navbar-container').removeClass('bg-body-tertiary')
-        } else {
-          $('.navbar').addClass('bg-body-tertiary')
-          $('.navbar-container').addClass('bg-body-tertiary')
-        }
-      })
-
-      // -> Credit for the aria-expanded attribute check: https://getbootstrap.com/docs/5.3/components/navbar/#scrolling
-      $('.navbar-toggler').click(function () {
-        if ($(this).attr('aria-expanded') === 'true') {
-          $('.navbar').addClass('bg-body-tertiary')
-          $('.navbar-container').addClass('bg-body-tertiary')
-        } else {
-          if ($(window).scrollTop() === 0) {
-            $('.navbar').removeClass('bg-body-tertiary')
-            $('.navbar').removeClass('bg-body-tertiary')
-          }
-        }
-      })
-    }
-  </script>
+  <script src="{% static "core/js/index.js" %}"></script>
 {% endblock %}
