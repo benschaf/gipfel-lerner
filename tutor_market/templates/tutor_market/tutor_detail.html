@@ -60,9 +60,7 @@
                     <button id="submitButton" type="submit" class="btn btn-primary">Leave Review</button>
                   </form>
                 {% else %}
-                  <p class="text-muted">
-                    Have a look at how your students rated you.
-                  </p>
+                  <p class="text-muted">Have a look at how your students rated you.</p>
                 {% endif %}
               {% else %}
                 <p>
@@ -106,17 +104,17 @@
       <p class="text-muted">See your tutors live avaliability - made possible by Calendly</p>
       {% if user.is_authenticated %}
         <div id="calendly"></div>
+        <div class="d-none">
+          <form id="calendly_form_hidden"
+                action="{% url 'fetch_calendly_data' tutor.pk %}"
+                method="post">
+            {% csrf_token %}
+            {{ calendly_form }}
+          </form>
+        </div>
       {% else %}
         <a href="{% url 'account_login' %}">Log in</a> to book a lesson
       {% endif %}
-      <div class="d-none">
-        <form id="calendly_form_hidden"
-              action="{% url 'fetch_calendly_data' tutor.pk %}"
-              method="post">
-          {% csrf_token %}
-          {{ calendly_form }}
-        </form>
-      </div>
     </div>
     {% if upcoming_sessions %}
       <div class="col">
@@ -162,6 +160,7 @@
           }
         })
 
+        ('document').ready(function () {
         Calendly.initInlineWidget({
           url: '{{ calendly_event_url }}?hide_event_type_details=1',
           parentElement: document.getElementById('calendly'),
@@ -171,6 +170,7 @@
           },
           utm: {},
           resize: true,
-        })
+        });
+      });
 </script>
 {% endblock content %}
