@@ -10,5 +10,5 @@ db.sqlite3
 .coverage
 sass/
 staticfiles/
-fixtures/
+fixtures_sensitive/
 test_accounts.txt
