@@ -13,7 +13,8 @@ from tutor_market.models import Tutor
 
 
 def connect_calendly(request: HttpRequest) -> HttpResponse:
-    client_id = settings.CALENDLY_DEV_CLIENT_ID
+    client_id = settings.CALENDLY_CLIENT_ID
+
     if settings.DEVELOPMENT:
         redirect_uri = 'http://localhost:8000/calendly/auth/'
     else:
@@ -146,6 +147,7 @@ def refresh_access_token(tutor) -> dict:
 
 def disconnect_calendly(request: HttpRequest, pk: int) -> HttpResponse:
     tutor = Tutor.objects.get(pk=pk)
+    user = tutor.user
 
     tutor.calendly_access_token = None
     tutor.calendly_refresh_token = None
@@ -155,4 +157,4 @@ def disconnect_calendly(request: HttpRequest, pk: int) -> HttpResponse:
     messages.info(
         request, "Calendly disconnected successfully! You can reconnect at any time.")
 
-    return redirect(reverse('dashboard', kwargs={'pk': pk}))
+    return redirect(reverse('dashboard', kwargs={'pk': user.pk}))
