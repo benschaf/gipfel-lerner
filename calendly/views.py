@@ -14,6 +14,7 @@ from tutor_market.models import Tutor
 
 def connect_calendly(request: HttpRequest) -> HttpResponse:
     client_id = settings.CALENDLY_CLIENT_ID
+    print(f"client_id: {client_id}")
 
     if settings.DEVELOPMENT:
         redirect_uri = 'http://localhost:8000/calendly/auth/'
@@ -28,7 +29,7 @@ def connect_calendly(request: HttpRequest) -> HttpResponse:
 
 def get_base64_string() -> str:
     # -> Credit for base64 encodeing: https://www.geeksforgeeks.org/encoding-and-decoding-base64-strings-in-python/  # noqa
-    client_id = settings.CALENDLY_DEV_CLIENT_ID
+    client_id = settings.CALENDLY_CLIENT_ID
     client_secret = settings.CALENDLY_CLIENT_SECRET
     basic_auth_string = f"{client_id}:{client_secret}"
     basic_auth_string_bytes = basic_auth_string.encode('ascii')
@@ -85,7 +86,7 @@ def introspect_access_token(tutor) -> dict:
     url = "https://auth.calendly.com/oauth/introspect"
 
     payload = {
-        "client_id": settings.CALENDLY_DEV_CLIENT_ID,
+        "client_id": settings.CALENDLY_CLIENT_ID,
         "client_secret": settings.CALENDLY_CLIENT_SECRET,
         "token": access_token
     }
