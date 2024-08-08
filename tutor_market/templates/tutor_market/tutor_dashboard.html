@@ -25,6 +25,12 @@
             Your Profile is incomplete. Please add your Calendly URL and connect your Calendly account if you haven't already.
             <hr>
             As long as your profile remains incomplete, it will not be displayed in student's search results.
+          <div>
+            <a href="{% url 'calendly_information' %}"
+               class="btn btn-outline-dark btn-sm mt-2">
+              <i class="fas fa-info-circle"></i> Where to find my Calendly information?
+            </a>
+          </div>
           </div>
         {% endif %}
         <table class="table">

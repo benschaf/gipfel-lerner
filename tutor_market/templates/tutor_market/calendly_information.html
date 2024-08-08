@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="container mt-5">
+                <a href="{% url 'dashboard' user.pk %}" class="btn btn-outline-secondary btn-small mb-5">
+                    <i class="fas fa-arrow-left"></i> Return to Dashboard
+                </a>
         <div class="row ">
             <div class="col-md-6 offset-md-3">
                 <h2 class="mb-4">How to Set Up Your Calendly</h2>
@@ -27,12 +30,22 @@
                     <div class="card-header">Step 4: Get Your Event URL</div>
                     <div class="card-body">
                         After creating your event, Calendly will provide you with a unique URL for your event. This URL can be shared with others to schedule the event. You can find this URL on the event details page.
+                        <p class="text-muted">If you already have your Event URL, you can add it now:</p>
+                        <a href="{% url 'edit_tutor' user.tutor.pk %}"
+                           class="btn btn-outline-light btn-sm"><i class="fas fa-pencil"></i> Add Calendly Event URL</a>
                     </div>
                 </div>
                 <div class="card mb-3">
                     <div class="card-header">Step 5: Connect Your Calendly Account</div>
                     <div class="card-body">
                         To integrate Calendly with your tutor dashboard, click on the "Connect Calendly" button on the dashboard page. Follow the instructions to authorize the connection between your tutor account and Calendly.
+                        <div>
+                            <p class="text-muted mt-3">If you have already set up your Calendly account, you can simply connect it now:</p>
+                            <a href="{% url 'connect_calendly' %}"
+                               class="btn btn-outline-light btn-sm">
+                                <i class="fas fa-link"></i> Connect Calendly
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <p>
