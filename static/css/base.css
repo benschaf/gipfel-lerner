@@ -259,6 +259,10 @@ h5>a {
     color: red;
 }
 
+.asteriskField {
+    color: red;
+}
+
 /* Google Sign in button */
 .gsi-material-button {
     -moz-user-select: none;
