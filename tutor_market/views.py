@@ -1,3 +1,4 @@
+from collections import OrderedDict
 import json
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -167,6 +168,8 @@ def tutor_detail_view(request, pk):
         percentage = (count / total_reviews * 100) if total_reviews > 0 else 0
 
         review_counts[score] = {'count': count, 'percentage': percentage}
+
+    review_counts = OrderedDict(reversed(list(review_counts.items())))
 
     context = {
         'tutor': tutor,
