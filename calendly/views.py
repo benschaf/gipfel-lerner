@@ -14,7 +14,10 @@ from tutor_market.models import Tutor
 
 def connect_calendly(request: HttpRequest) -> HttpResponse:
     client_id = settings.CALENDLY_DEV_CLIENT_ID
-    redirect_uri = 'http://localhost:8000/calendly/auth/'
+    if settings.DEVELOPMENT:
+        redirect_uri = 'http://localhost:8000/calendly/auth/'
+    else:
+        redirect_uri = 'https://gipfel-tutor-768a610dc54f.herokuapp.com/calendly/auth/'
 
     url = f'https://calendly.com/oauth/authorize?client_id={
         client_id}&redirect_uri={redirect_uri}&response_type=code'
