@@ -64,7 +64,7 @@
                 {% endif %}
               {% else %}
                 <p>
-                  <a href="{% url 'account_login' %}">Log in</a> to leave a review
+                  <a href="{% url 'account_login' %}?next={{ request.path }}">Log in</a> to leave a review
                 </p>
               {% endif %}
             </div>
@@ -99,6 +99,7 @@
             <div class="col mt-3">
               <h5>Select a date below to book a lesson with {{ tutor }}</h5>
               <p class="text-muted">See your tutors live avaliability - made possible by Calendly</p>
+
               {% if user.is_authenticated %}
                 <div id="calendly"></div>
                 <div class="d-none">
@@ -110,7 +111,7 @@
                   </form>
                 </div>
               {% else %}
-                <a href="{% url 'account_login' %}">Log in</a> to book a lesson
+                <a href="{% url 'account_login' %}?next={{ request.path }}">Log in</a> to book a lesson
               {% endif %}
             </div>
             {% if upcoming_sessions %}

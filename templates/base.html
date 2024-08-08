@@ -91,12 +91,12 @@
               {% else %}
                 <li class="nav-item">
                   <a class="nav-link {% if request.path == signup_url %}active{% endif %}"
-                     href="{% url 'account_signup' %}"
+                     href="{% url 'account_signup' %}?next={{ request.path }}"
                      aria-current="{% if request.path == signup_url %}page{% endif %}">Register</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link {% if request.path == login_url %}active{% endif %}"
-                     href="{% url 'account_login' %}"
+                     href="{% url 'account_login' %}?next={{ request.path }}"
                      aria-current="{% if request.path == login_url %}page{% endif %}">Login</a>
                 </li>
               {% endif %}
