@@ -104,9 +104,11 @@ ACCOUNT_SESSION_REMEMBER = True
 if DEVELOPMENT:
     CALENDLY_CLIENT_ID = os.environ.get("CALENDLY_DEV_CLIENT_ID", "")
     CALENDLY_CLIENT_SECRET = os.environ.get("CALENDLY_DEV_CLIENT_SECRET", "")
+    CALENDLY_REDIRECT_URI = "http://localhost:8000/calendly/auth/"
 else:
     CALENDLY_CLIENT_ID = os.environ.get("CALENDLY_PROD_CLIENT_ID", "")
     CALENDLY_CLIENT_SECRET = os.environ.get("CALENDLY_PROD_CLIENT_SECRET", "")
+    CALENDLY_REDIRECT_URI = "https://gipfel-tutor-768a610dc54f.herokuapp.com/calendly/auth/"
 
 
 if DEVELOPMENT:
