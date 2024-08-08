@@ -101,14 +101,15 @@ ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 ACCOUNT_SESSION_REMEMBER = True
 
-CALENDLY_CLIENT_ID = (
-    os.environ.get("CALENDLY_DEV_CLIENT_ID", "")
-    if DEVELOPMENT
-    else os.environ.get("CALENDLY_PROD_CLIENT_ID", "")
-)
-CALENDLY_DEV_CLIENT_SECRET = os.environ.get("CALENDLY_DEV_CLIENT_SECRET", "")
+if DEVELOPMENT:
+    CALENDLY_CLIENT_ID = os.environ.get("CALENDLY_DEV_CLIENT_ID", "")
+    CALENDLY_CLIENT_SECRET = os.environ.get("CALENDLY_DEV_CLIENT_SECRET", "")
+else:
+    CALENDLY_CLIENT_ID = os.environ.get("CALENDLY_PROD_CLIENT_ID", "")
+    CALENDLY_CLIENT_SECRET = os.environ.get("CALENDLY_PROD_CLIENT_SECRET", "")
 
-if "DEVELOPMENT" in os.environ:
+
+if DEVELOPMENT:
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
     DEFAULT_FROM_EMAIL = "gipfeltutor@example.com"
 else:

@@ -29,7 +29,7 @@ def connect_calendly(request: HttpRequest) -> HttpResponse:
 def get_base64_string() -> str:
     # -> Credit for base64 encodeing: https://www.geeksforgeeks.org/encoding-and-decoding-base64-strings-in-python/  # noqa
     client_id = settings.CALENDLY_DEV_CLIENT_ID
-    client_secret = settings.CALENDLY_DEV_CLIENT_SECRET
+    client_secret = settings.CALENDLY_CLIENT_SECRET
     basic_auth_string = f"{client_id}:{client_secret}"
     basic_auth_string_bytes = basic_auth_string.encode('ascii')
     base64_bytes = base64.b64encode(basic_auth_string_bytes)
@@ -86,7 +86,7 @@ def introspect_access_token(tutor) -> dict:
 
     payload = {
         "client_id": settings.CALENDLY_DEV_CLIENT_ID,
-        "client_secret": settings.CALENDLY_DEV_CLIENT_SECRET,
+        "client_secret": settings.CALENDLY_CLIENT_SECRET,
         "token": access_token
     }
     headers = {
