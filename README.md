@@ -38,6 +38,10 @@ Welcome to Gipfel Tutor, the pinnacle of personalized tutoring for Swiss student
 
 ## Marketing
 
+### Facebook Business Page
+[Facebook Business Page](https://www.facebook.com/profile.php?id=61563566265782)
+![Facebook Business Page](documentation/images/marketing-facebook.png)
+
 ## Design Thinking Process
 
 ### Empathize
