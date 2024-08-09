@@ -54,11 +54,14 @@ def _get_json_from_calendly_uri(uri, tutor, request):
     headers = {'Authorization': f'Bearer {calendly_access_token}'}
     response = requests.get(uri, headers=headers)
     if response.status_code == 200:
-        return response.json()
+        print(f"Response: {json.dumps(response.json(), indent=4)}")
+        return response
     else:
+        print(f"Response: {json.dumps(response.json(), indent=4)}")
         if request:
             messages.warning(request, f'An error occured while loading the event data. ${response}')
-        return None
+            print(f"Error: {response}")
+        return response
 
 
 def _write_calendly_data_to_db(event_data, invitee_data, tutor, student, request):
@@ -98,29 +101,40 @@ def _write_calendly_data_to_db(event_data, invitee_data, tutor, student, request
     return session
 
 @login_required
+@require_POST
 def fetch_calendly_data_view(request: HttpRequest, pk: int) -> HttpResponse:
     """
     View for fetching and displaying the tutor's Calendly data.
     """
-    if not request.method == 'POST':
-        return redirect('tutor_detail', pk=pk)
-
     tutor = get_object_or_404(Tutor, pk=pk)
     student = request.user
 
     form = CalendlyUriForm(request.POST)
-    if form.is_valid():
-        # get the uris
-        event_uri = form.cleaned_data['event_uri']
-        invitee_uri = form.cleaned_data['invitee_uri']
+    if not form.is_valid():
+        messages.warning(request, 'Invalid Calendly form data.')
+        return redirect('tutor_detail', pk=pk)
 
-        #get the data from the uris using the calendly api2
-        event_data = _get_json_from_calendly_uri(event_uri, tutor, request)
-        invitee_data = _get_json_from_calendly_uri(invitee_uri, tutor, request)
+    # get the uris
+    event_uri = form.cleaned_data['event_uri']
+    invitee_uri = form.cleaned_data['invitee_uri']
+    print(f"Event URI: {event_uri}")
+    print(f"Invitee URI: {invitee_uri}")
 
-        session = _write_calendly_data_to_db(event_data, invitee_data, tutor, student, request)
+    #get the data from the uris using the calendly api2
+    event_data_response = _get_json_from_calendly_uri(event_uri, tutor, request)
+    invitee_data_response = _get_json_from_calendly_uri(invitee_uri, tutor, request)
+
+    if event_data_response.status_code != 200 or invitee_data_response.status_code != 200:
+        messages.warning(request, 'Something went wrong while fetching the data from Calendly.')
+        return redirect('tutor_detail', pk=pk)
+
+    event_data = event_data_response.json()
+    invitee_data = invitee_data_response.json()
+
+    session = _write_calendly_data_to_db(event_data, invitee_data, tutor, student, request)
 
     return redirect('schedule_success', pk=session.pk)
+
 
 
 
