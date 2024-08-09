@@ -2,6 +2,7 @@
     --my-blue-green: #219EBC;
     --my-prussian-blue: #023047;
     --my-ut-oragne: #FB8500;
+    --my-font-serif: "Noto serif", Arial, serif;
 }
 
 body {
@@ -10,6 +11,10 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--my-font-serif);
 }
 
 main {
