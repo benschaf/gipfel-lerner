@@ -46,6 +46,10 @@ Welcome to Gipfel Tutor, the pinnacle of personalized tutoring for Swiss student
 
 source: [amiresponsive](https://ui.dev/amiresponsive?url=https://gipfel-tutor-768a610dc54f.herokuapp.com)
 
+## Top Technical Features
+1. **Credit Card Payments using Stripe**: Securely pay for lessons online.
+2. **Calendly API Integration**: Schedule lessons directly from the site.
+
 > [!NOTE]
 > **Our Mission**:
 >
@@ -148,6 +152,9 @@ Each user story is followed by a set of acceptance criteria that must be met for
 > [!IMPORTANT]
 > Make sure to also check out the [User Story Map](https://github.com/users/benschaf/projects/12/views/3) which was used extensively during the development process. It provides a more visual representation of the user stories and shows them **grouped by epics** along with their **priority** and **status**.
 
+<details>
+<summary>Click To expand User Stories</summary>
+
 ### Viewing and navigation
 
 | User Story | Acceptance Criteria |
@@ -210,26 +217,9 @@ Each user story is followed by a set of acceptance criteria that must be met for
 | As a **Site Owner**, I want to have a Facebook Business Page to promote the site and attract more users. (Compare LO5 in Code Institute Project Requirements) | 1. The Site Owner should have a Facebook Business Page to promote the site. |
 | As a **Site Owner**, I want to provide a Newsletter to keep site visitors informed about new features and updates. (Compare LO5 in Code Institute Project Requirements) | 1. The Site Owner should provide a Newsletter to keep site visitors informed. |
 | As a **Site Owner**, I want to have a documentation of the ecommerce business model. (Compare LO6 in Code Institute Project Requirements) | 1. The Site Owner should have documentation of the ecommerce business model. |
+</details>
 
 ## Wireframes
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 START OF NOTES (to be deleted)
-
-In this section, display your wireframe screenshots using a Markdown `table`.
-Instructions on how to do Markdown `tables` start on line #213 on this site: https://pandao.github.io/editor.md/en.html
-
-Alternatively, dropdowns are a way to condense several wireframes into a collapsible menu to save space.
-Dropdowns in Markdown are considered some of the only acceptable HTML components that are allowed for assessment purposes.
-
-⚠️ **IMPORTANT**! ⚠️ **IMPORTANT**! ⚠️ **IMPORTANT**! ⚠️
-The example below uses the `details` and `summary` code elements.
-However, for these scripts to work, I've had to add spaces within the `< >` elements.
-
-You MUST remove these spaces for it to work properly on your own README/TESTING files.
-Remove the spaces within the `< >` brackets for the `details` and `summary` code elements,
-for the Mobile, Tablet, and Desktop wireframes.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
 
 To follow best practice, wireframes were developed for mobile, tablet, and desktop sizes.
 I've used [draw.io](https://balsamiq.com/wireframes) to design my site wireframes.
@@ -238,6 +228,7 @@ View the [original draw.io file](https://drive.google.com/file/d/1OUjOdhZI-Dq6OR
 
 <details>
 <summary>Click to expand wireframes</summary>
+
 | Page | Mobile Wireframe | Tablet Wireframe | Desktop Wireframe |
 | --- | --- | --- | --- |
 | Landing Page | ![screenshot](documentation/wireframe-landing-mobile.png) | ![screenshot](documentation/wireframe-landing-tablet.png) | ![screenshot](documentation/wireframe-landing-desktop.png) |
@@ -251,8 +242,7 @@ View the [original draw.io file](https://drive.google.com/file/d/1OUjOdhZI-Dq6OR
 | FAQ | ![screenshot](documentation/wireframe-faq-mobile.png) | ![screenshot](documentation/wireframe-faq-tablet.png) | ![screenshot](documentation/wireframe-faq-desktop.png) |
 | About | ![screenshot](documentation/wireframe-about-mobile.png) | ![screenshot](documentation/wireframe-about-tablet.png) | ![screenshot](documentation/wireframe-about-desktop.png) |
 | Calendly Information | ![screenshot](documentation/wireframe-calendly-mobile.png) | ![screenshot](documentation/wireframe-calendly-tablet.png) | ![screenshot](documentation/wireframe-calendly-desktop.png) |
-</summary>
-
+</details>
 
 ## Features
 
@@ -271,38 +261,225 @@ IMPORTANT: Remember to always include a screenshot of each individual feature!
 
 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
 
-### Existing Features
 
-- **YOUR-TITLE-FOR-FEATURE-#1**
+### Inviting landing Page
 
-    - Details about this particular feature, including the value to the site, and benefit for the user. Be as detailed as possible!
+When first visiting the site, users are greeted with a clean, modern and inviting landing page. It includes a hero section with an image and a CTA Button. Further down the page, users will find an interactive section with a couple of different options to get started searching for a tutor.
 
-![screenshot](documentation/features/feature01.png)
+The interactive Section is designed using a bento box layout, which is a modern and engaging way to present information. It allows users to quickly get an overview of the site's features and benefits.
 
-- **YOUR-TITLE-FOR-FEATURE-#2**
+The landing page is designed to be simple and user-friendly, providing a quick overview of the site's purpose and functionality. It encourages users to explore the site further and get started with their waste management journey.
 
-    - Details about this particular feature, including the value to the site, and benefit for the user. Be as detailed as possible!
+![screenshot](documentation/feature-landing.png)
 
-![screenshot](documentation/features/feature02.png)
+⤴️ Screenshot of the landing page
 
-- **YOUR-TITLE-FOR-FEATURE-#3**
+![screenshot](documentation/feature-landing-bento.png)
 
-    - Details about this particular feature, including the value to the site, and benefit for the user. Be as detailed as possible!
+relevant project files: [index.html](core/templates/core/index.html)
 
-![screenshot](documentation/features/feature03.png)
+### Navigation Bar with the most important links
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 START OF NOTES (to be deleted)
+The navigation bar is fixed at the top of the page, ensuring easy access to the most important links. It includes the text-logo (which is a link to the homepage), a CTA Button-Link to the Tutor List, the  the dashboard and login/register. The Dashboard Link is hidden to logged out users and the login/register links are hidden to logged in users and will show them a logout link instead.
 
-Repeat as necessary for as many features as your site contains.
+The Navigation bar also shows an "Admin" link to users that are flagged as "Staff" in the Django Admin Panel.
 
-Hint: the more, the merrier!
+The navigation bar is designed to be simple and intuitive, providing quick access to the site's main features. It is responsive and collapses into a hamburger menu on smaller screens using the Bootstrap framework.
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
+![screenshot](documentation/feature-navbar.png)
+
+⤴️ Screenshot of the navigation bar
+
+Some custom Javascript code was used to change the navigation bar's opacity once scrolling down the page. This was done to make the hero section of the landing page cleaner and more focused.
+
+relevant project files: [base.html](templates/base.html), [index.js](core/static/core/js/index.js)
+
+### Footer with Site Links, Social Media Links and a Mailchimp Signup Form
+
+The footer includes Links to the Home, FAQs and About pages. It also includes links to the site's social media profiles (Facebook, Instagram, Github). Additionally, there is a Mailchimp Signup Form to allow users to subscribe to the site's newsletter.
+
+- Github link: Links to my github profile: [benschaf](https://github.com/benschaf)
+- Facebook link: Links to a custom made facebook page: [Gipfel Tutor](https://www.facebook.com/profile.php?id=61563566265782)
+- Instagram link: Links to the instagram main site: [Instagram](https://www.instagram.com/)
+
+The footer is designed to be simple and informative, providing users with quick access to important site links and social media profiles. It is responsive and collapses into a single column on smaller screens using the Bootstrap framework.
+
+![screenshot](documentation/feature-footer.png)
+
+⤴️ Screenshot of the footer
+
+relevant project files: [base.html](templates/base.html)
+
+### About Page
+
+The About page provides a brief overview of the site's purpose and the creator. The content of the About page can by dynamically changed by the site owner in the Django Admin Panel. For this, the Site owner Account needs to be added to the "Site Owner Admin" Authentication Group.
+
+The About page is designed to be informative, providing users with background information. It helps to establish trust and credibility with users, ensuring they feel comfortable using the site.
+
+![screenshot](documentation/feature-about.png)
+
+⤴️ Screenshot of the about page
+
+relevant project files: [about.html](core/templates/core/about.html)
+
+### FAQ Page
+
+The FAQ page provides answers to common questions users may have about the site. The content of the FAQ page can by dynamically changed by a Staff member in the Django Admin Panel. For this, the Staff Account needs to be added to the "Customer Service Admin" Authentication Group.
+
+The FAQ page is designed using bootstraps accordion component, which allows users to easily find the information they are looking for. It helps to reduce the number of support requests and ensures users have a positive experience on the site.
+
+![screenshot](documentation/feature-faq.png)
+
+⤴️ Screenshot of the FAQ page
+
+relevant project files: [faq.html](core/templates/core/faq.html)
+
+### Tutor List Page and Search Functionality
+
+The Tutor List page displays a list of all available tutors. Each tutor is displayed in a card format, showing their profile picture, name, hourly rate, and a brief description. The cards are designed to be visually appealing and informative, helping users quickly find a tutor that meets their needs. Most importantly the cards have a visible CTA Button to book a lesson with the tutor.
+
+At the top of the Tutor List page, users can filter tutors based on their subjects and teaching values - or they can search for a specific tutor by name, catch phrase or description using the search bar. Search results can be sorted using the simplified sorting options below the search box.
+
+The Tutor List page is designed to be user-friendly and interactive, providing users with the tools they need to find the perfect tutor. It helps users quickly narrow down their search and make an informed decision.
+
+![screenshot](documentation/feature-tutor-list.png)
+
+⤴️ Screenshot of the tutor list page
+
+relevant project files: [tutor_list.html](tutor_market/templates/tutor_market/tutor_list.html)
+
+### Tutor Detail Page
+
+The Tutor Detail page provides a detailed profile of a specific tutor. It includes the tutor's profile picture, name, hourly rate, description, teaching values, and ratings. Additionally, users can see the tutor's availability and book a lesson with them. Lastly the tutor's reviews are displayed at the bottom of the page.
+
+The Tutor Detail page is designed to be informative and engaging, providing users with all the information they need to make an informed decision. It helps users learn more about a tutor and decide if they are the right fit for their needs.
+
+![screenshot](documentation/feature-tutor-detail.png)
+
+⤴️ Screenshot of the tutor detail page
+
+relevant project files: [tutor_detail.html](tutor_market/templates/tutor_market/tutor_detail.html)
+
+
+### Tutor reviews
+
+The Tutor reviews are displayed on the tutor detail page. They include the student's name, the review text, and the star rating. Above the reviews, the average rating of the tutor is displayed including a bar chart that visualizes the distribution of the ratings.
+
+The reviews are designed to be informative and engaging, providing users with feedback from other students. They help users make an informed decision and build trust with the tutor.
+
+![screenshot](documentation/feature-tutor-reviews.png)
+
+⤴️ Screenshot of the tutor reviews
+
+relevant project files: [tutor_detail.html](tutor_market/templates/tutor_market/tutor_detail.html)
+
+### Calendly Scheduling Integration
+
+The Calendly Scheduling Integration allows users to schedule lessons with tutors directly from the Tutor Detail page. The Calendly widget is embedded on the page and displays the tutor's availability. Users can select a date and time that works for them and book a lesson with the tutor.
+
+The Calendly Scheduling Integration is implemented using the **Calendly API v2** and **OAuth2.0**. A tutor can connect their Calendly account to the site in their tutor dashboard. Once connected, the tutor's availability and the status of any lesson is **automatically synced with the site**, ensuring users can book and cancel lessons at their convenience. The calendly webhooks were not used, as they are a paid feature - therefore any changes to events on the calendly site are not automatically reflected on the site.
+
+Upon booking a lesson, the user receives a confirmation email from Calendly and is redirected to a success page on the site. The tutor also receives a notification email from Calendly and can manage the lesson in their Calendly dashboard.
+
+![screenshot](documentation/feature-calendly.png)
+
+⤴️ Screenshot of the Calendly Scheduling Integration
+
+![screenshot](documentation/feature-calendly-success.png)
+
+⤴️ Screenshot of the Calendly Success Page
+
+relevant project files: [tutor_detail.html](tutor_market/templates/tutor_market/tutor_detail.html), [tutor_detail.js](tutor_market/static/tutor_market/js/tutor_detail.js)
+
+All Calendly OAuth2.0 related code is stored in the [calendly](calendly) app and can be reused in other projects. The main functionality is handling the refresh token and the access token used by the Calendly API.
+
+### Payments with Stripe
+
+The Payments with Stripe feature allows users to pay for lessons online. Users can choose, when they want to pay for the lessons that they have booked. If they choose to go to the payment page either from their dashboard or from the tutor detail page, they will be redirected to the payment page. There they will see a list of all their upcoming lessons and the total amount they have to pay. They can then enter their credit card details and pay for the lessons. If they are signed in using their google account, they can also use the google pay feature.
+
+The Payments with Stripe feature is implemented using [Custom payment flow documented by Stripe](https://docs.stripe.com/payments/quickstart) and includes **webhook hadnling** to ensure the payment status is updated in the site's database.
+
+Once a users payment is successful, they are redirected to a success page on the site. The user does not yet receive a confirmation email from the site, but this feature is planned for a future update.
+
+![screenshot](documentation/feature-payment.png)
+
+⤴️ Screenshot of the Payments with Stripe feature
+
+![screenshot](documentation/feature-payment-success.png)
+
+⤴️ Screenshot of the Payment Success Page
+
+relevant project files: [payment.html](booking/templates/booking/payment.html), [payment.js](booking/static/booking/js/payment.js)
+
+### User Authentication with Allauth
+
+The User Authentication with Allauth feature allows users to create an account, log in, log out, reset their password and manage their account email. The feature is implemented using the **Django Allauth** package and includes **email verification** to ensure the security of user accounts. Additionally, the feature includes **social media login** using Google.
+
+The socical media login feature comes in very handy in combination with **Calendly** and **Stripe**. For Calendly it allows a more seamless integration of the scheduling feature for tutors and for Stripe it allows **Google Pay** to be used as a payment method.
+
+The Project is running Allauth Version: 0.63.3. This means that it is very convenient to adapt the templates which are heavily reliant on django template tags. Basically all Styling could be achieved by only changing one template file:
+
+[templates/account/allauth/base.html](templates/allauth/layouts/base.html)
+```python
+{% extends 'base.html' %}
+{% block page_header %}
+  {{ block.super }}
+  <div class="container navbar-margin mb-5">
+    <div class="row justify-content-center mt-3">
+      <div class="col col-lg-5">
+        <div class="card mt-2 auth-card">
+          <div class="card-body p-5">
+          {% endblock page_header %}
+          {% block post_content %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock post_content %}
+
+```
+All other templates are extending this base.html file and only need to adapt their content block tag to add their form or content to the card above.
+
+The google login Button was styled using the [Google Sign-In Branding Guidelines](https://developers.google.com/identity/branding-guidelines)
+
+![screenshot](documentation/feature-auth.png)
+
+⤴️ Screenshot of the User Authentication with Allauth feature
+
+![screenshot](documentation/feature-auth-google.png)
+
+⤴️ Screenshot of the Google Login Button
+
+The Django Allauth package provides more templates that are not all documented here, but they are working on the site.
+
+relevant project files: [base.html](templates/base.html), [login.html](templates/account/login.html), [signup.html](templates/account/signup.html), [password_reset.html](templates/account/password_reset.html), [email.html](templates/account/email.html), [allauth/base.html](templates/allauth/layouts/base.html)
+
+### User Dashboard
+
+### Tutor Dashboard
+
+### Admin Panel
+
+### SEO Techniques
+
+### Facebook Business Page
+
+### Newsletter
+
+### Ecommerce Business Model Documentation
+
+### Django messages
+
+### Responsive Design
+
+
 
 ### Future Features
 
 - Feedback on singular lessons
 - Chat system for students and tutors
+- Stripe confirmation emails
 
 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 START OF NOTES (to be deleted)
 
