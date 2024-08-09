@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="container mt-5">
-                <a href="{% url 'dashboard' user.pk %}" class="btn btn-outline-secondary btn-small mb-5">
-                    <i class="fas fa-arrow-left"></i> Return to Dashboard
-                </a>
+        <a href="{% url 'dashboard' user.pk %}"
+           class="btn btn-outline-secondary btn-small mb-5">
+            <i class="fas fa-arrow-left"></i> Return to Dashboard
+        </a>
         <div class="row ">
             <div class="col-md-6 offset-md-3">
                 <h2 class="mb-4">How to Set Up Your Calendly</h2>
@@ -13,7 +14,7 @@
                 <div class="card mb-3">
                     <div class="card-header">Step 1: Register for a Calendly Account</div>
                     <div class="card-body">
-                        Go to the <a href="https://calendly.com" target="_blank">Calendly website</a> and click on "Sign Up" to create a new account. Fill in the required information and follow the prompts to complete the registration process.
+                        Go to the <a href="https://calendly.com" target="_blank" rel="noopener noreferrer">Calendly website</a> and click on "Sign Up" to create a new account. Fill in the required information and follow the prompts to complete the registration process.
                     </div>
                 </div>
                 <div class="card mb-3">
@@ -49,7 +50,9 @@
                     </div>
                 </div>
                 <p>
-                    For more detailed instructions and additional settings, please refer to the <a href="https://help.calendly.com/hc/en-us">Calendly Help Center</a>.
+                    For more detailed instructions and additional settings, please refer to the <a href="https://help.calendly.com/hc/en-us"
+    target="_blank"
+    rel="noopener noreferrer">Calendly Help Center</a>.
                 </p>
             </div>
         </div>
