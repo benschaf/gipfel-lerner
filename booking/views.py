@@ -262,6 +262,7 @@ def payment_view(request, pk):
     total_price = round(sum([session.price for session in sessions_to_pay]))
     total_price_in_cents = total_price * 100
 
+    # -> Credit for Stripe integration: https://stripe.com/docs/payments/accept-a-payment
     STRIPE_PUBLIC_KEY = settings.STRIPE_PUBLIC_KEY
     stripe.api_key = settings.STRIPE_SECRET_KEY
     intent = stripe.PaymentIntent.create(
@@ -302,10 +303,11 @@ class PaymentCreateView(LoginRequiredMixin, CreateView):
 
         response = super().form_valid(form)
 
-        # update the sessions after the payment model is created
+        # populate the payment model with the paid for sessions
         session_ids = form.cleaned_data['sessions'].split(',')
         sessions_to_pay = TutoringSession.objects.filter(pk__in=session_ids)
 
+        # update the sessions after the payment model is created
         for session in sessions_to_pay:
             session.payment_complete = True
             session.payment = self.object

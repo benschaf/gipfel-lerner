@@ -4,6 +4,7 @@ from django.contrib import auth
 
 from booking.models import Payment, TutoringSession
 
+# -> Credit for the webhook handler class goes to Code Institute Tutorials: https://github.com/Code-Institute-Solutions/Boutique-Ado/tree/master
 
 class StripeWH_Handler:
     """Handle Stripe webhooks"""
