@@ -32,7 +32,7 @@
         <ul class="list-group mt-3">
           {% for session in sessions %}
             <li class="list-group-item">
-              Lesson with {{ session.tutor.display_name }} on {{ session.start_time|date:'d M Y' }} at {{ session.start_time|date:'H:i' }}. Amount: €{{ session.price }}
+              Lesson with {{ session.tutor.display_name }} on {{ session.start_time|date:'d M Y' }} at {{ session.start_time|date:'H:i' }} (UTC). Amount: €{{ session.price }}
             </li>
           {% endfor %}
         </ul>

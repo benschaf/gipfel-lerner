@@ -21,7 +21,7 @@
             <tbody>
               {% for session in sessions %}
                 <tr>
-                  <td>{{ session.start_time }}</td>
+                  <td>{{ session.start_time }} (UTC)</td>
                   <td>{{ session.tutor }}</td>
                   <td>{{ session.subject.name }}</td>
                   <td>{{ session.session_name }}</td>

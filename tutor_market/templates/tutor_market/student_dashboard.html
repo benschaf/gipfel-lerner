@@ -105,7 +105,7 @@
                       {% for session in payment.sessions.all %}
                         <li>
                           {{ session.tutor.display_name }}
-                          on {{ session.start_time|date:'D, d M Y H:i' }}
+                          on {{ session.start_time|date:'D, d M Y H:i' }} (UTC)
                         </li>
                       {% endfor %}
                     </ul>
