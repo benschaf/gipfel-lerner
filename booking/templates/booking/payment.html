@@ -6,41 +6,43 @@
     <div class="row row-gap-5 mt-5">
       <div class="col">
         <span class="text-muted">The following Lessons are scheduled for payment:</span>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Start Time</th>
-              <th>Tutor</th>
-              <th>Subject</th>
-              <th>Event Name</th>
-              <th>Status</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for session in sessions %}
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
               <tr>
-                <td>{{ session.start_time }}</td>
-                <td>{{ session.tutor }}</td>
-                <td>{{ session.subject.name }}</td>
-                <td>{{ session.session_name }}</td>
-                <td>{{ session.session_status }}</td>
-                <td>{{ session.price }} EUR</td>
+                <th>Start Time</th>
+                <th>Tutor</th>
+                <th>Subject</th>
+                <th>Event Name</th>
+                <th>Status</th>
+                <th>Price</th>
               </tr>
-            {% endfor %}
-          </tbody>
-          <tfoot>
-            <tr>
-              <td>
-                <strong>Total Balance</strong>
-              </td>
-              <td colspan="4"></td>
-              <td>
-                <strong>{{ total_price }} EUR</strong>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
+            </thead>
+            <tbody>
+              {% for session in sessions %}
+                <tr>
+                  <td>{{ session.start_time }}</td>
+                  <td>{{ session.tutor }}</td>
+                  <td>{{ session.subject.name }}</td>
+                  <td>{{ session.session_name }}</td>
+                  <td>{{ session.session_status }}</td>
+                  <td>{{ session.price }} EUR</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>
+                  <strong>Total Balance</strong>
+                </td>
+                <td colspan="4"></td>
+                <td>
+                  <strong>{{ total_price }} EUR</strong>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
       </div>
       <div class="col-12 col-lg-4">
         <h5>
