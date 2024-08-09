@@ -81,6 +81,7 @@ I've used CSS `:root` variables to easily update the global colour scheme by cha
     --my-blue-green: #219EBC;
     --my-prussian-blue: #023047;
     --my-ut-oragne: #FB8500;
+    --my-font-serif: "Noto serif", Arial, serif;
 }
 ```
 
@@ -132,25 +133,20 @@ Additionally I've adapted the bootstrap variables to match the colour scheme. Th
 
 ### Typography
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑START OF NOTES (to be deleted)
 
-Explain any fonts and icon libraries used, like Google Fonts and/or Font Awesome.
-
-Consider adding a link to each font used, and the Font Awesome site if used (or similar icon library).
-
-Example:
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
-- [Montserrat](https://fonts.google.com/specimen/Montserrat) was used for the primary headers and titles.
-
-- [Lato](https://fonts.google.com/specimen/Lato) was used for all other secondary text.
-
-- [Font Awesome](https://fontawesome.com) icons were used throughout the site, such as the social media icons in the footer.
+- [Noto Sans](https://fonts.google.com/specimen/Noto+Sans) was used for body text to ensure readability, accessibility, and familiarity.
+- [Noto Serif](https://fonts.google.com/specimen/Noto+Serif) was used for titles and headings to provide a contrast with the sans-serif body text.
+- [Font Awesome](https://fontawesome.com) was used for all icons on the site, providing a consistent and professional look.
 
 ## User Stories
 
-The user stories are based on the user personas and the features of the app. They are written from the perspective of the user and describe the actions they can take on the site.
+The user stories are based on the user personas (To be found at the bottom of the document under **Design Thinking Process**) and the features of the app. They are written from the perspective of the user and describe the actions they can take on the site.
+
+Each user story is followed by a set of acceptance criteria that must be met for the story to be considered complete.
+
+
+> [!IMPORTANT]
+> Make sure to also check out the [User Story Map](https://github.com/users/benschaf/projects/12/views/3) which was used extensively during the development process. It provides a more visual representation of the user stories and shows them **grouped by epics** along with their **priority** and **status**.
 
 ### Viewing and navigation
 
@@ -236,73 +232,27 @@ for the Mobile, Tablet, and Desktop wireframes.
 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
 
 To follow best practice, wireframes were developed for mobile, tablet, and desktop sizes.
-I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wireframes.
+I've used [draw.io](https://balsamiq.com/wireframes) to design my site wireframes.
 
-### Mobile Wireframes
+View the [original draw.io file](https://drive.google.com/file/d/1OUjOdhZI-Dq6OR5pPkPgPQIQ4jyU9k51/view?usp=sharing) of the wireframes. (click on the "Open with" button and select "draw.io")
 
-< details >
-< summary > Click here to see the Mobile Wireframes < / summary >
+<details>
+<summary>Click to expand wireframes</summary>
+| Page | Mobile Wireframe | Tablet Wireframe | Desktop Wireframe |
+| --- | --- | --- | --- |
+| Landing Page | ![screenshot](documentation/wireframe-landing-mobile.png) | ![screenshot](documentation/wireframe-landing-tablet.png) | ![screenshot](documentation/wireframe-landing-desktop.png) |
+| Tutor List | ![screenshot](documentation/wireframe-list-mobile.png) | ![screenshot](documentation/wireframe-list-tablet.png) | ![screenshot](documentation/wireframe-list-desktop.png) |
+| Tutor Detail | ![screenshot](documentation/wireframe-detail-mobile.png) | ![screenshot](documentation/wireframe-detail-tablet.png) | ![screenshot](documentation/wireframe-detail-desktop.png) |
+| Schedule / Payment Success | ![screenshot](documentation/wireframe-schedule-mobile.png) | ![screenshot](documentation/wireframe-schedule-tablet.png) | ![screenshot](documentation/wireframe-schedule-desktop.png) |
+| Payment (Checkout) | ![screenshot](documentation/wireframe-payment-mobile.png) | ![screenshot](documentation/wireframe-payment-tablet.png) | ![screenshot](documentation/wireframe-payment-desktop.png) |
+| Student Dashboard | ![screenshot](documentation/wireframe-student-dashboard-mobile.png) | ![screenshot](documentation/wireframe-student-dashboard-tablet.png) | ![screenshot](documentation/wireframe-student-dashboard-desktop.png) |
+| Tutor Dashboard | ![screenshot](documentation/wireframe-tutor-dashboard-mobile.png) | ![screenshot](documentation/wireframe-tutor-dashboard-tablet.png) | ![screenshot](documentation/wireframe-tutor-dashboard-desktop.png) |
+| Single Forms (Allauth forms / Tutor Profile forms) | ![screenshot](documentation/wireframe-forms-mobile.png) | ![screenshot](documentation/wireframe-forms-tablet.png) | ![screenshot](documentation/wireframe-forms-desktop.png) |
+| FAQ | ![screenshot](documentation/wireframe-faq-mobile.png) | ![screenshot](documentation/wireframe-faq-tablet.png) | ![screenshot](documentation/wireframe-faq-desktop.png) |
+| About | ![screenshot](documentation/wireframe-about-mobile.png) | ![screenshot](documentation/wireframe-about-tablet.png) | ![screenshot](documentation/wireframe-about-desktop.png) |
+| Calendly Information | ![screenshot](documentation/wireframe-calendly-mobile.png) | ![screenshot](documentation/wireframe-calendly-tablet.png) | ![screenshot](documentation/wireframe-calendly-desktop.png) |
+</summary>
 
-Home
-  - ![screenshot](documentation/wireframes/mobile-home.png)
-
-About
-  - ![screenshot](documentation/wireframes/mobile-about.png)
-
-Contact
-  - ![screenshot](documentation/wireframes/mobile-contact.png)
-
-Gallery
-  - ![screenshot](documentation/wireframes/mobile-gallery.png)
-
-etc.
-  - repeat for any remaining mobile wireframes
-
-< / details >
-
-### Tablet Wireframes
-
-< details >
-< summary > Click here to see the Tablet Wireframes < / summary >
-
-Home
-  - ![screenshot](documentation/wireframes/tablet-home.png)
-
-About
-  - ![screenshot](documentation/wireframes/tablet-about.png)
-
-Contact
-  - ![screenshot](documentation/wireframes/tablet-contact.png)
-
-Gallery
-  - ![screenshot](documentation/wireframes/tablet-gallery.png)
-
-etc.
-  - repeat for any remaining tablet wireframes
-
-< / details >
-
-### Desktop Wireframes
-
-< details >
-< summary > Click here to see the Desktop Wireframes < / summary >
-
-Home
-  - ![screenshot](documentation/wireframes/desktop-home.png)
-
-About
-  - ![screenshot](documentation/wireframes/desktop-about.png)
-
-Contact
-  - ![screenshot](documentation/wireframes/desktop-contact.png)
-
-Gallery
-  - ![screenshot](documentation/wireframes/desktop-gallery.png)
-
-etc.
-  - repeat for any remaining desktop wireframes
-
-< / details >
 
 ## Features
 
@@ -1231,18 +1181,6 @@ In order to have easier access to my colour scheme within my code i used CSS `:r
 - [Font Awesome](https://fontawesome.com) icons were used throughout the site, such as the social media icons in the footer.
 
 ## Wireframes
-To follow best practice, wireframes were developed for mobile, tablet, and desktop sizes.
-I've used [draw.io](https://balsamiq.com/wireframes) to design my site wireframes.
-
-View the [original draw.io file](https://drive.google.com/file/d/1KmW3ppV6V6eGe11EsY1J0-Z69dtKagAU/view?usp=sharing) of the wireframes. (click on the "Open with" button and select "draw.io")
-
-| Page | Mobile Wireframe | Tablet Wireframe | Desktop Wireframe |
-| --- | --- | --- | --- |
-| Landing Page | ![screenshot](documentation/wireframe-landing-mobile.png) | ![screenshot](documentation/wireframe-landing-tablet.png) | ![screenshot](documentation/wireframe-landing-desktop.png) |
-| Schedule List | ![screenshot](documentation/wireframe-list-mobile.png) | ![screenshot](documentation/wireframe-list-tablet.png) | ![screenshot](documentation/wireframe-list-desktop.png) |
-| Schedule Detail and Editor | ![screenshot](documentation/wireframe-detail-mobile.png) | ![screenshot](documentation/wireframe-detail-tablet.png) | ![screenshot](documentation/wireframe-detail-desktop.png) |
-| Dashboard | ![screenshot](documentation/wireframe-dashboard-mobile.png) | ![screenshot](documentation/wireframe-dashboard-tablet.png) | ![screenshot](documentation/wireframe-dashboard-desktop.png) |
-| Schedule Builder | ![screenshot](documentation/wireframe-builder-mobile.png) | ![screenshot](documentation/wireframe-builder-tablet.png) | ![screenshot](documentation/wireframe-builder-desktop.png) |
 
 ## User Stories
 
