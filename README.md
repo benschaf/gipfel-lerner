@@ -567,25 +567,18 @@ relevant project files: All template files.
 
 ### Future Features
 
+Many features were planned for the site but could not be implemented due to time constraints. Some of the planned features include:
+
 - Feedback on singular lessons
+    - After a lesson, the student should be able to give feedback on the lesson. This feedback should be visible to the tutor and the student in their dashboards. At the moment, any logged-in user exvept from the tutur himself can post feedback on a tutor.
 - Chat system for students and tutors
+    - A chat system should be implemented to allow students and tutors to communicate directly on the site. This would make it easier to set up and organize lessons between students and tutors. At the moment, tutors and students can only communicate via email.
 - Stripe confirmation emails
+    - After a successful payment, the user should receive a confirmation email. This would provide users with a receipt and ensure they have a record of their payment. At the moment, the user is only redirected to a success page on the site.
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 START OF NOTES (to be deleted)
+> [!NOTE]
+> Make sure to have a look at the [User Story Map](https://github.com/users/benschaf/projects/12/views/3) to see smaller additions and quality of life improvements that are planned for the site.
 
-Do you have additional ideas that you'd like to include on your project in the future?
-Fantastic! List them here!
-It's always great to have plans for future improvements!
-Consider adding any helpful links or notes to help remind you in the future, if you revisit the project in a couple years.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
-- YOUR-TITLE-FOR-FUTURE-FEATURE-#1
-    - Any additional notes about this feature.
-- YOUR-TITLE-FOR-FUTURE-FEATURE-#2
-    - Any additional notes about this feature.
-- YOUR-TITLE-FOR-FUTURE-FEATURE-#3
-    - Any additional notes about this feature.
 
 ## Tools & Technologies Used
 
