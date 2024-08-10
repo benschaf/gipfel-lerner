@@ -424,6 +424,8 @@ The Project is running Allauth Version: 0.63.3. This means that it is very conve
 {% extends 'base.html' %}
 {% block page_header %}
   {{ block.super }}
+  # Wrapping the block Content in a card by adding the wrapping
+  # divs to the page_header and post_content blocks
   <div class="container navbar-margin mb-5">
     <div class="row justify-content-center mt-3">
       <div class="col col-lg-5">
@@ -457,7 +459,56 @@ relevant project files: [base.html](templates/base.html), [login.html](templates
 
 ### User Dashboard
 
+The user Dashboard provides users with an overview of their account. It includes a list of upcoming lessons, booking history, and payment history. Additionally, users can manage their account email and password. Unpaid lessons are displayed with an additional "Pay Now" Button. Lessons can also be canceled from the dashboard. Lastly, the dashboard includes a button that lets the user sign up as a tutor.
+
+The user Dashboard is designed to be informative and user-friendly, providing users with all the information they need to manage their account. It helps users keep track of their lessons and payments and ensures they have a positive experience on the site.
+
+![screenshot](documentation/feature-user-dashboard.png)
+
+⤴️ Screenshot of the User Dashboard
+
+relevant project files: [student_dashboard.html](tutor_market/templates/tutor_market/student_dashboard.html)
+
 ### Tutor Dashboard
+
+The Tutor Dashboard provides tutors with an overview of their account. It includes a list of upcoming lessons, lessons that are waiting for confirmation, and an overview over all their students and upcoming lessons with them. Additionally, tutors can manage their account email, password and tutor profile. On the tutor dashboard, tutors can also connect their Calendly account to the site. At the bottom they have the option to delete their tutor profile.
+
+If a tutor hasn't provided all necessary information to be displayed on the site yet - especially their calendly account, they will see a warning message at the top of the page informing them that their account will not be displayed on the site until they have provided the necessary information.
+
+The Tutor Dashboard is designed to be informative and user-friendly, providing tutors with all the information they need to manage their account. It helps tutors keep track of their lessons and students and ensures they have a positive experience on the site.
+
+![screenshot](documentation/feature-tutor-dashboard.png)
+
+⤴️ Screenshot of the Tutor Dashboard
+
+![screenshot](documentation/feature-tutor-calendly-connect.png)
+
+⤴️ Screenshot of the Connect Calendly process
+
+relevant project files: [tutor_dashboard.html](tutor_market/templates/tutor_market/tutor_dashboard.html)
+
+### Tutor Card and Lesson list item include blocks
+
+The Tutor Card and the Lesson list item are used on the Tutor List page, the Tutor Detail page and the Tutor Dashboard. They are designed to be visually appealing and informative, providing users with all the information they need to make an informed decision. They are accessed in the django templates using the include tag. Using the with keyword, the context of the include block can be changed to display different information depending on the session user and the context on the page.
+
+The lesson list item is used to display a single lesson as an item of a list and is used in the Tutor Detail view and the Student and Tutor Dashboards. It can be accessed using the include tag in the django templates as well and has similar customization options using the with keyword.
+
+Example call to the tutor card include block:
+
+file: [tutor_dashboard.html](tutor_market/templates/tutor_market/tutor_dashboard.html)
+```html
+{% include "tutor_market/includes/tutor_card.html" with page="tutor_detail" %}
+```
+
+![screenshot](documentation/feature-tutor-card.png)
+
+⤴️ Screenshot of the Tutor Card
+
+![screenshot](documentation/feature-lesson-list-item.png)
+
+⤴️ Screenshot of the Lesson List Item
+
+relevant project files: [tutor_card.html](tutor_market/templates/tutor_market/includes/tutor_card.html), [lesson_list_item.html](tutor_market/templates/tutor_market/includes/lesson_list_item.html)
 
 ### Admin Panel
 
