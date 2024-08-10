@@ -616,56 +616,67 @@ Many features were planned for the site but could not be implemented due to time
 - [![Markdown Link Check](https://img.shields.io/badge/Markdown_Link_Check-grey?logo=markdown&logoColor=000000)](https://github.com/tcort/markdown-link-check) used to check for broken links in the documentation files.
 
 ## User Journey Flowchart
+
+Below is a flowchart that outlines the user journey on the site. It shows the different paths a user can take and the actions they can perform. One focus of the site is to provide as much access to users that aren't logged in yet as possible. This is why the user can search for tutors, view tutor profiles without being logged in. The only need to login once they want to book a lesson.
+
 [flowchart link](https://drive.google.com/file/d/1k-WFUWeaEafaomXcuk4rCSmGXS4WIFbf/view?usp=sharing)
+
+![flowchart](documentation/flowchart-gipfel-tutor.png)
+
+⤴️ Flowchart of the User Journey
 
 ## Database Design
 
-Entity Relationship Diagrams (ERD) help to visualize database architecture before creating models.
-Understanding the relationships between different tables can save time later in the project.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 START OF NOTES (to be deleted)
-
-Using your defined models (one example below), create an ERD with the relationships identified.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
-```python
-class Product(models.Model):
-    category = models.ForeignKey(
-        "Category", null=True, blank=True, on_delete=models.SET_NULL)
-    sku = models.CharField(max_length=254, null=True, blank=True)
-    name = models.CharField(max_length=254)
-    description = models.TextField()
-    has_sizes = models.BooleanField(default=False, null=True, blank=True)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-    rating = models.DecimalField(
-        max_digits=6, decimal_places=2, null=True, blank=True)
-    image_url = models.URLField(max_length=1024, null=True, blank=True)
-    image = models.ImageField(null=True, blank=True)
-
-    def __str__(self):
-        return self.name
-```
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 START OF NOTES (to be deleted)
-
-A couple recommendations for building free ERDs:
-- [Draw.io](https://draw.io)
-- [Lucidchart](https://www.lucidchart.com/pages/ER-diagram-symbols-and-meaning)
-
-A more comprehensive ERD can be auto-generated once you're
-at the end of your development stages, just before you submit.
-Follow the steps below to obtain a thorough ERD that you can include.
-Feel free to leave the steps in the README for future use to yourself.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
+A relational database was used for this project. The database schema was designed using [dbdiagram.io](https://dbdiagram.io) before development began. The schema was then implemented using Django's built-in ORM. Throughout the development process, the schema was adjusted and updated as needed. The initial and the final version of the schema can be found below.
 
 ### Initial ERD
+At the core of the Database is the `Tutor`model which represents a tutor and saves all the information about them. The `Tutor` model has relationships to `students` via the `TutoringSession` model which represents a single lesson. Payments are linked to a groupf of `TutoringSessions` and are represented by the `Payment` model. Further models and relationships can be seen in the ERD below.
 
 [dbdiagram link](https://dbdiagram.io/d/ERD_tutor_service-667c0ec99939893dae536ebe)
 
-### Final ERD
+![screenshot](documentation/erd-initial.png)
 
+⤴️ the initial ERD
+
+Below is the ORM code that was used for the `Tutor` model:
+
+file: [models.py](tutor_market/models.py)
+```python
+class Tutor(models.Model):
+    user = models.OneToOneField('auth.User', on_delete=models.CASCADE, related_name='tutor')
+    display_name = models.CharField(max_length=200)
+    subjects = models.ManyToManyField('Subject', related_name='tutors')
+    # -> Credit for decimal fields: https://docs.djangoproject.com/en/5.0/ref/models/fields/#decimalfield  # noqa
+    hourly_rate = models.DecimalField(max_digits=6, decimal_places=2)
+    catch_phrase = models.CharField(max_length=200, default='Tutoring with a smile!')
+    description = models.TextField()
+    profile_image = models.ImageField(upload_to='tutor_images', null=True, blank=True)
+    values = models.ManyToManyField('Value', related_name='tutors')
+    iban = models.CharField(max_length=34, null=True, blank=True)
+    calendly_event_url = models.URLField(null=True, blank=True)
+    calendly_personal_token = models.CharField(max_length=600, null=True, blank=True)
+
+    calendly_access_token = models.CharField(max_length=600, null=True, blank=True)
+    calendly_refresh_token = models.CharField(max_length=600, null=True, blank=True)
+    calendly_token_expires_at = models.DateTimeField(null=True, blank=True)
+
+    profile_status = models.BooleanField(default=False)
+
+    def average_rating(self):
+        """
+        Returns the average rating of the tutor from all related Rating
+        objects.
+        """
+        return Rating.objects.filter(tutor=self).aggregate(Avg('score'))
+
+    def __str__(self):
+        return self.display_name
+
+    class Meta:
+        ordering = ['display_name']
+```
+
+### Final ERD
 I have used `pygraphviz` and `django-extensions` to auto-generate an ERD.
 
 The steps taken were as follows:
@@ -681,14 +692,17 @@ INSTALLED_APPS = [
     ...
 ]
 ```
-- back in the terminal: `python3 manage.py graph_models -a -o erd.png`
-- dragged the new `erd.png` file into my `documentation/` folder
+- back in the terminal: `python3 manage.py graph_models -a -o documentation/erd_final.png`
 - removed `'django_extensions',` from my `INSTALLED_APPS`
 - finally, in the terminal: `pip3 uninstall django-extensions pygraphviz -y`
 
-![erd](documentation/erd.png)
-source: [medium.com](https://medium.com/@yathomasi1/1-using-django-extensions-to-visualize-the-database-diagram-in-django-application-c5fa7e710e16)
+Note that the `Student` model was dropped in the final version of the site. The `User` model is used instead to represent students.
 
+![erd](documentation/erd.png)
+
+⤴️ the final ERD
+
+source for django ERD generation: [medium.com](https://medium.com/@yathomasi1/1-using-django-extensions-to-visualize-the-database-diagram-in-django-application-c5fa7e710e16)
 
 ## Agile Development Process
 
@@ -1727,43 +1741,6 @@ These are my three favorite ideas for future features:
 - [![rrule.js](https://img.shields.io/badge/rrule.js-grey?logo=rrule&logoColor=000000)](https://www.npmjs.com/package/rrule?activeTab=readmes) used to generate recurring events in the schedule builder and extend the FullCalendar library.
 
 ## Database Design
-A relational database was used for this project. The database schema was designed using [dbdiagram.io](https://dbdiagram.io) before development began. The schema was then implemented using Django's built-in ORM. Throughout the development process, the schema was adjusted and updated as needed. The initial and the final version of the schema can be found below.
-
-### Initial ERD
-At the core of the database design is the `Schedule` model. This model represents a waste collection schedule and includes fields for the schedule title, description, and image. On the left side of the ERD view below are models that allow users to like, comment on, and subscribe to schedules. On the right side are models that handle individual collection events. They mostly adhere to the [RRule standard](https://github.com/jkbrzt/rrule), which allows for complex recurring events to be defined.
-
-![screenshot](documentation/erd-initial.png)
-
-⤴️ the initial ERD
-
-Link to the [initial ERD](https://dbdiagram.io/e/66178e7003593b6b61bbb163/6618fa1203593b6b61d512e4)
-
-### Final ERD
-I have used `pygraphviz` and `django-extensions` to auto-generate an ERD.
-
-The steps taken were as follows:
-- In the terminal: `sudo apt update`
-- then: `sudo apt-get install python3-dev graphviz libgraphviz-dev pkg-config`
-- then type `Y` to proceed
-- then: `pip3 install django-extensions pygraphviz`
-- in my `settings.py` file, I added the following to my `INSTALLED_APPS`:
-```python
-INSTALLED_APPS = [
-    ...
-    'django_extensions',
-    ...
-]
-```
-- back in the terminal: `python3 manage.py graph_models -a -o erd.png`
-- dragged the new `erd.png` file into my `documentation/` folder
-- removed `'django_extensions',` from my `INSTALLED_APPS`
-- finally, in the terminal: `pip3 uninstall django-extensions pygraphviz -y`
-
-![erd](documentation/erd.png)
-
-⤴️ the final ERD
-
-source for django ERD generation: [medium.com](https://medium.com/@yathomasi1/1-using-django-extensions-to-visualize-the-database-diagram-in-django-application-c5fa7e710e16)
 
 **Note about migration files:** While debugging the project, migration files were deleted and recreated which results in the `migrations` folders only containing one migration file each. The migration history can be recreated in older versions of the github repository. Thanks for John from the tutor team for the help with debugging my migrations! (see [commit ea26c6f](https://github.com/benschaf/waste-schedule/commit/ea26c6f6037916747e75c8918a234437f2f3ae20))
 
