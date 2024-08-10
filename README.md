@@ -506,23 +506,62 @@ file: [tutor_dashboard.html](tutor_market/templates/tutor_market/tutor_dashboard
 
 ![screenshot](documentation/feature-lesson-list-item.png)
 
-⤴️ Screenshot of the Lesson List Item
+⤴️ Screenshot of a Lesson List
 
 relevant project files: [tutor_card.html](tutor_market/templates/tutor_market/includes/tutor_card.html), [lesson_list_item.html](tutor_market/templates/tutor_market/includes/lesson_list_item.html)
 
 ### Admin Panel
 
+The Django Admin Panel is used to manage the site's content and users. It provides an easy-to-use interface for site owners and staff members. Logged in users of the site can be flagged as "Staff" and added to a specific Authentication Group to access the Admin Panel with permissions appropriate to their role. The following Groups are avaliable in the Admin Panel:
+
+- **Site Owner Admin**: Has full CRUD access to the FAQ and About pages.
+- **Customer Service Admin**: Can view and delete users email addresses. Can view users and Authentication Groups. Full CRUD access to payments and tutoring sessions. Can view and delete ratings. Can view and add subjects. Can change, delete and view tutors.
+
+These Permissions should allow staff members to manage the site effectively, provide customer support, and ensure the security of user accounts.
+
+![screenshot](documentation/feature-admin-panel.png)
+
+⤴️ Screenshot of the Admin Panel
+
+relevant project files: [allauth_groups_fixture.json](fixtures/allauth_groups_fixture.json)
+
 ### SEO Techniques
 
-### Facebook Business Page
+### Mailchimp Newsletter form
 
-### Newsletter
+In the footer of the site, users can subscribe to the site's newsletter using the Mailchimp Newsletter form. The form is designed to be simple and user-friendly, providing users with an easy way to stay informed about new features and updates. The form is implemented using a generated template from the Mailchimp website. The design is adapted to fit the site's color scheme and branding but still sticks out as a Mailchimp form, sticking to the Mailchimp Branding Guidelines.
 
-### Ecommerce Business Model Documentation
+Mailchimp provides security and validation features out of the box.
+
+Emails are collected using the site owners Mailchimp account. Momentarily, no emails are sent out to the subscribers, but this feature is planned for a future update.
+
+![screenshot](documentation/feature-newsletter.png)
+
+⤴️ Screenshot of the Mailchimp Newsletter form
+
+relevant project files: [base.html](templates/base.html)
 
 ### Django messages
 
+Django messages are used to provide feedback to users after they perform an action on the site. Messages are displayed at the bottom left of the screen. They are used to inform users about successful actions, errors, and warnings. The messages are designed to be simple and informative, providing users with feedback about their actions. Users can dismiss the messages by clicking the close button.
+
+![screenshot](documentation/feature-messages.png)
+
+⤴️ Screenshot of the Django messages
+
+relevant project files: [base.html](templates/base.html)
+
 ### Responsive Design
+
+The site is designed to be responsive and work on all devices. It includes breakpoints for mobile, tablet, and desktop sizes. The site is designed using the Bootstrap framework, which provides a responsive grid system and components. The site is tested on multiple devices and browsers to ensure compatibility.
+
+The responsive design ensures users have a positive experience on the site. Especially mobile users can easily navigate the site and access all features as mobile users are the expected main user group.
+
+![screenshot](documentation/feature-responsive.png)
+
+⤴️ Screenshot of the responsive design
+
+relevant project files: All template files.
 
 
 
