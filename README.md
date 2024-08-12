@@ -819,6 +819,8 @@ I've identified some appropriate keywords to align with my site, that should hel
 when searching online to find my page easily from a search engine.
 This included a series of the following keyword types. I've also included some that I've decided to exclude during the process.
 
+Check out [this commit](c23e09cd80d2b466e50f83a7562976e49dfac1dc) to see how the keywords were implemented along with semantic HTML tags.
+
 The keywords marked as "*(too generic)*" too authoritative and would be difficult to rank for.
 
 - Short-tail (head terms) keywords
@@ -834,6 +836,7 @@ The keywords marked as "*(too generic)*" too authoritative and would be difficul
     - ~~Online Education~~ *(off-topic)*
     - Online Learning
     - Private Tutor
+    - Tutoring jobs
     - ~~Virtual Classroom~~ *(less commonly searched)*
     - ~~E-learning~~ *(too generic)*
 - Long-tail keywords
@@ -848,6 +851,7 @@ The keywords marked as "*(too generic)*" too authoritative and would be difficul
     - Affordable Online Tutoring
     - One-on-One Online Tutoring
     - Best Online Tutoring Services
+    - Online Tutoring jobs
 
 I also played around with [Word Tracker](https://www.wordtracker.com) a bit
 to check the frequency of some of my site's primary keywords (only until the free trial expired).
