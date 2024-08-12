@@ -912,16 +912,6 @@ The business goals of the app are to provide a platform where students can find 
 
 ## Deployment
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-**IMPORTANT:**
-
-- ⚠️ DO NOT update the environment variables to your own! These should NOT be included in this file; just demo values! ⚠️
-- ⚠️ DO NOT update the environment variables to your own! These should NOT be included in this file; just demo values! ⚠️
-- ⚠️ DO NOT update the environment variables to your own! These should NOT be included in this file; just demo values! ⚠️
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
 The live deployed application can be found deployed on [Heroku](https://gipfel-tutor-768a610dc54f.herokuapp.com).
 
 ### PostgreSQL Database
@@ -1085,7 +1075,7 @@ As a backup, in case users prematurely close the purchase-order page during paym
 - Click **receive all events**.
 - Click **Add Endpoint** to complete the process.
 - You'll have a new key here:
-	- `STRIPE_WH_SECRET` = Signing Secret (Wehbook) Key (starts with **wh**)
+	- `STRIPE_WEBHOOK_SECRET` = Signing Secret (Wehbook) Key (starts with **wh**)
 
 ### Gmail API
 
@@ -1108,6 +1098,100 @@ Once you've created a Gmail (Google) account and logged-in, follow these series 
 	- Save this somewhere locally, as you cannot access this key again later!
 	- `EMAIL_HOST_PASS` = user's 16-character API key
 	- `EMAIL_HOST_USER` = user's own personal Gmail email address
+
+### Calendly API
+
+This project uses [Calendly](https://calendly.com) to handle the scheduling of tutoring sessions.
+
+Once you've created a [Calendly developer account](https://developer.calendly.com/) and logged-in, follow these series of steps to get your project connected.
+
+- From your Account Settings, click on `My Apps`.
+- Click on `Create New App`.
+- Fill in the required fields:
+    - App Name: `gipfel-tutor-dev` (could be anything)
+    - Kind of App: `Web`
+    - Environment type: `Sandbox`
+    - Redirect URI: `localhost:8000/calendly/auth`
+- Click `Save & Continue`.
+- Copy the `Client ID` and `Client Secret` keys along with the `Redicrect Uri` that you specified. These will be used as environment variables in your project.
+    - `CALENDLY_DEV_CLIENT_ID` = Client ID
+    - `CALENDLY_DEV_CLIENT_SECRET` = Client Secret
+    - `CALENDLY_DEV_REDIRECT_URI` = `localhost:8000/calendly/auth`
+
+- Create another App for the `Production` environment type, but with the following changes:
+    - App Name: `gipfel-tutor` (could be anything)
+    - Redirect URI: "Your Deployed Heroku App URL" + `/calendly/auth`
+    - Note: do not change the Environment type to `Production`.
+    - Save the `Client ID` and `Client Secret` keys and the `Redirect Uri` for the production app.
+        - `CALENDLY_PROD_CLIENT_ID` = Client ID
+        - `CALENDLY_PROD_CLIENT_SECRET` = Client Secret
+        - `CALENDLY_PROD_REDIRECT_URI` = "Your Deployed Heroku App URL" + `/calendly/auth`
+
+### Google Social Login
+
+This project uses [Google](https://developers.google.com/identity/oauth2/web/guides/overview?hl=de) to handle the social login feature.
+
+Once you've created a Google account and logged-in, follow these series of steps to get your project connected.
+
+- From the [Google Developers Console](https://console.developers.google.com/), create a new project.
+- Click on the **Credentials** tab on the left.
+- Click on **Create Credentials** and select **OAuth client ID**.
+- Select **Web application**.
+- Add your Heroku app URL to the Authorized Redirect URIs.
+- Add your localhost URL to the Authorized Redirect URIs.
+- Click **Create**.
+- You'll be provided with a `Client ID` and `Client Secret`. Save these as environment variables in your project.
+    - `GOOGLE_CLIENT_ID` = Client ID
+    - `GOOGLE_CLIENT_SECRET` = Client Secret
+
+- In your Django project, navigate to the `settings.py` file and add the following code if not already there:
+
+```python
+INSTALLED_APPS = [
+    # ...
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
+    # ...
+]
+
+SITE_ID = 1
+
+# -> Credit for retrieving the email address: https://github.com/pennersr/django-allauth/issues/330  # noqa
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        },
+    }
+}
+
+SOCIALACCOUNT_ENABLED = True
+```
+
+- In the Django admin panel, navigate to **Sites**.
+- Add a new site with the following details:
+    - Domain name: `localhost:8000`
+    - Display name: `localhost`
+- Add another site with the following details:
+    - Domain name: `Your Deployed Heroku App URL`
+    - Display name: `Heroku`
+
+- In the Django admin panel, navigate to **Social Applications**.
+- Add a new social application with the following details:
+    - Provider: `Google`
+    - Name: `Google`
+    - Client ID: `Your Google Client ID`
+    - Secret Key: `Your Google Client Secret`
+    - Sites: `localhost` and `Heroku`
+
+For troubleshooting, refer to the [Allauth Socialaccount Documentation](https://docs.allauth.org/en/latest/socialaccount/index.html).
+
 
 ### Heroku Deployment
 
@@ -1133,8 +1217,16 @@ Deployment steps are as follows, after account setup:
 | `SECRET_KEY` | user's own value |
 | `STRIPE_PUBLIC_KEY` | user's own value |
 | `STRIPE_SECRET_KEY` | user's own value |
-| `STRIPE_WH_SECRET` | user's own value |
+| `STRIPE_WEBHOOK_SECRET` | user's own value |
 | `USE_AWS` | True |
+| `CALENDLY_DEV_CLIENT_ID` | user's own value |
+| `CALENDLY_DEV_CLIENT_SECRET` | user's own value |
+| `CALENDLY_DEV_REDIRECT_URI` | user's own value |
+| `CALENDLY_PROD_CLIENT_ID` | user's own value |
+| `CALENDLY_PROD_CLIENT_SECRET` | user's own value |
+| `CALENDLY_PROD_REDIRECT_URI` | user's own value |
+| `GOOGLE_CLIENT_ID` | user's own value |
+| `GOOGLE_CLIENT_SECRET` | user's own value |
 
 Heroku needs three additional files in order to deploy properly.
 
@@ -1149,6 +1241,8 @@ You can install this project's **requirements** (where applicable) using:
 If you have your own packages that have been installed, then the requirements file needs updated using:
 
 - `pip3 freeze --local > requirements.txt`
+
+After you have your requirements file set up, you need to add the cryptography==36.0.0 package to the requirements file manually by pasting the line `cryptography==36.0.0` at the end of the file.
 
 The **Procfile** can be created with the following command:
 
@@ -1190,22 +1284,44 @@ and include the same environment variables listed above from the Heroku deployme
 > This is a sample only; you would replace the values with your own if cloning/forking my repository.
 
 Sample `env.py` file:
-
+S>DFHJADSGHKADSG
+SDAFFGHJSKAGHKSDAF
+DSASDGFHASJDGHKSDAFs
+fsdhagfjdasgkhd
 ```python
 import os
 
-os.environ.setdefault("AWS_ACCESS_KEY_ID", "user's own value")
-os.environ.setdefault("AWS_SECRET_ACCESS_KEY", "user's own value")
-os.environ.setdefault("DATABASE_URL", "user's own value")
-os.environ.setdefault("EMAIL_HOST_PASS", "user's own value")
-os.environ.setdefault("EMAIL_HOST_USER", "user's own value")
-os.environ.setdefault("SECRET_KEY", "user's own value")
-os.environ.setdefault("STRIPE_PUBLIC_KEY", "user's own value")
-os.environ.setdefault("STRIPE_SECRET_KEY", "user's own value")
-os.environ.setdefault("STRIPE_WH_SECRET", "user's own value")
+os.environ.setdefault('DEVELOPMENT', 'True') # only include in local environment!
+os.environ['DEBUG'] = 'True' # only include in local environment!
 
-# local environment only (do not include these in production/deployment!)
-os.environ.setdefault("DEBUG", "True")
+os.environ['SECRET_KEY'] = 'users own value'
+
+os.environ.setdefault('DATABASE_URL', 'users own value')
+
+os.environ.setdefault('EMAIL_HOST_PASS', 'users own value')
+os.environ.setdefault('EMAIL_HOST_USER', 'users own value')
+
+# AWS is disabled by default, but can be enabled by setting USE_AWS to True
+# The displaying of tutor profile images will not work even with ASW enabled
+# as explained in "Local VS Deployment".
+
+# os.environ.setdefault('USE_AWS', 'True')
+os.environ.setdefault('AWS_ACCESS_KEY', 'users own value')
+os.environ.setdefault('AWS_SECRET_ACCESS_KEY' ,'users own value')
+
+os.environ.setdefault('STRIPE_PUBLIC_KEY', 'users own value')
+os.environ.setdefault('STRIPE_SECRET_KEY', 'users own value')
+os.environ.setdefault('STRIPE_WEBHOOK_SECRET', 'users own value')
+
+os.environ.setdefault('CALENDLY_DEV_CLIENT_ID', 'users own value')
+os.environ.setdefault('CALENDLY_DEV_CLIENT_SECRET', 'users own value')
+os.environ.setdefault('CALENDLY_DEV_REDIRECT_URI', 'http://localhost:8000/calendly/auth/')
+os.environ.setdefault('CALENDLY_PROD_CLIENT_ID', 'users own value')
+os.environ.setdefault('CALENDLY_PROD_CLIENT_SECRET', 'users own value')
+os.environ.setdefault('CALENDLY_PROD_REDIRECT_URI', '< your deployed site url >/calendly/auth/')
+
+os.environ.setdefault('GOOGLE_CLIENT_ID', 'users own value')
+os.environ.setdefault('GOOGLE_CLIENT_SECRET', 'users own value')
 ```
 
 Once the project is cloned or forked, in order to run it locally, you'll need to follow these steps:
@@ -1215,7 +1331,7 @@ Once the project is cloned or forked, in order to run it locally, you'll need to
 - Make any necessary migrations: `python3 manage.py makemigrations`
 - Migrate the data to the database: `python3 manage.py migrate`
 - Create a superuser: `python3 manage.py createsuperuser`
-- Load fixtures (if applicable): `python3 manage.py loaddata file-name.json` (repeat for each file)
+- Load fixtures (if applicable): `python3 manage.py loaddata fixtures/*.json */fixtures/*.json` (this will load all fixtures from the root fixtures directory and any fixtures directories within apps)
 - Everything should be ready now, so run the Django app again: `python3 manage.py runserver`
 
 If you'd like to backup your database models, use the following command for each model you'd like to create a fixture for:
@@ -1254,11 +1370,7 @@ You can fork this repository by using the following steps:
 
 ### Local VS Deployment
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-Use this space to discuss any differences between the local version you've developed, and the live deployment site on Heroku.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
+Tutor images are stored in the AWS S3 bucket, and the static files are also stored there. Since the database only stores the image URL, the images will not be displayed locally since the local environment is using the staticfiles directory to serve the images.
 
 ## Credits
 
