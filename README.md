@@ -14,16 +14,16 @@
 
 Welcome to Gipfel Tutor, the pinnacle of personalized tutoring for Swiss students! Our Django-powered marketplace pairs you with the perfect tutor to conquer your academic peaks. Quick, simple, and effective — scale new heights in learning with us!
 
+> ## Top Technical Features
+> 1. **Credit Card Payments using Stripe**: Securely pay for lessons online.
+> 2. **Calendly API v2 Integration**: Schedule lessons directly from the site.
+> 3. **Socialaccount Login**: Sign in with Google for a passwordless and seamless experience. (also adds Google Pay for payments)
+
 ![screenshot](documentation/mockup.png)
 
 source: [amiresponsive](https://ui.dev/amiresponsive?url=https://gipfel-tutor-768a610dc54f.herokuapp.com)
 
-> ## Top Technical Features
-> 1. **Credit Card Payments using Stripe**: Securely pay for lessons online.
-> 2. **Calendly API Integration**: Schedule lessons directly from the site.
-> 3. **Socialaccount Login**: Sign in with Google for a passwordless and seamless experience. (adds Google Pay for payments)
-
-> [!NOTE]
+> [!IMPORTANT]
 > **Our Mission**:
 >
 > "Connect learners with a highly suitable tutor for their specific **needs** and **preferences**, within **48 hours*."
@@ -118,7 +118,7 @@ Each user story is followed by a set of acceptance criteria that must be met for
 > Make sure to also check out the [User Story Map](https://github.com/users/benschaf/projects/12/views/3) which was used extensively during the development process. It provides a more visual representation of the user stories and shows them **grouped by epics** along with their **priority** and **status**.
 
 <details>
-<summary>Click To expand User Stories</summary>
+<summary>Click To expand User Stories right here</summary>
 
 ### Viewing and navigation
 
@@ -661,7 +661,7 @@ INSTALLED_APPS = [
 
 Note that the `Student` model was dropped in the final version of the site. The `User` model is used instead to represent students.
 
-![erd](documentation/erd.png)
+![erd](documentation/erd_final.png)
 
 ⤴️ the final ERD
 
@@ -852,8 +852,10 @@ Creating a strong social base (with participation) and linking that to the busin
 Using more popular providers with a wider user base, such as Facebook, typically maximizes site views.
 
 I've created a facebook business page for the site, and linked it to the site's footer.
+
 [Facebook Business Page](https://www.facebook.com/profile.php?id=61563566265782)
-![Facebook Business Page](documentation/images/marketing-facebook.png)
+
+![Facebook Business Page](documentation/marketing-facebook.png)
 
 compare feature: [Facebook Business Page](#facebook-business-page)
 
@@ -1036,7 +1038,7 @@ As a backup, in case users prematurely close the purchase-order page during paym
 
 - From your Stripe dashboard, click **Developers**, and select **Webhooks**.
 - From there, click **Add Endpoint**.
-	- `https://gipfel-tutor-768a610dc54f.herokuapp.com/checkout/wh/`
+	- `< your deployed site url >/checkout/wh/`
 - Click **receive all events**.
 - Click **Add Endpoint** to complete the process.
 - You'll have a new key here:
