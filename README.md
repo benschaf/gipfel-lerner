@@ -794,10 +794,13 @@ Add todo items as needed by commenting on this issue.
 
 ## Ecommerce Business Model
 
+**WHO**
 This site acts as a platform for students to find tutors and book lessons with them. It therefore follows a `Business to Customer` model.
 
+**WHAT**
 The site focuses on providing the service of connecting students with tutors. It also simplifies the process of booking lessons for tutors and handles the payment collection process for them. The site would take a commission from the tutor's earnings as a fee for providing the service.
 
+**HOW**
 Payment transactions are individual as opposed to a subscription model. Users can choose to pay for lessons as they book them or pay for multiple lessons at once. The site uses the Stripe API to handle payments securely.
 
 It is still in its early development stages, although it already has a newsletter, and links for social media marketing. The Facebook page is already set up and linked to the site.
@@ -814,10 +817,37 @@ For example a welcome message, notifications of new tutors, and reminders of upc
 
 I've identified some appropriate keywords to align with my site, that should help users
 when searching online to find my page easily from a search engine.
-This included a series of the following keyword types
+This included a series of the following keyword types. I've also included some that I've decided to exclude during the process.
+
+The keywords marked as "*(too generic)*" too authoritative and would be difficult to rank for.
 
 - Short-tail (head terms) keywords
+    - Tutoring
+    - ~~Study~~ *(too generic)*
+    - ~~Lesson~~ *(too generic)*
+    - ~~Education~~ *(too generic)*
+    - ~~Learning~~ *(too generic)*
+    - ~~Teacher~~ *(too generic)*
+    - Online Tutor
+    - Tutoring Service
+    - ~~Online Lesson~~ *(off-topic)*
+    - ~~Online Education~~ *(off-topic)*
+    - Online Learning
+    - Private Tutor
+    - ~~Virtual Classroom~~ *(less commonly searched)*
+    - ~~E-learning~~ *(too generic)*
 - Long-tail keywords
+    - Online Math Tutor
+    - Online English Tutor
+    - Online Science Tutor
+    - Online Language Tutor
+    - ~~Online Music Tutor~~ *(off-topic)*
+    - Online Tutoring Service
+    - Help with Homework
+    - ~~Online Learning Platform~~ *(off topic and too generic)*
+    - Affordable Online Tutoring
+    - One-on-One Online Tutoring
+    - Best Online Tutoring Services
 
 I also played around with [Word Tracker](https://www.wordtracker.com) a bit
 to check the frequency of some of my site's primary keywords (only until the free trial expired).
