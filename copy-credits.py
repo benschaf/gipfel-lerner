@@ -25,7 +25,7 @@ comment_symbols = {
 }
 
 # Define the base URL for the files in your GitHub repository
-base_url = "https://github.com/benschaf/waste-schedule/blob/main/"
+base_url = "https://github.com/benschaf/gipfel-tutor/blob/main/"
 
 # Walk through all files in the project directory
 for root, dirs, files in os.walk("."):
@@ -36,7 +36,7 @@ for root, dirs, files in os.walk("."):
         dirs.remove("staticfiles")
 
     for file in files:
-        # Get the file extension
+        # Get the file extensioned
         ext = os.path.splitext(file)[1]
         # If the file extension is in the comment symbols dictionary
         if ext in comment_symbols:
