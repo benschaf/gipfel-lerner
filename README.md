@@ -890,43 +890,20 @@ I've created a facebook business page for the site, and linked it to the site's 
 [Facebook Business Page](https://www.facebook.com/profile.php?id=61563566265782)
 ![Facebook Business Page](documentation/images/marketing-facebook.png)
 
+compare feature: [Facebook Business Page](#facebook-business-page)
+
 ### Newsletter Marketing
 
 I have incorporate a newsletter sign-up form on my application, to allow users to supply their
 email address if they are interested in learning more.
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 START OF NOTES (to be deleted)
+The newsletter form is located in the footer of the site and is linked to a Mailchimp account.
 
-Option 1 (MailChimp):
-- Sign up for a Mailchimp account
-- This allows up to 2,500 subscription email sends per month
-- Incorporate the code and scripts into your project like in the CI lessons.
-
-Option 2 (Django):
-- Create a custom newsletter app in your project, with a custom model.
-- This method satisfies two assessment criteria:
-    - include a newsletter
-    - one of your custom models
-- It doesn't need anything except the "email" on the model.
-- Example:
-    ```python
-    class Newsletter(models.Model):
-    email = models.EmailField(null=False, blank=False)
-
-    def __str__(self):
-        return self.email
-    ```
-- Consider using the same `send_mail()` functionality used on the `webhook_handler.py` file.
-    - You can trigger an email sent out to subscribed users when new products are added to the site!
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
+compare feature: [Mailchimp Newsletter form](#mailchimp-newsletter-form)
 
 ## Business and Costumer Goals
 
 The business goals of the app are to provide a platform where students can find tutors for their specific needs and preferences. The app aims to set itself apart from other tutoring platforms by providing a better matching system that leverages detailed tutor profiles, ratings, and reviews. The app also aims to provide a seamless user experience for both students and tutors, with features such as detailed tutor profiles, booking requests, and online payments.
-
-Maybe formulate project goals and map them to user stories - but this seems unnecessary at the moment.
-
 
 ## Testing
 
