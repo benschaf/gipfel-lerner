@@ -68,19 +68,19 @@ for root, dirs, files in os.walk("."):
                             .strip()[len(symbol) :]
                             .split(": ")
                         )
-                    description = credit_parts[0]
-                    url = credit_parts[1] if len(credit_parts) > 1 else ""
+                        description = credit_parts[0]
+                        url = credit_parts[1] if len(credit_parts) > 1 else ""
 
-                    # Parse the URL to get the website name
-                    website_name = urllib.parse.urlparse(url).netloc if url else ""
+                        # Parse the URL to get the website name
+                        website_name = urllib.parse.urlparse(url).netloc if url else ""
 
-                    # Format the credit line as a row in the markdown table
-                    credit_line = (
-                        f"| [{file}: Line {i+1}]({base_url + os.path.join(root, file).replace('./', '')}#L{i+1}) | {description} | [{website_name if website_name else 'Link'}]({url}) |"
-                        if url
-                        else f"| [{file}: Line {i+1}]({base_url + os.path.join(root, file).replace('./', '')}#L{i+1}) | {description} |"
-                    )  # noqa
-                    credit_lines.append(credit_line)
+                        # Format the credit line as a row in the markdown table
+                        credit_line = (
+                            f"| [{file}: Line {i+1}]({base_url + os.path.join(root, file).replace('./', '')}#L{i+1}) | {description} | [{website_name if website_name else 'Link'}]({url}) |"
+                            if url
+                            else f"| [{file}: Line {i+1}]({base_url + os.path.join(root, file).replace('./', '')}#L{i+1}) | {description} |"
+                        )  # noqa
+                        credit_lines.append(credit_line)
 
 # Open the README file
 with open("README.md", "r") as readme_file:
