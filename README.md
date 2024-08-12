@@ -8,8 +8,7 @@
 [![GitHub closed issues](https://img.shields.io/github/issues-closed/benschaf/gipfel-tutor)](https://github.com/benschaf/gipfel-tutor/issues?q=is%3Aissue+is%3Aclosed)
 [![GitHub repo size](https://img.shields.io/github/repo-size/benschaf/gipfel-tutor)](https://github.com/benschaf/gipfel-tutor)
 [![Python version](https://img.shields.io/badge/python-3.12.2-blue?logo=python)](https://www.python.org/downloads/release/python-3121/)
-[![npm version](https://img.shields.io/badge/npm-8.1.0-blue?logo=npm)](https://www.npmjs.com/package/npm)
-[![Heroku](https://img.shields.io/badge/heroku-eco-purple?logo=heroku)](#)
+[![Heroku](https://img.shields.io/badge/heroku-eco-purple?logo=heroku)](https://www.heroku.com/)
 
 
 Welcome to Gipfel Tutor, the pinnacle of personalized tutoring for Swiss students! Our Django-powered marketplace pairs you with the perfect tutor to conquer your academic peaks. Quick, simple, and effective — scale new heights in learning with us!
@@ -522,7 +521,7 @@ The site is designed to be responsive and work on all devices. It includes break
 
 The responsive design ensures users have a positive experience on the site. Especially mobile users can easily navigate the site and access all features as mobile users are the expected main user group.
 
-![screenshot](documentation/feature-responsive.png)
+![screenshot](documentation/mockup.png)
 
 ⤴️ Screenshot of the responsive design
 
@@ -565,7 +564,7 @@ Many features were planned for the site but could not be implemented due to time
 - [![MailChimp](https://img.shields.io/badge/MailChimp-grey?logo=mailchimp&logoColor=FFE01B)](https://mailchimp.com) used for sending newsletter subscriptions.
 - [![AWS S3](https://img.shields.io/badge/AWS_S3-grey?logo=amazons3&logoColor=569A31)](https://aws.amazon.com/s3) used for online static file storage.
 - [![Font Awesome](https://img.shields.io/badge/Font_Awesome-grey?logo=fontawesome&logoColor=528DD7)](https://fontawesome.com) used for the icons.
-- [![ChatGPT](https://img.shields.io/badge/ChatGPT-grey?logo=chromatic&logoColor=75A99C)](https://chat.openai.com) used to help debug, troubleshoot, and explain things.
+- [![ChatGPT](https://img.shields.io/badge/ChatGPT-grey?logo=chromatic&logoColor=75A99C)](https://chatopenai.de/) used to help debug, troubleshoot, and explain things.
 - ![Calendly api v2](https://img.shields.io/badge/-Calendly%20API-1A1A1A?style=flat&logo=calendly)
 - ![django template support](https://img.shields.io/badge/-Django%20Template%20Support-092E20?style=flat&logo=django) used to format the template .html files
 - ![djlint](https://img.shields.io/badge/-DjLint-092E20?style=flat&logo=django) used to lint and format the Django code
@@ -784,7 +783,7 @@ I've identified some appropriate keywords to align with my site, that should hel
 when searching online to find my page easily from a search engine.
 This included a series of the following keyword types. I've also included some that I've decided to exclude during the process.
 
-Check out [this commit](c23e09cd80d2b466e50f83a7562976e49dfac1dc) to see how the keywords were implemented along with semantic HTML tags.
+Check out [this commit](https://github.com/benschaf/gipfel-tutor/commit/c23e09cd80d2b466e50f83a7562976e49dfac1dc) to see how the keywords were implemented along with semantic HTML tags.
 
 The keywords marked as "*(too generic)*" too authoritative and would be difficult to rank for.
 
@@ -857,7 +856,7 @@ I've created a facebook business page for the site, and linked it to the site's 
 
 ![Facebook Business Page](documentation/marketing-facebook.png)
 
-compare feature: [Facebook Business Page](#facebook-business-page)
+compare feature: [Facebook Business Page](#footer-with-site-links-social-media-links-and-a-mailchimp-signup-form)
 
 ### Newsletter Marketing
 
@@ -1349,43 +1348,43 @@ Note that the list of credits below is automatically generated from the project 
 The script was written by me, with much help from the Microsoft Edge Copilot.
 | File | Notes | Source |
 | --- | --- | --- |
-| [models.py: Line 15](https://github.com/benschaf/waste-schedule/blob/main/booking/models.py#L15) | model.SET_NULL | [stackoverflow.com](https://stackoverflow.com/questions/70395921/is-there-any-other-option-for-on-delete-other-than-models-cascade-for-a-foreignk) |
-| [views.py: Line 265](https://github.com/benschaf/waste-schedule/blob/main/booking/views.py#L265) | Stripe integration | [stripe.com](https://stripe.com/docs/payments/accept-a-payment) |
-| [views.py: Line 279](https://github.com/benschaf/waste-schedule/blob/main/booking/views.py#L279) | quantize | [docs.python.org](https://docs.python.org/3/library/decimal.html) |
-| [views.py: Line 300](https://github.com/benschaf/waste-schedule/blob/main/booking/views.py#L300) | Decimal conversion | [stackoverflow.com](https://stackoverflow.com/questions/316238/python-float-to-decimal-conversion) |
-| [webhook_handler.py: Line 7](https://github.com/benschaf/waste-schedule/blob/main/booking/webhook_handler.py#L7) | the webhook handler class goes to Code Institute Tutorials | [github.com](https://github.com/Code-Institute-Solutions/Boutique-Ado/tree/master) |
-| [webhooks.py: Line 10](https://github.com/benschaf/waste-schedule/blob/main/booking/webhooks.py#L10) | the webhook handling | [docs.stripe.com](https://docs.stripe.com/webhooks/quickstart) |
-| [payment_create.js: Line 6](https://github.com/benschaf/waste-schedule/blob/main/booking/static/booking/js/payment_create.js#L6) | setting form values | [www.w3schools.com](https://www.w3schools.com/jsref/dom_obj_form.asp) |
-| [views.py: Line 25](https://github.com/benschaf/waste-schedule/blob/main/calendly/views.py#L25) | base64 encodeing | [www.geeksforgeeks.org](https://www.geeksforgeeks.org/encoding-and-decoding-base64-strings-in-python/) |
-| [index.js: Line 25](https://github.com/benschaf/waste-schedule/blob/main/core/static/core/js/index.js#L25) | the aria-expanded attribute check | [getbootstrap.com](https://getbootstrap.com/docs/5.3/components/navbar/#scrolling) |
-| [index.html: Line 3](https://github.com/benschaf/waste-schedule/blob/main/core/templates/core/index.html#L3) | adaptable page header | [github.com](https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/master/home/templates/home/index.html) |
-| [index.html: Line 29](https://github.com/benschaf/waste-schedule/blob/main/core/templates/core/index.html#L29) | CSS Grid (generation) | [cssgrid-generator.netlify.app](https://cssgrid-generator.netlify.app/) |
-| [settings.py: Line 83](https://github.com/benschaf/waste-schedule/blob/main/gipfel_tutor/settings.py#L83) | retrieving the email address | [github.com](https://github.com/pennersr/django-allauth/issues/330) |
-| [base.css: Line 58](https://github.com/benschaf/waste-schedule/blob/main/static/css/base.css#L58) | Gradient text | [cssgradient.io](https://cssgradient.io/blog/css-gradient-text/) |
-| [base.html: Line 27](https://github.com/benschaf/waste-schedule/blob/main/templates/base.html#L27) | favicon | [fontawesome.com](https://fontawesome.com/icons/mountain-sun?f=classic&s=solid) |
-| [base.html: Line 60](https://github.com/benschaf/waste-schedule/blob/main/templates/base.html#L60) | admin url name | [forum.djangoproject.com](https://forum.djangoproject.com/t/cant-create-link-to-admin-page-in-my-template/12533/8) |
-| [base.html: Line 127](https://github.com/benschaf/waste-schedule/blob/main/templates/base.html#L127) | capfirst filter | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#capfirst) |
-| [base.html: Line 149](https://github.com/benschaf/waste-schedule/blob/main/templates/base.html#L149) | footer adapted from bootstrap | [getbootstrap.com](https://getbootstrap.com/docs/5.3/examples/footers/) |
-| [average_rating.html: Line 2](https://github.com/benschaf/waste-schedule/blob/main/templates/includes/average_rating.html#L2) | floatformat template filter | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#floatformat) |
-| [provider_list.html: Line 16](https://github.com/benschaf/waste-schedule/blob/main/templates/socialaccount/snippets/provider_list.html#L16) | google sign in button | [developers.google.com](https://developers.google.com/identity/branding-guidelines?hl=de) |
-| [forms.py: Line 8](https://github.com/benschaf/waste-schedule/blob/main/tutor_market/forms.py#L8) | testing IBAN | [ibanvalidieren.de](https://ibanvalidieren.de/beispiele.html) |
-| [models.py: Line 24](https://github.com/benschaf/waste-schedule/blob/main/tutor_market/models.py#L24) | decimal fields | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/models/fields/#decimalfield) |
-| [views.py: Line 49](https://github.com/benschaf/waste-schedule/blob/main/tutor_market/views.py#L49) | getting values from a list of query parameters | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/request-response/#querydict-objects) |
-| [views.py: Line 53](https://github.com/benschaf/waste-schedule/blob/main/tutor_market/views.py#L53) | |= operator | [stackoverflow.com](https://stackoverflow.com/questions/29399653/python-operator-meaning) |
-| [views.py: Line 61](https://github.com/benschaf/waste-schedule/blob/main/tutor_market/views.py#L61) | returning distinct results | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/models/querysets/#distinct) |
-| [views.py: Line 73](https://github.com/benschaf/waste-schedule/blob/main/tutor_market/views.py#L73) | distinct results in annotations | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/topics/db/aggregation/#combining-multiple-aggregations) |
-| [views.py: Line 275](https://github.com/benschaf/waste-schedule/blob/main/tutor_market/views.py#L275) | greater or equal to lookup (gte) | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/models/querysets/#gte) |
-| [tutor_detail.js: Line 5](https://github.com/benschaf/waste-schedule/blob/main/tutor_market/static/tutor_market/js/tutor_detail.js#L5) | posting a form using javascript | [stackoverflow.com](https://stackoverflow.com/questions/133925/javascript-post-request-like-a-form-submit) |
-| [tutor_detail.js: Line 13](https://github.com/benschaf/waste-schedule/blob/main/tutor_market/static/tutor_market/js/tutor_detail.js#L13) | submitting a form and setting values | [www.w3schools.com](https://www.w3schools.com/jsref/dom_obj_form.asp) |
-| [edit_tutor.html: Line 8](https://github.com/benschaf/waste-schedule/blob/main/tutor_market/templates/tutor_market/edit_tutor.html#L8) | enctype attribute | [www.geeksforgeeks.org](https://www.geeksforgeeks.org/define-multipart-form-data/) |
-| [tutor_dashboard.html: Line 69](https://github.com/benschaf/waste-schedule/blob/main/tutor_market/templates/tutor_market/tutor_dashboard.html#L69) | slicing the string | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#slice) |
-| [tutor_dashboard.html: Line 84](https://github.com/benschaf/waste-schedule/blob/main/tutor_market/templates/tutor_market/tutor_dashboard.html#L84) | slicing the string | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#slice) |
-| [tutor_dashboard.html: Line 169](https://github.com/benschaf/waste-schedule/blob/main/tutor_market/templates/tutor_market/tutor_dashboard.html#L169) | iterating over dictionaries (tuples) | [forum.djangoproject.com](https://forum.djangoproject.com/t/loop-through-dictionary-of-lists/2849) |
-| [tutor_detail.html: Line 20](https://github.com/benschaf/waste-schedule/blob/main/tutor_market/templates/tutor_market/tutor_detail.html#L20) | reviews section | [github.com](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/templates/wasteschedules/schedule_detail.html) |
-| [tutor_detail.html: Line 30](https://github.com/benschaf/waste-schedule/blob/main/tutor_market/templates/tutor_market/tutor_detail.html#L30) | bootstrap bars | [getbootstrap.com](https://getbootstrap.com/docs/5.3/components/progress/) |
-| [tutor_detail.html: Line 58](https://github.com/benschaf/waste-schedule/blob/main/tutor_market/templates/tutor_market/tutor_detail.html#L58) | crispy forms | [github.com](https://github.com/Code-Institute-Solutions/blog/tree/main/12_views_part_3/01_posting_to_database) |
-| [tutor_detail.html: Line 98](https://github.com/benschaf/waste-schedule/blob/main/tutor_market/templates/tutor_market/tutor_detail.html#L98) | using Calendly embeds | [developer.calendly.com](https://developer.calendly.com/api-docs/6a743888e5649-getting-started-with-embeds) |
-| [tutor_detail.html: Line 143](https://github.com/benschaf/waste-schedule/blob/main/tutor_market/templates/tutor_market/tutor_detail.html#L143) | sending multiple variables to js | [docs.djangoproject.com](https://docs.djangoproject.com/en/4.2/ref/templates/builtins/#json-script) |
+| [models.py: Line 15](https://github.com/benschaf/gipfel-tutor/blob/main/booking/models.py#L15) | model.SET_NULL | [stackoverflow.com](https://stackoverflow.com/questions/70395921/is-there-any-other-option-for-on-delete-other-than-models-cascade-for-a-foreignk) |
+| [views.py: Line 265](https://github.com/benschaf/gipfel-tutor/blob/main/booking/views.py#L265) | Stripe integration | [stripe.com](https://stripe.com/docs/payments/accept-a-payment) |
+| [views.py: Line 279](https://github.com/benschaf/gipfel-tutor/blob/main/booking/views.py#L279) | quantize | [docs.python.org](https://docs.python.org/3/library/decimal.html) |
+| [views.py: Line 300](https://github.com/benschaf/gipfel-tutor/blob/main/booking/views.py#L300) | Decimal conversion | [stackoverflow.com](https://stackoverflow.com/questions/316238/python-float-to-decimal-conversion) |
+| [webhook_handler.py: Line 7](https://github.com/benschaf/gipfel-tutor/blob/main/booking/webhook_handler.py#L7) | the webhook handler class goes to Code Institute Tutorials | [github.com](https://github.com/Code-Institute-Solutions/Boutique-Ado/tree/master) |
+| [webhooks.py: Line 10](https://github.com/benschaf/gipfel-tutor/blob/main/booking/webhooks.py#L10) | the webhook handling | [docs.stripe.com](https://docs.stripe.com/webhooks/quickstart) |
+| [payment_create.js: Line 6](https://github.com/benschaf/gipfel-tutor/blob/main/booking/static/booking/js/payment_create.js#L6) | setting form values | [www.w3schools.com](https://www.w3schools.com/jsref/dom_obj_form.asp) |
+| [views.py: Line 25](https://github.com/benschaf/gipfel-tutor/blob/main/calendly/views.py#L25) | base64 encodeing | [www.geeksforgeeks.org](https://www.geeksforgeeks.org/encoding-and-decoding-base64-strings-in-python/) |
+| [index.js: Line 25](https://github.com/benschaf/gipfel-tutor/blob/main/core/static/core/js/index.js#L25) | the aria-expanded attribute check | [getbootstrap.com](https://getbootstrap.com/docs/5.3/components/navbar/#scrolling) |
+| [index.html: Line 3](https://github.com/benschaf/gipfel-tutor/blob/main/core/templates/core/index.html#L3) | adaptable page header | [github.com](https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/master/home/templates/home/index.html) |
+| [index.html: Line 29](https://github.com/benschaf/gipfel-tutor/blob/main/core/templates/core/index.html#L29) | CSS Grid (generation) | [cssgrid-generator.netlify.app](https://cssgrid-generator.netlify.app/) |
+| [settings.py: Line 83](https://github.com/benschaf/gipfel-tutor/blob/main/gipfel_tutor/settings.py#L83) | retrieving the email address | [github.com](https://github.com/pennersr/django-allauth/issues/330) |
+| [base.css: Line 59](https://github.com/benschaf/gipfel-tutor/blob/main/static/css/base.css#L59) | Gradient text | [cssgradient.io](https://cssgradient.io/blog/css-gradient-text/) |
+| [base.html: Line 27](https://github.com/benschaf/gipfel-tutor/blob/main/templates/base.html#L27) | favicon | [fontawesome.com](https://fontawesome.com/icons/mountain-sun?f=classic&s=solid) |
+| [base.html: Line 60](https://github.com/benschaf/gipfel-tutor/blob/main/templates/base.html#L60) | admin url name | [forum.djangoproject.com](https://forum.djangoproject.com/t/cant-create-link-to-admin-page-in-my-template/12533/8) |
+| [base.html: Line 127](https://github.com/benschaf/gipfel-tutor/blob/main/templates/base.html#L127) | capfirst filter | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#capfirst) |
+| [base.html: Line 149](https://github.com/benschaf/gipfel-tutor/blob/main/templates/base.html#L149) | footer adapted from bootstrap | [getbootstrap.com](https://getbootstrap.com/docs/5.3/examples/footers/) |
+| [average_rating.html: Line 2](https://github.com/benschaf/gipfel-tutor/blob/main/templates/includes/average_rating.html#L2) | floatformat template filter | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#floatformat) |
+| [provider_list.html: Line 16](https://github.com/benschaf/gipfel-tutor/blob/main/templates/socialaccount/snippets/provider_list.html#L16) | google sign in button | [developers.google.com](https://developers.google.com/identity/branding-guidelines?hl=de) |
+| [forms.py: Line 8](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/forms.py#L8) | testing IBAN | [ibanvalidieren.de](https://ibanvalidieren.de/beispiele.html) |
+| [models.py: Line 24](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/models.py#L24) | decimal fields | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/models/fields/#decimalfield) |
+| [views.py: Line 49](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/views.py#L49) | getting values from a list of query parameters | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/request-response/#querydict-objects) |
+| [views.py: Line 53](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/views.py#L53) | |= operator | [stackoverflow.com](https://stackoverflow.com/questions/29399653/python-operator-meaning) |
+| [views.py: Line 61](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/views.py#L61) | returning distinct results | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/models/querysets/#distinct) |
+| [views.py: Line 73](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/views.py#L73) | distinct results in annotations | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/topics/db/aggregation/#combining-multiple-aggregations) |
+| [views.py: Line 275](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/views.py#L275) | greater or equal to lookup (gte) | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/models/querysets/#gte) |
+| [tutor_detail.js: Line 5](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/static/tutor_market/js/tutor_detail.js#L5) | posting a form using javascript | [stackoverflow.com](https://stackoverflow.com/questions/133925/javascript-post-request-like-a-form-submit) |
+| [tutor_detail.js: Line 13](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/static/tutor_market/js/tutor_detail.js#L13) | submitting a form and setting values | [www.w3schools.com](https://www.w3schools.com/jsref/dom_obj_form.asp) |
+| [edit_tutor.html: Line 8](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/templates/tutor_market/edit_tutor.html#L8) | enctype attribute | [www.geeksforgeeks.org](https://www.geeksforgeeks.org/define-multipart-form-data/) |
+| [tutor_dashboard.html: Line 69](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/templates/tutor_market/tutor_dashboard.html#L69) | slicing the string | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#slice) |
+| [tutor_dashboard.html: Line 84](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/templates/tutor_market/tutor_dashboard.html#L84) | slicing the string | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#slice) |
+| [tutor_dashboard.html: Line 169](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/templates/tutor_market/tutor_dashboard.html#L169) | iterating over dictionaries (tuples) | [forum.djangoproject.com](https://forum.djangoproject.com/t/loop-through-dictionary-of-lists/2849) |
+| [tutor_detail.html: Line 20](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/templates/tutor_market/tutor_detail.html#L20) | reviews section | [github.com](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/templates/wasteschedules/schedule_detail.html) |
+| [tutor_detail.html: Line 30](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/templates/tutor_market/tutor_detail.html#L30) | bootstrap bars | [getbootstrap.com](https://getbootstrap.com/docs/5.3/components/progress/) |
+| [tutor_detail.html: Line 58](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/templates/tutor_market/tutor_detail.html#L58) | crispy forms | [github.com](https://github.com/Code-Institute-Solutions/blog/tree/main/12_views_part_3/01_posting_to_database) |
+| [tutor_detail.html: Line 98](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/templates/tutor_market/tutor_detail.html#L98) | using Calendly embeds | [developer.calendly.com](https://developer.calendly.com/api-docs/6a743888e5649-getting-started-with-embeds) |
+| [tutor_detail.html: Line 143](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/templates/tutor_market/tutor_detail.html#L143) | sending multiple variables to js | [docs.djangoproject.com](https://docs.djangoproject.com/en/4.2/ref/templates/builtins/#json-script) |
 <!-- CREDITS_END -->
 
 Additionaly, [Chris Beams](https://chris.beams.io/posts/git-commit) article "How to Write a Git Commit Message" was used as a guideline for writing commit messages.
@@ -1491,7 +1490,7 @@ The Features are already sorted by priority although these priorities are subjec
 
 After ideating I created wireframes and content for the prototype of the site which is of course this repository.
 
-Check out the full prototype including wireframes, user stories, and the working site by browsing around the readme and the repository. Also check out [the website](#) itself.
+Check out the full prototype including wireframes, user stories, and the working site by browsing around the readme and the repository. Also check out [the website](https://gipfel-tutor-768a610dc54f.herokuapp.com/) itself.
 
 ### Test
 
