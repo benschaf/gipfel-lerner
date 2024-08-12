@@ -794,18 +794,19 @@ Add todo items as needed by commenting on this issue.
 
 ## Ecommerce Business Model
 
-This site sells goods to individual customers, and therefore follows a `Business to Customer` model.
-It is of the simplest **B2C** forms, as it focuses on individual transactions, and doesn't need anything
-such as monthly/annual subscriptions.
+This site acts as a platform for students to find tutors and book lessons with them. It therefore follows a `Business to Customer` model.
 
-It is still in its early development stages, although it already has a newsletter, and links for social media marketing.
+The site focuses on providing the service of connecting students with tutors. It also simplifies the process of booking lessons for tutors and handles the payment collection process for them. The site would take a commission from the tutor's earnings as a fee for providing the service.
+
+Payment transactions are individual as opposed to a subscription model. Users can choose to pay for lessons as they book them or pay for multiple lessons at once. The site uses the Stripe API to handle payments securely.
+
+It is still in its early development stages, although it already has a newsletter, and links for social media marketing. The Facebook page is already set up and linked to the site.
 
 Social media can potentially build a community of users around the business, and boost site visitor numbers,
 especially when using larger platforms such a Facebook.
 
 A newsletter list can be used by the business to send regular messages to site users.
-For example, what items are on special offer, new items in stock,
-updates to business hours, notifications of events, and much more!
+For example a welcome message, notifications of new tutors, and reminders of upcoming lessons, updates to business hours, notifications of events, and much more!
 
 ## Search Engine Optimization (SEO) & Social Media Marketing
 
