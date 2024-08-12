@@ -563,8 +563,6 @@ The responsive design ensures users have a positive experience on the site. Espe
 
 relevant project files: All template files.
 
-
-
 ### Future Features
 
 Many features were planned for the site but could not be implemented due to time constraints. Some of the planned features include:
@@ -708,49 +706,91 @@ source for django ERD generation: [medium.com](https://medium.com/@yathomasi1/1-
 
 ### GitHub Projects
 
-[GitHub Projects](https://github.com/benschaf/gipfel-tutor/projects) served as an Agile tool for this project.
+[GitHub Projects](https://github.com/users/benschaf/projects/12/views/3) served as an Agile tool for this project.
 It isn't a specialized tool, but with the right tags and project creation/issue assignments, it can be made to work.
 
 Through it, user stories, issues, and milestone tasks were planned, then tracked on a weekly basis using the basic Kanban board.
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 START OF NOTES (to be deleted)
+User stories are grouped by Epic and MoSCoW priority. The epics were determined before development began as part of the design process. Epics are represented as milestones in the GitHub Project while MoSCoW priorites are represented in a custom project field.
 
-Consider adding a basic screenshot of your Projects Board.
+In depth information about the conception of the idea for the site and the User Stories can be found under the Design Thinking Progress section at the bottom of this file.
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
+Throughout the development process, user stories were reevaluated after each iteration and adjusted accordingly. At this time, they are frozen at the beginning of the last iteration to give more insight into the development process. Many tasks were created based off of each User story. These tasks were mainly organized in a [Kanban Board](https://github.com/users/benschaf/projects/12/views/2) within the same GitHub Project.
 
-![screenshot](documentation/gh-projects.png)
+All in all the User Story Map was of immense help to plan in between iterations and the Kanban Board served as a progress measuring tool while in the middle of a sprint.
 
-### GitHub Issues
+![screenshot](documentation/gh-user-story-map.png)
 
-[GitHub Issues](https://github.com/benschaf/gipfel-tutor/issues) served as an another Agile tool.
-There, I used my own **User Story Template** to manage user stories.
+⤴️ Screenshot of the User Story Map
 
-It also helped with milestone iterations on a weekly basis.
+![screenshot](documentation/gh-kanban.png)
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 START OF NOTES (to be deleted)
+⤴️ Screenshot of the Kanban Board
 
-Consider adding a screenshot of your Open and Closed Issues.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
-- [Open Issues](https://github.com/benschaf/gipfel-tutor/issues) [![GitHub issues](https://img.shields.io/github/issues/benschaf/gipfel-tutor)](https://github.com/benschaf/gipfel-tutor/issues)
-
-    ![screenshot](documentation/gh-issues-open.png)
-
-- [Closed Issues](https://github.com/benschaf/gipfel-tutor/issues?q=is%3Aissue+is%3Aclosed) [![GitHub closed issues](https://img.shields.io/github/issues-closed/benschaf/gipfel-tutor)](https://github.com/benschaf/gipfel-tutor/issues?q=is%3Aissue+is%3Aclosed)
-
-    ![screenshot](documentation/gh-issues-closed.png)
-
-### MoSCoW Prioritization
+#### MoSCoW Prioritization
 
 I've decomposed my Epics into stories prior to prioritizing and implementing them.
-Using this approach, I was able to apply the MoSCow prioritization and labels to my user stories within the Issues tab.
+Using this approach, I was able to apply the MoSCow prioritization as custom project fields to my user stories within the project settings on GitHub.
 
 - **Must Have**: guaranteed to be delivered (*max 60% of stories*)
 - **Should Have**: adds significant value, but not vital (*the rest ~20% of stories*)
 - **Could Have**: has small impact if left out (*20% of stories*)
 - **Won't Have**: not a priority for this iteration
+
+### GitHub Issues
+
+[GitHub Issues](https://github.com/benschaf/gipfel-tutor/issues) served as an another Agile tool.
+
+Github issues was mainly used to track bugs and smaller feature requests. They also contain the user stories which means that filtering is key to keep an overview over the issues.
+
+- [Open Issues](https://github.com/benschaf/gipfel-tutor/issues) [![GitHub issues](https://img.shields.io/github/issues/benschaf/gipfel-tutor)](https://github.com/benschaf/gipfel-tutor/issues)
+
+![screenshot](documentation/gh-issues-open.png)
+
+⤴️ Screenshot of the open issues (this screenshot shows open issues of an earlier date to showcase the structure of the issues throughout development. The actual list of currently open issues can be found by following the link above.)
+
+- [Closed Issues](https://github.com/benschaf/gipfel-tutor/issues?q=is%3Aissue+is%3Aclosed) [![GitHub closed issues](https://img.shields.io/github/issues-closed/benschaf/gipfel-tutor)](https://github.com/benschaf/gipfel-tutor/issues?q=is%3Aissue+is%3Aclosed)
+
+![screenshot](documentation/gh-issues-closed.png)
+
+⤴️ Screenshot of the closed issues (the same note as above applies here as well.)
+
+### User Story Templates
+
+I've used my own **User Story Templates** to manage user stories. They can be found in the [.github/ISSUE_TEMPLATE](.github/ISSUE_TEMPLATE) folder.
+
+The templates are as follows:
+
+- **User Story Template**: used for general user stories
+- **Bug Report Template**: used for bug reports
+- **Task Template**: used for tasks that are not user stories
+- **Question Template**: used for questions that need to be answered (for this project answers were mainly sought from my mentor and the tutor team.)
+
+Below is the User Story Template as an example:
+
+file: [.github/ISSUE_TEMPLATE/user-story.md](.github/ISSUE_TEMPLATE/user-story.md)
+```markdown
+---
+name: User Story
+about: Generate a new user story issue
+title: 'USER STORY: title'
+labels: enhancement, must-have, user-story
+assignees: benschaf
+
+---
+
+As a **role** I can **capability** so that **received benefit**
+
+**Acceptance Criteria**
+- Acceptance criteria 1
+
+- Acceptance criteria 2
+
+- Acceptance criteria 3
+
+
+Add todo items as needed by commenting on this issue.
+```
 
 ## Ecommerce Business Model
 
