@@ -3,33 +3,38 @@
 <!-- -> Credit for adaptable page header: https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/master/home/templates/home/index.html -->
 {% block page_header %}{% endblock %}
 {% block content %}
-  <div class="container p-0">
+  <section class="container p-0">
     <div class="row no-gutters">
       <!-- Hero image -->
       <div class="col-md-6 d-flex justify-content-center align-items-center hero-image">
         <img src="{% static 'images/hero-gipfel.webp' %}"
-             alt="Design image of a mountain peak with a house in front of it"
+             alt="Design image of a mountain peak signifying your path of online learning."
              class="img-fluid" />
       </div>
       <!-- CTA Section -->
       <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
-        <a href="{% url 'tutor_list' %}"
-           class="btn btn-primary btn-lg my-gradient">Find the Tutor for You</a>
-        <div class="mt-5">Learn from a tutor that just feels like the perfect fit.</div>
+        <h1 class="text-normal">
+          <a href="{% url 'tutor_list' %}"
+             class="btn btn-primary btn-lg my-gradient">Find your Online Tutor</a>
+        </h1>
+        <div class="mt-5">
+          Learn from a private tutor with our <strong>Online Tutoring Service</strong>.
+        </div>
       </div>
     </div>
-  </div>
+  </section>
   <!-- Bento information Section -->
-  <div class="container mt-5 p-md-5">
+  <section class="container mt-5 p-md-5">
+    <h2 class="d-none">All you need to know about Gipfel Tutor to get started</h2>
     <!-- -> Credit for CSS Grid (generation): https://cssgrid-generator.netlify.app/ -->
     <div class="parent">
       <div class="div1 card">
         <img src="{% static 'images/bento-paths.webp' %}"
-             alt="Image of multiple paths leading up a mountain summit."
+             alt="A path of online learning leading up a mountain summit."
              class="img-fluid rounded" />
         <div class="card-body p-0">
-          <h5>A wide range of Subjects</h5>
-          <p>Find an expert for the field that you want to know more about.</p>
+          <h5>Online Tutoring Service with the Subject you want</h5>
+          <p>Find a private Tutor for the field that you want to know more about.</p>
           <p>Pick a subject below:</p>
           <a href="{% url 'tutor_list' %}?subject=english"
              class="btn btn-dark mt-2">English</a>
@@ -53,7 +58,7 @@
           </div>
           <div class="col">
             <div class="card-body p-0">
-              <h5>Find your perfect Match</h5>
+              <h5>Online learning with values that suit you</h5>
               <p>Find the ideal tutor for your needs with our matching system.</p>
               <p>Pick Teaching Values that are important to you below:</p>
               <form action="{% url 'tutor_list' %}" method="GET">
@@ -122,12 +127,12 @@
       </div>
       <div class="div6 card">
         <div class="card-body p-0">
-          <h5>Flexible Scheduling</h5>
+          <h5>Flexible One-on-One Online Tutoring</h5>
           <p>Learn at your own pace and convenience with our flexible scheduling options. Your education, on your time.</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 {% endblock %}
 {% block postloadjs %}
   {{ block.super }}
