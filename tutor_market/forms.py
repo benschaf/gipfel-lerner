@@ -4,6 +4,12 @@ from localflavor.generic.forms import IBANFormField
 
 
 class TutorForm(forms.ModelForm):
+    """
+    A form for creating or updating a tutor profile.
+
+    This form includes fields for the tutor's display name, subjects, hourly rate,
+    teaching values, catch phrase, description, profile image, IBAN, and Calendly event URL.
+    """
 
     # -> Credit for testing IBAN: https://ibanvalidieren.de/beispiele.html
     iban = IBANFormField(
@@ -26,6 +32,7 @@ class TutorForm(forms.ModelForm):
         ]
 
     def __init__(self, *args, **kwargs):
+        """Sets the help text for the form fields."""
         super(TutorForm, self).__init__(*args, **kwargs)
         self.fields["display_name"].help_text = (
             "Enter the Name you would like your Students to see."
@@ -52,13 +59,24 @@ class TutorForm(forms.ModelForm):
 
 
 class RatingForm(forms.ModelForm):
+    """
+    A form for creating or updating a rating.
+
+    This form allows users to provide a score and comment for a rating.
+
+    Attributes:
+        comment (CharField): A field for entering the comment.
+    """
+
     comment = forms.CharField(widget=forms.Textarea(attrs={"rows": 2}))
 
     class Meta:
+        """Defines the model and fields for the form."""
         model = Rating
         fields = ["score", "comment"]
 
     def __init__(self, *args, **kwargs):
+        """Sets the attributes for the form fields."""
         super(RatingForm, self).__init__(*args, **kwargs)
         self.fields["score"].widget.attrs.update(
             {"min": 1, "max": 5, "placeholder": "Select a score between 1 and 5."}

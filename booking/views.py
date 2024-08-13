@@ -12,7 +12,6 @@ from django.views.generic import DetailView, CreateView
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
-
 from booking.forms import CalendlyUriForm, CancelForm, PaymentForm
 from booking.models import Payment, TutoringSession
 from gipfel_tutor import settings
@@ -24,6 +23,8 @@ from datetime import datetime
 def cache_payment_data(request):
     """
     Cache payment data and modify Stripe PaymentIntent metadata.
+
+    This function is responsible for caching payment data and modifying the metadata of a Stripe PaymentIntent.
 
     Args:
         request (HttpRequest): The HTTP request object.
@@ -50,6 +51,21 @@ def cache_payment_data(request):
         return HttpResponse(content=e, status=400)
 
 def _get_json_from_calendly_uri(uri, tutor, request):
+    """
+    Retrieves JSON data from the specified Calendly URI.
+
+    Args:
+        uri (str): The Calendly URI to retrieve JSON data from.
+        tutor (Tutor): The tutor object associated with the Calendly access token.
+        request (HttpRequest): The HTTP request object (optional).
+
+    Returns:
+        Response: The response object containing the JSON data.
+
+    Raises:
+        None
+
+    """
     calendly_access_token = tutor.calendly_access_token
     headers = {'Authorization': f'Bearer {calendly_access_token}'}
     response = requests.get(uri, headers=headers)
@@ -59,12 +75,29 @@ def _get_json_from_calendly_uri(uri, tutor, request):
     else:
         print(f"Response: {json.dumps(response.json(), indent=4)}")
         if request:
-            messages.warning(request, f'An error occured while loading the event data. ${response}')
+            messages.warning(request, f'An error occurred while loading the event data. ${response}')
             print(f"Error: {response}")
         return response
 
 
 def _write_calendly_data_to_db(event_data, invitee_data, tutor, student, request):
+    """
+    Writes Calendly data to the database and creates a new tutoring session.
+
+    Args:
+        event_data (dict): The event data received from Calendly.
+        invitee_data (dict): The invitee data received from Calendly.
+        tutor (Tutor): The tutor object associated with the session.
+        student (Student): The student object associated with the session.
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        TutoringSession: The created tutoring session object.
+
+    Raises:
+        KeyError: If the join URL is not found in the event data.
+
+    """
     # Create a new session
 
     questions_and_answers = ''
@@ -105,6 +138,16 @@ def _write_calendly_data_to_db(event_data, invitee_data, tutor, student, request
 def fetch_calendly_data_view(request: HttpRequest, pk: int) -> HttpResponse:
     """
     View for fetching and displaying the tutor's Calendly data.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        pk (int): The primary key of the tutor.
+
+    Returns:
+        HttpResponse: The HTTP response object.
+
+    Raises:
+        Http404: If the tutor with the given primary key does not exist.
     """
     tutor = get_object_or_404(Tutor, pk=pk)
     student = request.user
@@ -141,6 +184,16 @@ def fetch_calendly_data_view(request: HttpRequest, pk: int) -> HttpResponse:
 def cancel_session_view(request, pk):
     """
     View for cancelling a tutoring session.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        pk (int): The primary key of the tutoring session to be cancelled.
+
+    Returns:
+        HttpResponse: The HTTP response object.
+
+    Raises:
+        Http404: If the tutoring session with the given primary key does not exist.
     """
     session = get_object_or_404(TutoringSession, pk=pk)
     print(f"Session: {session.tutor.user}, {session.student}, {request.user}")
@@ -194,9 +247,6 @@ def cancel_session_view(request, pk):
         else:
             messages.warning(request, f'{response_data["title"]}: {response_data["message"]}')
 
-
-
-
         return redirect('dashboard', pk=student.pk)
 
     form = CancelForm()
@@ -209,40 +259,15 @@ def cancel_session_view(request, pk):
     return render(request, 'booking/cancel_session.html', context)
 
 
-def _update_users_sessions(user: User):
-    """
-    function that gets called periodically to update the user's sessions from their
-    calendly data.
-    """
-    sessions_to_update = []
-    tutor = None
-    if Tutor.objects.filter(user=user).exists():
-        tutor = Tutor.objects.filter(user=user)
-        sessions_to_update = TutoringSession.objects.filter(tutor__user=user)
-    else:
-        sessions_to_update = TutoringSession.objects.filter(student=user)
-
-    for session in sessions_to_update:
-        try:
-            event_data = _get_json_from_calendly_uri(session.event_uri, tutor, None)
-            invitee_data = _get_json_from_calendly_uri(session.invitee_uri, tutor, None)
-
-            # Calendly json fields
-            session.start_time = event_data['resource']['start_time']
-            session.end_time = event_data['resource']['end_time']
-            session.location_url = event_data['resource']['location']['join_url']
-            session.session_name = event_data['resource']['name']
-            session.cancel_url = invitee_data['resource']['cancel_url']
-            session.reschedule_url = invitee_data['resource']['reschedule_url']
-            session.invitee_email = invitee_data['resource']['email']
-
-            session.save()
-            print(f"Session {session.pk} updated.")
-        except Exception as e:
-            print(f"Error updating session {session.pk}: {e}")
-
-
 class ScheduleSuccessView(DetailView):
+    """
+    A view that displays the success page after scheduling a tutoring session.
+
+    Attributes:
+        model (Model): The model class to use for retrieving the tutoring session.
+        template_name (str): The name of the template to use for rendering the view.
+        context_object_name (str): The name of the variable to use for the tutoring session object in the template context.
+    """
     model = TutoringSession
     template_name = 'booking/schedule_success.html'
     context_object_name = 'session'
@@ -252,6 +277,17 @@ class ScheduleSuccessView(DetailView):
 def payment_view(request, pk):
     """
     View for handling the payment of a tutoring session.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        pk (int): The primary key of the user.
+
+    Returns:
+        HttpResponse: The HTTP response object.
+
+    Raises:
+        None
+
     """
     sessions_to_pay = TutoringSession.objects.filter(student=request.user, payment_complete=False)
 
@@ -286,28 +322,46 @@ def payment_view(request, pk):
 
 
 class PaymentCreateView(LoginRequiredMixin, CreateView):
+    """
+    View for creating a payment.
+
+    Inherits from LoginRequiredMixin and CreateView.
+    """
+
     model = Payment
     form_class = PaymentForm
     template_name = 'booking/payment_create.html'
     success_message = 'Payment successful.'
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
+        """
+        Returns the context data for the view.
+
+        Overrides the get_context_data method of CreateView.
+        Adds the STRIPE_PUBLIC_KEY to the context.
+        """
         context = super().get_context_data(**kwargs)
         context['STRIPE_PUBLIC_KEY'] = settings.STRIPE_PUBLIC_KEY
         return context
 
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        """
+        Handles the form submission when it is valid.
+
+        Overrides the form_valid method of CreateView.
+        Converts the amount from cents to euros.
+        Populates the payment model with the paid for sessions.
+        Updates the sessions after the payment model is created.
+        """
         # -> Credit for Decimal conversion: https://stackoverflow.com/questions/316238/python-float-to-decimal-conversion
         amount_in_euros = Decimal(form.cleaned_data['amount']) / Decimal('100.00')
         form.instance.amount = amount_in_euros
 
         response = super().form_valid(form)
 
-        # populate the payment model with the paid for sessions
         session_ids = form.cleaned_data['sessions'].split(',')
         sessions_to_pay = TutoringSession.objects.filter(pk__in=session_ids)
 
-        # update the sessions after the payment model is created
         for session in sessions_to_pay:
             session.payment_complete = True
             session.payment = self.object
@@ -316,16 +370,36 @@ class PaymentCreateView(LoginRequiredMixin, CreateView):
         return response
 
     def get_success_url(self) -> str:
+        """
+        Returns the URL to redirect to after a successful form submission.
+
+        Overrides the get_success_url method of CreateView.
+        """
         return reverse('payment_success', kwargs={'pk': self.object.pk})
 
 
 
 class PaymentDetailView(LoginRequiredMixin, DetailView):
+    """
+    A view that displays the details of a payment.
+
+    Inherits from LoginRequiredMixin and DetailView.
+    """
+
     model = Payment
     template_name = 'booking/payment_success.html'
     context_object_name = 'payment'
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        """
+        Adds additional context data to be used in the template.
+
+        Additional Context:
+            sessions (QuerySet): The tutoring sessions associated with the payment.
+
+        Returns:
+            A dictionary containing the context data.
+        """
         context = super().get_context_data(**kwargs)
         context['sessions'] = TutoringSession.objects.filter(payment=self.object)
         return context

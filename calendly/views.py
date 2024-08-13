@@ -9,10 +9,10 @@ from django.contrib.auth.decorators import login_required
 from gipfel_tutor import settings
 from tutor_market.models import Tutor
 
-# Create your views here.
-
-
 def connect_calendly(request: HttpRequest) -> HttpResponse:
+    """
+    Redirects the user to the Calendly OAuth authorization page.
+    """
     client_id = settings.CALENDLY_CLIENT_ID
     redirect_uri = settings.CALENDLY_REDIRECT_URI
 
@@ -22,7 +22,10 @@ def connect_calendly(request: HttpRequest) -> HttpResponse:
 
 
 def get_base64_string() -> str:
-    # -> Credit for base64 encodeing: https://www.geeksforgeeks.org/encoding-and-decoding-base64-strings-in-python/  # noqa
+    """
+    Returns the base64 encoded string of the Calendly client ID and client secret.
+    """
+     # -> Credit for base64 encodeing: https://www.geeksforgeeks.org/encoding-and-decoding-base64-strings-in-python/  # noqa
     client_id = settings.CALENDLY_CLIENT_ID
     client_secret = settings.CALENDLY_CLIENT_SECRET
     basic_auth_string = f"{client_id}:{client_secret}"
@@ -33,6 +36,9 @@ def get_base64_string() -> str:
 
 @login_required
 def calendly_auth(request: HttpRequest) -> HttpResponse:
+    """
+    Handles the Calendly OAuth authorization callback.
+    """
     code = request.GET.get('code')
     print(f"code: {code}")
 
@@ -59,8 +65,7 @@ def calendly_auth(request: HttpRequest) -> HttpResponse:
     response_data = response.json()
 
     if response.status_code != 200:
-        messages.warning(request, f"{response_data['error']}: {
-                         response_data['error_description']}, please try again.")
+        messages.warning(request, f"{response_data['error']}: {response_data['error_description']}, please try again.")
         return redirect(reverse('dashboard', kwargs={'pk': request.user.pk}))
 
     messages.success(request, "Calendly connected successfully!")
@@ -75,6 +80,12 @@ def calendly_auth(request: HttpRequest) -> HttpResponse:
 
 
 def introspect_access_token(tutor) -> dict:
+    """
+    Introspects the Calendly access token to check if it is still valid.
+    If the token is invalid, it refreshes the token and returns the new token.
+    CAREFUL: The introspection only works if the token was created on the
+    deployed site.
+    """
     access_token = tutor.calendly_access_token
     refresh_token = tutor.calendly_refresh_token
 
@@ -106,6 +117,9 @@ def introspect_access_token(tutor) -> dict:
 
 
 def refresh_access_token(tutor) -> dict:
+    """
+    Refreshes the Calendly access token using the refresh token.
+    """
     refresh_token = tutor.calendly_refresh_token
     print(f"refresh_token: {refresh_token}")
 
@@ -142,6 +156,9 @@ def refresh_access_token(tutor) -> dict:
 
 
 def disconnect_calendly(request: HttpRequest, pk: int) -> HttpResponse:
+    """
+    Disconnects the Calendly integration for a tutor.
+    """
     tutor = Tutor.objects.get(pk=pk)
     user = tutor.user
 
@@ -150,7 +167,6 @@ def disconnect_calendly(request: HttpRequest, pk: int) -> HttpResponse:
     tutor.calendly_token_expires_at = None
     tutor.save()
 
-    messages.info(
-        request, "Calendly disconnected successfully! You can reconnect at any time.")
+    messages.info(request, "Calendly disconnected successfully! You can reconnect at any time.")
 
     return redirect(reverse('dashboard', kwargs={'pk': user.pk}))

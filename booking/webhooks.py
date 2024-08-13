@@ -15,6 +15,15 @@ endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
 
 @csrf_exempt
 def webhook(request):
+    """
+    Handle incoming webhook events from Stripe.
+
+    Args:
+        request (HttpRequest): The incoming HTTP request object.
+
+    Returns:
+        JsonResponse: The JSON response indicating the success or failure of the webhook event handling.
+    """
     event = None
 
     try:

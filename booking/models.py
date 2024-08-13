@@ -3,7 +3,10 @@ from django.db import models
 
 
 class TutoringSession(models.Model):
-    # Genereal fields
+    """
+    Model representing a tutoring session.
+    """
+
     tutor = models.ForeignKey(
         "tutor_market.Tutor", on_delete=models.CASCADE, related_name="sessions"
     )
@@ -43,11 +46,22 @@ class TutoringSession(models.Model):
     )
 
     def duration(self) -> timedelta:
+        """
+        Calculate the duration of the tutoring session.
+
+        Returns:
+            timedelta: The duration of the session.
+        """
         return self.end_time - self.start_time
 
 
 class Payment(models.Model):
-    user = models.ForeignKey("auth.User", on_delete=models.CASCADE)  # cascade has to be changed because payments should not be deleted when a user is deleted (probably)
+    """
+    Model representing a payment.
+    """
+
+    # cascade has to be changed because payments should not be deleted when a user is deleted (probably)
+    user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=6, decimal_places=2)
 
     PAYMENT_CHOICES = [
@@ -60,7 +74,6 @@ class Payment(models.Model):
     status = models.CharField(max_length=20, choices=PAYMENT_CHOICES, default="pending")
     date = models.DateTimeField(auto_now_add=True)
 
-    # Stripe fields
-    client_secret = models.CharField(max_length=200, default='')
+    client_secret = models.CharField(max_length=200, default="")
     currency = models.CharField(max_length=3, default="eur")
-    stripe_id = models.CharField(max_length=200, default='')
+    stripe_id = models.CharField(max_length=200, default="")

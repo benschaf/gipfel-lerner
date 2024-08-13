@@ -1,16 +1,6 @@
-import base64
-from typing import Any
-from django.http import HttpRequest
 from django.http.response import HttpResponse as HttpResponse
-from django.shortcuts import redirect, render
-from django.urls import reverse
 from django.views.generic import TemplateView, ListView, DetailView
-from django.contrib import messages
-
-
-from booking.views import _update_users_sessions
 from core.models import About, FrequentlyAskedQuestion
-from gipfel_tutor import settings
 
 
 class LandingPageView(TemplateView):
@@ -21,17 +11,26 @@ class LandingPageView(TemplateView):
 
 
 class AboutPageView(DetailView):
+    """
+    A view that renders the about page template and retrieves the active About instance.
+    """
     model = About
     template_name = "core/about.html"
 
     def get_object(self):
-        # Return the active About instance
+        """
+        Retrieve the active About instance.
+
+        Returns:
+            About: The active About instance.
+        """
         return About.objects.filter(is_active=True).first()
 
 
-
-
 class FAQPageView(ListView):
+    """
+    A view that renders the frequently asked questions page template and retrieves all FAQs.
+    """
     model = FrequentlyAskedQuestion
     template_name = "core/faq.html"
     context_object_name = "faqs"

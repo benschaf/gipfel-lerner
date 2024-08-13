@@ -12,10 +12,20 @@ class Tutor(models.Model):
         display_name (str): The display name of the tutor.
         subjects (ManyToManyField): The subjects that the tutor teaches.
         hourly_rate (DecimalField): The hourly rate charged by the tutor.
+        catch_phrase (str): The catch phrase of the tutor.
         description (str): The description of the tutor.
         profile_image (ImageField): The profile image of the tutor.
         values (ManyToManyField): The values associated with the tutor.
-        ratings (ManyToManyField): The ratings received by the tutor.
+        iban (str): The IBAN of the tutor.
+        calendly_event_url (URLField): The Calendly event URL of the tutor.
+        calendly_personal_token (str): The Calendly personal token of the tutor.
+        calendly_access_token (str): The Calendly access token of the tutor.
+        calendly_refresh_token (str): The Calendly refresh token of the tutor.
+        calendly_token_expires_at (DateTimeField): The expiration date and time of the Calendly token.
+        profile_status (bool): The profile status of the tutor.
+
+    Methods:
+        average_rating(): Returns the average rating of the tutor from all related Rating objects.
     """
 
     user = models.OneToOneField('auth.User', on_delete=models.CASCADE, related_name='tutor')
@@ -30,24 +40,27 @@ class Tutor(models.Model):
     iban = models.CharField(max_length=34, null=True, blank=True)
     calendly_event_url = models.URLField(null=True, blank=True)
     calendly_personal_token = models.CharField(max_length=600, null=True, blank=True)
-
     calendly_access_token = models.CharField(max_length=600, null=True, blank=True)
     calendly_refresh_token = models.CharField(max_length=600, null=True, blank=True)
     calendly_token_expires_at = models.DateTimeField(null=True, blank=True)
-
     profile_status = models.BooleanField(default=False)
 
     def average_rating(self):
         """
-        Returns the average rating of the tutor from all related Rating
-        objects.
+        Returns the average rating of the tutor from all related Rating objects.
+
+        Returns:
+            float: The average rating of the tutor.
         """
         return Rating.objects.filter(tutor=self).aggregate(Avg('score'))
 
     def __str__(self):
+        """Returns the display name of the tutor."""
         return self.display_name
 
     class Meta:
+        """Defines the ordering of the tutors."""
+
         ordering = ['display_name']
 
 
