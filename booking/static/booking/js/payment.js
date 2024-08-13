@@ -27,6 +27,7 @@ paymentElement.mount('#payment-element')
 // Submit the payment to Stripe
 const form = document.getElementById('payment-form')
 
+
 form.addEventListener('submit', async (event) => {
     event.preventDefault()
     $('#submit').attr('disabled', true);

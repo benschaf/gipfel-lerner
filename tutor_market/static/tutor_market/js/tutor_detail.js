@@ -1,3 +1,8 @@
+/**
+ * Checks if the given event is a Calendly event.
+ * @param {Event} e - The event object.
+ * @returns {boolean} - Returns true if the event is a Calendly event, otherwise false.
+ */
 function isCalendlyEvent(e) {
     return e.data.event && e.data.event.indexOf('calendly') === 0
 }

@@ -1,3 +1,7 @@
+/**
+ * Fills out the payment form with the provided paymentIntent data and submits the form.
+ * @param {Object} paymentIntent - The paymentIntent object containing the payment details.
+ */
 function fillOutForm(paymentIntent) {
     const user_id = new URLSearchParams(window.location.search).get('user_id');
     const sessions = new URLSearchParams(window.location.search).get('sessions');
@@ -14,7 +18,6 @@ function fillOutForm(paymentIntent) {
 
     form.submit();
 }
-
 
 // Initialize Stripe.js using your publishable key
 const STRIPE_PUBLIC_KEY = JSON.parse(document.getElementById('stripe-public-key').textContent);
