@@ -1324,7 +1324,8 @@ You can fork this repository by using the following steps:
 
 ### Local VS Deployment
 
-Tutor images are stored in the AWS S3 bucket, and the static files are also stored there. Since the database only stores the image URL, the images will not be displayed locally since the local environment is using the staticfiles directory to serve the images.
+- Tutor images are stored in the AWS S3 bucket, and the static files are also stored there. Since the database only stores the image URL, the images will not be displayed locally since the local environment is using the staticfiles directory to serve the images.
+- The calendly connection will only work on the site it was set up on. A local calendly connection will only refresh its token for the local site, and the same goes for the production site. This shouldn't be an issue as long as there are two separate databases for the two environments.
 
 ## Credits
 
