@@ -50,7 +50,7 @@ def tutor_list_view(request):
             values = request.GET.getlist('teaching-value')
             q_arguments = Q()
             for value in values:
-                # -> Credit for |= operator: https://stackoverflow.com/questions/29399653/python-operator-meaning
+                # -> Credit for special add operator: https://stackoverflow.com/questions/29399653/python-operator-meaning
                 q_arguments |= Q(values__name__icontains=value)
             tutor_list = tutor_list.filter(q_arguments).distinct()
 
