@@ -16,9 +16,9 @@ Welcome to Gipfel Tutor, the pinnacle of personalized tutoring! Our Django-power
 > ## Our Mission: "Connect learners with a highly suitable tutor for their specific **needs** and **preferences**, within **48 hours**."
 
 > ## Top Technical Features
-> 1. **Credit Card Payments using Stripe**: Securely pay for lessons online.
-> 2. **Calendly API v2 Integration**: Schedule and Cancel lessons seamlessly from the site.
-> 3. **Socialaccount Login**: Sign in with Google for a passwordless and modern experience. (also adds Google Pay to Stripe payments)
+> 1. **Credit Card Payments using Stripe**: Securely pay for lessons online - Google Pay included. Powered by Stripe API and Stripe Webhooks
+> 2. **Calendly Integration**: Schedule and Cancel Calendly lessons seamlessly from the site. Powered by the Calendly API v2
+> 3. **Socialaccount Login**: Sign in with Google for a passwordless and modern experience.
 
 ![screenshot](documentation/mockup.png)
 
@@ -112,6 +112,7 @@ Each user story is followed by a set of acceptance criteria that must be met for
 
 > [!IMPORTANT]
 > Make sure to also check out the [**User Story Map**](https://github.com/users/benschaf/projects/12/views/3) which was used extensively during the development process. It provides a more visual representation of the user stories and shows them **grouped by epic** along with their **priority** and **status**.
+> ![screenshot](documentation/gh-user-story-map.png)
 
 <details>
 <summary>Click To expand User Stories right here</summary>
