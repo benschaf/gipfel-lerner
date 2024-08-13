@@ -11,21 +11,18 @@
 [![Heroku](https://img.shields.io/badge/heroku-eco-purple?logo=heroku)](https://www.heroku.com/)
 
 
-Welcome to Gipfel Tutor, the pinnacle of personalized tutoring for Swiss students! Our Django-powered marketplace pairs you with the perfect tutor to conquer your academic peaks. Quick, simple, and effective — scale new heights in learning with us!
+Welcome to Gipfel Tutor, the pinnacle of personalized tutoring! Our Django-powered marketplace pairs you with the perfect tutor to conquer your academic peaks. Quick, simple, and effective — scale new heights in learning with us!
+
+> ## Our Mission: "Connect learners with a highly suitable tutor for their specific **needs** and **preferences**, within **48 hours**."
 
 > ## Top Technical Features
 > 1. **Credit Card Payments using Stripe**: Securely pay for lessons online.
-> 2. **Calendly API v2 Integration**: Schedule lessons directly from the site.
-> 3. **Socialaccount Login**: Sign in with Google for a passwordless and seamless experience. (also adds Google Pay for payments)
+> 2. **Calendly API v2 Integration**: Schedule and Cancel lessons seamlessly from the site.
+> 3. **Socialaccount Login**: Sign in with Google for a passwordless and modern experience. (also adds Google Pay to Stripe payments)
 
 ![screenshot](documentation/mockup.png)
 
-source: [amiresponsive](https://ui.dev/amiresponsive?url=https://gipfel-tutor-768a610dc54f.herokuapp.com)
-
-> [!IMPORTANT]
-> **Our Mission**:
->
-> "Connect learners with a highly suitable tutor for their specific **needs** and **preferences**, within **48 hours*."
+⤴️ source: [amiresponsive](https://ui.dev/amiresponsive?url=https://gipfel-tutor-768a610dc54f.herokuapp.com)
 
 ## UX
 
@@ -109,12 +106,12 @@ Additionally I've adapted the bootstrap variables to match the colour scheme. Th
 
 ## User Stories
 
-The user stories are based on the user personas (To be found at the bottom of the document under **Design Thinking Process**) and the features of the app. They are written from the perspective of the user and describe the actions they can take on the site.
+The user stories are based on the user personas (To be found at the bottom of the document under **Design Thinking Process**) and the features of the app.
 
 Each user story is followed by a set of acceptance criteria that must be met for the story to be considered complete.
 
 > [!IMPORTANT]
-> Make sure to also check out the [User Story Map](https://github.com/users/benschaf/projects/12/views/3) which was used extensively during the development process. It provides a more visual representation of the user stories and shows them **grouped by epics** along with their **priority** and **status**.
+> Make sure to also check out the [**User Story Map**](https://github.com/users/benschaf/projects/12/views/3) which was used extensively during the development process. It provides a more visual representation of the user stories and shows them **grouped by epic** along with their **priority** and **status**.
 
 <details>
 <summary>Click To expand User Stories right here</summary>
@@ -125,7 +122,7 @@ Each user story is followed by a set of acceptance criteria that must be met for
 | --- | --- |
 | As a **first time visitor**, I want to be able to understand the purpose of the site so that I can decide if I want to sign up. | 1. The homepage should clearly explain the purpose of the site. <br> 2. The homepage should have a call-to-action button to sign up. |
 | As a **student**, I want to be able to view a list of tutors so that I can choose the best tutor for my needs. | 1. The site should have a page that lists all available tutors. <br> 2. Each tutor should have at least their profile picture, name, and hourly rate displayed.<br> 3. There should be obvious "book trial lesson" CTA Buttons. |
-| _NOT MVP:_ As a **student**, I want to be able to like and save tutors so that I can easily find them later. | |
+| _NOT MVP (not part of the **M**inimu **V**iable **P**roduct):_ As a **student**, I want to be able to like and save tutors so that I can easily find them later. | |
 
 ### Searching, filtering, and sorting
 
@@ -210,22 +207,6 @@ View the [original draw.io file](https://drive.google.com/file/d/1OUjOdhZI-Dq6OR
 
 ## Features
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 START OF NOTES (to be deleted)
-
-In this section, you should go over the different parts of your project,
-and describe each in a sentence or so.
-
-You will need to explain what value each of the features provides for the user,
-focusing on who this website is for, what it is that they want to achieve,
-and how your project is the best way to help them achieve these things.
-
-For some/all of your features, you may choose to reference the specific project files that implement them.
-
-IMPORTANT: Remember to always include a screenshot of each individual feature!
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
-
 ### Inviting landing Page
 
 When first visiting the site, users are greeted with a clean, modern and inviting landing page. It includes a hero section with an image and a CTA Button. Further down the page, users will find an interactive section with a couple of different options to get started searching for a tutor.
@@ -237,8 +218,11 @@ The landing page is designed to be simple and user-friendly, providing a quick o
 ![screenshot](documentation/feature-landing.png)
 
 ⤴️ Screenshot of the landing page
+<hr>
 
 ![screenshot](documentation/feature-landing-bento.png)
+
+⤴️ Screenshot of the Bento Box Layout
 
 relevant project files: [index.html](core/templates/core/index.html)
 
@@ -288,7 +272,7 @@ relevant project files: [about.html](core/templates/core/about.html)
 
 ### FAQ Page
 
-The FAQ page provides answers to common questions users may have about the site. The content of the FAQ page can by dynamically changed by a Staff member in the Django Admin Panel. For this, the Staff Account needs to be added to the "Customer Service Admin" Authentication Group.
+The FAQ page provides answers to common questions users may have about the site. The content of the FAQ page can be dynamically changed by a Staff member in the Django Admin Panel. For this, the Staff Account needs to be added to the "Customer Service Admin" Authentication Group.
 
 The FAQ page is designed using bootstraps accordion component, which allows users to easily find the information they are looking for. It helps to reduce the number of support requests and ensures users have a positive experience on the site.
 
@@ -341,9 +325,9 @@ relevant project files: [tutor_detail.html](tutor_market/templates/tutor_market/
 
 The Calendly Scheduling Integration allows users to schedule lessons with tutors directly from the Tutor Detail page. The Calendly widget is embedded on the page and displays the tutor's availability. Users can select a date and time that works for them and book a lesson with the tutor.
 
-The Calendly Scheduling Integration is implemented using the **Calendly API v2** and **OAuth2.0**. A tutor can connect their Calendly account to the site in their tutor dashboard. Once connected, the tutor's availability and the status of any lesson is **automatically synced with the site**, ensuring users can book and cancel lessons at their convenience. The calendly webhooks were not used, as they are a paid feature - therefore any changes to events on the calendly site are not automatically reflected on the site.
+The Calendly Scheduling Integration is implemented using the **Calendly API v2** and **OAuth2.0**. A tutor can connect their Calendly account to the site in their tutor dashboard. Once connected, the tutor's availability and the status of any lesson is **automatically synced with the site**, ensuring users can book and cancel lessons at their convenience. The calendly webhooks were not used, as they are a paid feature - therefore any changes to events on the calendly site are not automatically reflected on Gipfel Tutor.
 
-Upon booking a lesson, the user receives a confirmation email from Calendly and is redirected to a success page on the site. The tutor also receives a notification email from Calendly and can manage the lesson in their Calendly dashboard.
+Upon booking a lesson, the user receives a confirmation email from Calendly and is redirected to a success page on the site. The tutor also receives a notification email from Calendly and can manage the lesson from their Dashboard.
 
 ![screenshot](documentation/feature-calendly.png)
 
@@ -375,7 +359,7 @@ Once a users payment is successful, they are redirected to a success page on the
 
 relevant project files: [payment.html](booking/templates/booking/payment.html), [payment.js](booking/static/booking/js/payment.js)
 
-### User Authentication with Allauth
+### User Authentication with Allauth (including Socialaccount Login)
 
 The User Authentication with Allauth feature allows users to create an account, log in, log out, reset their password and manage their account email. The feature is implemented using the **Django Allauth** package and includes **email verification** to ensure the security of user accounts. Additionally, the feature includes **social media login** using Google.
 
@@ -383,8 +367,8 @@ The socical media login feature comes in very handy in combination with **Calend
 
 The Project is running Allauth Version: 0.63.3. This means that it is very convenient to adapt the templates which are heavily reliant on django template tags. Basically all Styling could be achieved by only changing one template file:
 
-[templates/account/allauth/base.html](templates/allauth/layouts/base.html)
-```python
+file: [templates/account/allauth/base.html](templates/allauth/layouts/base.html)
+```html
 {% extends 'base.html' %}
 {% block page_header %}
   {{ block.super }}
@@ -415,7 +399,7 @@ The google login Button was styled using the [Google Sign-In Branding Guidelines
 
 ![screenshot](documentation/feature-auth-google.png)
 
-⤴️ Screenshot of the Google Login Button
+⤴️ Screenshot of the Google Login confirm Screen
 
 The Django Allauth package provides more templates that are not all documented here, but they are working on the site.
 
@@ -429,7 +413,7 @@ The user Dashboard is designed to be informative and user-friendly, providing us
 
 ![screenshot](documentation/feature-user-dashboard.png)
 
-⤴️ Screenshot of the User Dashboard
+⤴️ Screenshot of the Student Dashboard
 
 relevant project files: [student_dashboard.html](tutor_market/templates/tutor_market/student_dashboard.html)
 
@@ -489,8 +473,6 @@ These Permissions should allow staff members to manage the site effectively, pro
 
 relevant project files: [allauth_groups_fixture.json](fixtures/allauth_groups_fixture.json)
 
-### SEO Techniques
-
 ### Mailchimp Newsletter form
 
 In the footer of the site, users can subscribe to the site's newsletter using the Mailchimp Newsletter form. The form is designed to be simple and user-friendly, providing users with an easy way to stay informed about new features and updates. The form is implemented using a generated template from the Mailchimp website. The design is adapted to fit the site's color scheme and branding but still sticks out as a Mailchimp form, sticking to the Mailchimp Branding Guidelines.
@@ -532,14 +514,14 @@ relevant project files: All template files.
 Many features were planned for the site but could not be implemented due to time constraints. Some of the planned features include:
 
 - Feedback on singular lessons
-    - After a lesson, the student should be able to give feedback on the lesson. This feedback should be visible to the tutor and the student in their dashboards. At the moment, any logged-in user exvept from the tutur himself can post feedback on a tutor.
+    - After a lesson, the student should be able to give feedback on the lesson. This feedback should be visible to the tutor and the student in their dashboards. At the moment, any logged-in user except from the tutur himself can post feedback on a tutor.
 - Chat system for students and tutors
     - A chat system should be implemented to allow students and tutors to communicate directly on the site. This would make it easier to set up and organize lessons between students and tutors. At the moment, tutors and students can only communicate via email.
 - Stripe confirmation emails
     - After a successful payment, the user should receive a confirmation email. This would provide users with a receipt and ensure they have a record of their payment. At the moment, the user is only redirected to a success page on the site.
 
 > [!NOTE]
-> Make sure to have a look at the [User Story Map](https://github.com/users/benschaf/projects/12/views/3) to see smaller additions and quality of life improvements that are planned for the site.
+> Make sure to have a look at the [User Story Map](https://github.com/users/benschaf/projects/12/views/3) to see smaller additions and quality of life improvements that are planned for the site. Just have a look at the "Should Have" and "Could Have" Columns.
 
 
 ## Tools & Technologies Used
@@ -565,7 +547,7 @@ Many features were planned for the site but could not be implemented due to time
 - [![AWS S3](https://img.shields.io/badge/AWS_S3-grey?logo=amazons3&logoColor=569A31)](https://aws.amazon.com/s3) used for online static file storage.
 - [![Font Awesome](https://img.shields.io/badge/Font_Awesome-grey?logo=fontawesome&logoColor=528DD7)](https://fontawesome.com) used for the icons.
 - [![ChatGPT](https://img.shields.io/badge/ChatGPT-grey?logo=chromatic&logoColor=75A99C)](https://chatopenai.de/) used to help debug, troubleshoot, and explain things.
-- ![Calendly api v2](https://img.shields.io/badge/-Calendly%20API-1A1A1A?style=flat&logo=calendly)
+- ![Calendly api v2](https://img.shields.io/badge/-Calendly%20API-1A1A1A?style=flat&logo=calendly) used to provide scheduling functionality for tutors.
 - ![django template support](https://img.shields.io/badge/-Django%20Template%20Support-092E20?style=flat&logo=django) used to format the template .html files
 - ![djlint](https://img.shields.io/badge/-DjLint-092E20?style=flat&logo=django) used to lint and format the Django code
 - ![django vscode extension](https://img.shields.io/badge/-Django%20VSCode%20Extension-092E20?style=flat&logo=django) used to provide Django support in VSCode
@@ -579,7 +561,7 @@ Many features were planned for the site but could not be implemented due to time
 
 ## User Journey Flowchart
 
-Below is a flowchart that outlines the user journey on the site. It shows the different paths a user can take and the actions they can perform. One focus of the site is to provide as much access to users that aren't logged in yet as possible. This is why the user can search for tutors, view tutor profiles without being logged in. The only need to login once they want to book a lesson.
+Below is a flowchart that outlines the user journey on the site. It shows the different paths a user can take and the actions they can perform. One focus of the site is to provide as much access to users that aren't logged in yet as possible. Users can view all tutors and their profiles without being logged in. They only need to log in or sign up once they want to book a lesson.
 
 [flowchart link](https://drive.google.com/file/d/1k-WFUWeaEafaomXcuk4rCSmGXS4WIFbf/view?usp=sharing)
 
@@ -658,7 +640,7 @@ INSTALLED_APPS = [
 - removed `'django_extensions',` from my `INSTALLED_APPS`
 - finally, in the terminal: `pip3 uninstall django-extensions pygraphviz -y`
 
-Note that the `Student` model was dropped in the final version of the site. The `User` model is used instead to represent students.
+Note that the `Student` model was dropped in the final version of the site. The `User` model is used directly instead to represent students.
 
 ![erd](documentation/erd_final.png)
 
@@ -679,7 +661,7 @@ User stories are grouped by Epic and MoSCoW priority. The epics were determined 
 
 In depth information about the conception of the idea for the site and the User Stories can be found under the Design Thinking Progress section at the bottom of this file.
 
-Throughout the development process, user stories were reevaluated after each iteration and adjusted accordingly. At this time, they are frozen at the beginning of the last iteration to give more insight into the development process. Many tasks were created based off of each User story. These tasks were mainly organized in a [Kanban Board](https://github.com/users/benschaf/projects/12/views/2) within the same GitHub Project.
+Throughout the development process, user stories were reevaluated after each iteration and adjusted accordingly. Many tasks were created based off of each User story. These tasks were mainly organized in a [Kanban Board](https://github.com/users/benschaf/projects/12/views/2) within the same GitHub Project.
 
 All in all the User Story Map was of immense help to plan in between iterations and the Kanban Board served as a progress measuring tool while in the middle of a sprint.
 
@@ -758,6 +740,8 @@ Add todo items as needed by commenting on this issue.
 
 ## Ecommerce Business Model
 
+Below is an overview of the business model for the site. It includes information about the site's target audience, the service it provides, and how it generates revenue.
+
 **WHO**
 This site acts as a platform for students to find tutors and book lessons with them. It therefore follows a `Business to Customer` model.
 
@@ -767,13 +751,17 @@ The site focuses on providing the service of connecting students with tutors. It
 **HOW**
 Payment transactions are individual as opposed to a subscription model. Users can choose to pay for lessons as they book them or pay for multiple lessons at once. The site uses the Stripe API to handle payments securely.
 
-It is still in its early development stages, although it already has a newsletter, and links for social media marketing. The Facebook page is already set up and linked to the site.
+The site is still in its early development stages, although it already has a newsletter, and links for social media marketing. The Facebook page is already set up and linked to the site.
 
 Social media can potentially build a community of users around the business, and boost site visitor numbers,
 especially when using larger platforms such a Facebook.
 
 A newsletter list can be used by the business to send regular messages to site users.
 For example a welcome message, notifications of new tutors, and reminders of upcoming lessons, updates to business hours, notifications of events, and much more!
+
+### Business and Costumer Goals
+
+The business goals of the app are to provide a platform where students can find tutors for their specific needs and preferences. The app aims to set itself apart from other tutoring platforms by providing a better matching system that leverages detailed tutor profiles, ratings, and reviews. The app also aims to provide a seamless user experience for both students and tutors, with features such as detailed tutor profiles, booking requests, and online payments.
 
 ## Search Engine Optimization (SEO) & Social Media Marketing
 
@@ -785,7 +773,7 @@ This included a series of the following keyword types. I've also included some t
 
 Check out [this commit](https://github.com/benschaf/gipfel-tutor/commit/c23e09cd80d2b466e50f83a7562976e49dfac1dc) to see how the keywords were implemented along with semantic HTML tags.
 
-The keywords marked as "*(too generic)*" too authoritative and would be difficult to rank for.
+The keywords marked as "*(too generic)*" are too authoritative and would be difficult to rank for.
 
 - Short-tail (head terms) keywords
     - Tutoring
@@ -867,9 +855,6 @@ The newsletter form is located in the footer of the site and is linked to a Mail
 
 compare feature: [Mailchimp Newsletter form](#mailchimp-newsletter-form)
 
-## Business and Costumer Goals
-
-The business goals of the app are to provide a platform where students can find tutors for their specific needs and preferences. The app aims to set itself apart from other tutoring platforms by providing a better matching system that leverages detailed tutor profiles, ratings, and reviews. The app also aims to provide a seamless user experience for both students and tutors, with features such as detailed tutor profiles, booking requests, and online payments.
 
 ## Testing
 
@@ -1091,7 +1076,7 @@ Once you've created a [Calendly developer account](https://developer.calendly.co
     - Save the `Client ID` and `Client Secret` keys and the `Redirect Uri` for the production app.
         - `CALENDLY_PROD_CLIENT_ID` = Client ID
         - `CALENDLY_PROD_CLIENT_SECRET` = Client Secret
-        - `CALENDLY_PROD_REDIRECT_URI` = "Your Deployed Heroku App URL" + `/calendly/auth`
+        - `CALENDLY_PROD_REDIRECT_URI` = "your deployed heroku base url" + `/calendly/auth`
 
 ### Google Social Login
 
@@ -1115,6 +1100,7 @@ Once you've created a Google account and logged-in, follow these series of steps
 ```python
 INSTALLED_APPS = [
     # ...
+    "django.contrib.sites",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -1140,6 +1126,11 @@ SOCIALACCOUNT_PROVIDERS = {
 SOCIALACCOUNT_ENABLED = True
 ```
 
+- migrate the database to include the new tables for allauth:
+```shell
+python3 manage.py migrate
+```
+
 - In the Django admin panel, navigate to **Sites**.
 - Add a new site with the following details:
     - Domain name: `localhost:8000`
@@ -1156,7 +1147,8 @@ SOCIALACCOUNT_ENABLED = True
     - Secret Key: `Your Google Client Secret`
     - Sites: `localhost` and `Heroku`
 
-For troubleshooting, refer to the [Allauth Socialaccount Documentation](https://docs.allauth.org/en/latest/socialaccount/index.html).
+> [!INFO]
+> For troubleshooting, refer to the [Allauth Socialaccount Documentation](https://docs.allauth.org/en/latest/socialaccount/index.html).
 
 
 ### Heroku Deployment
@@ -1250,10 +1242,6 @@ and include the same environment variables listed above from the Heroku deployme
 > This is a sample only; you would replace the values with your own if cloning/forking my repository.
 
 Sample `env.py` file:
-S>DFHJADSGHKADSG
-SDAFFGHJSKAGHKSDAF
-DSASDGFHASJDGHKSDAFs
-fsdhagfjdasgkhd
 ```python
 import os
 
@@ -1394,7 +1382,7 @@ Additionaly, [Chris Beams](https://chris.beams.io/posts/git-commit) article "How
 - All images on the landing page were created by AI using [deepai.org](https://deepai.org/machine-learning-model/origami-3d-generator)
 - All example profile pictures were generated using [thispersondoesnotexist.com](https://thispersondoesnotexist.com)
 
-### Acknowledgements
+## Acknowledgements
 
 - Immense thanks go to my Code Institute mentor, [Tim Nelson](https://github.com/TravelTimN) for his support throughout the development of this project.
 - I would like to thank the [Code Institute](https://codeinstitute.net) tutor team for their assistance and their time with troubleshooting and debugging some project issues.
