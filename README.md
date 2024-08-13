@@ -115,7 +115,7 @@ Each user story is followed by a set of acceptance criteria that must be met for
 > ![screenshot](documentation/gh-user-story-map.png)
 
 <details>
-<summary>Click To expand User Stories right here</summary>
+<summary>**Click To expand User Stories from within the README.md**</summary>
 
 ### Viewing and navigation
 
@@ -187,6 +187,9 @@ To follow best practice, wireframes were developed for mobile, tablet, and deskt
 I've used [draw.io](https://balsamiq.com/wireframes) to design my site wireframes.
 
 View the [original draw.io file](https://drive.google.com/file/d/1OUjOdhZI-Dq6OR5pPkPgPQIQ4jyU9k51/view?usp=sharing) of the wireframes. (click on the "Open with" button and select "draw.io")
+
+> [!IMPORTANT]
+> NOT FINISHED YET - images are missing
 
 <details>
 <summary>Click to expand wireframes</summary>
@@ -1257,7 +1260,7 @@ os.environ.setdefault('EMAIL_HOST_PASS', 'users own value')
 os.environ.setdefault('EMAIL_HOST_USER', 'users own value')
 
 # AWS is disabled by default, but can be enabled by setting USE_AWS to True
-# The displaying of tutor profile images will not work even with ASW enabled
+# The displaying of tutor profile images will not work even with AWS enabled
 # as explained in "Local VS Deployment".
 
 # os.environ.setdefault('USE_AWS', 'True')
