@@ -97,7 +97,7 @@
               </p>
               <div class="d-flex flex-wrap gap-2">
                 <input type="checkbox"
-                       name="teaching-value"
+                       name="teachingvalue"
                        value="self-learning"
                        class="btn-check list-value-btn"
                        autocomplete="off"
@@ -105,7 +105,7 @@
                        {% if 'self-learning' in values %}checked{% endif %} />
                 <label class="btn btn-pill my-gray-background" for="btn-check-1">Self-Learning</label>
                 <input type="checkbox"
-                       name="teaching-value"
+                       name="teachingvalue"
                        value="repetition"
                        class="btn-check list-value-btn"
                        autocomplete="off"
@@ -113,7 +113,7 @@
                        {% if 'repetition' in values %}checked{% endif %} />
                 <label class="btn btn-pill my-gray-background" for="btn-check-2">Repetition</label>
                 <input type="checkbox"
-                       name="teaching-value"
+                       name="teachingvalue"
                        value="engagement"
                        class="btn-check list-value-btn"
                        autocomplete="off"
@@ -121,7 +121,7 @@
                        {% if 'engagement' in values %}checked{% endif %} />
                 <label class="btn btn-pill my-gray-background" for="btn-check-3">Engagement</label>
                 <input type="checkbox"
-                       name="teaching-value"
+                       name="teachingvalue"
                        value="urgency"
                        class="btn-check list-value-btn"
                        autocomplete="off"
@@ -201,7 +201,7 @@
             {% if page_obj.has_previous %}
               <li class="page-item">
                 <a class="page-link"
-                   href="?page={{ page_obj.previous_page_number }}{% if request.GET.sorting %}&sorting={{ request.GET.sorting }}{% endif %}"
+                   href="?page={{ page_obj.previous_page_number }}{% if request.GET.sorting %}&sorting={{ request.GET.sorting }}{% endif %}{% if request.GET.subject %}&subject={{ request.GET.subject }}{% endif %}{% if request.GET.teachingvalue %}&teachingvalue={{ request.GET.teachingvalue }}{% endif %}"
                    aria-label="Previous">
                   <i class="fa-solid fa-angle-left"></i>
                 </a>
@@ -215,14 +215,14 @@
               {% else %}
                 <li class="page-item">
                   <a class="page-link"
-                     href="?page={{ num }}{% if request.GET.sorting %}&sorting={{ request.GET.sorting }}{% endif %}">{{ num }}</a>
+                     href="?page={{ num }}{% if request.GET.sorting %}&sorting={{ request.GET.sorting }}{% endif %}{% if request.GET.subject %}&subject={{ request.GET.subject }}{% endif %}{% if request.GET.teachingvalue %}&teachingvalue={{ request.GET.teachingvalue }}{% endif %}">{{ num }}</a>
                 </li>
               {% endif %}
             {% endfor %}
             {% if page_obj.has_next %}
               <li class="page-item">
                 <a class="page-link"
-                   href="?page={{ page_obj.next_page_number }}{% if request.GET.sorting %}&sorting={{ request.GET.sorting }}{% endif %}"
+                   href="?page={{ page_obj.next_page_number }}{% if request.GET.sorting %}&sorting={{ request.GET.sorting }}{% endif %}{% if request.GET.subject %}&subject={{ request.GET.subject }}{% endif %}{% if request.GET.teachingvalue %}&teachingvalue={{ request.GET.teachingvalue }}{% endif %}"
                    aria-label="Next">
                   <i class="fa-solid fa-angle-right"></i>
                 </a>

@@ -46,9 +46,9 @@ def tutor_list_view(request):
                 q_arguments |= Q(subjects__name__icontains=subject)
             tutor_list = tutor_list.filter(q_arguments).distinct()
 
-        if 'teaching-value' in request.GET:
+        if 'teachingvalue' in request.GET:
             # -> Credit for getting values from a list of query parameters: https://docs.djangoproject.com/en/5.0/ref/request-response/#querydict-objects
-            values = request.GET.getlist('teaching-value')
+            values = request.GET.getlist('teachingvalue')
             q_arguments = Q()
             for value in values:
                 # -> Credit for special add operator: https://stackoverflow.com/questions/29399653/python-operator-meaning
@@ -77,7 +77,7 @@ def tutor_list_view(request):
                 tutor_list = tutor_list.order_by('-hourly_rate')
 
     # Pagination
-    paginator = Paginator(tutor_list, 6)
+    paginator = Paginator(tutor_list, 1)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
