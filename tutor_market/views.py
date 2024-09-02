@@ -77,7 +77,7 @@ def tutor_list_view(request):
                 tutor_list = tutor_list.order_by('-hourly_rate')
 
     # Pagination
-    paginator = Paginator(tutor_list, 1)
+    paginator = Paginator(tutor_list, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
