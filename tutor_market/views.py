@@ -398,6 +398,10 @@ def dashboard_view(request, pk):
     user = get_object_or_404(User, pk=pk)
     connected_tutor_profile = Tutor.objects.filter(user=user).first()
 
+    if request.user != user:
+        messages.warning(request, 'You do not have permission to view this dashboard. We redirected you to your own dashboard.')
+        return redirect('dashboard', pk=request.user.pk)
+
     if connected_tutor_profile:
         return tutor_dashboard(request, user)
     else:
