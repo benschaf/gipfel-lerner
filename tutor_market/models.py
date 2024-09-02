@@ -44,6 +44,7 @@ class Tutor(models.Model):
     calendly_refresh_token = models.CharField(max_length=600, null=True, blank=True)
     calendly_token_expires_at = models.DateTimeField(null=True, blank=True)
     profile_status = models.BooleanField(default=False)
+    testing_profile = models.BooleanField(default=False)
 
     def average_rating(self):
         """

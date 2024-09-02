@@ -1,0 +1,694 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 100000002,
+        "fields": {
+            "password": "testuserpasswordhash",
+            "last_login": "2024-08-13T14:00:00.000Z",
+            "is_superuser": false,
+            "username": "johnsmith",
+            "email": "auto_test_user_2@example.com"
+        }
+    },
+    {
+        "model": "tutor_market.tutor",
+        "pk": 100000002,
+        "fields": {
+            "user": 100000002,
+            "display_name": "John",
+            "hourly_rate": "20.00",
+            "catch_phrase": "Learn math the fun way!",
+            "description": "Hello! I'm John, a math enthusiast with a knack for making complex concepts simple and enjoyable. Whether you're struggling with algebra, geometry, or calculus, I'm here to help you master math with confidence. Let's make math fun and exciting together!",
+            "iban": "CH16123412341235",
+            "calendly_event_url": "https://calendly.com/user2gipfeltutor/45min",
+            "profile_status": true,
+            "testing_profile": true,
+            "subjects": [
+                3,
+                2
+            ],
+            "values": [
+                2,
+                3
+            ]
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000002,
+        "fields": {
+            "tutor": 100000002,
+            "user": 100000003,
+            "score": 4,
+            "comment": "John is a great math tutor. He explains concepts clearly and makes learning enjoyable."
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000003,
+        "fields": {
+            "tutor": 100000002,
+            "user": 100000003,
+            "score": 5,
+            "comment": "John helped me improve my math skills significantly. Highly recommended!"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 100000003,
+        "fields": {
+            "password": "testuserpasswordhash",
+            "last_login": "2024-08-13T14:30:00.000Z",
+            "is_superuser": false,
+            "username": "janedoe",
+            "email": "auto_test_user_3@example.com"
+        }
+    },
+    {
+        "model": "tutor_market.tutor",
+        "pk": 100000003,
+        "fields": {
+            "user": 100000003,
+            "display_name": "Jane",
+            "hourly_rate": "25.00",
+            "catch_phrase": "Science is fun!",
+            "description": "Hi! I'm Jane, a passionate science tutor with a love for all things biology and chemistry. My goal is to make science accessible and enjoyable for everyone. Whether you're preparing for exams or just curious about the natural world, I'm here to guide you through the wonders of science.",
+            "iban": "CH16123412341236",
+            "calendly_event_url": "https://calendly.com/user2gipfeltutor/60min",
+            "profile_status": true,
+            "testing_profile": true,
+            "subjects": [
+                4,
+                6
+            ],
+            "values": [
+                1,
+                2
+            ]
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000004,
+        "fields": {
+            "tutor": 100000003,
+            "user": 100000003,
+            "score": 5,
+            "comment": "Jane is an amazing science tutor. She makes learning biology and chemistry fun and interesting."
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000005,
+        "fields": {
+            "tutor": 100000003,
+            "user": 100000002,
+            "score": 4,
+            "comment": "Jane's lessons are very informative and engaging. I learned a lot from her."
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 100000004,
+        "fields": {
+            "password": "testuserpasswordhash",
+            "last_login": "2024-08-13T15:00:00.000Z",
+            "is_superuser": false,
+            "username": "michaelbrown",
+            "email": "auto_test_user_4@example.com"
+        }
+    },
+    {
+        "model": "tutor_market.tutor",
+        "pk": 100000004,
+        "fields": {
+            "user": 100000004,
+            "display_name": "Michael",
+            "hourly_rate": "30.00",
+            "catch_phrase": "History comes alive!",
+            "description": "Greetings! I'm Michael, a history buff with a passion for storytelling. My lessons are designed to bring history to life, making it engaging and relevant. Whether you're studying for exams or just love history, I'm here to help you explore the past in a meaningful way.",
+            "iban": "CH16123412341237",
+            "calendly_event_url": "https://calendly.com/user2gipfeltutor/90min",
+            "profile_status": true,
+            "testing_profile": true,
+            "subjects": [
+                7
+            ],
+            "values": [
+                2,
+                4
+            ]
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000006,
+        "fields": {
+            "tutor": 100000004,
+            "user": 100000003,
+            "score": 5,
+            "comment": "Michael's history lessons are fantastic. He makes history come alive with his storytelling."
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000007,
+        "fields": {
+            "tutor": 100000004,
+            "user": 100000003,
+            "score": 4,
+            "comment": "Michael is a great history tutor. His lessons are engaging and informative."
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 100000005,
+        "fields": {
+            "password": "testuserpasswordhash",
+            "last_login": "2024-08-13T15:30:00.000Z",
+            "is_superuser": false,
+            "username": "emilywhite",
+            "email": "auto_test_user_5@example.com"
+        }
+    },
+    {
+        "model": "tutor_market.tutor",
+        "pk": 100000005,
+        "fields": {
+            "user": 100000005,
+            "display_name": "Emily",
+            "hourly_rate": "35.00",
+            "catch_phrase": "Master chemistry with ease!",
+            "description": "Hi! I'm Emily, a chemistry tutor with a passion for teaching. My goal is to make chemistry understandable and enjoyable for all students. Whether you're preparing for exams or just want to improve your knowledge, I'm here to help you succeed.",
+            "iban": "CH16123412341238",
+            "calendly_event_url": "https://calendly.com/user2gipfeltutor/120min",
+            "profile_status": true,
+            "testing_profile": true,
+            "subjects": [
+                6
+            ],
+            "values": [
+                3,
+                1
+            ]
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000008,
+        "fields": {
+            "tutor": 100000005,
+            "user": 100000004,
+            "score": 5,
+            "comment": "Emily is a fantastic chemistry tutor. She makes complex topics easy to understand."
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000009,
+        "fields": {
+            "tutor": 100000005,
+            "user": 100000002,
+            "score": 4,
+            "comment": "Emily's lessons are very helpful. I learned a lot from her."
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 100000006,
+        "fields": {
+            "password": "testuserpasswordhash",
+            "last_login": "2024-08-13T16:00:00.000Z",
+            "is_superuser": false,
+            "username": "davidjones",
+            "email": "auto_test_user_6@example.com"
+        }
+    },
+    {
+        "model": "tutor_market.tutor",
+        "pk": 100000006,
+        "fields": {
+            "user": 100000006,
+            "display_name": "David",
+            "hourly_rate": "40.00",
+            "catch_phrase": "Excel in biology!",
+            "description": "Hello! I'm David, a biology tutor with a deep love for the subject. My lessons are designed to make biology interesting and accessible. Whether you're studying for exams or just curious about life sciences, I'm here to help you achieve your goals.",
+            "iban": "CH16123412341239",
+            "calendly_event_url": "https://calendly.com/user2gipfeltutor/150min",
+            "profile_status": true,
+            "testing_profile": true,
+            "subjects": [
+                4
+            ],
+            "values": [
+                1,
+                2
+            ]
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000010,
+        "fields": {
+            "tutor": 100000006,
+            "user": 100000003,
+            "score": 5,
+            "comment": "David is an excellent biology tutor. His lessons are engaging and informative."
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000011,
+        "fields": {
+            "tutor": 100000006,
+            "user": 100000004,
+            "score": 4,
+            "comment": "David's biology lessons are very helpful. I highly recommend him."
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 100000007,
+        "fields": {
+            "password": "testuserpasswordhash",
+            "last_login": "2024-08-13T16:30:00.000Z",
+            "is_superuser": false,
+            "username": "sarahwilson",
+            "email": "auto_test_user_7@example.com"
+        }
+    },
+    {
+        "model": "tutor_market.tutor",
+        "pk": 100000007,
+        "fields": {
+            "user": 100000007,
+            "display_name": "Sarah",
+            "hourly_rate": "45.00",
+            "catch_phrase": "Unlock the secrets of history!",
+            "description": "Hi! I'm Sarah, a history tutor with a passion for uncovering the past. My lessons are designed to make history come alive and be relevant to today's world. Whether you're preparing for exams or just love history, I'm here to help you explore the past in a meaningful way.",
+            "iban": "CH16123412341240",
+            "calendly_event_url": "https://calendly.com/user2gipfeltutor/180min",
+            "profile_status": true,
+            "testing_profile": true,
+            "subjects": [
+                7
+            ],
+            "values": [
+                4,
+                3
+            ]
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000012,
+        "fields": {
+            "tutor": 100000007,
+            "user": 100000004,
+            "score": 5,
+            "comment": "Sarah's history lessons are fantastic. She makes history come alive with her storytelling."
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000013,
+        "fields": {
+            "tutor": 100000007,
+            "user": 100000002,
+            "score": 4,
+            "comment": "Sarah is a great history tutor. Her lessons are engaging and informative."
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 100000008,
+        "fields": {
+            "password": "testuserpasswordhash",
+            "last_login": "2024-08-13T17:00:00.000Z",
+            "is_superuser": false,
+            "username": "chrislee",
+            "email": "auto_test_user_8@example.com"
+        }
+    },
+    {
+        "model": "tutor_market.tutor",
+        "pk": 100000008,
+        "fields": {
+            "user": 100000008,
+            "display_name": "Chris",
+            "hourly_rate": "50.00",
+            "catch_phrase": "Master math with ease!",
+            "description": "Hello! I'm Chris, a math tutor with a passion for teaching. My goal is to make math understandable and enjoyable for all students. Whether you're preparing for exams or just want to improve your knowledge, I'm here to help you succeed.",
+            "iban": "CH16123412341241",
+            "calendly_event_url": "https://calendly.com/user2gipfeltutor/210min",
+            "profile_status": true,
+            "testing_profile": true,
+            "subjects": [
+                3,
+                2
+            ],
+            "values": [
+                2,
+                3
+            ]
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000014,
+        "fields": {
+            "tutor": 100000008,
+            "user": 100000003,
+            "score": 5,
+            "comment": "Chris is a fantastic math tutor. He makes complex topics easy to understand."
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000015,
+        "fields": {
+            "tutor": 100000008,
+            "user": 100000004,
+            "score": 4,
+            "comment": "Chris's lessons are very helpful. I learned a lot from him."
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 100000009,
+        "fields": {
+            "password": "testuserpasswordhash",
+            "last_login": "2024-08-13T17:30:00.000Z",
+            "is_superuser": false,
+            "username": "laurabrown",
+            "email": "auto_test_user_9@example.com"
+        }
+    },
+    {
+        "model": "tutor_market.tutor",
+        "pk": 100000009,
+        "fields": {
+            "user": 100000009,
+            "display_name": "Laura",
+            "hourly_rate": "55.00",
+            "catch_phrase": "Excel in English!",
+            "description": "Hi! I'm Laura, an English tutor with a deep love for the subject. My lessons are designed to make English interesting and accessible. Whether you're studying for exams or just curious about literature, I'm here to help you achieve your goals.",
+            "iban": "CH16123412341242",
+            "calendly_event_url": "https://calendly.com/user2gipfeltutor/240min",
+            "profile_status": true,
+            "testing_profile": true,
+            "subjects": [
+                3
+            ],
+            "values": [
+                1,
+                4
+            ]
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000016,
+        "fields": {
+            "tutor": 100000009,
+            "user": 100000003,
+            "score": 5,
+            "comment": "Laura is an excellent English tutor. Her lessons are engaging and informative."
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000017,
+        "fields": {
+            "tutor": 100000009,
+            "user": 100000002,
+            "score": 4,
+            "comment": "Laura's English lessons are very helpful. I highly recommend her."
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 100000010,
+        "fields": {
+            "password": "testuserpasswordhash",
+            "last_login": "2024-08-13T18:00:00.000Z",
+            "is_superuser": false,
+            "username": "matthewmiller",
+            "email": "auto_test_user_10@example.com"
+        }
+    },
+    {
+        "model": "tutor_market.tutor",
+        "pk": 100000010,
+        "fields": {
+            "user": 100000010,
+            "display_name": "Matthew",
+            "hourly_rate": "60.00",
+            "catch_phrase": "Master physics with ease!",
+            "description": "Hi! I'm Matthew, a physics tutor with a passion for teaching. My goal is to make physics understandable and enjoyable for all students. Whether you're preparing for exams or just want to improve your knowledge, I'm here to help you succeed.",
+            "iban": "CH16123412341243",
+            "calendly_event_url": "https://calendly.com/user2gipfeltutor/270min",
+            "profile_status": true,
+            "testing_profile": true,
+            "subjects": [
+                4
+            ],
+            "values": [
+                2,
+                3
+            ]
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000018,
+        "fields": {
+            "tutor": 100000010,
+            "user": 100000002,
+            "score": 5,
+            "comment": "Matthew is a fantastic physics tutor. He makes complex topics easy to understand."
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000019,
+        "fields": {
+            "tutor": 100000010,
+            "user": 100000003,
+            "score": 4,
+            "comment": "Matthew's lessons are very helpful. I learned a lot from him."
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 100000011,
+        "fields": {
+            "password": "testuserpasswordhash",
+            "last_login": "2024-08-13T18:30:00.000Z",
+            "is_superuser": false,
+            "username": "oliviathomas",
+            "email": "auto_test_user_11@example.com"
+        }
+    },
+    {
+        "model": "tutor_market.tutor",
+        "pk": 100000011,
+        "fields": {
+            "user": 100000011,
+            "display_name": "Olivia",
+            "hourly_rate": "65.00",
+            "catch_phrase": "Excel in chemistry!",
+            "description": "Hello! I'm Olivia, a chemistry tutor with a deep love for the subject. My lessons are designed to make chemistry interesting and accessible. Whether you're studying for exams or just curious about the natural world, I'm here to help you achieve your goals.",
+            "iban": "CH16123412341244",
+            "calendly_event_url": "https://calendly.com/user2gipfeltutor/300min",
+            "profile_status": true,
+            "testing_profile": true,
+            "subjects": [
+                6
+            ],
+            "values": [
+                1,
+                3
+            ]
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000020,
+        "fields": {
+            "tutor": 100000011,
+            "user": 100000004,
+            "score": 5,
+            "comment": "Olivia is an excellent chemistry tutor. Her lessons are engaging and informative."
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000021,
+        "fields": {
+            "tutor": 100000011,
+            "user": 100000005,
+            "score": 4,
+            "comment": "Olivia's chemistry lessons are very helpful. I highly recommend her."
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 100000012,
+        "fields": {
+            "password": "testuserpasswordhash",
+            "last_login": "2024-08-13T19:00:00.000Z",
+            "is_superuser": false,
+            "username": "danielgarcia",
+            "email": "auto_test_user_12@example.com"
+        }
+    },
+    {
+        "model": "tutor_market.tutor",
+        "pk": 100000012,
+        "fields": {
+            "user": 100000012,
+            "display_name": "Daniel",
+            "hourly_rate": "70.00",
+            "catch_phrase": "Master computer science!",
+            "description": "Hi! I'm Daniel, a computer science tutor with a passion for teaching. My goal is to make computer science understandable and enjoyable for all students. Whether you're preparing for exams or just want to improve your knowledge, I'm here to help you succeed.",
+            "iban": "CH16123412341245",
+            "calendly_event_url": "https://calendly.com/user2gipfeltutor/330min",
+            "profile_status": true,
+            "testing_profile": true,
+            "subjects": [
+                5
+            ],
+            "values": [
+                2,
+                4
+            ]
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000022,
+        "fields": {
+            "tutor": 100000012,
+            "user": 100000006,
+            "score": 5,
+            "comment": "Daniel is a fantastic computer science tutor. He makes complex topics easy to understand."
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000023,
+        "fields": {
+            "tutor": 100000012,
+            "user": 100000007,
+            "score": 4,
+            "comment": "Daniel's lessons are very helpful. I learned a lot from him."
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 100000013,
+        "fields": {
+            "password": "testuserpasswordhash",
+            "last_login": "2024-08-13T19:30:00.000Z",
+            "is_superuser": false,
+            "username": "sophiamartinez",
+            "email": "auto_test_user_13@example.com"
+        }
+    },
+    {
+        "model": "tutor_market.tutor",
+        "pk": 100000013,
+        "fields": {
+            "user": 100000013,
+            "display_name": "Sophia",
+            "hourly_rate": "75.00",
+            "catch_phrase": "Excel in literature!",
+            "description": "Hello! I'm Sophia, a literature tutor with a deep love for the subject. My lessons are designed to make literature interesting and accessible. Whether you're studying for exams or just curious about literature, I'm here to help you achieve your goals.",
+            "iban": "CH16123412341246",
+            "calendly_event_url": "https://calendly.com/user2gipfeltutor/360min",
+            "profile_status": true,
+            "testing_profile": true,
+            "subjects": [
+                3
+            ],
+            "values": [
+                1,
+                3
+            ]
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000024,
+        "fields": {
+            "tutor": 100000013,
+            "user": 100000008,
+            "score": 5,
+            "comment": "Sophia is an excellent literature tutor. Her lessons are engaging and informative."
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000025,
+        "fields": {
+            "tutor": 100000013,
+            "user": 100000009,
+            "score": 4,
+            "comment": "Sophia's literature lessons are very helpful. I highly recommend her."
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 100000014,
+        "fields": {
+            "password": "testuserpasswordhash",
+            "last_login": "2024-08-13T20:00:00.000Z",
+            "is_superuser": false,
+            "username": "jamesrodriguez",
+            "email": "auto_test_user_14@example.com"
+        }
+    },
+    {
+        "model": "tutor_market.tutor",
+        "pk": 100000014,
+        "fields": {
+            "user": 100000014,
+            "display_name": "James",
+            "hourly_rate": "80.00",
+            "catch_phrase": "Master economics with ease!",
+            "description": "Hi! I'm James, an economics tutor with a passion for teaching. My goal is to make economics understandable and enjoyable for all students. Whether you're preparing for exams or just want to improve your knowledge, I'm here to help you succeed.",
+            "iban": "CH16123412341247",
+            "calendly_event_url": "https://calendly.com/user2gipfeltutor/390min",
+            "profile_status": true,
+            "testing_profile": true,
+            "subjects": [
+                7
+            ],
+            "values": [
+                2,
+                3
+            ]
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000026,
+        "fields": {
+            "tutor": 100000014,
+            "user": 100000010,
+            "score": 5,
+            "comment": "James is a fantastic economics tutor. He makes complex topics easy to understand."
+        }
+    },
+    {
+        "model": "tutor_market.rating",
+        "pk": 100000027,
+        "fields": {
+            "tutor": 100000014,
+            "user": 100000011,
+            "score": 4,
+            "comment": "James's lessons are very helpful. I learned a lot from him."
+        }
+    }
+]
