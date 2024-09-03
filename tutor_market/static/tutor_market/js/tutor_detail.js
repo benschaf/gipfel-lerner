@@ -31,9 +31,15 @@ $('document').ready(function () {
     const user = tutorDetailData.user;
     const email = tutorDetailData.email;
 
+    const calendlyDiv = document.getElementById('calendly')
+
+    if (!calendlyDiv) {
+        return;
+    }
+
     Calendly.initInlineWidget({
         url: `${calendlyEventUrl}?hide_event_type_details=1`,
-        parentElement: document.getElementById('calendly'),
+        parentElement: calendlyDiv,
         prefill: {
             name: user,
             email: email,
