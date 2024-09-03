@@ -103,15 +103,19 @@
             <h5>Select a date below to book a lesson with {{ tutor }}</h5>
             <p class="text-muted">See your tutors live avaliability - made possible by Calendly (book now, pay later)</p>
             {% if user.is_authenticated %}
-              <div id="calendly"></div>
-              <div class="d-none">
-                <form id="calendly_form_hidden"
-                      action="{% url 'fetch_calendly_data' tutor.pk %}"
-                      method="post">
-                  {% csrf_token %}
-                  {{ calendly_form }}
-                </form>
-              </div>
+              {% if not tutor.testing_profile %}
+                <div id="calendly"></div>
+                <div class="d-none">
+                  <form id="calendly_form_hidden"
+                        action="{% url 'fetch_calendly_data' tutor.pk %}"
+                        method="post">
+                    {% csrf_token %}
+                    {{ calendly_form }}
+                  </form>
+                </div>
+              {% else %}
+                <p>You can't book lessons with a testing tutor profile</p>
+              {% endif %}
             {% else %}
               <a href="{% url 'account_login' %}?next={{ request.path }}"
                  aria-label="Log in"
