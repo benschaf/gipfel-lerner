@@ -115,7 +115,7 @@ Each user story is followed by a set of acceptance criteria that must be met for
 > ![screenshot](documentation/gh-user-story-map.png)
 
 <details>
-<summary>**Click To expand User Stories from within the README.md**</summary>
+<summary>Click To expand User Stories from within the README.md</summary>
 
 ### Viewing and navigation
 
