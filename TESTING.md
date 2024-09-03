@@ -184,81 +184,54 @@ Sample browser testing documentation:
 
 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
 
-I've tested my deployed project on multiple browsers to check for compatibility issues.
+I've tested my deployed project manually on multiple browsers to check for compatibility issues. I've tested the project on the latest versions of the following browsers:
 
-| Browser | Home | About | Contact | etc | Notes |
+- [Chrome](https://www.google.com/chrome)
+- [Firefox (Developer Edition)](https://www.mozilla.org/firefox/developer)
+- [Edge](https://www.microsoft.com/edge)
+- [Safari](https://support.apple.com/downloads/safari)
+
+See the table below for the compatibility results:
+
+| Browser | Landing | tutor list | tutor detail | tutor dashboard | payment | student dashboard | schedule success | payment success | Notes |
 | --- | --- | --- | --- | --- | --- |
-| Chrome | ![screenshot](documentation/browsers/browser-chrome-home.png) | ![screenshot](documentation/browsers/browser-chrome-about.png) | ![screenshot](documentation/browsers/browser-chrome-contact.png) | ![screenshot](documentation/browsers/browser-chrome-etc.png) | Works as expected |
-| Firefox | ![screenshot](documentation/browsers/browser-firefox-home.png) | ![screenshot](documentation/browsers/browser-firefox-about.png) | ![screenshot](documentation/browsers/browser-firefox-contact.png) | ![screenshot](documentation/browsers/browser-firefox-etc.png) | Works as expected |
-| Edge | ![screenshot](documentation/browsers/browser-edge-home.png) | ![screenshot](documentation/browsers/browser-edge-about.png) | ![screenshot](documentation/browsers/browser-chrome-edge.png) | ![screenshot](documentation/browsers/browser-edge-etc.png) | Works as expected |
-| Safari | ![screenshot](documentation/browsers/browser-safari-home.png) | ![screenshot](documentation/browsers/browser-safari-about.png) | ![screenshot](documentation/browsers/browser-safari-contact.png) | ![screenshot](documentation/browsers/browser-safari-etc.png) | Minor CSS differences |
-| Brave | ![screenshot](documentation/browsers/browser-brave-home.png) | ![screenshot](documentation/browsers/browser-brave-about.png) | ![screenshot](documentation/browsers/browser-brave-contact.png) | ![screenshot](documentation/browsers/browser-brave-etc.png) | Works as expected |
-| Opera | ![screenshot](documentation/browsers/browser-opera-home.png) | ![screenshot](documentation/browsers/browser-opera-about.png) | ![screenshot](documentation/browsers/browser-opera-contact.png) | ![screenshot](documentation/browsers/browser-opera-etc.png) | Minor differences |
-| repeat for any other tested browsers | x | x | x | x | x |
+| Chrome | ![screenshot](documentation/browser-chrome-landing.png) | ![screenshot](documentation/browser-chrome-tutor_list.png) | ![screenshot](documentation/browser-chrome-tutor_detail.png) | ![screenshot](documentation/browser-chrome-tutor_dashboard.png) | ![screenshot](documentation/browser-chrome-payment.png) | ![screenshot](documentation/browser-chrome-student_dashboard.png) | ![screenshot](documentation/browser-chrome-schedule_success.png) | ![screenshot](documentation/browser-chrome-payment_success.png) | Works as expected |
+| Firefox | ![screenshot](documentation/browser-firefox-landing.png) | ![screenshot](documentation/browser-firefox-tutor_list.png) | ![screenshot](documentation/browser-firefox-tutor_detail.png) | ![screenshot](documentation/browser-firefox-tutor_dashboard.png) | ![screenshot](documentation/browser-firefox-payment.png) | ![screenshot](documentation/browser-firefox-student_dashboard.png) | ![screenshot](documentation/browser-firefox-schedule_success.png) | ![screenshot](documentation/browser-firefox-payment_success.png) | Works as expected |
+| Edge | ![screenshot](documentation/browser-edge-landing.png) | ![screenshot](documentation/browser-edge-tutor_list.png) | ![screenshot](documentation/browser-edge-tutor_detail.png) | ![screenshot](documentation/browser-edge-tutor_dashboard.png) | ![screenshot](documentation/browser-edge-payment.png) | ![screenshot](documentation/browser-edge-student_dashboard.png) | ![screenshot](documentation/browser-edge-schedule_success.png) | ![screenshot](documentation/browser-edge-payment_success.png) | Works as expected |
+| Safari | ![screenshot](documentation/browser-safari-landing.png) | ![screenshot](documentation/browser-safari-tutor_list.png) | ![screenshot](documentation/browser-safari-tutor_detail.png) | ![screenshot](documentation/browser-safari-tutor_dashboard.png) | ![screenshot](documentation/browser-safari-payment.png) | ![screenshot](documentation/browser-safari-student_dashboard.png) | ![screenshot](documentation/browser-safari-schedule_success.png) | ![screenshot](documentation/browser-safari-payment_success.png) | Works as expected |
+
+There were no compatibility issues on any of the browsers tested.
 
 ## Responsiveness
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
+I've tested my deployed project on multiple devices to check for responsiveness issues. I've used the Chrome Developer Tools to simulate the devices. I have also tested the project on a physical Google Pixel 6 device.
 
-Use this space to discuss testing the live/deployed site on various device sizes.
-
-The minimum requirement is for the following 3 tests:
-- Mobile
-- Tablet
-- Desktop
-
-**IMPORTANT**: You must provide screenshots of the tested responsiveness, to "prove" that you've actually tested them.
-
-Using the "amiresponsive" mockup image (or similar) does not suffice the requirements.
-Consider using some of the built-in device sizes in the Developer Tools.
-
-If you have tested the project on your actual mobile phone or tablet, consider also including screenshots of these as well.
-It showcases a higher level of manual tests, and can be seen as a positive inclusion!
-
-Sample responsiveness testing documentation:
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
-I've tested my deployed project on multiple devices to check for responsiveness issues.
-
-| Device | Home | About | Contact | etc | Notes |
+| Device | Landing | tutor list | tutor detail | tutor dashboard | payment | student dashboard | schedule success | payment success | Notes |
 | --- | --- | --- | --- | --- | --- |
-| Mobile (DevTools) | ![screenshot](documentation/responsiveness/responsive-mobile-home.png) | ![screenshot](documentation/responsiveness/responsive-mobile-about.png) | ![screenshot](documentation/responsiveness/responsive-mobile-contact.png) | ![screenshot](documentation/responsiveness/responsive-mobile-etc.png) | Works as expected |
-| Tablet (DevTools) | ![screenshot](documentation/responsiveness/responsive-tablet-home.png) | ![screenshot](documentation/responsiveness/responsive-tablet-about.png) | ![screenshot](documentation/responsiveness/responsive-tablet-contact.png) | ![screenshot](documentation/responsiveness/responsive-tablet-etc.png) | Works as expected |
-| Desktop | ![screenshot](documentation/responsiveness/responsive-desktop-home.png) | ![screenshot](documentation/responsiveness/responsive-desktop-about.png) | ![screenshot](documentation/responsiveness/responsive-desktop-contact.png) | ![screenshot](documentation/responsiveness/responsive-desktop-etc.png) | Works as expected |
-| XL Monitor | ![screenshot](documentation/responsiveness/responsive-xl-home.png) | ![screenshot](documentation/responsiveness/responsive-xl-about.png) | ![screenshot](documentation/responsiveness/responsive-xl-contact.png) | ![screenshot](documentation/responsiveness/responsive-xl-etc.png) | Scaling starts to have minor issues |
-| 4K Monitor | ![screenshot](documentation/responsiveness/responsive-4k-home.png) | ![screenshot](documentation/responsiveness/responsive-4k-about.png) | ![screenshot](documentation/responsiveness/responsive-4k-contact.png) | ![screenshot](documentation/responsiveness/responsive-4k-etc.png) | Noticeable scaling issues |
-| Google Pixel 7 Pro | ![screenshot](documentation/responsiveness/responsive-pixel-home.png) | ![screenshot](documentation/responsiveness/responsive-pixel-about.png) | ![screenshot](documentation/responsiveness/responsive-pixel-contact.png) | ![screenshot](documentation/responsiveness/responsive-pixel-etc.png) | Works as expected |
-| iPhone 14 | ![screenshot](documentation/responsiveness/responsive-iphone-home.png) | ![screenshot](documentation/responsiveness/responsive-iphone-about.png) | ![screenshot](documentation/responsiveness/responsive-iphone-contact.png) | ![screenshot](documentation/responsiveness/responsive-iphone-etc.png) | Works as expected |
-| repeat for any other tested devices | x | x | x | x | x |
+| Mobile (DevTools: iPhone 12 Pro) | ![screenshot](documentation/responsive-mobile-landing.png) | ![screenshot](documentation/responsive-mobile-tutor_list.png) | ![screenshot](documentation/responsive-mobile-tutor_detail.png) | ![screenshot](documentation/responsive-mobile-tutor_dashboard.png) | ![screenshot](documentation/responsive-mobile-payment.png) | ![screenshot](documentation/responsive-mobile-student_dashboard.png) | ![screenshot](documentation/responsive-mobile-schedule_success.png) | ![screenshot](documentation/responsive-mobile-payment_success.png) | Works as expected |
+| Tablet (DevTools: iPad Air) | ![screenshot](documentation/responsive-tablet-landing.png) | ![screenshot](documentation/responsive-tablet-tutor_list.png) | ![screenshot](documentation/responsive-tablet-tutor_detail.png) | ![screenshot](documentation/responsive-tablet-tutor_dashboard.png) | ![screenshot](documentation/responsive-tablet-payment.png) | ![screenshot](documentation/responsive-tablet-student_dashboard.png) | ![screenshot](documentation/responsive-tablet-schedule_success.png) | ![screenshot](documentation/responsive-tablet-payment_success.png) | Works as expected |
+| Desktop (1920 x 1080) | ![screenshot](documentation/responsive-desktop-landing.png) | ![screenshot](documentation/responsive-desktop-tutor_list.png) | ![screenshot](documentation/responsive-desktop-tutor_detail.png) | ![screenshot](documentation/responsive-desktop-tutor_dashboard.png) | ![screenshot](documentation/responsive-desktop-payment.png) | ![screenshot](documentation/responsive-desktop-student_dashboard.png) | ![screenshot](documentation/responsive-desktop-schedule_success.png) | ![screenshot](documentation/responsive-desktop-payment_success.png) | Works as expected |
+| Google Pixel 6 | ![screenshot](documentation/responsive-pixel-landing.png) | ![screenshot](documentation/responsive-pixel-tutor_list.png) | ![screenshot](documentation/responsive-pixel-tutor_detail.png) | ![screenshot](documentation/responsive-pixel-tutor_dashboard.png) | ![screenshot](documentation/responsive-pixel-payment.png) | ![screenshot](documentation/responsive-pixel-student_dashboard.png) | ![screenshot](documentation/responsive-pixel-schedule_success.png) | ![screenshot](documentation/responsive-pixel-payment_success.png) | Works as expected |
+
+> [!IMPORTANT]
+> Tables have x-overflow on mobile. they do scroll though so they can be considered as working as intended.
+
+There were no additional responsiveness issues on any of the devices tested.
 
 ## Lighthouse Audit
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-Use this space to discuss testing the live/deployed site's Lighthouse Audit reports.
-Avoid testing the local version (especially if developing in Gitpod), as this can have knock-on effects of performance.
-
-If you don't have Lighthouse in your Developer Tools,
-it can be added as an [extension](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk).
-
-Don't just test the home page (unless it's a single-page application).
-Make sure to test the Lighthouse Audit results for all of your pages.
-
-**IMPORTANT**: You must provide screenshots of the results, to "prove" that you've actually tested them.
-
-Sample Lighthouse testing documentation:
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
-I've tested my deployed project using the Lighthouse Audit tool to check for any major issues.
+I've tested my deployed project using the Lighthouse Audit tool in the Chrome Developer Tools to mainly check for accessibility and best practices but also to check for performance and SEO.
 
 | Page | Mobile | Desktop | Notes |
 | --- | --- | --- | --- |
-| Home | ![screenshot](documentation/lighthouse/lighthouse-home-mobile.png) | ![screenshot](documentation/lighthouse/lighthouse-home-desktop.png) | Some minor warnings |
-| About | ![screenshot](documentation/lighthouse/lighthouse-about-mobile.png) | ![screenshot](documentation/lighthouse/lighthouse-about-desktop.png) | Some minor warnings |
-| Gallery | ![screenshot](documentation/lighthouse/lighthouse-gallery-mobile.png) | ![screenshot](documentation/lighthouse/lighthouse-gallery-desktop.png) | Slow response time due to large images |
-| x | x | x | repeat for any other tested pages/sizes |
+| Landing | ![screenshot](documentation/lighthouse-landing-mobile.png) | ![screenshot](documentation/lighthouse-landing-desktop.png) | Some minor warnings |
+| tutor list | ![screenshot](documentation/lighthouse-tutor_list-mobile.png) | ![screenshot](documentation/lighthouse-tutor_list-desktop.png) | Some minor warnings |
+| tutor detail | ![screenshot](documentation/lighthouse-tutor_detail-mobile.png) | ![screenshot](documentation/lighthouse-tutor_detail-desktop.png) | Some minor warnings |
+| tutor dashboard | ![screenshot](documentation/lighthouse-tutor_dashboard-mobile.png) | ![screenshot](documentation/lighthouse-tutor_dashboard-desktop.png) | Some minor warnings |
+| payment | ![screenshot](documentation/lighthouse-payment-mobile.png) | ![screenshot](documentation/lighthouse-payment-desktop.png) | Some minor warnings |
+| student dashboard | ![screenshot](documentation/lighthouse-student_dashboard-mobile.png) | ![screenshot](documentation/lighthouse-student_dashboard-desktop.png) | Some minor warnings |
+| schedule success | ![screenshot](documentation/lighthouse-schedule_success-mobile.png) | ![screenshot](documentation/lighthouse-schedule_success-desktop.png) | Some minor warnings |
+| payment success | ![screenshot](documentation/lighthouse-payment_success-mobile.png) | ![screenshot](documentation/lighthouse-payment_success-desktop.png) | Some minor warnings |
 
 ## Defensive Programming
 
