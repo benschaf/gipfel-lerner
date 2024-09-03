@@ -292,70 +292,45 @@ Defensive programming was manually tested with the below user acceptance testing
 
 | Page | Expectation | Test | Result | Fix | Screenshot |
 | --- | --- | --- | --- | --- | --- |
-| Home | | | | | |
-| | Feature is expected to do X when the user does Y | Tested the feature by doing Y | The feature behaved as expected, and it did Y | Test concluded and passed | ![screenshot](documentation/features/feature01.png) |
-| | Feature is expected to do X when the user does Y | Tested the feature by doing Y | The feature did not respond to A, B, or C. | I did Z to the code because something was missing | ![screenshot](documentation/features/feature02.png) |
-| About | | | | | |
-| | Feature is expected to do X when the user does Y | Tested the feature by doing Y | The feature behaved as expected, and it did Y | Test concluded and passed | ![screenshot](documentation/features/feature03.png) |
-| | Feature is expected to do X when the user does Y | Tested the feature by doing Y | The feature did not respond to A, B, or C. | I did Z to the code because something was missing | ![screenshot](documentation/features/feature04.png) |
-| Gallery | | | | | |
-| | Feature is expected to do X when the user does Y | Tested the feature by doing Y | The feature behaved as expected, and it did Y | Test concluded and passed | ![screenshot](documentation/features/feature05.png) |
-| | Feature is expected to do X when the user does Y | Tested the feature by doing Y | The feature did not respond to A, B, or C. | I did Z to the code because something was missing | ![screenshot](documentation/features/feature06.png) |
-| Contact | | | | | |
-| | Feature is expected to do X when the user does Y | Tested the feature by doing Y | The feature behaved as expected, and it did Y | Test concluded and passed | ![screenshot](documentation/features/feature07.png) |
-| | Feature is expected to do X when the user does Y | Tested the feature by doing Y | The feature did not respond to A, B, or C. | I did Z to the code because something was missing | ![screenshot](documentation/features/feature08.png) |
-| repeat for all remaining pages | x | x | x | x | x |
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-Another way of performing defensive testing is a simple Pass/Fail for each test.
-The assessors prefer the above method, with the full test explained, but this is also acceptable in most cases.
-
-When in doubt, use the above method instead, and delete the table below.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
-| Page | User Action | Expected Result | Pass/Fail | Comments |
-| --- | --- | --- | --- | --- |
-| Home | | | | |
-| | Click on Logo | Redirection to Home page | Pass | |
-| | Click on Home link in navbar | Redirection to Home page | Pass | |
-| Gallery | | | | |
-| | Click on Gallery link in navbar | Redirection to Gallery page | Pass | |
-| | Load gallery images | All images load as expected | Pass | |
-| Contact | | | | |
-| | Click on Contact link in navbar | Redirection to Contact page | Pass | |
-| | Enter first/last name | Field will accept freeform text | Pass | |
-| | Enter valid email address | Field will only accept email address format | Pass | |
-| | Enter message in textarea | Field will accept freeform text | Pass | |
-| | Click the Submit button | Redirects user to form-dump | Pass | User must click 'Back' button to return |
-| Sign Up | | | | |
-| | Click on Sign Up button | Redirection to Sign Up page | Pass | |
-| | Enter valid email address | Field will only accept email address format | Pass | |
-| | Enter valid password (twice) | Field will only accept password format | Pass | |
-| | Click on Sign Up button | Asks user to confirm email page | Pass | Email sent to user |
-| | Confirm email | Redirects user to blank Sign In page | Pass | |
-| Log In | | | | |
-| | Click on the Login link | Redirection to Login page | Pass | |
-| | Enter valid email address | Field will only accept email address format | Pass | |
-| | Enter valid password | Field will only accept password format | Pass | |
-| | Click Login button | Redirects user to home page | Pass | |
-| Log Out | | | | |
-| | Click Logout button | Redirects user to logout page | Pass | Confirms logout first |
-| | Click Confirm Logout button | Redirects user to home page | Pass | |
-| Profile | | | | |
-| | Click on Profile button | User will be redirected to the Profile page | Pass | |
-| | Click on the Edit button | User will be redirected to the edit profile page | Pass | |
-| | Click on the My Orders link | User will be redirected to the My Orders page | Pass | |
-| | Brute forcing the URL to get to another user's profile | User should be given an error | Pass | Redirects user back to own profile |
-| repeat for all remaining pages | x | x | x | x |
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-Repeat for all other tests, as applicable to your own site.
-The aforementioned tests are just an example of a few different project scenarios.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
+| Landing | | | | | |
+| | User is redirected to the tutor detail page when clicking the link in the navbar or the CTA button | Clicked the link in the navbar and the CTA button | User is redirected to the tutor detail page | | ![screenshot](documentation/defensive-landing-1.png) |
+| | User can click a Subject and is redirected to the tutor list page with the clicked subject activated there | Clicked a subject | User is redirected to the tutor list page with the clicked subject activated | | ![screenshot](documentation/defensive-landing-2.png) |
+| | User can pick one or more values and upon submitting the form is redirected to the tutor list page with the selected values activated there | Selected values and submitted the form | User is redirected to the tutor list page with the selected values activated | | ![screenshot](documentation/defensive-landing-3.png) |
+| | User can Submit their email to the Mailchimp form | Submitted email | User is shown a success message and the user email is in the Mailchimp list | | ![screenshot](documentation/defensive-landing-4.png) |
+| Navigation Bar | | | | | |
+| | User can navigate to the landing page by clicking the logo | Clicked the logo | User is redirected to the landing page | | ![screenshot](documentation/defensive-navbar-1.png) |
+| | Logged out users should see the following Links: Register, Login, Find your Tutor | Checked the links | User sees the links | | ![screenshot](documentation/defensive-navbar-2.png) |
+| | Logged in users should see the following Links: Dashboard, Their Username with a Logout dropdown, Find your Tutor | Checked the links | User sees the links | | ![screenshot](documentation/defensive-navbar-3.png) |
+| | Logged in admin users should see an additional link: Admin | Checked the links | User sees the links | | ![screenshot](documentation/defensive-navbar-4.png) |
+| tutor list | | | | | |
+| | User can click a tutor and is redirected to the tutor detail page | Clicked a tutor | User is redirected to the tutor detail page | | ![screenshot](documentation/defensive-tutor_list-1.png) |
+| | User can filter the tutors by subject and / or value. Each time they change a filter it is automatically applied and the page is reloaded | Changed a filter | User is redirected to the tutor list page with the selected filters activated | | ![screenshot](documentation/defensive-tutor_list-2.png) |
+| | User can reset the filters by clicking the reset button | Clicked the reset button | User is redirected to the tutor list page with no filters activated | | ![screenshot](documentation/defensive-tutor_list-3.png) |
+| | User can sort the tutors by the sorting options and the page is reloaded | Changed the sorting option | User is redirected to the tutor list page with the selected sorting option activated | | ![screenshot](documentation/defensive-tutor_list-4.png) |
+| | User can paginate through the tutors and the page is reloaded | Changed the page | User is redirected to the tutor list page with the selected page activated and the filters and sorting options are still applied | | ![screenshot](documentation/defensive-tutor_list-5.png) |
+| tutor detail | | | | | |
+| | User can fill out the tutors calendly form and submit it | Filled out the form and submitted it | User is redirected to the schedule success page and the lesson is applied in the database | | ![screenshot](documentation/defensive-tutor_detail-1.png) |
+| | User can leave a review if they are logged in | Left a review | User is redirected to the tutor detail page with the review applied | | ![screenshot](documentation/defensive-tutor_detail-2.png) |
+| payment | | | | | |
+| | User can fill out the Stripe payment form and submit it | Filled out the form and submitted it | User is redirected to the payment success page and the payment is applied in the database | | ![screenshot](documentation/defensive-payment-1.png) |
+| student dashboard | | | | | |
+| | User can see, cancel and attend their lessons | Checked the lessons | User can see, cancel and attend their lessons | | ![screenshot](documentation/defensive-student_dashboard-1.png) |
+| | User can pay for their lessons | Clicked on a payment button | User is redirected to the payment page | | ![screenshot](documentation/defensive-student_dashboard-2.png) |
+| | User can see their payment history | Checked the payment history | User can see their payment history | | ![screenshot](documentation/defensive-student_dashboard-2.png) |
+| | User can create a tutor profile for themselves | Created a tutor profile | User can create a tutor profile for themselves | | ![screenshot](documentation/defensive-student_dashboard-3.png) |
+| tutor dashboard | | | | | |
+| | User can see, cancel and attend their lessons | Checked the lessons | User can see, cancel and attend their lessons | | ![screenshot](documentation/defensive-tutor_dashboard-1.png) |
+| | A Tutor can also Accept or Decline a lesson | Accepted or declined a lesson | User can accept or decline a lesson | | ![screenshot](documentation/defensive-tutor_dashboard-2.png) |
+| | A Tutor can see their payment history | Checked the payment history | User can see their payment history | | ![screenshot](documentation/defensive-tutor_dashboard-3.png) |
+| Allauth | | | | | |
+| | User can log in with Google | Logged in with Google | User is logged in successfully | | ![screenshot](documentation/defensive-oauth-1.png) |
+| | User can log in with their email and password | Logged in with email and password | User is logged in successfully | | ![screenshot](documentation/defensive-oauth-2.png) |
+| | User can log out | Logged out | User is logged out successfully | | ![screenshot](documentation/defensive-oauth-3.png) |
+| **Admin Panel** | | | | | |
+| | Admins should only see admin options according to their permissions set in the django admin panel and applied to them | Checked the admin panel | Admins only see admin options according to their permissions set in the django admin panel and applied to them | | ![screenshot](documentation/defensive-admin-1.png) |
+| **About, FAQ** | | | | | |
+| | Admins should be able to edit the about and FAQ pages from the admin panel | Edited the about and FAQ pages | Admins can edit the about and FAQ pages from the admin panel | | ![screenshot](documentation/defensive-about-faq-1.png) |
+| | The edited options should be displayed on the about and FAQ pages | Checked the about and FAQ pages | The edited options are displayed on the about and FAQ pages | | ![screenshot](documentation/defensive-about-faq-2.png) |
 
 ## User Story Testing
 
