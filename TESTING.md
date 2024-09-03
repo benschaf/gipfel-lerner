@@ -48,97 +48,113 @@ If applicable, mention how user feedback has been taken into account and impleme
 
 ## Code Validation
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-Use the space to discuss code validation for any of your own code files (where applicable).
-You are not required to validate external libraries/frameworks, such as imported Bootstrap, Materialize, Font Awesome, etc.
-
-**IMPORTANT**: You must provide a screenshot for each file you validate.
-
-**PRO TIP**: Always validate the live site pages, not your local code. There could be subtle/hidden differences.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
 ### HTML
 
-I have used the recommended [HTML W3C Validator](https://validator.w3.org) to validate all of my HTML files.
+I have used the recommended [HTML W3C Validator](https://validator.w3.org) to validate all of my HTML deployed source code. In the table below, the results are labeled by template file that would render the respective page. The results are validated using the live deployed version of the project.
 
 | Directory | File | Screenshot | Notes |
 | --- | --- | --- | --- |
-| booking | cancel_session.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| booking | payment.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| booking | payment_create.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| booking | payment_success.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| booking | schedule_success.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| core | about.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| core | faq.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| core | index.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| templates | 404.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| templates | 500.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| templates | base_manage.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| templates | usersession_list.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| tutor_market | add_tutor.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| tutor_market | calendly_information.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| tutor_market | edit_tutor.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| tutor_market | student_dashboard.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| tutor_market | tutor_confirm_delete.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| tutor_market | tutor_dashboard.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| tutor_market | tutor_detail.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| tutor_market | tutor_list.html | ![screenshot](documentation/validation/path-to-screenshot.png) | |
+| booking | cancel_session.html | ![screenshot](documentation/validation_html_cancel_session.png) | |
+| booking | payment.html | ![screenshot](documentation/validation_html_payment.png) | |
+| booking | payment_create.html | ![screenshot](documentation/validation_html_payment_create.png) | |
+| booking | payment_success.html | ![screenshot](documentation/validation_html_payment_success.png) | |
+| booking | schedule_success.html | ![screenshot](documentation/validation_html_schedule_success.png) | |
+| core | about.html | ![screenshot](documentation/validation_html_about.png) | |
+| core | faq.html | ![screenshot](documentation/validation_html_faq.png) | |
+| core | index.html | ![screenshot](documentation/validation_html_index.png) | |
+| templates | 404.html | ![screenshot](documentation/validation_html_404.png) | |
+| templates | 500.html | ![screenshot](documentation/validation_html_500.png) | |
+| templates | base_manage.html | ![screenshot](documentation/validation_html_base_manage.png) | |
+| templates | usersession_list.html | ![screenshot](documentation/validation_html_usersession_list.png) | |
+| tutor_market | add_tutor.html | ![screenshot](documentation/validation_html_add_tutor.png) | |
+| tutor_market | calendly_information.html | ![screenshot](documentation/validation_html_calendly_information.png) | |
+| tutor_market | edit_tutor.html | ![screenshot](documentation/validation_html_edit_tutor.png) | |
+| tutor_market | student_dashboard.html | ![screenshot](documentation/validation_html_student_dashboard.png) | |
+| tutor_market | tutor_confirm_delete.html | ![screenshot](documentation/validation_html_tutor_confirm_delete.png) | |
+| tutor_market | tutor_dashboard.html | ![screenshot](documentation/validation_html_tutor_dashboard.png) | |
+| tutor_market | tutor_detail.html | ![screenshot](documentation/validation_html_tutor_detail.png) | |
+| tutor_market | tutor_list.html | ![screenshot](documentation/validation_html_tutor_list.png) | |
 
 ### CSS
 
 I have used the recommended [CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator) to validate all of my CSS files.
 
+![jigsaw badge](http://jigsaw.w3.org/css-validator/images/vcss-blue)
+
 | Directory | File | Screenshot | Notes |
 | --- | --- | --- | --- |
-| static | base.css | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| static | custom_bootstrap.css | ![screenshot](documentation/validation/path-to-screenshot.png) | |
+| static | base.css | ![screenshot](documentation/validation_css_base_css.png) | |
+| static | custom_bootstrap.css | ![screenshot](documentation/validation_css_custom_bootstrap_css.png) | |
+
+The warnings are due to the vendor prefixes that are used in the CSS file. I added the prefixes using the [Autoprefixer](https://autoprefixer.github.io) tool. The prefixes are necessary for the CSS to work on all browsers.
+
+There were no other issues with the CSS file.
 
 ### JavaScript
 
-I have used the recommended [JShint Validator](https://jshint.com) to validate all of my JS files.
+I have used the recommended [JShint Validator](https://jshint.com) via its command-line interface to validate all of my JavaScript files. for this I installed the jshint package as a dev dependency using the command `npm install jshint --save-dev`. After this I created a `.jshintrc` file in the `static/js` directory of the project with the following content in order to enable ES6 syntax:
+
+```json
+{
+    "esversion": 6
+}
+```
+
+I then ran the following command to validate all of my JavaScript files: `npx jshint <directory>/<filename.js>`:
 
 | Directory | File | Screenshot | Notes |
 | --- | --- | --- | --- |
-| booking | payment.js | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| booking | payment_create.js | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| core | index.js | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| static | base.js | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| tutor_market | tutor_detail.js | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| tutor_market | tutor_list.js | ![screenshot](documentation/validation/path-to-screenshot.png) | |
+| Directory | File | Screenshot | Notes |
+| --- | --- | --- | --- |
+| booking | [payment.js](booking/static/booking/js/payment.js) | ![screenshot](documentation/validation_js_payment_js.png) | |
+| booking | [payment_create.js](booking/static/booking/js/payment_create.js) | ![screenshot](documentation/validation_js_payment_create_js.png) | |
+| core | [index.js](core/static/core/js/index.js) | ![screenshot](documentation/validation_js_index_js.png) | |
+| static | [base.js](static/js/base.js) | ![screenshot](documentation/validation_js_base_js.png) | |
+| tutor_market | [tutor_detail.js](tutor_market/static/tutor_market/js/tutor_detail.js) | ![screenshot](documentation/validation_js_tutor_detail_js.png) | |
+| tutor_market | [tutor_list.js](tutor_market/static/tutor_market/js/tutor_list.js) | ![screenshot](documentation/validation_js_tutor_list_js.png) | |
+
+There were no additional issues with the JavaScript files.
 
 ### Python
 
 I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com) to validate all of my Python files.
 
+Files that are unchanged from the Django template have been excluded from the validation as they are known to be valid.
+
+| Directory | File | PEP8 CI | Screenshot |
+| --- | --- | --- | --- |
+| booking | admin.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/admin.py) | ![screenshot](documentation/validation_py_admin_py.png) |
+| booking | forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/forms.py) | ![screenshot](documentation/validation_py_forms_py.png) |
+| booking | models.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/models.py) | ![screenshot](documentation/validation_py_models_py.png) |
+| booking | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/urls.py) | ![screenshot](documentation/validation_py_urls_py.png) |
+| booking | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/views.py) | ![screenshot](documentation/validation_py_views_py.png) |
+| booking | webhook_handler.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/webhook_handler.py) | ![screenshot](documentation/validation_py_webhook_handler_py.png) |
+| booking | webhooks.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/webhooks.py) | ![screenshot](documentation/validation_py_webhooks_py.png) |
+| calendly | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/calendly/urls.py) | ![screenshot](documentation/validation_py_urls_py.png) |
+| calendly | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/calendly/views.py) | ![screenshot](documentation/validation_py_views_py.png) |
+| root | copy-credits.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/copy-credits.py) | ![screenshot](documentation/validation_py_copy-credits_py.png) |
+| core | admin.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/core/admin.py) | ![screenshot](documentation/validation_py_admin_py.png) |
+| core | models.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/core/models.py) | ![screenshot](documentation/validation_py_models_py.png) |
+| core | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/core/urls.py) | ![screenshot](documentation/validation_py_urls_py.png) |
+| core | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/core/views.py) | ![screenshot](documentation/validation_py_views_py.png) |
+| root | custom_storages.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/custom_storages.py) | ![screenshot](documentation/validation_py_custom_storages_py.png) |
+| gipfel_tutor | settings.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/gipfel_tutor/settings.py) | ![screenshot](documentation/validation_py_settings_py.png) |
+| gipfel_tutor | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/gipfel_tutor/urls.py) | ![screenshot](documentation/validation_py_urls_py.png) |
+| tutor_market | forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/forms.py) | ![screenshot](documentation/validation_py_forms_py.png) |
+| tutor_market | models.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/models.py) | ![screenshot](documentation/validation_py_models_py.png) |
+| tutor_market | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/urls.py) | ![screenshot](documentation/validation_py_urls_py.png) |
+| tutor_market | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/views.py) | ![screenshot](documentation/validation_py_views_py.png) |
+
+Test Files were validated, too:
+
 | Directory | File | CI URL | Screenshot | Notes |
 | --- | --- | --- | --- | --- |
-| booking | admin.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/admin.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| booking | forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/forms.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| booking | models.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/models.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| booking | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/urls.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| booking | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/views.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| booking | webhook_handler.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/webhook_handler.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| booking | webhooks.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/webhooks.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| calendly | admin.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/calendly/admin.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| calendly | models.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/calendly/models.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| calendly | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/calendly/urls.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| calendly | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/calendly/views.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-|  | copy-credits.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/copy-credits.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| core | admin.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/core/admin.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| core | models.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/core/models.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| core | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/core/urls.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| core | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/core/views.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-|  | custom_storages.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/custom_storages.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| gipfel_tutor | settings.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/gipfel_tutor/settings.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| gipfel_tutor | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/gipfel_tutor/urls.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-|  | manage.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/manage.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| tutor_market | admin.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/admin.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| tutor_market | forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/forms.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| tutor_market | models.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/models.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| tutor_market | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/urls.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
-| tutor_market | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/views.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
+
+Additionaly to the final testing, pycodestyle was used frequently to test python files locally.
+
+By running the command `pycodestyle --exclude=.vscode/*,*/migrations/* .` in the terminal, I was able to check for any PEP8 violations in all of my Python files. The `--exclude` flag was used to exclude the `.vscode` and `migrations` directories from the test as they are not written by me or automatically generated by Django.
+
+There were no issues with the Python files.
 
 ## Browser Compatibility
 
