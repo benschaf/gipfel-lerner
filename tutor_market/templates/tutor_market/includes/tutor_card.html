@@ -17,7 +17,9 @@
           <div class="row mb-3 mt-3 mt-md-0">
             <div class="col">
               <h5 class="d-inline">
-                <a href="{% url 'tutor_detail' tutor.pk %}" class="">{{ tutor.display_name }}</a>
+                <a href="{% url 'tutor_detail' tutor.pk %}"
+                   aria-label="View tutor details"
+                   title="View tutor details">{{ tutor.display_name }}</a>
               </h5>
               {% if tutor.testing_profile %}
                 <span class="btn badge text-bg-danger"
@@ -28,11 +30,10 @@
                 </span>
               {% else %}
                 <span class="btn badge text-bg-info"
-                  data-bs-toggle="popover"
-                  data-bs-placement="top"
-                  data-bs-content="Booking lessons and making payments enabled and safe with this Tutor.">Verified
+                      data-bs-toggle="popover"
+                      data-bs-placement="top"
+                      data-bs-content="Booking lessons and making payments enabled and safe with this Tutor.">Verified
                   <i class="fa-solid fa-check-circle"></i>
-                </span>
                 </span>
               {% endif %}
             </div>
@@ -69,7 +70,9 @@
         <div class="col">{{ tutor.catch_phrase }}</div>
         {% if not page %}
           <div class="col d-flex justify-content-end align-items-center">
-            <a href="{% url 'tutor_detail' tutor.pk %}" class="btn btn-primary">Book a trial lesson!</a>
+            <a href="{% url 'tutor_detail' tutor.pk %}"
+               class="btn btn-primary"
+               aria-label="Book a trial lesson">Book a trial lesson!</a>
           </div>
         {% endif %}
       </div>

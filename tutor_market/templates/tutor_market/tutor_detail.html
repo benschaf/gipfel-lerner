@@ -34,7 +34,7 @@
                      aria-valuenow="{{ data.percentage }}"
                      aria-valuemin="0"
                      aria-valuemax="100">
-                  <div class="progress-bar bg-primary" style="width: {{ data.percentage }}%;"></div>
+                  <div class="progress-bar bg-primary" style="width: {{ data.percentage }}%"></div>
                 </div>
                 <div>{{ data.count }}</div>
               </div>
@@ -64,7 +64,9 @@
                 {% endif %}
               {% else %}
                 <p>
-                  <a href="{% url 'account_login' %}?next={{ request.path }}">Log in</a> to leave a review
+                  <a href="{% url 'account_login' %}?next={{ request.path }}"
+                     aria-label="Log in"
+                     title="Log in">Log in</a> to leave a review
                 </p>
               {% endif %}
             </div>
@@ -111,7 +113,9 @@
                 </form>
               </div>
             {% else %}
-              <a href="{% url 'account_login' %}?next={{ request.path }}">Log in</a> to book a lesson
+              <a href="{% url 'account_login' %}?next={{ request.path }}"
+                 aria-label="Log in"
+                 title="Log in">Log in</a> to book a lesson
             {% endif %}
           </div>
           {% if upcoming_sessions %}
@@ -125,7 +129,7 @@
                     {% endfor %}
                   </ul>
                   <p class="text-muted">
-                    See all of your upcoming Lessons on your <a href="{% url "dashboard" user.pk %}">Dashboard</a>
+                    See all of your upcoming Lessons on your <a href="{% url "dashboard" user.pk %}" aria-label="Dashboard">Dashboard</a>
                   </p>
                 </div>
               </div>

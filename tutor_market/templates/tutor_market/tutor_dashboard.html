@@ -12,9 +12,15 @@
           </div>
           <div class="mt-2">
             <a href="{% url 'tutor_detail' tutor.pk %}"
-               class="btn btn-secondary btn-sm mt-1"><i class="fas fa-user"></i> View your full Profile Page</a>
+               class="btn btn-secondary btn-sm mt-1"
+               aria-label="View your full Profile Page">
+              <i class="fas fa-user"></i> View your full Profile Page
+            </a>
             <a href="{% url 'edit_tutor' tutor.pk %}"
-               class="btn btn-secondary btn-sm mt-1"><i class="fas fa-pencil"></i> Edit Your Profile</a>
+               class="btn btn-secondary btn-sm mt-1"
+               aria-label="Edit Your Profile">
+              <i class="fas fa-pencil"></i> Edit Your Profile
+            </a>
           </div>
         </div>
       </div>
@@ -27,7 +33,8 @@
             As long as your profile remains incomplete, it will not be displayed in student's search results.
             <div>
               <a href="{% url 'calendly_information' %}"
-                 class="btn btn-outline-dark btn-sm mt-2">
+                 class="btn btn-outline-dark btn-sm mt-2"
+                 aria-label="Where to find my Calendly information?">
                 <i class="fas fa-info-circle"></i> Where to find my Calendly information?
               </a>
             </div>
@@ -49,7 +56,12 @@
                 </td>
                 <td>{{ user.email }}</td>
                 <td>
-                  <a href="{% url 'account_email' %}" class="btn btn-outline-light btn-sm"><i class="fa fa-pencil"></i></a>
+                  <a href="{% url 'account_email' %}"
+                     class="btn btn-outline-light btn-sm"
+                     aria-label="Edit Email"
+                     title="Edit Email">
+                    <i class="fa fa-pencil"></i>
+                  </a>
                 </td>
               </tr>
               <tr>
@@ -59,7 +71,11 @@
                 <td>**********</td>
                 <td>
                   <a href="{% url 'account_change_password' %}"
-                     class="btn btn-outline-light btn-sm"><i class="fa fa-pencil"></i></a>
+                     class="btn btn-outline-light btn-sm"
+                     aria-label="Change Password"
+                     title="Change Password">
+                    <i class="fa fa-pencil"></i>
+                  </a>
                 </td>
               </tr>
               <tr>
@@ -74,7 +90,11 @@
                 {% endif %}
                 <td>
                   <a href="{% url 'edit_tutor' tutor.pk %}"
-                     class="btn btn-outline-light btn-sm"><i class="fas fa-pencil"></i></a>
+                     class="btn btn-outline-light btn-sm"
+                     aria-label="Edit Bank details"
+                     title="Edit Bank details">
+                    <i class="fas fa-pencil"></i>
+                  </a>
                 </td>
               </tr>
               <tr>
@@ -94,7 +114,11 @@
                 {% endif %}
                 <td>
                   <a href="{% url 'edit_tutor' tutor.pk %}"
-                     class="btn btn-outline-light btn-sm"><i class="fas fa-pencil"></i></a>
+                     class="btn btn-outline-light btn-sm"
+                     aria-label="Edit Calendly Event Url"
+                     title="Edit Calendly Event Url">
+                    <i class="fas fa-pencil"></i>
+                  </a>
                 </td>
               </tr>
               <tr>
@@ -106,14 +130,19 @@
                   <td>
                     <a href="{% url 'disconnect_calendly' tutor.pk %}"
                        class="btn btn-outline-light btn-sm"
-                       aria-label="Disconnect Calendly"><i class="fas fa-link-slash"></i></a>
+                       aria-label="Disconnect Calendly"
+                       title="Disconnect Calendly">
+                      <i class="fas fa-link-slash"></i>
+                    </a>
                   </td>
                 {% else %}
                   <td colspan="2">
                     <div class="d-flex justify-content-between align-items-center">
                       <span>Not Connected</span>
                       <a href="{% url 'connect_calendly' %}"
-                         class="btn btn-outline-light btn-sm">
+                         class="btn btn-outline-light btn-sm"
+                         aria-label="Connect Calendly"
+                         title="Connect Calendly">
                         <i class="fas fa-link"></i> Connect Calendly
                       </a>
                     </div>
@@ -175,7 +204,9 @@
                   <h5 class="card-title">
                     <span class="text-muted">Student:</span> {{ student }}
                   </h5>
-                  <a href="mailto:{{ student.email }}">{{ student.email }}</a>
+                  <a href="mailto:{{ student.email }}"
+                     aria-label="Email student"
+                     title="Email student">{{ student.email }}</a>
                   <p class="text-muted mt-5 mb-0">Upcoming Lessons:</p>
                   <ul class="list-group list-group-flush">
                     {% for session in sessions %}
@@ -247,7 +278,8 @@
           <div class="d-flex justify-content-between">
             <span><strong>Proceed with caution.</strong></span>
             <a href="{% url 'delete_tutor' tutor.pk %}"
-               class="btn btn-outline-danger btn-sm">
+               class="btn btn-outline-danger btn-sm"
+               aria-label="Delete Your Tutor Profile">
               <i class="fas fa-trash"></i> Delete Your Tutor Profile
             </a>
           </div>

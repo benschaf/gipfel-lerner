@@ -2,7 +2,8 @@
 {% block content %}
     <div class="container mt-5">
         <a href="{% url 'dashboard' user.pk %}"
-           class="btn btn-outline-secondary btn-small mb-5">
+           class="btn btn-outline-secondary btn-small mb-5"
+           aria-label="Return to Dashboard">
             <i class="fas fa-arrow-left"></i> Return to Dashboard
         </a>
         <div class="row ">
@@ -14,7 +15,12 @@
                 <div class="card mb-3">
                     <div class="card-header">Step 1: Register for a Calendly Account</div>
                     <div class="card-body">
-                        Go to the <a href="https://calendly.com" target="_blank" rel="noopener noreferrer">Calendly website</a> and click on "Sign Up" to create a new account. Fill in the required information and follow the prompts to complete the registration process.
+                        Go to the
+                        <a href="https://calendly.com"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           aria-label="Calendly website">Calendly website</a>
+                        and click on "Sign Up" to create a new account. Fill in the required information and follow the prompts to complete the registration process.
                     </div>
                 </div>
                 <div class="card mb-3">
@@ -33,7 +39,10 @@
                         After creating your event, Calendly will provide you with a unique URL for your event. This URL can be shared with others to schedule the event. You can find this URL on the event details page.
                         <p class="text-muted">If you already have your Event URL, you can add it now:</p>
                         <a href="{% url 'edit_tutor' user.tutor.pk %}"
-                           class="btn btn-outline-light btn-sm"><i class="fas fa-pencil"></i> Add Calendly Event URL</a>
+                           class="btn btn-outline-light btn-sm"
+                           aria-label="Add Calendly Event URL">
+                            <i class="fas fa-pencil"></i> Add Calendly Event URL
+                        </a>
                     </div>
                 </div>
                 <div class="card mb-3">
@@ -43,7 +52,8 @@
                         <div>
                             <p class="text-muted mt-3">If you have already set up your Calendly account, you can simply connect it now:</p>
                             <a href="{% url 'connect_calendly' %}"
-                               class="btn btn-outline-light btn-sm">
+                               class="btn btn-outline-light btn-sm"
+                               aria-label="Connect Calendly">
                                 <i class="fas fa-link"></i> Connect Calendly
                             </a>
                         </div>
@@ -52,7 +62,8 @@
                 <p>
                     For more detailed instructions and additional settings, please refer to the <a href="https://help.calendly.com/hc/en-us"
     target="_blank"
-    rel="noopener noreferrer">Calendly Help Center</a>.
+    rel="noopener noreferrer"
+    aria-label="Calendly Help Center">Calendly Help Center</a>.
                 </p>
             </div>
         </div>

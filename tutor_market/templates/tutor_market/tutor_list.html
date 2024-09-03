@@ -22,7 +22,9 @@
           </div>
         </div>
         <div class="col d-flex justify-content-end">
-          <a href="{% url 'tutor_list' %}" class="btn my-reset-button">
+          <a href="{% url 'tutor_list' %}"
+             class="btn my-reset-button"
+             aria-label="Reset Filters">
             <i class="fa-solid fa-undo"></i> Reset Filters
           </a>
         </div>
@@ -202,7 +204,8 @@
               <li class="page-item">
                 <a class="page-link"
                    href="?page={{ page_obj.previous_page_number }}{% if request.GET.sorting %}&sorting={{ request.GET.sorting }}{% endif %}{% if request.GET.subject %}&subject={{ request.GET.subject }}{% endif %}{% if request.GET.teachingvalue %}&teachingvalue={{ request.GET.teachingvalue }}{% endif %}"
-                   aria-label="Previous">
+                   aria-label="Previous"
+                   title="Go to previous page">
                   <i class="fa-solid fa-angle-left"></i>
                 </a>
               </li>
@@ -215,7 +218,9 @@
               {% else %}
                 <li class="page-item">
                   <a class="page-link"
-                     href="?page={{ num }}{% if request.GET.sorting %}&sorting={{ request.GET.sorting }}{% endif %}{% if request.GET.subject %}&subject={{ request.GET.subject }}{% endif %}{% if request.GET.teachingvalue %}&teachingvalue={{ request.GET.teachingvalue }}{% endif %}">{{ num }}</a>
+                     href="?page={{ num }}{% if request.GET.sorting %}&sorting={{ request.GET.sorting }}{% endif %}{% if request.GET.subject %}&subject={{ request.GET.subject }}{% endif %}{% if request.GET.teachingvalue %}&teachingvalue={{ request.GET.teachingvalue }}{% endif %}"
+                     aria-label="Page {{ num }}"
+                     title="Go to page {{ num }}">{{ num }}</a>
                 </li>
               {% endif %}
             {% endfor %}
@@ -223,7 +228,8 @@
               <li class="page-item">
                 <a class="page-link"
                    href="?page={{ page_obj.next_page_number }}{% if request.GET.sorting %}&sorting={{ request.GET.sorting }}{% endif %}{% if request.GET.subject %}&subject={{ request.GET.subject }}{% endif %}{% if request.GET.teachingvalue %}&teachingvalue={{ request.GET.teachingvalue }}{% endif %}"
-                   aria-label="Next">
+                   aria-label="Next"
+                   title="Go to next page">
                   <i class="fa-solid fa-angle-right"></i>
                 </a>
               </li>

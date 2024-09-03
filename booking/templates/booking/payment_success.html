@@ -39,7 +39,10 @@
       </div>
     </div>
     <div class="mt-5">
-      <a href="{% url 'dashboard' payment.user.id %}" class="btn btn-primary">Go to your Dashboard</a>
+      <a href="{% url 'dashboard' payment.user.id %}"
+         class="btn btn-primary"
+         aria-label="Go to your Dashboard"
+         title="Go to your Dashboard">Go to your Dashboard</a>
     </div>
   </div>
 {% endblock %}

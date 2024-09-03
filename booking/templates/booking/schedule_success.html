@@ -44,8 +44,9 @@
         </p>
         <div class="d-flex flex-wrap gap-2">
           <a href="{% url 'tutor_detail' pk=session.tutor.id %}"
-             class="btn btn-primary"><i class="fa-solid fa-plus"></i> Schedule another lesson with {{ session.tutor }}</a>
-          <a href="{% url "cancel_session" pk=session.id %}" class="btn btn-danger"><i class="fas fa-times"></i> Cancel Lesson</a>
+            class="btn btn-primary" aria-label="Schedule another lesson with {{ session.tutor }}"><i class="fa-solid fa-plus"></i> Schedule another lesson with {{ session.tutor }}</a>
+          <a href="{% url "cancel_session" pk=session.id %}" class="btn btn-danger" aria-label="Cancel Lesson"><i class="fas fa-times"></i> Cancel Lesson</a>
+        </div>
         </div>
       </div>
       <div class="col-md-5">
@@ -62,7 +63,7 @@
           {% endif %}
         </p>
         <a href="{% url 'payments' pk=session.student.id %}"
-           class="btn btn-secondary mt-3"><i class="fas fa-euro-sign"></i> Go to Payments</a>
+           class="btn btn-secondary mt-3" aria-label="Go to Payments"><i class="fas fa-euro-sign"></i> Go to Payments</a>
         <p class="mt-1">
           <span class="text-muted">
             Payments can be made through the Payments page. You can pay for each of your Lessons individually or in bulk, as you prefer.

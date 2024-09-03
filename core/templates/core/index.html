@@ -15,7 +15,8 @@
       <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
         <h1 class="text-normal">
           <a href="{% url 'tutor_list' %}"
-             class="btn btn-primary btn-lg my-gradient">Find your Online Tutor</a>
+            class="btn btn-primary btn-lg my-gradient"
+            aria-label="Find your Online Tutor">Find your Online Tutor</a>
         </h1>
         <div class="mt-5">
           Learn from a private tutor with our <strong>Online Tutoring Service</strong>.
@@ -36,17 +37,24 @@
           <h5>Online Tutoring Service with the Subject you want</h5>
           <p>Find a private Tutor for the field that you want to know more about.</p>
           <p>Pick a subject below:</p>
-          <a href="{% url 'tutor_list' %}?subject=english"
-             class="btn btn-dark mt-2">English</a>
-          <a href="{% url 'tutor_list' %}?subject=math" class="btn btn-dark mt-2">Math</a>
-          <a href="{% url 'tutor_list' %}?subject=science"
-             class="btn btn-dark mt-2">Science</a>
-          <a href="{% url 'tutor_list' %}?subject=history"
-             class="btn btn-dark mt-2">History</a>
-          <a href="{% url 'tutor_list' %}?subject=biology"
-             class="btn btn-dark mt-2">Biology</a>
-          <a href="{% url 'tutor_list' %}?subject=chemistry"
-             class="btn btn-dark mt-2">Chemistry</a>
+            <a href="{% url 'tutor_list' %}?subject=english"
+             class="btn btn-dark mt-2"
+             aria-label="English">English</a>
+            <a href="{% url 'tutor_list' %}?subject=math"
+             class="btn btn-dark mt-2"
+             aria-label="Math">Math</a>
+            <a href="{% url 'tutor_list' %}?subject=science"
+             class="btn btn-dark mt-2"
+             aria-label="Science">Science</a>
+            <a href="{% url 'tutor_list' %}?subject=history"
+             class="btn btn-dark mt-2"
+             aria-label="History">History</a>
+            <a href="{% url 'tutor_list' %}?subject=biology"
+             class="btn btn-dark mt-2"
+             aria-label="Biology">Biology</a>
+            <a href="{% url 'tutor_list' %}?subject=chemistry"
+             class="btn btn-dark mt-2"
+             aria-label="Chemistry">Chemistry</a>
         </div>
       </div>
       <div class="div2 card">

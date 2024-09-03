@@ -42,7 +42,9 @@
       <!-- add in navbar -->
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'landing_page' %}">Gipfel Tutor</a>
+          <a class="navbar-brand"
+             href="{% url 'landing_page' %}"
+             aria-label="Gipfel Tutor homepage">Gipfel Tutor</a>
           <button class="navbar-toggler"
                   type="button"
                   data-bs-toggle="collapse"
@@ -58,7 +60,9 @@
                 {% if user.is_staff %}
                   <li class="nav-item">
                     <!-- -> Credit for admin url name: https://forum.djangoproject.com/t/cant-create-link-to-admin-page-in-my-template/12533/8 -->
-                    <a class="nav-link" href="{% url 'admin:index' %}">
+                    <a class="nav-link"
+                       href="{% url 'admin:index' %}"
+                       aria-label="Admin Panel">
                       <i class="fas fa-cogs"></i> Admin Panel
                     </a>
                   </li>
@@ -66,7 +70,8 @@
                 <li class="nav-item">
                   <a class="nav-link {% if request.resolver_match.view_name == 'dashboard' %}active{% endif %}"
                      href="{% url 'dashboard' user.id %}"
-                     aria-current="{% if request.resolver_match.view_name == 'dashboard' %}page{% endif %}">
+                     aria-current="{% if request.resolver_match.view_name == 'dashboard' %}page{% endif %}"
+                     aria-label="Dashboard">
                     {% if request.resolver_match.view_name == 'dashboard' %}
                       <i class="fa-solid fa-rectangle-list"></i>
                     {% else %}
@@ -81,12 +86,15 @@
                      id="navbarDropdown"
                      role="button"
                      data-bs-toggle="dropdown"
-                     aria-expanded="false">
+                     aria-expanded="false"
+                     aria-label="User Dropdown">
                     <i class="fas fa-user"></i> {{ user.username }}
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li>
-                      <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
+                      <a class="dropdown-item"
+                         href="{% url 'account_logout' %}"
+                         aria-label="Logout">Logout</a>
                     </li>
                   </ul>
                 </li>
@@ -94,18 +102,21 @@
                 <li class="nav-item">
                   <a class="nav-link {% if request.path == signup_url %}active{% endif %}"
                      href="{% url 'account_signup' %}?next={{ request.path }}"
-                     aria-current="{% if request.path == signup_url %}page{% endif %}">Register</a>
+                     aria-current="{% if request.path == signup_url %}page{% endif %}"
+                     aria-label="Register">Register</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link {% if request.path == login_url %}active{% endif %}"
                      href="{% url 'account_login' %}?next={{ request.path }}"
-                     aria-current="{% if request.path == login_url %}page{% endif %}">Login</a>
+                     aria-current="{% if request.path == login_url %}page{% endif %}"
+                     aria-label="Login">Login</a>
                 </li>
               {% endif %}
               <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
                 <a class="btn btn-primary px-3 {% if request.resolver_match.view_name == 'tutor_list' %}cta-tutor-list-active{% endif %}"
                    href="{% url 'tutor_list' %}"
-                   aria-current="{% if request.resolver_match.view_name == 'tutor_list' %}page{% endif %}">
+                   aria-current="{% if request.resolver_match.view_name == 'tutor_list' %}page{% endif %}"
+                   aria-label="Find your Tutor">
                   <i class="fa-solid fa-magnifying-glass"></i>
                   Find your Tutor
                 </a>
@@ -155,14 +166,18 @@
             <ul class="nav flex-column">
               <li class="nav-item mb-2">
                 <a href="{% url 'landing_page' %}"
-                   class="nav-link p-0 text-body-secondary">Home</a>
+                   class="nav-link p-0 text-body-secondary"
+                   aria-label="Home">Home</a>
               </li>
               <li class="nav-item mb-2">
-                <a href="{% url 'faq_page' %}" class="nav-link p-0 text-body-secondary">FAQs</a>
+                <a href="{% url 'faq_page' %}"
+                   class="nav-link p-0 text-body-secondary"
+                   aria-label="FAQs">FAQs</a>
               </li>
               <li class="nav-item mb-2">
                 <a href="{% url 'about_page' %}"
-                   class="nav-link p-0 text-body-secondary">About</a>
+                   class="nav-link p-0 text-body-secondary"
+                   aria-label="About">About</a>
               </li>
             </ul>
           </div>
@@ -208,6 +223,7 @@
                           <a href="http://eepurl.com/iWBqJc"
                              target="_blank"
                              rel="noopener noreferrer"
+                             aria-label="Mailchimp – Einfaches, schnelles E-Mail-Marketing"
                              title="Mailchimp – Einfaches, schnelles E-Mail-Marketing"><span style="display: inline-block;
              background-color: transparent;
              border-radius: 4px">
@@ -235,29 +251,32 @@
             <i class="fa fa-copyright"></i>
             <span id="year"></span> Benjamin Schäfer.
           </p>
-          <ul class="list-unstyled d-flex">
+            <ul class="list-unstyled d-flex">
             <li class="ms-3">
               <a class="link-body-emphasis"
-                 href="https://github.com/benschaf"
-                 target="_blank"
-                 rel="noopener noreferrer">
-                <i class="fab fa-github fa-2x"></i>
+               href="https://github.com/benschaf"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="GitHub">
+              <i class="fab fa-github fa-2x"></i>
               </a>
             </li>
             <li class="ms-3">
               <a class="link-body-emphasis"
-                 href="https://instagram.com"
-                 target="_blank"
-                 rel="noopener noreferrer">
-                <i class="fab fa-instagram fa-2x"></i>
+               href="https://instagram.com"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Instagram">
+              <i class="fab fa-instagram fa-2x"></i>
               </a>
             </li>
             <li class="ms-3">
               <a class="link-body-emphasis"
-                 href="https://www.facebook.com/profile.php?id=61563566265782"
-                 target="_blank"
-                 rel="noopener noreferrer">
-                <i class="fab fa-facebook fa-2x"></i>
+               href="https://www.facebook.com/profile.php?id=61563566265782"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Facebook">
+              <i class="fab fa-facebook fa-2x"></i>
               </a>
             </li>
           </ul>

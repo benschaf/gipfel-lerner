@@ -21,7 +21,10 @@
                 </td>
                 <td>{{ user.email }}</td>
                 <td>
-                  <a href="{% url 'account_email' %}" class="btn btn-outline-light btn-sm"><i class="fa fa-pencil"></i></a>
+                  <a href="{% url 'account_email' %}"
+                     class="btn btn-outline-light btn-sm"
+                     aria-label="Edit Email"
+                     title="Edit Email"><i class="fa fa-pencil"></i></a>
                 </td>
               </tr>
               <tr>
@@ -31,7 +34,9 @@
                 <td>**********</td>
                 <td>
                   <a href="{% url 'account_change_password' %}"
-                     class="btn btn-outline-light btn-sm"><i class="fa fa-pencil"></i></a>
+                     class="btn btn-outline-light btn-sm"
+                     aria-label="Change Password"
+                     title="Change Password"><i class="fa fa-pencil"></i></a>
                 </td>
               </tr>
               <tr>
@@ -39,7 +44,10 @@
                   <strong>Become a tutor</strong>
                 </td>
                 <td>
-                  <a href="{% url 'add_tutor' %}" class="btn btn-outline-light btn-sm"><i class="fa-solid fa-plus"></i> Click here to Create your tutor Profile</a>
+                  <a href="{% url 'add_tutor' %}"
+                     class="btn btn-outline-light btn-sm"
+                     aria-label="Create Tutor Profile"
+                     title="Create Tutor Profile"><i class="fa-solid fa-plus"></i> Click here to Create your tutor Profile</a>
                 </td>
                 <td></td>
               </tr>
@@ -81,7 +89,8 @@
               lesson.
             {% endif %}
             <a href="{% url 'payments' user.id %}"
-               class="btn btn-secondary btn-sm ms-3"><i class="fas fa-euro-sign"></i> Pay now</a>
+               class="btn btn-secondary btn-sm ms-3"
+               aria-label="Pay now"><i class="fas fa-euro-sign"></i> Pay now</a>
           {% endif %}
         </span>
         <div class="table-responsive">

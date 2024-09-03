@@ -31,24 +31,34 @@
             <a href="{{ session.location_url }}"
                class="btn btn-primary btn-sm"
                rel="noopener noreferrer"
-               target="_blank"><i class="fas fa-video"></i> Join</a>
+               target="_blank"
+               aria-label="Join session"
+               title="Join session"><i class="fas fa-video"></i> Join</a>
         {% else %}
             <form action="{% url 'update_session_status' session.id %}"
                   method="post"
                   class="d-inline">
                 {% csrf_token %}
                 <input type="hidden" name="status" value="scheduled" />
-                <button type="submit" class="btn btn-success btn-sm">
+                <button type="submit"
+                        class="btn btn-success btn-sm"
+                        aria-label="Schedule session"
+                        title="Schedule session">
                     <i class="fas fa-check"></i> Schedule
                 </button>
             </form>
         {% endif %}
         {% if not session.payment_complete and user != session.tutor.user %}
-            <a href="{% url 'payments' user.id %}" class="btn btn-secondary btn-sm"><i class="fas fa-euro-sign"></i> Pay now</a>
+            <a href="{% url 'payments' user.id %}"
+               class="btn btn-secondary btn-sm"
+               aria-label="Pay now"
+               title="Pay now"><i class="fas fa-euro-sign"></i> Pay now</a>
         {% endif %}
         {% if session.session_status != 'cancelled' and session.session_status != 'completed' %}
             <a href="{% url "cancel_session" session.id %}"
-               class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Cancel</a>
+               class="btn btn-danger btn-sm"
+               aria-label="Cancel session"
+               title="Cancel session"><i class="fas fa-times"></i> Cancel</a>
         {% endif %}
     </div>
 </li>
