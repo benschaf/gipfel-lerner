@@ -463,23 +463,15 @@ Once ready, to run the tests, use this command:
 
 - `npm test --coverage`
 
-Below are the results from the tests that I've written for this application:
+For this project I only ran one test and one test suite, as an example. The test suite was for the `base.html` and `base.js` files. The test was for the `updateCopyrightNotice`function.
 
-| Test Suites | Tests | Screenshot |
-| --- | --- | --- |
-| 1 passed | 16 passed | ![screenshot](documentation/tests/js-test-coverage.png) |
-| x | x | repeat for all remaining tests |
+Below are the results from the Jest tests:
 
-#### Jest Test Issues
+| File | Function | Test | Result | Screenshot |
+| --- | --- | --- | --- | --- |
+| base.js | updateCopyrightNotice | Checks if the year is updated to the current year | The year is updated to the current year | ![screenshot](documentation/tests-js-test-base.png) |
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-Use this section to list any known issues you ran into while writing your Jest tests.
-Remember to include screenshots (where possible), and a solution to the issue (if known).
-
-This can be used for both "fixed" and "unresolved" issues.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
+No more jest testing was conducted due to all of the JavaScript functions relying on either the Stripe or the Calendly services. Testing these functions would require mocking the services, which is beyond the scope of this project.
 
 ### Python (Unit Testing)
 
