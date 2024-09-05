@@ -2,6 +2,7 @@
 
 :root {
     --my-blue-green: #219EBC;
+    --my-blue-green-light: #8cbcc8;
     --my-prussian-blue: #023047;
     --my-ut-oragne: #FB8500;
     --my-title-font: "Josefin Sans", Arial, sans-serif;
@@ -216,8 +217,8 @@ main {
 }
 
 .sorting-badge:checked+.btn {
-    background-color: var(--my-blue-green);
-    border-color: var(--my-blue-green);
+    background-color: var(--my-blue-green-light);
+    border-color: var(--my-blue-green-light);
 }
 
 .subject-btn:hover+.btn,
