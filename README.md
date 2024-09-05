@@ -422,6 +422,18 @@ The user Dashboard is designed to be informative and user-friendly, providing us
 
 relevant project files: [student_dashboard.html](tutor_market/templates/tutor_market/student_dashboard.html)
 
+### Tutor Account Creation
+
+The Tutor Account Creation feature allows users to sign up as a tutor and create a detailed tutor profile. The feature includes a custom form that collects information about the tutor's hourly rate, availability, and teaching values. The tutor can also upload a profile picture and write a description of themselves. Additionally, the tutor can connect their Calendly account to the site.
+
+The Tutor Account Creation feature is designed to be user-friendly and informative, providing tutors with all the tools they need to create a detailed profile. It helps tutors attract students and ensures they have a positive experience on the site.
+
+![screenshot](documentation/feature-tutor-account-creation.png)
+
+⤴️ Screenshot of the Tutor Account Creation feature
+
+relevant project files: [add_tutor.html](tutor_market/templates/tutor_market/add_tutor.html)
+
 ### Tutor Dashboard
 
 The Tutor Dashboard provides tutors with an overview of their account. It includes a list of upcoming lessons, lessons that are waiting for confirmation, and an overview over all their students and upcoming lessons with them. Additionally, tutors can manage their account email, password and tutor profile. On the tutor dashboard, tutors can also connect their Calendly account to the site. At the bottom they have the option to delete their tutor profile.
