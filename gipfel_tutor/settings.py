@@ -28,8 +28,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY", "")
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# This will only make DEBUG = True if the environment variable is set to "True"
 DEBUG = os.environ.get("DEBUG", "") == "True"
 
+# Separate Development variable for db, email backend and S3 bucket
 DEVELOPMENT = os.environ.get("DEVELOPMENT", "") == "True"
 
 ALLOWED_HOSTS = [
