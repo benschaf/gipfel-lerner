@@ -95,7 +95,6 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
@@ -107,16 +106,14 @@ if DEVELOPMENT:
     CALENDLY_CLIENT_ID = os.environ.get("CALENDLY_DEV_CLIENT_ID", "")
     CALENDLY_CLIENT_SECRET = os.environ.get("CALENDLY_DEV_CLIENT_SECRET", "")
     CALENDLY_REDIRECT_URI = os.environ.get("CALENDLY_DEV_REDIRECT_URI", "")
+
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+    DEFAULT_FROM_EMAIL = "gipfeltutor@example.com"
 else:
     CALENDLY_CLIENT_ID = os.environ.get("CALENDLY_PROD_CLIENT_ID", "")
     CALENDLY_CLIENT_SECRET = os.environ.get("CALENDLY_PROD_CLIENT_SECRET", "")
     CALENDLY_REDIRECT_URI = os.environ.get("CALENDLY_PROD_REDIRECT_URI", "")
 
-
-if DEVELOPMENT:
-    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-    DEFAULT_FROM_EMAIL = "gipfeltutor@example.com"
-else:
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
     EMAIL_USE_TLS = True
     EMAIL_PORT = 587
@@ -124,7 +121,6 @@ else:
     EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "")
     EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASS", "")
     DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
 
 LOGIN_URL = "/accounts/login/"
 LOGIN_REDIRECT_URL = "/"
