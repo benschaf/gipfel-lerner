@@ -194,19 +194,20 @@ View the [original draw.io file](https://drive.google.com/file/d/1OUjOdhZI-Dq6OR
 <details>
 <summary>Click to expand wireframes</summary>
 
-| Page | Mobile Wireframe | Tablet Wireframe | Desktop Wireframe |
-| --- | --- | --- | --- |
-| Landing Page | ![screenshot](documentation/wireframe-landing-mobile.png) | ![screenshot](documentation/wireframe-landing-tablet.png) | ![screenshot](documentation/wireframe-landing-desktop.png) |
-| Tutor List | ![screenshot](documentation/wireframe-list-mobile.png) | ![screenshot](documentation/wireframe-list-tablet.png) | ![screenshot](documentation/wireframe-list-desktop.png) |
-| Tutor Detail | ![screenshot](documentation/wireframe-detail-mobile.png) | ![screenshot](documentation/wireframe-detail-tablet.png) | ![screenshot](documentation/wireframe-detail-desktop.png) |
-| Schedule / Payment Success | ![screenshot](documentation/wireframe-schedule-mobile.png) | ![screenshot](documentation/wireframe-schedule-tablet.png) | ![screenshot](documentation/wireframe-schedule-desktop.png) |
-| Payment (Checkout) | ![screenshot](documentation/wireframe-payment-mobile.png) | ![screenshot](documentation/wireframe-payment-tablet.png) | ![screenshot](documentation/wireframe-payment-desktop.png) |
-| Student Dashboard | ![screenshot](documentation/wireframe-student-dashboard-mobile.png) | ![screenshot](documentation/wireframe-student-dashboard-tablet.png) | ![screenshot](documentation/wireframe-student-dashboard-desktop.png) |
-| Tutor Dashboard | ![screenshot](documentation/wireframe-tutor-dashboard-mobile.png) | ![screenshot](documentation/wireframe-tutor-dashboard-tablet.png) | ![screenshot](documentation/wireframe-tutor-dashboard-desktop.png) |
-| Single Forms (Allauth forms / Tutor Profile forms) | ![screenshot](documentation/wireframe-forms-mobile.png) | ![screenshot](documentation/wireframe-forms-tablet.png) | ![screenshot](documentation/wireframe-forms-desktop.png) |
-| FAQ | ![screenshot](documentation/wireframe-faq-mobile.png) | ![screenshot](documentation/wireframe-faq-tablet.png) | ![screenshot](documentation/wireframe-faq-desktop.png) |
-| About | ![screenshot](documentation/wireframe-about-mobile.png) | ![screenshot](documentation/wireframe-about-tablet.png) | ![screenshot](documentation/wireframe-about-desktop.png) |
-| Calendly Information | ![screenshot](documentation/wireframe-calendly-mobile.png) | ![screenshot](documentation/wireframe-calendly-tablet.png) | ![screenshot](documentation/wireframe-calendly-desktop.png) |
+
+| Page | Wireframe |
+| --- | --- |
+| Landing Page | ![screenshot](documentation/wireframe-landing.png) |
+| Tutor List | ![screenshot](documentation/wireframe-tutor-list.png) |
+| Tutor Detail | ![screenshot](documentation/wireframe-tutor-detail.png) |
+| Schedule / Payment Success | ![screenshot](documentation/wireframe-schedule-success.png) |
+| Payment (Checkout) | ![screenshot](documentation/wireframe-payments.png) |
+| Student Dashboard | ![screenshot](documentation/wireframe-student-dashboard.png) |
+| Tutor Dashboard | ![screenshot](documentation/wireframe-tutor-dashboard.png) |
+| FAQ | ![screenshot](documentation/wireframe-faq.png) |
+| About | ![screenshot](documentation/wireframe-about.png) |
+| Calendly Information | ![screenshot](documentation/wireframe-calendly.png) |
+
 </details>
 
 ## Features
