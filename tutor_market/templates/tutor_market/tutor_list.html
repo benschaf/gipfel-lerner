@@ -7,8 +7,8 @@
     </h1>
   </div>
   <!-- Search form -->
-  <div class="container mt-3 p-4 rounded-2 my-gray-background">
-    <form action="{% url 'tutor_list' %}" method="get">
+  <form action="{% url 'tutor_list' %}" method="get">
+    <div class="container mt-3 p-4 rounded-2 my-gray-background">
       <!-- Search Bar -->
       <div class="row">
         <div class="col col-md-6">
@@ -135,7 +135,9 @@
           </div>
         </div>
       </div>
-      <!-- Sorting -->
+    </div>
+    <!-- Sorting -->
+    <div class="container">
       <div class="row mt-2">
         <div class="col d-flex gap-1">
           <div class="me-2">
@@ -185,11 +187,11 @@
           </div>
         </div>
       </div>
-    </form>
-  </div>
+    </div>
+  </form>
   <!-- Tutor list -->
   <div class="container mt-5">
-    <div class="row row-cols-1 row-cols-lg-2 row-gap-3">
+    <div class="row row-cols-1 row-cols-lg-2 row-gap-3" data-masonry='{"percentPosition": true }'>
       {% for tutor in page_obj %}
         {% include "tutor_market/includes/tutor_card.html" %}
       {% empty %}
@@ -242,5 +244,10 @@
 {% endblock content %}
 {% block postloadjs %}
   {{ block.super }}
+  <!-- -> Credit for bs masonry: https://getbootstrap.com/docs/5.3/examples/masonry/ -->
+  <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+          integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D"
+          crossorigin="anonymous"
+          async></script>
   <script src="{% static "tutor_market/js/tutor_list.js" %}"></script>
 {% endblock postloadjs %}
