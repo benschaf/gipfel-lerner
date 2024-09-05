@@ -69,7 +69,8 @@ def tutor_list_view(request):
             if sorting == 'cheapest':
                 tutor_list = tutor_list.order_by('hourly_rate')
             if sorting == 'highest-rated':
-                tutor_list = tutor_list.annotate(avg_rating=Avg('ratings__score')).order_by('-avg_rating')
+                # -> Credit for default value in Avg: https://docs.djangoproject.com/en/5.1/ref/models/database-functions/#coalesce  # noqa
+                tutor_list = tutor_list.annotate(avg_rating=Avg('ratings__score', default=0)).order_by('-avg_rating')
             if sorting == 'most-reviews':
                 # -> Credit for distinct results in annotations: https://docs.djangoproject.com/en/5.0/topics/db/aggregation/#combining-multiple-aggregations  # noqa
                 tutor_list = tutor_list.annotate(num_ratings=Count("ratings", distinct=True)).order_by("-num_ratings")
