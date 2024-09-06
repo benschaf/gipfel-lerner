@@ -41,7 +41,6 @@ def calendly_auth(request: HttpRequest) -> HttpResponse:
     Handles the Calendly OAuth authorization callback.
     """
     code = request.GET.get('code')
-    print(f"code: {code}")
 
     url = "https://auth.calendly.com/oauth/token"
 
@@ -58,8 +57,6 @@ def calendly_auth(request: HttpRequest) -> HttpResponse:
         "Accept": "application/json",
         "Authorization": f"Basic {base64_string}"
     }
-    print(f"payload: {payload}")
-    print(f"headers: {headers}")
 
     response = requests.post(url, data=payload, headers=headers)
 
@@ -71,7 +68,6 @@ def calendly_auth(request: HttpRequest) -> HttpResponse:
 
     messages.success(request, "Calendly connected successfully!")
 
-    print(f"refresh_token_before: {response_data['refresh_token']}")
 
     request.user.tutor.calendly_access_token = response_data['access_token']
     request.user.tutor.calendly_refresh_token = response_data['refresh_token']
@@ -109,8 +105,6 @@ def introspect_access_token(tutor) -> dict:
     if response.status_code != 200:
         return response_data
 
-    print(f"response_data: {response_data}")
-
     if response_data['active'] is False:
         response_data = refresh_access_token(tutor)
 
@@ -122,7 +116,6 @@ def refresh_access_token(tutor) -> dict:
     Refreshes the Calendly access token using the refresh token.
     """
     refresh_token = tutor.calendly_refresh_token
-    print(f"refresh_token: {refresh_token}")
 
     url = "https://auth.calendly.com/oauth/token"
 
@@ -145,13 +138,11 @@ def refresh_access_token(tutor) -> dict:
     if response.status_code != 200:
         return response_data
 
-    print(f"OLD TOKEN: {tutor.calendly_access_token}")
 
     tutor.calendly_access_token = response_data['access_token']
     tutor.calendly_refresh_token = response_data['refresh_token']
     tutor.save()
 
-    print(f"NEW TOKEN: {tutor.calendly_access_token}")
 
     return response_data
 
