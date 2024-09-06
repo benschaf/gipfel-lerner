@@ -181,6 +181,7 @@ def tutor_detail_view(request, pk):
 
         review_counts[score] = {'count': count, 'percentage': percentage}
 
+    # -> Credit for reversing the order of a dictionary: https://www.geeksforgeeks.org/ordereddict-in-python/
     review_counts = OrderedDict(reversed(list(review_counts.items())))
 
     context = {
@@ -239,7 +240,7 @@ class TutorCreateView(LoginRequiredMixin, CreateView):
         return reverse('dashboard', kwargs={'pk': self.object.user.pk})
 
 
-class TutorUpdateView(UserPassesTestMixin, UpdateView):
+class TutorUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """
     A view for updating a tutor's information.
 
@@ -275,7 +276,7 @@ class TutorUpdateView(UserPassesTestMixin, UpdateView):
         return reverse('dashboard', kwargs={'pk': self.object.user.pk})
 
 
-class TutorDeleteView(UserPassesTestMixin, DeleteView):
+class TutorDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """
     A view for deleting a tutor.
 
@@ -379,6 +380,7 @@ def tutor_dashboard(request, user):
     }
     return render(request, 'tutor_market/tutor_dashboard.html', context)
 
+@login_required
 def dashboard_view(request, pk):
     """
     Calls the appropriate dashboard view based on the user's role.
@@ -436,7 +438,7 @@ def update_session_status(request, pk):
     return redirect('dashboard', pk=session.tutor.user.pk)
 
 
-class CalendlyInformationView(TemplateView):
+class CalendlyInformationView(LoginRequiredMixin, TemplateView):
     """
     A view that renders the Calendly information page.
 
