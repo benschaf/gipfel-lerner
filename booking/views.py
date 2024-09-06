@@ -259,7 +259,7 @@ def cancel_session_view(request, pk):
     return render(request, 'booking/cancel_session.html', context)
 
 
-class ScheduleSuccessView(DetailView):
+class ScheduleSuccessView(LoginRequiredMixin, DetailView):
     """
     A view that displays the success page after scheduling a tutoring session.
 
@@ -280,7 +280,7 @@ def payment_view(request, pk):
 
     Args:
         request (HttpRequest): The HTTP request object.
-        pk (int): The primary key of the user.
+        pk (int): The primary key of the user. (not used at the moment)
 
     Returns:
         HttpResponse: The HTTP response object.
