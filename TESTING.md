@@ -479,7 +479,7 @@ To create the coverage report, I would then run the following commands:
 
 `pip3 freeze --local > requirements.txt`
 
-`coverage run --omit=*/site-packages/*,*/migrations/*,*/__init__.py,env.py manage.py test`
+`coverage run --omit=/site-packages/,/migrations/,env.py,*/init.py,*/manage.py manage.py test`
 
 `coverage report`
 
@@ -489,42 +489,36 @@ To see the HTML version of the reports, and find out whether some pieces of code
 
 `python3 -m http.server`
 
-Below are the results from the various apps on my application that I've tested:
+#### Test Results
 
-| App | File | Coverage | Screenshot |
-| --- | --- | --- | --- |
-| Bag | test_forms.py | 99% | ![screenshot](documentation/tests/py-test-bag-forms.png) |
-| Bag | test_models.py | 89% | ![screenshot](documentation/tests/py-test-bag-models.png) |
-| Bag | test_urls.py | 100% | ![screenshot](documentation/tests/py-test-bag-urls.png) |
-| Bag | test_views.py | 71% | ![screenshot](documentation/tests/py-test-bag-views.png) |
-| Checkout | test_forms.py | 99% | ![screenshot](documentation/tests/py-test-checkout-forms.png) |
-| Checkout | test_models.py | 89% | ![screenshot](documentation/tests/py-test-checkout-models.png) |
-| Checkout | test_urls.py | 100% | ![screenshot](documentation/tests/py-test-checkout-urls.png) |
-| Checkout | test_views.py | 71% | ![screenshot](documentation/tests/py-test-checkout-views.png) |
-| Home | test_forms.py | 99% | ![screenshot](documentation/tests/py-test-home-forms.png) |
-| Home | test_models.py | 89% | ![screenshot](documentation/tests/py-test-home-models.png) |
-| Home | test_urls.py | 100% | ![screenshot](documentation/tests/py-test-home-urls.png) |
-| Home | test_views.py | 71% | ![screenshot](documentation/tests/py-test-home-views.png) |
-| Products | test_forms.py | 99% | ![screenshot](documentation/tests/py-test-products-forms.png) |
-| Products | test_models.py | 89% | ![screenshot](documentation/tests/py-test-products-models.png) |
-| Products | test_urls.py | 100% | ![screenshot](documentation/tests/py-test-products-urls.png) |
-| Products | test_views.py | 71% | ![screenshot](documentation/tests/py-test-products-views.png) |
-| Profiles | test_forms.py | 99% | ![screenshot](documentation/tests/py-test-profiles-forms.png) |
-| Profiles | test_models.py | 89% | ![screenshot](documentation/tests/py-test-profiles-models.png) |
-| Profiles | test_urls.py | 100% | ![screenshot](documentation/tests/py-test-profiles-urls.png) |
-| Profiles | test_views.py | 71% | ![screenshot](documentation/tests/py-test-profiles-views.png) |
-| x | x | x | repeat for all remaining tested apps/files |
+I have conducted a total of 79 tests across all of my apps in the project, all of which are passing.
 
-#### Unit Test Issues
+![screenshot](documentation/test-py-all.png)
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
+⤴️ This is a screenshot of the test results in the console.
 
-Use this section to list any known issues you ran into while writing your unit tests.
-Remember to include screenshots (where possible), and a solution to the issue (if known).
+Below are the results from the various apps on my application that I've tested (covered files are skipped to keep the screenshot reasonably sized):
 
-This can be used for both "fixed" and "unresolved" issues.
+![screenshot](documentation/test-py-coverage.png)
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
+⤴️ This is a screenshot of the coverage report in the console.
+
+The current tests reach a coverage of 86% across all apps.
+
+Below are screenshots of the files' reports that didn't reach 100% coverage:
+
+| App | File | Coverage | Screenshot | Comments |
+|---|---|---|---|
+| booking | views.py | 47% | ![screenshot](documentation/test-booking-views.png) | Testsing for statements that rely on Stripe or Calendly services was not done. |
+| booking | webhook_handler.py | 24% | ![screenshot](documentation/test-booking-webhook-handler.png) | same comment as above |
+| booking | webhooks.py | 37% | ![screenshot](documentation/test-booking-webhooks.png) | same comment as above |
+| calendly | views.py | 73% | ![screenshot](documentation/test-calendly-views.png) | same comment as above |
+| core | models.py | 88% | ![screenshot](documentation/test-core-models.png) | __str__ methods are not tested |
+| tutor_market | models.py | 96% | ![screenshot](documentation/test-tutor-market-models.png) | __str__ methods are not tested |
+| tutor_market | views.py | 90% | ![screenshot](documentation/test-tutor-market-views.png) | most statements could be tested |
+| gipfel_tutor | settings.py | 68% | no screenshot | settings.py is not tested |
+
+I fully acknowledge and understand that, in a real-world scenario, an extensive set of additional tests and a higher coverage would be more comprehensive.
 
 ## Bugs
 
