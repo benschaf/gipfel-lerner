@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from gipfel_tutor import settings
 from tutor_market.models import Tutor
 
+@login_required
 def connect_calendly(request: HttpRequest) -> HttpResponse:
     """
     Redirects the user to the Calendly OAuth authorization page.
@@ -155,6 +156,7 @@ def refresh_access_token(tutor) -> dict:
     return response_data
 
 
+@login_required
 def disconnect_calendly(request: HttpRequest, pk: int) -> HttpResponse:
     """
     Disconnects the Calendly integration for a tutor.
