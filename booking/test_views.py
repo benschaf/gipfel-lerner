@@ -1,7 +1,7 @@
 from datetime import timedelta, timezone
 from django.utils import timezone
 from decimal import Decimal
-from django.test import TestCase, Client
+from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
 from booking.models import Payment, TutoringSession
