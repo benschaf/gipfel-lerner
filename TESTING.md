@@ -104,8 +104,6 @@ I then ran the following command to validate all of my JavaScript files: `npx js
 
 | Directory | File | Screenshot | Notes |
 | --- | --- | --- | --- |
-| Directory | File | Screenshot | Notes |
-| --- | --- | --- | --- |
 | booking | [payment.js](booking/static/booking/js/payment.js) | ![screenshot](documentation/validation_js_payment_js.png) | |
 | booking | [payment_create.js](booking/static/booking/js/payment_create.js) | ![screenshot](documentation/validation_js_payment_create_js.png) | |
 | core | [index.js](core/static/core/js/index.js) | ![screenshot](documentation/validation_js_index_js.png) | |
@@ -125,30 +123,31 @@ Files that are unchanged from the Django template have been excluded from the va
 | --- | --- | --- | --- |
 | booking | admin.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/admin.py) | ![screenshot](documentation/validation_py_admin_py.png) |
 | booking | forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/forms.py) | ![screenshot](documentation/validation_py_forms_py.png) |
+| booking | test_forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/test_forms.py) | ![screenshot](documentation/validation_py_test_forms_py.png) |
 | booking | models.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/models.py) | ![screenshot](documentation/validation_py_models_py.png) |
 | booking | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/urls.py) | ![screenshot](documentation/validation_py_urls_py.png) |
 | booking | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/views.py) | ![screenshot](documentation/validation_py_views_py.png) |
+| booking | test_views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/test_views.py) | ![screenshot](documentation/validation_py_test_views_py.png) |
 | booking | webhook_handler.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/webhook_handler.py) | ![screenshot](documentation/validation_py_webhook_handler_py.png) |
 | booking | webhooks.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/webhooks.py) | ![screenshot](documentation/validation_py_webhooks_py.png) |
 | calendly | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/calendly/urls.py) | ![screenshot](documentation/validation_py_urls_py.png) |
 | calendly | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/calendly/views.py) | ![screenshot](documentation/validation_py_views_py.png) |
+| calendly | test_views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/calendly/test_views.py) | ![screenshot](documentation/validation_py_test_views_py.png) |
 | root | copy-credits.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/copy-credits.py) | ![screenshot](documentation/validation_py_copy-credits_py.png) |
 | core | admin.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/core/admin.py) | ![screenshot](documentation/validation_py_admin_py.png) |
 | core | models.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/core/models.py) | ![screenshot](documentation/validation_py_models_py.png) |
 | core | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/core/urls.py) | ![screenshot](documentation/validation_py_urls_py.png) |
 | core | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/core/views.py) | ![screenshot](documentation/validation_py_views_py.png) |
+| core | test_views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/core/test_views.py) | ![screenshot](documentation/validation_py_test_views_py.png) |
 | root | custom_storages.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/custom_storages.py) | ![screenshot](documentation/validation_py_custom_storages_py.png) |
 | gipfel_tutor | settings.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/gipfel_tutor/settings.py) | ![screenshot](documentation/validation_py_settings_py.png) |
 | gipfel_tutor | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/gipfel_tutor/urls.py) | ![screenshot](documentation/validation_py_urls_py.png) |
 | tutor_market | forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/forms.py) | ![screenshot](documentation/validation_py_forms_py.png) |
+| tutor_market | test_forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/test_forms.py) | ![screenshot](documentation/validation_py_test_forms_py.png) |
 | tutor_market | models.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/models.py) | ![screenshot](documentation/validation_py_models_py.png) |
 | tutor_market | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/urls.py) | ![screenshot](documentation/validation_py_urls_py.png) |
 | tutor_market | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/views.py) | ![screenshot](documentation/validation_py_views_py.png) |
-
-Test Files were validated, too:
-
-| Directory | File | CI URL | Screenshot | Notes |
-| --- | --- | --- | --- | --- |
+| tutor_market | test_views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/test_views.py) | ![screenshot](documentation/validation_py_test_views_py.png) |
 
 Additionaly to the final testing, pycodestyle was used frequently to test python files locally.
 
@@ -189,16 +188,14 @@ I've tested my deployed project manually on multiple browsers to check for compa
 - [Chrome](https://www.google.com/chrome)
 - [Firefox (Developer Edition)](https://www.mozilla.org/firefox/developer)
 - [Edge](https://www.microsoft.com/edge)
-- [Safari](https://support.apple.com/downloads/safari)
 
 See the table below for the compatibility results:
 
 | Browser | Landing | tutor list | tutor detail | tutor dashboard | payment | student dashboard | schedule success | payment success | Notes |
-| --- | --- | --- | --- | --- | --- |
-| Chrome | ![screenshot](documentation/browser-chrome-landing.png) | ![screenshot](documentation/browser-chrome-tutor_list.png) | ![screenshot](documentation/browser-chrome-tutor_detail.png) | ![screenshot](documentation/browser-chrome-tutor_dashboard.png) | ![screenshot](documentation/browser-chrome-payment.png) | ![screenshot](documentation/browser-chrome-student_dashboard.png) | ![screenshot](documentation/browser-chrome-schedule_success.png) | ![screenshot](documentation/browser-chrome-payment_success.png) | Works as expected |
-| Firefox | ![screenshot](documentation/browser-firefox-landing.png) | ![screenshot](documentation/browser-firefox-tutor_list.png) | ![screenshot](documentation/browser-firefox-tutor_detail.png) | ![screenshot](documentation/browser-firefox-tutor_dashboard.png) | ![screenshot](documentation/browser-firefox-payment.png) | ![screenshot](documentation/browser-firefox-student_dashboard.png) | ![screenshot](documentation/browser-firefox-schedule_success.png) | ![screenshot](documentation/browser-firefox-payment_success.png) | Works as expected |
-| Edge | ![screenshot](documentation/browser-edge-landing.png) | ![screenshot](documentation/browser-edge-tutor_list.png) | ![screenshot](documentation/browser-edge-tutor_detail.png) | ![screenshot](documentation/browser-edge-tutor_dashboard.png) | ![screenshot](documentation/browser-edge-payment.png) | ![screenshot](documentation/browser-edge-student_dashboard.png) | ![screenshot](documentation/browser-edge-schedule_success.png) | ![screenshot](documentation/browser-edge-payment_success.png) | Works as expected |
-| Safari | ![screenshot](documentation/browser-safari-landing.png) | ![screenshot](documentation/browser-safari-tutor_list.png) | ![screenshot](documentation/browser-safari-tutor_detail.png) | ![screenshot](documentation/browser-safari-tutor_dashboard.png) | ![screenshot](documentation/browser-safari-payment.png) | ![screenshot](documentation/browser-safari-student_dashboard.png) | ![screenshot](documentation/browser-safari-schedule_success.png) | ![screenshot](documentation/browser-safari-payment_success.png) | Works as expected |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Chrome | ![screenshot](documentation/responsive-desktop-landing.png) | ![screenshot](documentation/responsive-desktop-tutor-list.png) | ![screenshot](documentation/responsive-desktop-tutor-detail.png) | ![screenshot](documentation/responsive-desktop-tutor-dashboard.png) | ![screenshot](documentation/responsive-desktop-payment.png) | ![screenshot](documentation/responsive-desktop-student-dashboard.png) | ![screenshot](documentation/responsive-desktop-schedule-success.png) | ![screenshot](documentation/responsive-desktop-payment-success.png) | Works as expected |
+| Firefox | ![screenshot](documentation/browser-firefox-landing.png) | ![screenshot](documentation/browser-firefox-tutor-list.png) | ![screenshot](documentation/browser-firefox-tutor-detail.png) | ![screenshot](documentation/browser-firefox-tutor-dashboard.png) | ![screenshot](documentation/browser-firefox-payment.png) | ![screenshot](documentation/browser-firefox-student-dashboard.png) | ![screenshot](documentation/browser-firefox-schedule-success.png) | ![screenshot](documentation/browser-firefox-payment-success.png) | Works as expected |
+| Edge | ![screenshot](documentation/browser-edge-landing.png) | ![screenshot](documentation/browser-edge-tutor-list.png) | ![screenshot](documentation/browser-edge-tutor-detail.png) | ![screenshot](documentation/browser-edge-tutor-dashboard.png) | ![screenshot](documentation/browser-edge-payment.png) | ![screenshot](documentation/browser-edge-student-dashboard.png) | ![screenshot](documentation/browser-edge-schedule-success.png) | ![screenshot](documentation/browser-edge-payment-success.png) | Works as expected |
 
 There were no compatibility issues on any of the browsers tested.
 
