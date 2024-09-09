@@ -268,15 +268,15 @@ h5>a {
 
 /* Tutor Dashboard */
 .danger-zone {
-    border: 1px solid red;
+    border: 1px solid var(--bs-danger);
 }
 
 .danger-zone .alert-heading {
-    color: red;
+    color: var(--bs-danger);
 }
 
 .asteriskField {
-    color: red;
+    color: var(--bs-danger);
 }
 
 /* Google Sign in button */
