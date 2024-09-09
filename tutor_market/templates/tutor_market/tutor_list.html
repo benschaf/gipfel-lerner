@@ -9,9 +9,17 @@
   <!-- Search form -->
   <form action="{% url 'tutor_list' %}" method="get">
     <div class="container mt-3 p-4 rounded-2 my-gray-background">
-      <!-- Search Bar -->
       <div class="row">
-        <div class="col col-md-6">
+      <!-- Reset Filters -->
+        <div class="col d-flex justify-content-end order-md-2">
+          <a href="{% url 'tutor_list' %}"
+             class="btn my-reset-button"
+             aria-label="Reset Filters">
+            <i class="fa-solid fa-undo"></i> Reset Filters
+          </a>
+        </div>
+      <!-- Search Bar -->
+        <div class="col-12 col-md-6 order-md-1">
           <div class="input-group">
             <input type="text"
                    name="q"
@@ -20,13 +28,6 @@
                    {% if query %}value="{{ query }}"{% endif %} />
             <button class="btn btn-primary" type="submit">Search</button>
           </div>
-        </div>
-        <div class="col d-flex justify-content-end">
-          <a href="{% url 'tutor_list' %}"
-             class="btn my-reset-button"
-             aria-label="Reset Filters">
-            <i class="fa-solid fa-undo"></i> Reset Filters
-          </a>
         </div>
       </div>
       <!-- Subjects -->
