@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
 {% block content %}
   <div class="container">
@@ -59,7 +59,7 @@
       </div>
     </div>
   </div>
-{% endblock %}
+{% endblock content %}
 {% block postloadjs %}
   {{ block.super }}
   <script id="payment-data" type="application/json">
@@ -74,4 +74,4 @@
     }
   </script>
   <script src="{% static 'booking/js/payment.js' %}"></script>
-{% endblock %}
+{% endblock content %}

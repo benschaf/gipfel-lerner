@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
 {% block content %}
   <div class="container">
@@ -10,7 +10,7 @@
   <form action="{% url 'tutor_list' %}" method="get">
     <div class="container mt-3 p-4 rounded-2 my-gray-background">
       <div class="row">
-      <!-- Reset Filters -->
+        <!-- Reset Filters -->
         <div class="col d-flex justify-content-end order-md-2">
           <a href="{% url 'tutor_list' %}"
              class="btn my-reset-button"
@@ -18,7 +18,7 @@
             <i class="fa-solid fa-undo"></i> Reset Filters
           </a>
         </div>
-      <!-- Search Bar -->
+        <!-- Search Bar -->
         <div class="col-12 col-md-6 order-md-1">
           <div class="input-group">
             <input type="text"
@@ -192,7 +192,8 @@
   </form>
   <!-- Tutor list -->
   <div class="container mt-5">
-    <div class="row row-cols-1 row-cols-lg-2 row-gap-3" data-masonry='{"percentPosition": true }'>
+    <div class="row row-cols-1 row-cols-lg-2 row-gap-3"
+         data-masonry='{"percentPosition": true }'>
       {% for tutor in page_obj %}
         {% include "tutor_market/includes/tutor_card.html" %}
       {% empty %}

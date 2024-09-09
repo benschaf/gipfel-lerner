@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
 <!-- -> Credit for adaptable page header: https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/master/home/templates/home/index.html -->
 {% block page_header %}{% endblock %}
@@ -79,7 +79,7 @@
               <h5>Online learning with values that suit you</h5>
               <p>Find the ideal tutor for your needs with our matching system.</p>
               <p>Pick Teaching Values that are important to you below:</p>
-              <form action="{% url 'tutor_list' %}" method="GET">
+              <form action="{% url 'tutor_list' %}" method="get">
                 <input type="checkbox"
                        name="teachingvalue"
                        value="self-learning"
@@ -151,8 +151,8 @@
       </div>
     </div>
   </section>
-{% endblock %}
+{% endblock content %}
 {% block postloadjs %}
   {{ block.super }}
   <script src="{% static "core/js/index.js" %}"></script>
-{% endblock %}
+{% endblock content %}

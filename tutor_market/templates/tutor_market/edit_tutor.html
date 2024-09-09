@@ -1,4 +1,4 @@
-{% extends 'includes/form_dialogue_lg.html' %}
+{% extends "includes/form_dialogue_lg.html" %}
 {% load crispy_forms_tags %}
 {% block form %}
   <h1>Edit Your Profile</h1>
@@ -6,7 +6,7 @@
     <span class="asteriskField">*</span> required fields
   </p>
   <!-- -> Credit for enctype attribute: https://www.geeksforgeeks.org/define-multipart-form-data/ -->
-  <form method="POST" enctype="multipart/form-data">
+  <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form|crispy }}
     <div>
@@ -18,4 +18,4 @@
     </div>
     <button type="submit" class="btn btn-primary">Update</button>
   </form>
-{% endblock %}
+{% endblock form %}

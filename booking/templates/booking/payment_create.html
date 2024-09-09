@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
 {% block content %}
   <div class="container">
@@ -25,4 +25,4 @@
   {{ block.super }}
   {{ STRIPE_PUBLIC_KEY|json_script:"stripe-public-key" }}
   <script src="{% static "booking/js/payment_create.js" %}"></script>
-{% endblock %}
+{% endblock content %}
