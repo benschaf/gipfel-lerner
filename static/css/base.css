@@ -280,6 +280,15 @@ h5>a {
 }
 
 /* Google Sign in button */
+.my-social-list-item {
+    list-style-type: none;
+}
+
+.my-social-list-item a {
+    text-decoration: none;
+    color: black;
+}
+
 .gsi-material-button {
     -moz-user-select: none;
     -webkit-user-select: none;
