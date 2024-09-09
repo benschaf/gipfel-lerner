@@ -508,8 +508,8 @@ The current tests reach a coverage of 86% across all apps.
 Below are screenshots of the files' reports that didn't reach 100% coverage:
 
 | App | File | Coverage | Screenshot | Comments |
-|---|---|---|---|
-| booking | views.py | 47% | ![screenshot](documentation/test-booking-views.png) | Testsing for statements that rely on Stripe or Calendly services was not done. |
+|---|---|---|---|---|
+| booking | views.py | 47% | ![screenshot](documentation/test-booking-views.png) | Testsing for statements that rely on Stripe or Calendly services was not done as it is out of scope of this project. |
 | booking | webhook_handler.py | 24% | ![screenshot](documentation/test-booking-webhook-handler.png) | same comment as above |
 | booking | webhooks.py | 37% | ![screenshot](documentation/test-booking-webhooks.png) | same comment as above |
 | calendly | views.py | 73% | ![screenshot](documentation/test-calendly-views.png) | same comment as above |
@@ -537,6 +537,8 @@ Or see the list of fixed bugs below:
 Note: Many of the bugs were only tracked in github issues retroactively. For these bugs, the commit that fixed the bug is linked in a comment of the issue. That way, all of the bugs, fixes and the process of fixing them can be tracked from within Github issues.
 
 ### Unfixed Bugs
+
+At the moment of submission, there are no known bugs that are still open.
 
 ### Open issues
 
