@@ -109,7 +109,7 @@
                 <li class="nav-item">
                   <a class="nav-link {% if request.path == signup_url %}active{% endif %}"
                      href="{% url 'account_signup' %}?next={{ request.path }}"
-                     {% if if request.path == signup_url %}aria-current="page"{% endif %}
+                     {% if request.path == signup_url %}aria-current="page"{% endif %}
                      aria-label="Register">Register</a>
                 </li>
                 <li class="nav-item">
