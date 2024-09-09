@@ -1,16 +1,16 @@
 <li class="list-group-item pb-4">
     <strong>Subject:</strong> {{ session.subject.name }}
-    <br />
+    <br>
     <strong>Date:</strong> {{ session.start_time|date:'D, d M Y, H:i' }} (UTC)
-    <br />
+    <br>
     <strong>Duration:</strong> {{ session.duration }} minutes
-    <br />
+    <br>
     {% if student_tutor == "student" %}
         <strong>Student:</strong> {{ session.student }}
-        <br />
+        <br>
     {% elif student_tutor == "tutor" %}
         <strong>Tutor:</strong> {{ session.tutor }}
-        <br />
+        <br>
     {% else %}
     {% endif %}
     {% if status %}

@@ -245,11 +245,11 @@
                   {% for session in booking_history %}
                     <li class="list-group-item">
                       <strong>Subject:</strong> {{ session.subject }}
-                      <br />
+                      <br>
                       <strong>Date:</strong> {{ session.start_time|date:'D, d M Y H:i' }} (UTC)
-                      <br />
+                      <br>
                       <strong>Status:</strong> {{ session.session_status }}
-                      <br />
+                      <br>
                       <strong>Payment status:</strong>
                       {% if session.payment_complete %}
                         Complete
