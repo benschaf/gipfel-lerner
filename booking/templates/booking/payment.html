@@ -12,7 +12,6 @@
               <tr>
                 <th>Start Time</th>
                 <th>Tutor</th>
-                <th>Subject</th>
                 <th>Event Name</th>
                 <th>Status</th>
                 <th>Price</th>
@@ -23,7 +22,6 @@
                 <tr>
                   <td>{{ session.start_time }} (UTC)</td>
                   <td>{{ session.tutor }}</td>
-                  <td>{{ session.subject.name }}</td>
                   <td>{{ session.session_name }}</td>
                   <td>{{ session.session_status }}</td>
                   <td>{{ session.price }} EUR</td>
@@ -35,7 +33,7 @@
                 <td>
                   <strong>Total Balance</strong>
                 </td>
-                <td colspan="4"></td>
+                <td colspan="3"></td>
                 <td>
                   <strong>{{ total_price }} EUR</strong>
                 </td>
