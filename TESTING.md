@@ -222,16 +222,18 @@ There were no additional responsiveness issues on any of the devices tested.
 
 I've tested my deployed project using the Lighthouse Audit tool in the Chrome Developer Tools to mainly check for accessibility and best practices but also to check for performance and SEO.
 
+Best Practices is only about 78% on all sites because of the 3rd party cookies by Calendly. This is a known issue and can be ignored.
+
 | Page | Mobile | Desktop | Notes |
 | --- | --- | --- | --- |
-| Landing | ![screenshot](documentation/lighthouse-landing-mobile.png) | ![screenshot](documentation/lighthouse-landing-desktop.png) | Some minor warnings |
-| tutor list | ![screenshot](documentation/lighthouse-tutor_list-mobile.png) | ![screenshot](documentation/lighthouse-tutor_list-desktop.png) | Some minor warnings |
-| tutor detail | ![screenshot](documentation/lighthouse-tutor_detail-mobile.png) | ![screenshot](documentation/lighthouse-tutor_detail-desktop.png) | Some minor warnings |
-| tutor dashboard | ![screenshot](documentation/lighthouse-tutor_dashboard-mobile.png) | ![screenshot](documentation/lighthouse-tutor_dashboard-desktop.png) | Some minor warnings |
+| Landing | ![screenshot](documentation/lighthouse-landing-mobile.png) | ![screenshot](documentation/lighthouse-landing-desktop.png) | The First Contentful Paint is a bit slow, which is to be expected due to the large hero image. The image is compressed as much as possible. Some other minor warnings. |
+| tutor list | ![screenshot](documentation/lighthouse-tutor-list-mobile.png) | ![screenshot](documentation/lighthouse-tutor-list-desktop.png) | Some minor warnings |
+| tutor detail | ![screenshot](documentation/lighthouse-tutor-detail-mobile.png) | ![screenshot](documentation/lighthouse-tutor-detail-desktop.png) | Some minor warnings |
+| student dashboard | ![screenshot](documentation/lighthouse-student-dashboard-mobile.png) | ![screenshot](documentation/lighthouse-student-dashboard-desktop.png) | Some minor warnings |
+| tutor dashboard | ![screenshot](documentation/lighthouse-tutor-dashboard-mobile.png) | ![screenshot](documentation/lighthouse-tutor-dashboard-desktop.png) | Some minor warnings |
+| schedule success | ![screenshot](documentation/lighthouse-schedule-success-mobile.png) | ![screenshot](documentation/lighthouse-schedule-success-desktop.png) | Some minor warnings |
 | payment | ![screenshot](documentation/lighthouse-payment-mobile.png) | ![screenshot](documentation/lighthouse-payment-desktop.png) | Some minor warnings |
-| student dashboard | ![screenshot](documentation/lighthouse-student_dashboard-mobile.png) | ![screenshot](documentation/lighthouse-student_dashboard-desktop.png) | Some minor warnings |
-| schedule success | ![screenshot](documentation/lighthouse-schedule_success-mobile.png) | ![screenshot](documentation/lighthouse-schedule_success-desktop.png) | Some minor warnings |
-| payment success | ![screenshot](documentation/lighthouse-payment_success-mobile.png) | ![screenshot](documentation/lighthouse-payment_success-desktop.png) | Some minor warnings |
+| payment success | ![screenshot](documentation/lighthouse-payment-success-mobile.png) | ![screenshot](documentation/lighthouse-payment-success-desktop.png) | Some minor warnings |
 
 ## Defensive Programming
 
