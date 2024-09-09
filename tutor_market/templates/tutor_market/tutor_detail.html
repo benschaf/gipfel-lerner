@@ -34,7 +34,7 @@
                      aria-valuenow="{{ data.percentage }}"
                      aria-valuemin="0"
                      aria-valuemax="100">
-                     <!-- Dynamic progress bar width using inline style -->
+                  <!-- Dynamic progress bar width using inline style -->
                   <div class="progress-bar bg-primary" style="width: {{ data.percentage }}%"></div>
                 </div>
                 <div>{{ data.count }}</div>
@@ -134,7 +134,9 @@
                     {% endfor %}
                   </ul>
                   <p>
-                    See all of your upcoming Lessons on your <a href="{% url "dashboard" user.pk %}" aria-label="Dashboard" class="text-dark">Dashboard</a>
+                    See all of your upcoming Lessons on your <a href="{% url "dashboard" user.pk %}"
+    aria-label="Dashboard"
+    class="text-dark">Dashboard</a>
                   </p>
                 </div>
               </div>
@@ -147,8 +149,7 @@
 {% endblock content %}
 {% block postloadjs %}
   {{ block.super }}
-  <script type="text/javascript"
-          src="https://assets.calendly.com/assets/external/widget.js"></script>
+  <script src="https://assets.calendly.com/assets/external/widget.js"></script>
   <!-- -> Credit for sending multiple variables to js: https://docs.djangoproject.com/en/4.2/ref/templates/builtins/#json-script -->
   <script id="tutor-detail-data" type="application/json">
     {
