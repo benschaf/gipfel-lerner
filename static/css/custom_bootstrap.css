@@ -175,14 +175,14 @@
 
 .btn-danger {
   --bs-btn-color: var(--bs-danger);
-  --bs-btn-bg: --bs-white;
-  --bs-btn-border-color: --bs-white;
+  --bs-btn-bg: var(--bs-gray-200);
+  --bs-btn-border-color: var(--bs-gray-200);
   --bs-btn-hover-color: var(--bs-danger);
   --bs-btn-hover-bg: var(--bs-gray-400);
   --bs-btn-hover-border-color: var(--bs-gray-400);
   --bs-btn-focus-shadow-rgb: var(--bs-light-rgb);
   --bs-btn-active-color: var(--bs-btn-hover-color);
-  --bs-btn-active-bg: var(--bs-white);
+  --bs-btn-active-bg: var(--bs-gray-200);
   --bs-btn-active-border-color: var(--bs-light-rgb);
 }
 
