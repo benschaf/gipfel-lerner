@@ -213,9 +213,6 @@ I've tested my deployed project on multiple devices to check for responsiveness 
 | Desktop (1920 x 1080) | ![screenshot](documentation/responsive-desktop-landing.png) | ![screenshot](documentation/responsive-desktop-tutor-list.png) | ![screenshot](documentation/responsive-desktop-tutor-detail.png) | ![screenshot](documentation/responsive-desktop-tutor-dashboard.png) | ![screenshot](documentation/responsive-desktop-payment.png) | ![screenshot](documentation/responsive-desktop-student-dashboard.png) | ![screenshot](documentation/responsive-desktop-schedule-success.png) | ![screenshot](documentation/responsive-desktop-payment-success.png) | Works as expected |
 | Google Pixel 6 | ![screenshot](documentation/responsive-pixel-landing.png) | ![screenshot](documentation/responsive-pixel-tutor-list.png) | ![screenshot](documentation/responsive-pixel-tutor-detail.png) | ![screenshot](documentation/responsive-pixel-tutor-dashboard.png) | ![screenshot](documentation/responsive-pixel-payment.png) | ![screenshot](documentation/responsive-pixel-student-dashboard.png) | ![screenshot](documentation/responsive-pixel-schedule-success.png) | ![screenshot](documentation/responsive-pixel-payment-success.png) | Works as expected |
 
-> [!IMPORTANT]
-> Tables have x-overflow on mobile. they do scroll though so they can be considered as working as intended.
-
 There were no additional responsiveness issues on any of the devices tested.
 
 ## Lighthouse Audit
