@@ -3,49 +3,6 @@
 > [!NOTE]
 > Return back to the [README.md](README.md) file.
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-In this section, you need to convince the assessors that you have conducted enough testing to legitimately believe that the site works well.
-Essentially, in this part, you should go over all of your project's features, and ensure that they all work as intended,
-with the project providing an easy and straightforward way for the users to achieve their goals.
-
-Feature-by-Feature Testing:
-
-Go through each feature of your portfolio site and detail the testing process for each.
-
-Explain the functionality and demonstrate how it aligns with the intended purpose. This could include:
-
-- Navigation: Ensuring smooth transitions between pages, links directing to the correct destinations.
-- Responsive Design: Checking for compatibility across various devices and screen sizes.
-- Portfolio Display: Verifying that projects are properly showcased with accurate descriptions, images, and links.
-- Contact Form: Testing the form submission process, ensuring the user receives a confirmation, and you receive the message.
-
-User Experience Testing:
-
-- Usability Testing: Have users (or simulated users) interact with the site and provide feedback. Document any issues encountered and the resolutions implemented.
-- Accessibility Testing: Confirm compliance with accessibility standards (e.g., screen reader compatibility, proper alt text for images, keyboard navigation).
-
-Compatibility Testing:
-
-- Browser Compatibility: Testing on different browsers (Chrome, Firefox, Safari, Edge, etc.) to ensure consistent performance.
-- Device Compatibility: Ensuring functionality across various devices (desktops, laptops, tablets, and mobile phones).
-- Performance Testing (optional):
-	- Speed and Load Testing: Tools like PageSpeed Insights or GTmetrix to check page load times and optimize where necessary.
-	- Scalability Testing: Assess how the site handles increased traffic or usage.
-
-Regression Testing:
-
-After implementing fixes or updates, ensure that previous features and functionalities still work as intended. This prevents new changes from breaking existing features.
-
-Documentation and Logs:
-
-Maintain records of testing procedures, results, and any bugs encountered along with their resolutions. This helps demonstrate a systematic approach to testing and problem-solving.
-User Feedback Incorporation:
-
-If applicable, mention how user feedback has been taken into account and implemented to enhance the user experience.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
 ## Code Validation
 
 ### HTML
@@ -53,7 +10,7 @@ If applicable, mention how user feedback has been taken into account and impleme
 I have used the recommended [HTML W3C Validator](https://validator.w3.org) to validate all of my HTML deployed source code. In the table below, the results are labeled by template file that would render the respective page. The results are validated using the live deployed version of the project.
 
 | Directory | File | Screenshot |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | booking | cancel_session.html | ![screenshot](documentation/validation-html-cancel-session.png) |
 | booking | payment.html | ![screenshot](documentation/validation-html-payment.png) |
 | booking | payment_create.html | ![screenshot](documentation/validation-html-payment-create.png) |
@@ -86,7 +43,7 @@ I have used the recommended [CSS Jigsaw Validator](https://jigsaw.w3.org/css-val
 | Directory | File | Screenshot | Notes |
 | --- | --- | --- | --- |
 | static | base.css | ![screenshot](documentation/validation-css-base-css.png) | All warnings are either about third party css or vendor prefixes. |
-| static | custom_bootstrap.css | ![screenshot](documentation/validation-css-custom-bootstrap-css.png) | The only warning is about jigsaw not being able to validate css import statements using @ |
+| static | custom_bootstrap.css | ![screenshot](documentation/validation-custom-bootstrap-css.png) | The only warning is about jigsaw not being able to validate css import statements using @ |
 
 Most warnings are due to the vendor prefixes that are used in the CSS files. I added the prefixes using the [Autoprefixer](https://autoprefixer.github.io) tool. The prefixes are necessary for the CSS to work on all browsers.
 
@@ -168,39 +125,13 @@ There were no issues with the Python files.
 
 ## Browser Compatibility
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-Use this space to discuss testing the live/deployed site on various browsers.
-
-Consider testing AT LEAST 3 different browsers, if available on your system.
-
-You DO NOT need to use all of the browsers below, just pick any 3 (minimum).
-
-Recommended browsers to consider:
-- [Chrome](https://www.google.com/chrome)
-- [Firefox (Developer Edition)](https://www.mozilla.org/firefox/developer)
-- [Edge](https://www.microsoft.com/edge)
-- [Safari](https://support.apple.com/downloads/safari)
-- [Brave](https://brave.com/download)
-- [Opera](https://www.opera.com/download)
-
-**IMPORTANT**: You must provide screenshots of the tested browsers, to "prove" that you've actually tested them.
-
-Please note, there are services out there that can test multiple browser compatibilities at the same time.
-Some of these are paid services, but some are free.
-If you use these, you must provide a link to the source used for attribution, and multiple screenshots of the results.
-
-Sample browser testing documentation:
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
 I've tested my deployed project manually on multiple browsers to check for compatibility issues. I've tested the project on the latest versions of the following browsers:
 
 - [Chrome](https://www.google.com/chrome)
 - [Firefox (Developer Edition)](https://www.mozilla.org/firefox/developer)
 - [Edge](https://www.microsoft.com/edge)
 
-See the table below for the compatibility results:
+See the table below for the compatibility results (click on an image to enlarge it):
 
 | Browser | Landing | tutor list | tutor detail | tutor dashboard | payment | student dashboard | schedule success | payment success | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -213,6 +144,8 @@ There were no compatibility issues on any of the browsers tested.
 ## Responsiveness
 
 I've tested my deployed project on multiple devices to check for responsiveness issues. I've used the Chrome Developer Tools to simulate the devices. I have also tested the project on a physical Google Pixel 6 device.
+
+Click on an image to enlarge it:
 
 | Device | Landing | tutor list | tutor detail | tutor dashboard | payment | student dashboard | schedule success | payment success | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -242,59 +175,6 @@ Best Practices is only about 78% on all sites because of the 3rd party cookies b
 
 ## Defensive Programming
 
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-START OF NOTES (to be deleted)
-
-Defensive programming (defensive design) is extremely important!
-
-When building projects that accept user inputs or forms, you should always test the level of security for each.
-Examples of this could include (not limited to):
-
-Forms:
-- Users cannot submit an empty form
-- Users must enter valid email addresses
-
-PP3 (Python-only):
-- Users must enter a valid letter/word/string when prompted
-- Users must choose from a specific list only
-
-MS3 (Flask) | MS4/PP4/PP5 (Django):
-- Users cannot brute-force a URL to navigate to a restricted page
-- Users cannot perform CRUD functionality while logged-out
-- User-A should not be able to manipulate data belonging to User-B, or vice versa
-- Non-Authenticated users should not be able to access pages that require authentication
-- Standard users should not be able to access pages intended for superusers
-
-You'll want to test all functionality on your application, whether it's a standard form,
-or uses CRUD functionality for data manipulation on a database.
-Make sure to include the `required` attribute on any form-fields that should be mandatory.
-Try to access various pages on your site as different user types (User-A, User-B, guest user, admin, superuser).
-
-You should include any manual tests performed, and the expected results/outcome.
-
-Testing should be replicable.
-Ideally, tests cases should focus on each individual section of every page on the website.
-Each test case should be specific, objective, and step-wise replicable.
-
-Instead of adding a general overview saying that everything works fine,
-consider documenting tests on each element of the page
-(ie. button clicks, input box validation, navigation links, etc.) by testing them in their happy flow,
-and also the bad/exception flow, mentioning the expected and observed results,
-and drawing a parallel between them where applicable.
-
-Consider using the following format for manual test cases:
-
-Expected Outcome / Test Performed / Result Received / Fixes Implemented
-
-- **Expected**: "Feature is expected to do X when the user does Y."
-- **Testing**: "Tested the feature by doing Y."
-- (either) **Result**: "The feature behaved as expected, and it did Y."
-- (or) **Result**: "The feature did not respond to A, B, or C."
-- **Fix**: "I did Z to the code because something was missing."
-
-Use the table below as a basic start, and expand on it using the logic above.
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑-END OF NOTES (to be deleted)
-
 Defensive programming was manually tested with the below user acceptance testing:
 
 | Page | Expectation | Test | Result | Fix | Screenshot |
@@ -309,7 +189,7 @@ Defensive programming was manually tested with the below user acceptance testing
 | | Logged out users should see the following Links: Register, Login, Find your Tutor | Checked the links | User sees the links | | ![screenshot](documentation/defensive-navbar.gif) |
 | | Logged in users should see the following Links: Dashboard, Their Username with a Logout dropdown, Find your Tutor | Checked the links | User sees the links | | ![screenshot](documentation/defensive-navbar.gif) |
 | | Logged in admin users should see an additional link: Admin | Checked the links | User sees the links | | ![screenshot](documentation/defensive-navbar.gif) |
-| tutor list | | | | | |
+| **tutor list** | | | | | |
 | | User can click a tutor and is redirected to the tutor detail page | Clicked a tutor | User is redirected to the tutor detail page | | ![screenshot](documentation/defensive-tutor-list.gif) |
 | | User can filter the tutors by subject and / or value. Each time they change a filter it is automatically applied and the page is reloaded | Changed a filter | User is redirected to the tutor list page with the selected filters activated | | ![screenshot](documentation/defensive-tutor-list.gif) |
 | | User can reset the filters by clicking the reset button | Clicked the reset button | User is redirected to the tutor list page with no filters activated | | ![screenshot](documentation/defensive-tutor-list.gif) |
@@ -520,8 +400,8 @@ Below are screenshots of the files' reports that didn't reach 100% coverage:
 | booking | webhook_handler.py | 24% | ![screenshot](documentation/test-booking-webhook-handler.png) | same comment as above |
 | booking | webhooks.py | 37% | ![screenshot](documentation/test-booking-webhooks.png) | same comment as above |
 | calendly | views.py | 73% | ![screenshot](documentation/test-calendly-views.png) | same comment as above |
-| core | models.py | 88% | ![screenshot](documentation/test-core-models.png) | __str__ methods are not tested |
-| tutor_market | models.py | 96% | ![screenshot](documentation/test-tutor-market-models.png) | __str__ methods are not tested |
+| core | models.py | 88% | ![screenshot](documentation/test-core-models.png) | \__str__ methods are not tested |
+| tutor_market | models.py | 96% | ![screenshot](documentation/test-tutor-market-models.png) | \__str__ methods are not tested |
 | tutor_market | views.py | 90% | ![screenshot](documentation/test-tutor-market-views.png) | most statements could be tested |
 | gipfel_tutor | settings.py | 68% | no screenshot | settings.py is not tested |
 
