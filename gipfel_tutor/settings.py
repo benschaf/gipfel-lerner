@@ -81,7 +81,6 @@ MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
-SITE_ID = 1
 
 # -> Credit for retrieving the email address: https://github.com/pennersr/django-allauth/issues/330  # noqa
 SOCIALACCOUNT_PROVIDERS = {
@@ -110,6 +109,7 @@ if DEVELOPMENT:
 
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
     DEFAULT_FROM_EMAIL = "gipfeltutor@example.com"
+    SITE_ID = 1
 else:
     CALENDLY_CLIENT_ID = os.environ.get("CALENDLY_PROD_CLIENT_ID", "")
     CALENDLY_CLIENT_SECRET = os.environ.get("CALENDLY_PROD_CLIENT_SECRET", "")
@@ -122,6 +122,7 @@ else:
     EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "")
     EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASS", "")
     DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+    SITE_ID = 2
 
 LOGIN_URL = "/accounts/login/"
 LOGIN_REDIRECT_URL = "/"
