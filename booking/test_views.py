@@ -159,7 +159,9 @@ class PaymentViewTestCases(TestCase):
         self.assertEqual(
             response.context['STRIPE_PUBLIC_KEY'], settings.STRIPE_PUBLIC_KEY)
         self.assertEqual(
-            response.context['development'], 'True' if settings.DEVELOPMENT else 'False')
+            response.context['development'],
+            'True' if settings.DEVELOPMENT else 'False'
+        )
 
     def test_no_sessions_to_pay_for(self):
         """

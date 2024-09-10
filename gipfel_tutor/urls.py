@@ -21,7 +21,7 @@ from django.urls.conf import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('tutor-market/', include('tutor_market.urls')), # maybe account
+    path('tutor-market/', include('tutor_market.urls')),
     path('', include('core.urls')),
     path('booking/', include('booking.urls')),
     path('calendly/', include('calendly.urls')),

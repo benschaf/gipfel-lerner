@@ -12,7 +12,8 @@ class LandingPageView(TemplateView):
 
 class AboutPageView(DetailView):
     """
-    A view that renders the about page template and retrieves the active About instance.
+    A view that renders the about page template and retrieves the active About
+    instance.
     """
     model = About
     template_name = "core/about.html"
@@ -29,7 +30,8 @@ class AboutPageView(DetailView):
 
 class FAQPageView(ListView):
     """
-    A view that renders the frequently asked questions page template and retrieves all FAQs.
+    A view that renders the frequently asked questions page template and
+    retrieves all FAQs.
     """
     model = FrequentlyAskedQuestion
     template_name = "core/faq.html"

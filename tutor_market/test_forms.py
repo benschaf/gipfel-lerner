@@ -4,6 +4,7 @@ from tutor_market.models import Tutor, Subject, Value
 from django.contrib.auth.models import User
 from decimal import Decimal
 
+
 class TutorFormTestCases(TestCase):
 
     def setUp(self):
@@ -38,7 +39,9 @@ class TutorFormTestCases(TestCase):
             'calendly_event_url': 'invalid-url',
         }
         form = TutorForm(data=form_data)
-        self.assertFalse(form.is_valid(), msg="Form should be invalid with an invalid URL.")
+        self.assertFalse(
+            form.is_valid(), msg="Form should be invalid with an invalid URL.")
+
 
 class RatingFormTestCases(TestCase):
 
@@ -56,4 +59,6 @@ class RatingFormTestCases(TestCase):
             'comment': 'Great tutor!',
         }
         form = RatingForm(data=form_data)
-        self.assertFalse(form.is_valid(), msg="Form should be invalid with a score greater than 5.")
+        self.assertFalse(
+            form.is_valid(), msg="Form should be invalid with a score greater "
+            "than 5.")

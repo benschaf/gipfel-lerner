@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from gipfel_tutor import settings
 from tutor_market.models import Tutor
 
+
 @login_required
 def connect_calendly(request: HttpRequest) -> HttpResponse:
     """
@@ -17,16 +18,18 @@ def connect_calendly(request: HttpRequest) -> HttpResponse:
     client_id = settings.CALENDLY_CLIENT_ID
     redirect_uri = settings.CALENDLY_REDIRECT_URI
 
-    url = f'https://calendly.com/oauth/authorize?client_id={client_id}&redirect_uri={redirect_uri}&response_type=code'
+    url = f'https://calendly.com/oauth/authorize?client_id={
+        client_id}&redirect_uri={redirect_uri}&response_type=code'
 
     return redirect(url)
 
 
 def get_base64_string() -> str:
     """
-    Returns the base64 encoded string of the Calendly client ID and client secret.
+    Returns the base64 encoded string of the Calendly client ID and client
+    secret.
     """
-     # -> Credit for base64 encodeing: https://www.geeksforgeeks.org/encoding-and-decoding-base64-strings-in-python/  # noqa
+    # -> Credit for base64 encodeing: https://www.geeksforgeeks.org/encoding-and-decoding-base64-strings-in-python/  # noqa
     client_id = settings.CALENDLY_CLIENT_ID
     client_secret = settings.CALENDLY_CLIENT_SECRET
     basic_auth_string = f"{client_id}:{client_secret}"
@@ -63,11 +66,12 @@ def calendly_auth(request: HttpRequest) -> HttpResponse:
     response_data = response.json()
 
     if response.status_code != 200:
-        messages.warning(request, f"{response_data['error']}: {response_data['error_description']}, please try again.")
+        messages.warning(request, f"{response_data['error']}: "
+                         f"{response_data['error_description']}, "
+                         f"please try again.")
         return redirect(reverse('dashboard', kwargs={'pk': request.user.pk}))
 
     messages.success(request, "Calendly connected successfully!")
-
 
     request.user.tutor.calendly_access_token = response_data['access_token']
     request.user.tutor.calendly_refresh_token = response_data['refresh_token']
@@ -138,11 +142,9 @@ def refresh_access_token(tutor) -> dict:
     if response.status_code != 200:
         return response_data
 
-
     tutor.calendly_access_token = response_data['access_token']
     tutor.calendly_refresh_token = response_data['refresh_token']
     tutor.save()
-
 
     return response_data
 
@@ -160,6 +162,8 @@ def disconnect_calendly(request: HttpRequest, pk: int) -> HttpResponse:
     tutor.calendly_token_expires_at = None
     tutor.save()
 
-    messages.info(request, "Calendly disconnected successfully! You can reconnect at any time.")
+    messages.info(
+        request, "Calendly disconnected successfully! You can reconnect at any"
+        " time.")
 
     return redirect(reverse('dashboard', kwargs={'pk': user.pk}))

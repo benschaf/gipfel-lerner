@@ -211,10 +211,11 @@ class TutorDetailViewTestCases(TestCase):
 
     def test_post_review_not_authenticated(self):
         """Test that a user must be logged in to leave a review."""
-        response = self.client.post(reverse('tutor_detail', args=[self.tutor1.id]), {
-            'score': 5,
-            'comment': 'Great tutor!'
-        })
+        response = self.client.post(
+            reverse('tutor_detail', args=[self.tutor1.id]), {
+                'score': 5,
+                'comment': 'Great tutor!'
+            })
         self.assertRedirects(response, reverse(
             'tutor_detail', args=[self.tutor1.id]))
         messages = list(get_messages(response.wsgi_request))
@@ -225,14 +226,15 @@ class TutorDetailViewTestCases(TestCase):
     def test_post_review_own_profile(self):
         """Test that a user cannot leave a review on their own profile."""
         self.client.login(username='test_user', password='test_password')
-        response = self.client.post(reverse('tutor_detail', args=[self.tutor1.id]), {
-            'score': 5,
-            'comment': 'Great tutor!'
-        })
+        response = self.client.post(
+            reverse('tutor_detail', args=[self.tutor1.id]), {
+                'score': 5,
+                'comment': 'Great tutor!'
+            })
         self.assertRedirects(response, reverse(
             'tutor_detail', args=[self.tutor1.id]))
 
-        # -> Credit for testing for django messages: https://stackoverflow.com/a/57998247
+        # -> Credit for testing for django messages: https://stackoverflow.com/a/57998247  # noqa
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(
             str(messages[2]), 'You cannot leave a review on your own profile.')
@@ -240,10 +242,11 @@ class TutorDetailViewTestCases(TestCase):
     def test_post_review_invalid_form(self):
         """Test that an invalid form submission shows a warning message."""
         self.client.login(username='test_user', password='test_password')
-        response = self.client.post(reverse('tutor_detail', args=[self.tutor2.id]), {
-            'score': '',
-            'comment': 'Great tutor!'
-        })
+        response = self.client.post(
+            reverse('tutor_detail', args=[self.tutor2.id]), {
+                'score': '',
+                'comment': 'Great tutor!'
+            })
         self.assertRedirects(response, reverse(
             'tutor_detail', args=[self.tutor2.id]))
         messages = list(get_messages(response.wsgi_request))
@@ -350,7 +353,8 @@ class TutorUpdateViewTestCases(TestCase):
         messages = list(response.wsgi_request._messages)
         self.assertEqual(len(messages), 1)
         self.assertEqual(
-            str(messages[0]), 'You do not have permission to update this profile.')
+            str(messages[0]), 'You do not have permission to update this '
+            'profile.')
 
     def test_update_view_form_valid(self):
         """Test that the update view handles valid form data."""
@@ -433,7 +437,8 @@ class TutorDeleteViewTestCases(TestCase):
         messages = list(response.wsgi_request._messages)
         self.assertEqual(len(messages), 1)
         self.assertEqual(
-            str(messages[0]), 'You do not have permission to delete this profile.')
+            str(messages[0]), 'You do not have permission to delete this '
+            'profile.')
 
     def test_delete_view_success(self):
         """Test that the owner can delete the tutor profile."""
@@ -531,7 +536,8 @@ class DashboardViewTestCases(TestCase):
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(len(messages), 1)
         self.assertEqual(str(
-            messages[0]), 'You do not have permission to view this dashboard. We redirected you to your own dashboard.')
+            messages[0]), 'You do not have permission to view this dashboard. '
+            'We redirected you to your own dashboard.')
 
     def test_tutor_profile_status_update(self):
         """Test that the tutor's profile status is updated correctly."""
@@ -590,9 +596,10 @@ class UpdateSessionStatusViewTestCases(TestCase):
     def test_update_session_status_owner(self):
         """Test that the tutor can update the session status."""
         self.client.login(username='tutor_user', password='tutor_password')
-        response = self.client.post(reverse('update_session_status', args=[self.session.pk]), {
-            'status': 'completed'
-        })
+        response = self.client.post(
+            reverse('update_session_status', args=[self.session.pk]), {
+                'status': 'completed'
+            })
         self.assertRedirects(response, reverse(
             'dashboard', args=[self.tutor_user.pk]))
         self.session.refresh_from_db()
@@ -605,22 +612,25 @@ class UpdateSessionStatusViewTestCases(TestCase):
     def test_update_session_status_not_owner(self):
         """Test that a non-owner cannot update the session status."""
         self.client.login(username='user2', password='other_password')
-        response = self.client.post(reverse('update_session_status', args=[self.session.pk]), {
-            'status': 'completed'
-        })
+        response = self.client.post(
+            reverse('update_session_status', args=[self.session.pk]), {
+                'status': 'completed'
+            })
         self.session.refresh_from_db()
         self.assertEqual(self.session.session_status, 'scheduled')
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(len(messages), 1)
         self.assertEqual(
-            str(messages[0]), 'You do not have permission to update this session.')
+            str(messages[0]), 'You do not have permission to update this '
+            'session.')
 
     def test_update_session_status_invalid_session(self):
         """Test that a 404 error is raised if the session does not exist."""
         self.client.login(username='tutor_user', password='tutor_password')
-        response = self.client.post(reverse('update_session_status', args=[999]), {
-            'status': 'completed'
-        })
+        response = self.client.post(
+            reverse('update_session_status', args=[999]), {
+                'status': 'completed'
+            })
         self.assertEqual(response.status_code, 404)
 
 

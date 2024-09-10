@@ -6,4 +6,3 @@ from core.models import About, FrequentlyAskedQuestion
 
 admin.site.register(FrequentlyAskedQuestion)
 admin.site.register(About)
-

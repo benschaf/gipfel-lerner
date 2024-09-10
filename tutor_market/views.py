@@ -1,8 +1,8 @@
 from collections import OrderedDict
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
-from django.views.generic import UpdateView, CreateView, DeleteView, TemplateView
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
+from django.views.generic import UpdateView, CreateView, DeleteView, TemplateView  # noqa
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
@@ -18,22 +18,23 @@ from tutor_market.forms import RatingForm, TutorForm
 from tutor_market.models import Tutor, Rating
 from django.urls import reverse_lazy
 
+
 def tutor_list_view(request):
     """
     Function-based view for listing all tutors in the system.
 
-    This view handles the filtering and sorting of tutors based on various parameters
-    provided in the request.GET query parameters.
+    This view handles the filtering and sorting of tutors based on various
+    parameters provided in the request.GET query parameters.
 
     Parameters:
     - request: The HTTP request object.
 
     Returns:
-    - A rendered HTML template with the list of tutors, filtered and sorted based on the request parameters.
-
+    - A rendered HTML template with the list of tutors, filtered and sorted
+    based on the request parameters.
     """
     tutor_list = Tutor.objects.filter(profile_status=True)
-    subjects= None
+    subjects = None
     values = None
     query = None
     sorting = 'name'
@@ -47,18 +48,23 @@ def tutor_list_view(request):
             tutor_list = tutor_list.filter(q_arguments).distinct()
 
         if 'teachingvalue' in request.GET:
-            # -> Credit for getting values from a list of query parameters: https://docs.djangoproject.com/en/5.0/ref/request-response/#querydict-objects
+            # -> Credit for getting values from a list of query parameters: https://docs.djangoproject.com/en/5.0/ref/request-response/#querydict-objects # noqa
             values = request.GET.getlist('teachingvalue')
             q_arguments = Q()
             for value in values:
-                # -> Credit for special add operator: https://stackoverflow.com/questions/29399653/python-operator-meaning
+                # -> Credit for special add operator: https://stackoverflow.com/questions/29399653/python-operator-meaning  # noqa
                 q_arguments |= Q(values__name__icontains=value)
             tutor_list = tutor_list.filter(q_arguments).distinct()
 
         if 'q' in request.GET:
             query = request.GET['q']
 
-            queries = Q(display_name__icontains=query) | Q(description__icontains=query) | Q(catch_phrase__icontains=query) | Q(subjects__name__icontains=query) | Q(values__name__icontains=query)
+            queries = Q(
+                display_name__icontains=query) | Q(
+                description__icontains=query) | Q(
+                catch_phrase__icontains=query) | Q(
+                    subjects__name__icontains=query) | Q(
+                        values__name__icontains=query)
             # -> Credit for returning distinct results: https://docs.djangoproject.com/en/5.0/ref/models/querysets/#distinct  # noqa
             tutor_list = tutor_list.filter(queries).distinct()
 
@@ -70,10 +76,12 @@ def tutor_list_view(request):
                 tutor_list = tutor_list.order_by('hourly_rate')
             if sorting == 'highest-rated':
                 # -> Credit for default value in Avg: https://docs.djangoproject.com/en/5.1/ref/models/database-functions/#coalesce  # noqa
-                tutor_list = tutor_list.annotate(avg_rating=Avg('ratings__score', default=0)).order_by('-avg_rating')
+                tutor_list = tutor_list.annotate(avg_rating=Avg(
+                    'ratings__score', default=0)).order_by('-avg_rating')
             if sorting == 'most-reviews':
                 # -> Credit for distinct results in annotations: https://docs.djangoproject.com/en/5.0/topics/db/aggregation/#combining-multiple-aggregations  # noqa
-                tutor_list = tutor_list.annotate(num_ratings=Count("ratings", distinct=True)).order_by("-num_ratings")
+                tutor_list = tutor_list.annotate(num_ratings=Count(
+                    "ratings", distinct=True)).order_by("-num_ratings")
             if sorting == 'most-expensive':
                 tutor_list = tutor_list.order_by('-hourly_rate')
 
@@ -94,7 +102,6 @@ def tutor_list_view(request):
     return render(request, 'tutor_market/tutor_list.html', context)
 
 
-
 def tutor_detail_view(request, pk):
     """
     View for displaying the details (Profile) of a tutor.
@@ -105,7 +112,8 @@ def tutor_detail_view(request, pk):
         pk (int): The primary key of the tutor.
 
     Returns:
-        HttpResponse: The HTTP response object containing the rendered template.
+        HttpResponse: The HTTP response object containing the rendered
+        template.
 
     Raises:
         None
@@ -117,27 +125,36 @@ def tutor_detail_view(request, pk):
 
     # Check if the tutor's profile is activated
     if not tutor.profile_status:
-        messages.warning(request, 'To activate your profile, please connect your Calendly account via your Dashboard.')
+        messages.warning(
+            request, 'To activate your profile, please connect your Calendly '
+            'account via your Dashboard.')
         return redirect(reverse('tutor_list'))
 
     if request.user.is_authenticated:
-        existing_rating = Rating.objects.filter(tutor=tutor, user=request.user).first()
-        upcoming_sessions = TutoringSession.objects.filter(tutor__user=tutor.user, student=request.user)
+        existing_rating = Rating.objects.filter(
+            tutor=tutor, user=request.user).first()
+        upcoming_sessions = TutoringSession.objects.filter(
+            tutor__user=tutor.user, student=request.user)
 
         response_data = introspect_access_token(tutor)
         if 'error' in response_data:
-            messages.warning(request, f"{response_data['error']}: {response_data['error_description']}")
-            messages.warning(request, 'There seems to be an issue with this Tutor\'s Calendly connection. Please contact us for more information.')
+            messages.warning(request, f"{response_data['error']}: {
+                             response_data['error_description']}")
+            messages.warning(
+                request, 'There seems to be an issue with this Tutor\'s '
+                'Calendly connection. Please contact us for more information.')
             # Only print a message if there is an error.
 
     # Handle POST request for adding a review
     if request.method == 'POST':
         if not request.user.is_authenticated:
-            messages.warning(request, 'You must be logged in to leave a review.')
+            messages.warning(
+                request, 'You must be logged in to leave a review.')
             return redirect('tutor_detail', pk=pk)
 
         if request.user == tutor.user:
-            messages.warning(request, 'You cannot leave a review on your own profile.')
+            messages.warning(
+                request, 'You cannot leave a review on your own profile.')
             return redirect('tutor_detail', pk=pk)
 
         review_form = RatingForm(request.POST)
@@ -181,7 +198,7 @@ def tutor_detail_view(request, pk):
 
         review_counts[score] = {'count': count, 'percentage': percentage}
 
-    # -> Credit for reversing the order of a dictionary: https://www.geeksforgeeks.org/ordereddict-in-python/
+    # -> Credit for reversing the order of a dictionary: https://www.geeksforgeeks.org/ordereddict-in-python/  # noqa
     review_counts = OrderedDict(reversed(list(review_counts.items())))
 
     context = {
@@ -220,8 +237,10 @@ class TutorCreateView(LoginRequiredMixin, CreateView):
             form (Form): The form instance containing the submitted data.
 
         Returns:
-            HttpResponseRedirect: Redirects to the tutor's detail page if the user already has a tutor profile.
-            super().form_valid(form): Calls the parent class's form_valid method if the user does not have a tutor profile.
+            HttpResponseRedirect: Redirects to the tutor's detail page if the
+            user already has a tutor profile.
+            super().form_valid(form): Calls the parent class's form_valid
+            method if the user does not have a tutor profile.
         """
         if Tutor.objects.filter(user=self.request.user).exists():
             messages.warning(self.request, 'You already have a tutor profile.')
@@ -258,12 +277,15 @@ class TutorUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         Checks if the current user is the owner of the tutor object.
 
         Returns:
-            bool: True if the current user is the owner of the tutor object, False otherwise.
+            bool: True if the current user is the owner of the tutor object,
+            False otherwise.
         """
         if self.request.user == self.get_object().user:
             return True
         else:
-            messages.warning(self.request, 'You do not have permission to update this profile.')
+            messages.warning(
+                self.request, 'You do not have permission to update this '
+                'profile.')
             return False
 
     def get_success_url(self):
@@ -280,18 +302,21 @@ class TutorDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """
     A view for deleting a tutor.
 
-    This view allows tutors to delete their profiles. When a tutor deletes their profile,
-    they will be reverted to being a student.
+    This view allows tutors to delete their profiles. When a tutor deletes
+    their profile, they will be reverted to being a student.
 
     Attributes:
         model (Model): The model class for the tutor.
-        template_name (str): The name of the template used for rendering the delete confirmation page.
+        template_name (str): The name of the template used for rendering the
+            delete confirmation page.
         permission_required (str): The permission required to access this view.
         success_url (str): The URL to redirect to after successful deletion.
-        success_message (str): The success message to display after successful deletion.
+        success_message (str): The success message to display after successful
+            deletion.
 
     Methods:
-        test_func(): Checks if the current user is the owner of the tutor profile.
+        test_func(): Checks if the current user is the owner of the tutor
+            profile.
 
     """
 
@@ -306,12 +331,15 @@ class TutorDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         Checks if the current user is the owner of the tutor profile.
 
         Returns:
-            bool: True if the current user is the owner of the tutor profile, False otherwise.
+            bool: True if the current user is the owner of the tutor profile,
+                False otherwise.
         """
         if self.request.user == self.get_object().user:
             return True
         else:
-            messages.warning(self.request, 'You do not have permission to delete this profile.')
+            messages.warning(
+                self.request, 'You do not have permission to delete this '
+                'profile.')
             return False
 
 
@@ -324,15 +352,18 @@ def student_dashboard(request, user):
         user (User): The user object representing the student.
 
     Returns:
-        HttpResponse: The HTTP response containing the rendered student dashboard template.
+        HttpResponse: The HTTP response containing the rendered student
+            dashboard template.
     """
     booking_history = TutoringSession.objects.filter(student=user)
-    # -> Credit for greater or equal to lookup (gte): https://docs.djangoproject.com/en/5.0/ref/models/querysets/#gte
-    upcoming_sessions = booking_history.filter(start_time__gte=timezone.now()).filter(session_status='scheduled')
+    # -> Credit for greater or equal to lookup (gte): https://docs.djangoproject.com/en/5.0/ref/models/querysets/#gte  # noqa
+    upcoming_sessions = booking_history.filter(
+        start_time__gte=timezone.now()).filter(session_status='scheduled')
     # add payment details (future feature)
     # add liked tutors (future feature)
     payment_history = Payment.objects.filter(user=user)
-    amount_of_unpaid_sessions = booking_history.filter(payment_complete=False).count()
+    amount_of_unpaid_sessions = booking_history.filter(
+        payment_complete=False).count()
     context = {
         'upcoming_sessions': upcoming_sessions,
         'booking_history': booking_history,
@@ -340,6 +371,7 @@ def student_dashboard(request, user):
         'amount_of_unpaid_sessions': amount_of_unpaid_sessions,
     }
     return render(request, 'tutor_market/student_dashboard.html', context)
+
 
 def tutor_dashboard(request, user):
     """
@@ -350,7 +382,8 @@ def tutor_dashboard(request, user):
         user (User): The user object representing the tutor.
 
     Returns:
-        HttpResponse: The HTTP response containing the rendered tutor dashboard template.
+        HttpResponse: The HTTP response containing the rendered tutor dashboard
+            template.
     """
     tutor = Tutor.objects.get(user=user)
 
@@ -362,8 +395,10 @@ def tutor_dashboard(request, user):
         tutor.profile_status = False
         tutor.save()
 
-    booking_history = TutoringSession.objects.filter(tutor=tutor).order_by('start_time')
-    upcoming_sessions = booking_history.filter(start_time__gte=timezone.now(), session_status='scheduled')[:3]
+    booking_history = TutoringSession.objects.filter(
+        tutor=tutor).order_by('start_time')
+    upcoming_sessions = booking_history.filter(
+        start_time__gte=timezone.now(), session_status='scheduled')[:3]
     pending_sessions = booking_history.filter(session_status='pending')
     users = User.objects.filter(sessions__tutor=tutor)
     users_and_sessions = {}
@@ -380,6 +415,7 @@ def tutor_dashboard(request, user):
     }
     return render(request, 'tutor_market/tutor_dashboard.html', context)
 
+
 @login_required
 def dashboard_view(request, pk):
     """
@@ -392,7 +428,8 @@ def dashboard_view(request, pk):
         pk (int): The primary key of the user.
 
     Returns:
-        HttpResponse: The response object containing the appropriate dashboard view.
+        HttpResponse: The response object containing the appropriate dashboard
+            view.
 
     Raises:
         Http404: If the user with the given primary key does not exist.
@@ -402,13 +439,16 @@ def dashboard_view(request, pk):
     connected_tutor_profile = Tutor.objects.filter(user=user).first()
 
     if request.user != user:
-        messages.warning(request, 'You do not have permission to view this dashboard. We redirected you to your own dashboard.')
+        messages.warning(
+            request, 'You do not have permission to view this dashboard. We '
+            'redirected you to your own dashboard.')
         return redirect('dashboard', pk=request.user.pk)
 
     if connected_tutor_profile:
         return tutor_dashboard(request, user)
     else:
         return student_dashboard(request, user)
+
 
 @require_POST
 @login_required
@@ -421,15 +461,18 @@ def update_session_status(request, pk):
         pk (int): The primary key of the tutoring session to be updated.
 
     Returns:
-        HttpResponseRedirect: A redirect response to the dashboard page of the tutor.
+        HttpResponseRedirect: A redirect response to the dashboard page of the
+            tutor.
 
     Raises:
-        Http404: If the tutoring session with the given primary key does not exist.
+        Http404: If the tutoring session with the given primary key does not
+            exist.
     """
     session = get_object_or_404(TutoringSession, pk=pk)
 
     if session.tutor.user != request.user:
-        messages.warning(request, 'You do not have permission to update this session.')
+        messages.warning(
+            request, 'You do not have permission to update this session.')
         return redirect('dashboard', pk=session.tutor.user.pk)
 
     session.session_status = request.POST['status']

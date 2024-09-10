@@ -10,7 +10,6 @@ import requests
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView, CreateView
 from django.contrib import messages
-from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from booking.forms import CalendlyUriForm, CancelForm, PaymentForm
 from booking.models import Payment, TutoringSession
@@ -19,12 +18,14 @@ from tutor_market.models import Tutor
 import stripe
 from datetime import datetime
 
+
 @require_POST
 def cache_payment_data(request):
     """
     Cache payment data and modify Stripe PaymentIntent metadata.
 
-    This function is responsible for caching payment data and modifying the metadata of a Stripe PaymentIntent.
+    This function is responsible for caching payment data and modifying the
+    metadata of a Stripe PaymentIntent.
 
     Args:
         request (HttpRequest): The HTTP request object.
@@ -37,7 +38,8 @@ def cache_payment_data(request):
 
     """
     try:
-        payment_intent_id = request.POST.get('client_secret').split('_secret')[0]
+        payment_intent_id = request.POST.get(
+            'client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
         session_id_string = request.POST.get('sessions')
         user_id = request.POST.get('user')
@@ -47,8 +49,10 @@ def cache_payment_data(request):
         })
         return HttpResponse(status=200)
     except Exception as e:
-        messages.warning(request, 'An error occurred while processing your payment.')
+        messages.warning(
+            request, 'An error occurred while processing your payment.')
         return HttpResponse(content=e, status=400)
+
 
 def _get_json_from_calendly_uri(uri, tutor, request):
     """
@@ -56,7 +60,8 @@ def _get_json_from_calendly_uri(uri, tutor, request):
 
     Args:
         uri (str): The Calendly URI to retrieve JSON data from.
-        tutor (Tutor): The tutor object associated with the Calendly access token.
+        tutor (Tutor): The tutor object associated with the Calendly access
+            token.
         request (HttpRequest): The HTTP request object (optional).
 
     Returns:
@@ -75,12 +80,15 @@ def _get_json_from_calendly_uri(uri, tutor, request):
     else:
         print(f"Response: {json.dumps(response.json(), indent=4)}")
         if request:
-            messages.warning(request, f'An error occurred while loading the event data. ${response}')
+            messages.warning(
+                request, f'An error occurred while loading the event data. '
+                f'{response}'
+            )
             print(f"Error: {response}")
         return response
 
 
-def _write_calendly_data_to_db(event_data, invitee_data, tutor, student, request):
+def _write_calendly_data_to_db(event_data, invitee_data, tutor, student, request):  # noqa
     """
     Writes Calendly data to the database and creates a new tutoring session.
 
@@ -98,40 +106,41 @@ def _write_calendly_data_to_db(event_data, invitee_data, tutor, student, request
         KeyError: If the join URL is not found in the event data.
 
     """
-    # Create a new session
-
     questions_and_answers = ''
     if invitee_data['resource']['questions_and_answers']:
-        questions_and_answers = invitee_data['resource']['questions_and_answers'][0]['answer']
+        i_data = invitee_data['resource']['questions_and_answers'][0]['answer']
+        questions_and_answers = i_data
 
     join_url = ''
     try:
         join_url = event_data['resource']['location']['join_url']
     except KeyError:
-        messages.warning(request, 'Ask your tutor to provide a join link for the session.')
+        messages.warning(
+            request, 'Ask your tutor to provide a join link for the session.')
 
     session = TutoringSession.objects.create(
         tutor=tutor,
         student=student,
-        price = tutor.hourly_rate,
-        subject = tutor.subjects.first(),
+        price=tutor.hourly_rate,
+        subject=tutor.subjects.first(),
 
         # Calendly json fields
-        start_time = event_data['resource']['start_time'],
-        end_time = event_data['resource']['end_time'],
-        created_at = event_data['resource']['created_at'],
-        location_url = join_url,
-        session_name = event_data['resource']['name'],
-        event_uri = event_data['resource']['uri'],
-        invitee_uri = invitee_data['resource']['uri'],
-        cancel_url = invitee_data['resource']['cancel_url'],
-        reschedule_url = invitee_data['resource']['reschedule_url'],
-        invitee_email = invitee_data['resource']['email'],
-        invitee_notes = questions_and_answers
+        start_time=event_data['resource']['start_time'],
+        end_time=event_data['resource']['end_time'],
+        created_at=event_data['resource']['created_at'],
+        location_url=join_url,
+        session_name=event_data['resource']['name'],
+        event_uri=event_data['resource']['uri'],
+        invitee_uri=invitee_data['resource']['uri'],
+        cancel_url=invitee_data['resource']['cancel_url'],
+        reschedule_url=invitee_data['resource']['reschedule_url'],
+        invitee_email=invitee_data['resource']['email'],
+        invitee_notes=questions_and_answers
     )
     session.save()
     messages.success(request, 'Session created successfully.')
     return session
+
 
 @login_required
 @require_POST
@@ -163,22 +172,25 @@ def fetch_calendly_data_view(request: HttpRequest, pk: int) -> HttpResponse:
     print(f"Event URI: {event_uri}")
     print(f"Invitee URI: {invitee_uri}")
 
-    #get the data from the uris using the calendly api2
-    event_data_response = _get_json_from_calendly_uri(event_uri, tutor, request)
-    invitee_data_response = _get_json_from_calendly_uri(invitee_uri, tutor, request)
+    # get the data from the uris using the calendly api2
+    event_data_response = _get_json_from_calendly_uri(
+        event_uri, tutor, request)
+    invitee_data_response = _get_json_from_calendly_uri(
+        invitee_uri, tutor, request)
 
-    if event_data_response.status_code != 200 or invitee_data_response.status_code != 200:
-        messages.warning(request, 'Something went wrong while fetching the data from Calendly.')
+    if (event_data_response.status_code != 200 or
+            invitee_data_response.status_code != 200):
+        messages.warning(request, 'Something went wrong while fetching the '
+                         'data from Calendly.')
         return redirect('tutor_detail', pk=pk)
 
     event_data = event_data_response.json()
     invitee_data = invitee_data_response.json()
 
-    session = _write_calendly_data_to_db(event_data, invitee_data, tutor, student, request)
+    session = _write_calendly_data_to_db(
+        event_data, invitee_data, tutor, student, request)
 
     return redirect('schedule_success', pk=session.pk)
-
-
 
 
 def cancel_session_view(request, pk):
@@ -193,7 +205,8 @@ def cancel_session_view(request, pk):
         HttpResponse: The HTTP response object.
 
     Raises:
-        Http404: If the tutoring session with the given primary key does not exist.
+        Http404: If the tutoring session with the given primary key does not
+            exist.
     """
     session = get_object_or_404(TutoringSession, pk=pk)
     print(f"Session: {session.tutor.user}, {session.student}, {request.user}")
@@ -201,11 +214,14 @@ def cancel_session_view(request, pk):
     student = session.student
 
     if not (request.user == student or request.user == tutor.user):
-        messages.warning(request, 'You are not authorized to cancel this session.')
+        messages.warning(
+            request, 'You are not authorized to cancel this session.')
         return redirect('dashboard', pk=student.id)
 
-    if (session.session_status == 'cancelled' or session.session_status == 'completed'):
-        messages.warning(request, 'This session has already been cancelled or completed.')
+    if (session.session_status == 'cancelled'
+            or session.session_status == 'completed'):
+        messages.warning(
+            request, 'This session has already been cancelled or completed.')
         return redirect('dashboard', pk=request.user.id)
 
     if request.method == 'POST':
@@ -214,10 +230,11 @@ def cancel_session_view(request, pk):
             messages.warning(request, 'Invalid form data.')
             return redirect('cancel_session', pk=pk)
 
-
         url = f"{session.event_uri}/cancellation"
 
-        reason = form.cleaned_data['cancel_reason'] if form.cleaned_data['cancel_reason'] else 'No reason given'
+        reason = 'No reason given'
+        if form.cleaned_data['cancel_reason']:
+            reason = form.cleaned_data['cancel_reason']
         canceled_by = request.user.email
         created_at = datetime.now().isoformat()
 
@@ -245,7 +262,8 @@ def cancel_session_view(request, pk):
             session.save()
 
         else:
-            messages.warning(request, f'{response_data["title"]}: {response_data["message"]}')
+            messages.warning(request, f'{response_data["title"]}: {
+                             response_data["message"]}')
 
         return redirect('dashboard', pk=student.pk)
 
@@ -264,9 +282,12 @@ class ScheduleSuccessView(LoginRequiredMixin, DetailView):
     A view that displays the success page after scheduling a tutoring session.
 
     Attributes:
-        model (Model): The model class to use for retrieving the tutoring session.
-        template_name (str): The name of the template to use for rendering the view.
-        context_object_name (str): The name of the variable to use for the tutoring session object in the template context.
+        model (Model): The model class to use for retrieving the tutoring
+            session.
+        template_name (str): The name of the template to use for rendering
+            the view.
+        context_object_name (str): The name of the variable to use for the
+            tutoring session object in the template context.
     """
     model = TutoringSession
     template_name = 'booking/schedule_success.html'
@@ -289,7 +310,8 @@ def payment_view(request, pk):
         None
 
     """
-    sessions_to_pay = TutoringSession.objects.filter(student=request.user, payment_complete=False)
+    sessions_to_pay = TutoringSession.objects.filter(
+        student=request.user, payment_complete=False)
 
     if not sessions_to_pay:
         messages.warning(request, 'No sessions to pay for.')
@@ -298,7 +320,7 @@ def payment_view(request, pk):
     total_price = round(sum([session.price for session in sessions_to_pay]))
     total_price_in_cents = total_price * 100
 
-    # -> Credit for Stripe integration: https://stripe.com/docs/payments/accept-a-payment
+    # -> Credit for Stripe integration: https://stripe.com/docs/payments/accept-a-payment  # noqa
     STRIPE_PUBLIC_KEY = settings.STRIPE_PUBLIC_KEY
     stripe.api_key = settings.STRIPE_SECRET_KEY
     intent = stripe.PaymentIntent.create(
@@ -312,7 +334,7 @@ def payment_view(request, pk):
     context = {
         'sessions': sessions_to_pay,
         'session_ids': session_ids,
-        # -> Credit for quantize: https://docs.python.org/3/library/decimal.html
+        # -> Credit for quantize: https://docs.python.org/3/library/decimal.html  # noqa
         'total_price': Decimal(total_price).quantize(Decimal('0.01')),
         'STRIPE_PUBLIC_KEY': STRIPE_PUBLIC_KEY,
         'CLIENT_SECRET': CLIENT_SECRET,
@@ -353,8 +375,9 @@ class PaymentCreateView(LoginRequiredMixin, CreateView):
         Populates the payment model with the paid for sessions.
         Updates the sessions after the payment model is created.
         """
-        # -> Credit for Decimal conversion: https://stackoverflow.com/questions/316238/python-float-to-decimal-conversion
-        amount_in_euros = Decimal(form.cleaned_data['amount']) / Decimal('100.00')
+        # -> Credit for Decimal conversion: https://stackoverflow.com/questions/316238/python-float-to-decimal-conversion  # noqa
+        amount_in_euros = Decimal(
+            form.cleaned_data['amount']) / Decimal('100.00')
         form.instance.amount = amount_in_euros
 
         response = super().form_valid(form)
@@ -378,7 +401,6 @@ class PaymentCreateView(LoginRequiredMixin, CreateView):
         return reverse('payment_success', kwargs={'pk': self.object.pk})
 
 
-
 class PaymentDetailView(LoginRequiredMixin, DetailView):
     """
     A view that displays the details of a payment.
@@ -395,11 +417,13 @@ class PaymentDetailView(LoginRequiredMixin, DetailView):
         Adds additional context data to be used in the template.
 
         Additional Context:
-            sessions (QuerySet): The tutoring sessions associated with the payment.
+            sessions (QuerySet): The tutoring sessions associated with the
+                payment.
 
         Returns:
             A dictionary containing the context data.
         """
         context = super().get_context_data(**kwargs)
-        context['sessions'] = TutoringSession.objects.filter(payment=self.object)
+        context['sessions'] = TutoringSession.objects.filter(
+            payment=self.object)
         return context

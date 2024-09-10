@@ -50,9 +50,11 @@ for root, dirs, files in os.walk("."):
                 continue
             # Iterate over the lines with an index
             for i in range(len(lines)):
-                # Check against all comment symbols for the current file extension
+                # Check against all comment symbols for the current file
+                # extension
                 for symbol in comment_symbols[ext]:
-                    # If a line starts with a comment symbol, followed by " -> Credit"
+                    # If a line starts with a comment symbol,
+                    # followed by " -> Credit"
                     if lines[i].strip().startswith(symbol + " -> Credit"):
                         # Split the credit line into description and URL
                         credit_parts = (
@@ -65,21 +67,22 @@ for root, dirs, files in os.walk("."):
                             .replace("-->", "")
                             .replace("*/", "")
                             .replace("# noqa", "")
-                            .strip()[len(symbol) :]
+                            .strip()[len(symbol):]
                             .split(": ")
                         )
                         description = credit_parts[0]
                         url = credit_parts[1] if len(credit_parts) > 1 else ""
 
                         # Parse the URL to get the website name
-                        website_name = urllib.parse.urlparse(url).netloc if url else ""
+                        website_name = urllib.parse.urlparse(
+                            url).netloc if url else ""
 
                         # Format the credit line as a row in the markdown table
                         credit_line = (
-                            f"| [{file}: Line {i+1}]({base_url + os.path.join(root, file).replace('./', '')}#L{i+1}) | {description} | [{website_name if website_name else 'Link'}]({url}) |"
+                            f"| [{file}: Line {i+1}]({base_url + os.path.join(root, file).replace('./', '')}#L{i+1}) | {description} | [{website_name if website_name else 'Link'}]({url}) |"  # noqa
                             if url
-                            else f"| [{file}: Line {i+1}]({base_url + os.path.join(root, file).replace('./', '')}#L{i+1}) | {description} |"
-                        )  # noqa
+                            else f"| [{file}: Line {i+1}]({base_url + os.path.join(root, file).replace('./', '')}#L{i+1}) | {description} |"  # noqa
+                        )
                         credit_lines.append(credit_line)
 
 # Open the README file
@@ -89,7 +92,8 @@ with open("README.md", "r") as readme_file:
 
 # Find the index of the line with the "<!-- CREDITS_START -->" comment
 credits_index = next(
-    i for i, line in enumerate(readme_lines) if "<!-- CREDITS_START -->" in line
+    i for i, line in enumerate(readme_lines)
+    if "<!-- CREDITS_START -->" in line
 )
 
 # Find the index of the line with the "<!-- CREDITS_END -->" comment

@@ -7,14 +7,17 @@ class TutorForm(forms.ModelForm):
     """
     A form for creating or updating a tutor profile.
 
-    This form includes fields for the tutor's display name, subjects, hourly rate,
-    teaching values, catch phrase, description, profile image, IBAN, and Calendly event URL.
+    This form includes fields for the tutor's display name, subjects, hourly
+    rate, teaching values, catch phrase, description, profile image, IBAN, and
+    Calendly event URL.
     """
 
     # -> Credit for testing IBAN: https://ibanvalidieren.de/beispiele.html
     iban = IBANFormField(
         required=False,
-        help_text="Enter your IBAN for payments we make to you after lessons. For testing purposes, use DE02 5001 0517 0137 0750 30 or any other valid IBAN."
+        help_text="Enter your IBAN for payments we make to you after lessons. "
+        "For testing purposes, use DE02 5001 0517 0137 0750 30 or any other "
+        "valid IBAN."
     )
 
     class Meta:
@@ -38,16 +41,19 @@ class TutorForm(forms.ModelForm):
             "Enter the Name you would like your Students to see."
         )
         self.fields["subjects"].help_text = (
-            "Select the subjects you teach. (Select Multiple by holding Ctrl / Command and clicking)"
+            "Select the subjects you teach. (Select Multiple by holding Ctrl /"
+            " Command and clicking)"
         )
         self.fields["hourly_rate"].help_text = (
-            "Specify your hourly rate. For tutors just starting off €15 is recommended but it is completely up to you."
+            "Specify your hourly rate. For tutors just starting off €15 is "
+            "recommended but it is completely up to you."
         )
         self.fields["values"].help_text = (
             "Pick the teaching values, that resonate with you the most."
         )
         self.fields["catch_phrase"].help_text = (
-            "Enter a catchy phrase that represents you as a tutor. This is one of the first things students will see about you."
+            "Enter a catchy phrase that represents you as a tutor. This is one"
+            " of the first things students will see about you."
         )
         self.fields["description"].help_text = (
             "Provide a detailed description of your tutoring services."
@@ -79,7 +85,8 @@ class RatingForm(forms.ModelForm):
         """Sets the attributes for the form fields."""
         super(RatingForm, self).__init__(*args, **kwargs)
         self.fields["score"].widget.attrs.update(
-            {"min": 1, "max": 5, "placeholder": "Select a score between 1 and 5."}
+            {"min": 1, "max": 5, "placeholder": "Select a score between "
+                                                "1 and 5."}
         )
         self.fields["comment"].widget.attrs.update(
             {"placeholder": "Leave a comment about your experience."}

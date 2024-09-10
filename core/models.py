@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class FrequentlyAskedQuestion(models.Model):
     """
     A model that represents a frequently asked question.
@@ -17,6 +18,7 @@ class FrequentlyAskedQuestion(models.Model):
     def __str__(self):
         return self.question
 
+
 class About(models.Model):
     """
     A model that represents the about page.
@@ -28,7 +30,8 @@ class About(models.Model):
 
     Methods:
         __str__(): Returns a string representation of the about page.
-        save(): Overrides the default save method to deactivate other active about pages.
+        save(): Overrides the default save method to deactivate other active
+            about pages.
     """
     title = models.CharField(max_length=255)
     content = models.TextField()

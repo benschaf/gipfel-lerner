@@ -22,7 +22,8 @@ def webhook(request):
         request (HttpRequest): The incoming HTTP request object.
 
     Returns:
-        JsonResponse: The JSON response indicating the success or failure of the webhook event handling.
+        JsonResponse: The JSON response indicating the success or failure of
+            the webhook event handling.
     """
     event = None
 
@@ -46,7 +47,7 @@ def webhook(request):
 
     event_map = {
         'payment_intent.succeeded': handler.handle_payment_intent_succeeded,
-        'payment_intent.payment_failed': handler.handle_payment_intent_payment_failed,
+        'payment_intent.payment_failed': handler.handle_payment_intent_payment_failed,  # noqa
     }
 
     event_type = event['type']

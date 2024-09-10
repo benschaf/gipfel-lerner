@@ -1,16 +1,17 @@
 import time
 from django.http import HttpResponse
 from django.contrib import auth
-
 from booking.models import Payment, TutoringSession
 
-# -> Credit for the webhook handler class goes to Code Institute Tutorials: https://github.com/Code-Institute-Solutions/Boutique-Ado/tree/master
+# -> Credit for the webhook handler class goes to Code Institute Tutorials: https://github.com/Code-Institute-Solutions/Boutique-Ado/tree/master  # noqa
+
 
 class StripeWH_Handler:
     """
     Handle Stripe webhooks.
 
-    This class is responsible for handling various webhook events received from Stripe.
+    This class is responsible for handling various webhook events received
+    from Stripe.
     """
 
     def __init__(self, request):
@@ -24,7 +25,8 @@ class StripeWH_Handler:
             event (dict): The webhook event received from Stripe.
 
         Returns:
-            HttpResponse: The response indicating the handling of the webhook event.
+            HttpResponse: The response indicating the handling of the webhook
+            event.
         """
         return HttpResponse(
             content=f'Unhandled webhook received: {event["type"]}', status=200
@@ -35,10 +37,12 @@ class StripeWH_Handler:
         Handle the payment_intent.succeeded webhook from Stripe.
 
         Args:
-            event (dict): The payment_intent.succeeded webhook event received from Stripe.
+            event (dict): The payment_intent.succeeded webhook event received
+            from Stripe.
 
         Returns:
-            HttpResponse: The response indicating the handling of the webhook event.
+            HttpResponse: The response indicating the handling of the webhook
+            event.
         """
         print("webhook received")
         intent = event.data.object
@@ -53,11 +57,14 @@ class StripeWH_Handler:
                     stripe_id=intent.id,
                 )
                 return HttpResponse(
-                    content=f'Webhook received: {event["type"]} | SUCCESS: Verified payment already in database',
+                    content=f'Webhook received: {event["type"]} | SUCCESS: '
+                    f'Verified payment already in database',
                     status=200,
                 )
             except Payment.DoesNotExist:
-                print(f"Attempt {attempt + 1}: Payment does not exist. Retrying...")
+                print(
+                    f"Attempt {attempt + 1}: Payment does not exist. "
+                    f"Retrying...")
                 if attempt < max_attempts - 1:
                     time.sleep(delay_between_attempts)
                 else:
@@ -73,7 +80,8 @@ class StripeWH_Handler:
                         )
 
                         # Update the payment_complete field of the sessions
-                        sessions_to_pay = TutoringSession.objects.filter(pk__in=session_ids)
+                        sessions_to_pay = TutoringSession.objects.filter(
+                            pk__in=session_ids)
 
                         for session in sessions_to_pay:
                             session.payment_complete = True
@@ -84,11 +92,15 @@ class StripeWH_Handler:
                         if payment:
                             payment.delete()
                         return HttpResponse(
-                            content=f'Webhook received: {event["type"]} | ERROR: {e}',
+                            content=f'Webhook received: {
+                                event["type"]} | ERROR: {e}',
                             status=500,
                         )
                     return HttpResponse(
-                        content=f'Webhook received: {event["type"]} | SUCCESS: Payment does not exist after {max_attempts} attempts - created new payment in database',
+                        content=f'Webhook received: {event["type"]} | '
+                        f'SUCCESS: Payment does not exist after '
+                        f'{max_attempts} attempts - created new '
+                        f'payment in database'
                         status=200,
                     )
 
@@ -97,9 +109,13 @@ class StripeWH_Handler:
         Handle the payment_intent.payment_failed webhook from Stripe.
 
         Args:
-            event (dict): The payment_intent.payment_failed webhook event received from Stripe.
+            event (dict): The payment_intent.payment_failed webhook event
+                received from Stripe.
 
         Returns:
-            HttpResponse: The response indicating the handling of the webhook event.
+            HttpResponse: The response indicating the handling of the webhook
+                event.
         """
-        return HttpResponse(content=f'Webhook received: {event["type"]}', status=200)
+        return HttpResponse(
+            content=f'Webhook received: {event["type"]}', status=200
+        )

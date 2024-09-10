@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from booking.models import Payment
 from .forms import CalendlyUriForm, PaymentForm, CancelForm
 
+
 class CalendlyUriFormTestCase(TestCase):
     """
     Test Case for the CalendlyUriForm form.
@@ -23,7 +24,8 @@ class CalendlyUriFormTestCase(TestCase):
         Test the form with invalid data.
         """
         form = CalendlyUriForm(data={})
-        self.assertFalse(form.is_valid(), msg="Form should be invalid with no data.")
+        self.assertFalse(
+            form.is_valid(), msg="Form should be invalid with no data.")
 
 
 class PaymentFormTestCase(TestCase):
@@ -36,8 +38,8 @@ class PaymentFormTestCase(TestCase):
         Set up the test case.
         """
         self.user = User.objects.create_user(
-            username = 'test_user',
-            password = 'test_password'
+            username='test_user',
+            password='test_password'
         )
 
     def test_form_valid(self):
@@ -61,7 +63,8 @@ class PaymentFormTestCase(TestCase):
         Test the form with invalid data.
         """
         form = PaymentForm(data={})
-        self.assertFalse(form.is_valid(), msg="Form should be invalid with no data.")
+        self.assertFalse(
+            form.is_valid(), msg="Form should be invalid with no data.")
 
 
 class CancelFormTestCase(TestCase):
@@ -84,4 +87,6 @@ class CancelFormTestCase(TestCase):
         Test the form with invalid data.
         """
         form = CancelForm(data={'cancel_reason': 'A' * 201})
-        self.assertFalse(form.is_valid(), msg="Form should be invalid with too long a reason.")
+        self.assertFalse(
+            form.is_valid(), msg="Form should be invalid with too long a "
+            "reason.")
