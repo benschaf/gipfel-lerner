@@ -94,26 +94,29 @@ There were no other issues with the CSS files.
 
 ### JavaScript
 
-I have used the recommended [JShint Validator](https://jshint.com) via its command-line interface to validate all of my JavaScript files. for this I installed the jshint package as a dev dependency using the command `npm install jshint --save-dev`. After this I created a `.jshintrc` file in the `static/js` directory of the project with the following content in order to enable ES6 syntax:
+I have used the recommended [JShint Validator](https://jshint.com) via its command-line interface to validate all of my JavaScript files. for this I installed the jshint package as a dev dependency using the command `npm install jshint --save-dev`. After this I created a `.jshintrc` file in the `root` directory of the project with the following content in order to enable ES6 syntax:
 
 ```json
 {
-    "esversion": 6
+    "esversion": 8
 }
 ```
+
+Note: I used the `esversion: 8` option to enable ES6 syntax and asynchonous functions, as async functions would throw a warning when using the ES6 syntax.
 
 I then ran the following command to validate all of my JavaScript files: `npx jshint <directory>/<filename.js>`:
 
 | Directory | File | Screenshot | Notes |
 | --- | --- | --- | --- |
-| booking | [payment.js](booking/static/booking/js/payment.js) | ![screenshot](documentation/validation_js_payment_js.png) | |
-| booking | [payment_create.js](booking/static/booking/js/payment_create.js) | ![screenshot](documentation/validation_js_payment_create_js.png) | |
-| core | [index.js](core/static/core/js/index.js) | ![screenshot](documentation/validation_js_index_js.png) | |
-| static | [base.js](static/js/base.js) | ![screenshot](documentation/validation_js_base_js.png) | |
-| tutor_market | [tutor_detail.js](tutor_market/static/tutor_market/js/tutor_detail.js) | ![screenshot](documentation/validation_js_tutor_detail_js.png) | |
-| tutor_market | [tutor_list.js](tutor_market/static/tutor_market/js/tutor_list.js) | ![screenshot](documentation/validation_js_tutor_list_js.png) | |
+| booking | [payment.js](booking/static/booking/js/payment.js) | ![screenshot](documentation/validation-js-payment-js.png) |
+| booking | [payment_create.js](booking/static/booking/js/payment_create.js) | ![screenshot](documentation/validation-js-payment-create-js.png) |
+| core | [index.js](core/static/core/js/index.js) | ![screenshot](documentation/validation-js-index-js.png) |
+| static | [base.js](static/js/base.js) | ![screenshot](documentation/validation-js-base-js.png) |
+| static | [base.test.js](static/js/tests/base.test.js) | ![screenshot](documentation/validation-js-base-test-js.png) |
+| tutor_market | [tutor_detail.js](tutor_market/static/tutor_market/js/tutor_detail.js) | ![screenshot](documentation/validation-js-tutor-detail-js.png) |
+| tutor_market | [tutor_list.js](tutor_market/static/tutor_market/js/tutor_list.js) | ![screenshot](documentation/validation-js-tutor-list-js.png) |
 
-There were no additional issues with the JavaScript files.
+There were no errors or warnings with the JavaScript files.
 
 ### Python
 
