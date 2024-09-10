@@ -52,28 +52,30 @@ If applicable, mention how user feedback has been taken into account and impleme
 
 I have used the recommended [HTML W3C Validator](https://validator.w3.org) to validate all of my HTML deployed source code. In the table below, the results are labeled by template file that would render the respective page. The results are validated using the live deployed version of the project.
 
-| Directory | File | Screenshot | Notes |
+| Directory | File | Screenshot |
 | --- | --- | --- | --- |
-| booking | cancel_session.html | ![screenshot](documentation/validation_html_cancel_session.png) | |
-| booking | payment.html | ![screenshot](documentation/validation_html_payment.png) | |
-| booking | payment_create.html | ![screenshot](documentation/validation_html_payment_create.png) | |
-| booking | payment_success.html | ![screenshot](documentation/validation_html_payment_success.png) | |
-| booking | schedule_success.html | ![screenshot](documentation/validation_html_schedule_success.png) | |
-| core | about.html | ![screenshot](documentation/validation_html_about.png) | |
-| core | faq.html | ![screenshot](documentation/validation_html_faq.png) | |
-| core | index.html | ![screenshot](documentation/validation_html_index.png) | |
-| templates | 404.html | ![screenshot](documentation/validation_html_404.png) | |
-| templates | 500.html | ![screenshot](documentation/validation_html_500.png) | |
-| templates | base_manage.html | ![screenshot](documentation/validation_html_base_manage.png) | |
-| templates | usersession_list.html | ![screenshot](documentation/validation_html_usersession_list.png) | |
-| tutor_market | add_tutor.html | ![screenshot](documentation/validation_html_add_tutor.png) | |
-| tutor_market | calendly_information.html | ![screenshot](documentation/validation_html_calendly_information.png) | |
-| tutor_market | edit_tutor.html | ![screenshot](documentation/validation_html_edit_tutor.png) | |
-| tutor_market | student_dashboard.html | ![screenshot](documentation/validation_html_student_dashboard.png) | |
-| tutor_market | tutor_confirm_delete.html | ![screenshot](documentation/validation_html_tutor_confirm_delete.png) | |
-| tutor_market | tutor_dashboard.html | ![screenshot](documentation/validation_html_tutor_dashboard.png) | |
-| tutor_market | tutor_detail.html | ![screenshot](documentation/validation_html_tutor_detail.png) | |
-| tutor_market | tutor_list.html | ![screenshot](documentation/validation_html_tutor_list.png) | |
+| booking | cancel_session.html | ![screenshot](documentation/validation-html-cancel-session.png) |
+| booking | payment.html | ![screenshot](documentation/validation-html-payment.png) |
+| booking | payment_create.html | ![screenshot](documentation/validation-html-payment-create.png) |
+| booking | payment_success.html | ![screenshot](documentation/validation-html-payment-success.png) |
+| booking | schedule_success.html | ![screenshot](documentation/validation-html-schedule-success.png) |
+| core | about.html | ![screenshot](documentation/validation-html-about.png) |
+| core | faq.html | ![screenshot](documentation/validation-html-faq.png) |
+| core | index.html | ![screenshot](documentation/validation-html-index.png) |
+| templates | 404.html | ![screenshot](documentation/validation-html-404.png) |
+| templates | 500.html | ![screenshot](documentation/validation-html-500.png) |
+| templates | base.html | ![screenshot](documentation/validation-html-index.png) |
+| templates | usersession_list.html | ![screenshot](documentation/validation-html-usersession-list.png) |
+| tutor_market | add-tutor.html | ![screenshot](documentation/validation-html-add-tutor.png) |
+| tutor_market | calendly_information.html | ![screenshot](documentation/validation-html-calendly.png) |
+| tutor_market | edit_tutor.html | ![screenshot](documentation/validation-html-edit-tutor.png) |
+| tutor_market | student_dashboard.html | ![screenshot](documentation/validation-html-student-dashboard.png) |
+| tutor_market | tutor_confirm-delete.html | ![screenshot](documentation/validation-html-tutor-confirm-delete.png) |
+| tutor_market | tutor_dashboard.html | ![screenshot](documentation/validation-html-tutor-dashboard.png) |
+| tutor_market | tutor_detail.html | ![screenshot](documentation/validation-html-tutor-detail.png) |
+| tutor_market | tutor_list.html | ![screenshot](documentation/validation-html-tutor-list.png) |
+
+No validation issues are present in the HTML files.
 
 ### CSS
 
