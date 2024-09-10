@@ -25,4 +25,4 @@
   {{ block.super }}
   {{ STRIPE_PUBLIC_KEY|json_script:"stripe-public-key" }}
   <script src="{% static "booking/js/payment_create.js" %}"></script>
-{% endblock content %}
+{% endblock postloadjs %}
