@@ -216,7 +216,7 @@ def cancel_session_view(request, pk):
     if not (request.user == student or request.user == tutor.user):
         messages.warning(
             request, 'You are not authorized to cancel this session.')
-        return redirect('dashboard', pk=student.id)
+        return redirect('dashboard', pk=request.user.id)
 
     if (session.session_status == 'cancelled'
             or session.session_status == 'completed'):
@@ -265,7 +265,7 @@ def cancel_session_view(request, pk):
             messages.warning(request, f'''{response_data["title"]}:
                              {response_data["message"]}''')
 
-        return redirect('dashboard', pk=student.pk)
+        return redirect('dashboard', pk=request.user.pk)
 
     form = CancelForm()
 
