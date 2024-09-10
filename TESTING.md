@@ -126,33 +126,33 @@ Files that are unchanged from the Django template have been excluded from the va
 
 | Directory | File | PEP8 CI | Screenshot |
 | --- | --- | --- | --- |
-| booking | admin.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/admin.py) | ![screenshot](documentation/validation_py_admin_py.png) |
-| booking | forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/forms.py) | ![screenshot](documentation/validation_py_forms_py.png) |
-| booking | test_forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/test_forms.py) | ![screenshot](documentation/validation_py_test_forms_py.png) |
-| booking | models.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/models.py) | ![screenshot](documentation/validation_py_models_py.png) |
-| booking | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/urls.py) | ![screenshot](documentation/validation_py_urls_py.png) |
-| booking | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/views.py) | ![screenshot](documentation/validation_py_views_py.png) |
-| booking | test_views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/test_views.py) | ![screenshot](documentation/validation_py_test_views_py.png) |
-| booking | webhook_handler.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/webhook_handler.py) | ![screenshot](documentation/validation_py_webhook_handler_py.png) |
-| booking | webhooks.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/webhooks.py) | ![screenshot](documentation/validation_py_webhooks_py.png) |
-| calendly | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/calendly/urls.py) | ![screenshot](documentation/validation_py_urls_py.png) |
-| calendly | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/calendly/views.py) | ![screenshot](documentation/validation_py_views_py.png) |
-| calendly | test_views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/calendly/test_views.py) | ![screenshot](documentation/validation_py_test_views_py.png) |
-| root | copy-credits.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/copy-credits.py) | ![screenshot](documentation/validation_py_copy-credits_py.png) |
-| core | admin.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/core/admin.py) | ![screenshot](documentation/validation_py_admin_py.png) |
-| core | models.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/core/models.py) | ![screenshot](documentation/validation_py_models_py.png) |
-| core | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/core/urls.py) | ![screenshot](documentation/validation_py_urls_py.png) |
-| core | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/core/views.py) | ![screenshot](documentation/validation_py_views_py.png) |
-| core | test_views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/core/test_views.py) | ![screenshot](documentation/validation_py_test_views_py.png) |
-| root | custom_storages.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/custom_storages.py) | ![screenshot](documentation/validation_py_custom_storages_py.png) |
-| gipfel_tutor | settings.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/gipfel_tutor/settings.py) | ![screenshot](documentation/validation_py_settings_py.png) |
-| gipfel_tutor | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/gipfel_tutor/urls.py) | ![screenshot](documentation/validation_py_urls_py.png) |
-| tutor_market | forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/forms.py) | ![screenshot](documentation/validation_py_forms_py.png) |
-| tutor_market | test_forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/test_forms.py) | ![screenshot](documentation/validation_py_test_forms_py.png) |
-| tutor_market | models.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/models.py) | ![screenshot](documentation/validation_py_models_py.png) |
-| tutor_market | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/urls.py) | ![screenshot](documentation/validation_py_urls_py.png) |
-| tutor_market | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/views.py) | ![screenshot](documentation/validation_py_views_py.png) |
-| tutor_market | test_views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/test_views.py) | ![screenshot](documentation/validation_py_test_views_py.png) |
+| booking | admin.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/admin.py) | ![screenshot](documentation/validation-py-admin-py-1.png) |
+| booking | forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/forms.py) | ![screenshot](documentation/validation-py-forms-py.png) |
+| booking | test_forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/test_forms.py) | ![screenshot](documentation/validation-py-test-forms-py.png) |
+| booking | models.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/models.py) | ![screenshot](documentation/validation-py-models-py.png) |
+| booking | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/urls.py) | ![screenshot](documentation/validation-py-urls-py.png) |
+| booking | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/views.py) | ![screenshot](documentation/validation-py-views-py.png) |
+| booking | test_views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/test_views.py) | ![screenshot](documentation/validation-py-test-views-py.png) |
+| booking | webhook_handler.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/webhook_handler.py) | ![screenshot](documentation/validation-py-webhook-handler-py.png) |
+| booking | webhooks.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/booking/webhooks.py) | ![screenshot](documentation/validation-py-webhooks-py.png) |
+| calendly | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/calendly/urls.py) | ![screenshot](documentation/validation-py-urls-py-2.png) |
+| calendly | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/calendly/views.py) | ![screenshot](documentation/validation-py-views-py-2.png) |
+| calendly | test_views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/calendly/test_views.py) | ![screenshot](documentation/validation-py-test-views-py-2.png) |
+| root | copy-credits.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/copy-credits.py) | ![screenshot](documentation/validation-py-copy-credits-py.png) |
+| core | admin.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/core/admin.py) | ![screenshot](documentation/validation-py-admin-py.png) |
+| core | models.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/core/models.py) | ![screenshot](documentation/validation-py-models-py-2.png) |
+| core | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/core/urls.py) | ![screenshot](documentation/validation-py-urls-py-3.png) |
+| core | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/core/views.py) | ![screenshot](documentation/validation-py-views-py-3.png) |
+| core | test_views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/core/test_views.py) | ![screenshot](documentation/validation-py-test-views-py-3.png) |
+| root | custom_storages.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/custom_storages.py) | ![screenshot](documentation/validation-py-custom-storages-py.png) |
+| gipfel_tutor | settings.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/gipfel_tutor/settings.py) | ![screenshot](documentation/validation-py-settings-py.png) |
+| gipfel_tutor | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/gipfel_tutor/urls.py) | ![screenshot](documentation/validation-py-urls-py-4.png) |
+| tutor_market | forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/forms.py) | ![screenshot](documentation/validation-py-forms-py-2.png) |
+| tutor_market | test_forms.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/test_forms.py) | ![screenshot](documentation/validation-py-test-forms-py-2.png) |
+| tutor_market | models.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/models.py) | ![screenshot](documentation/validation-py-models-py-3.png) |
+| tutor_market | urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/urls.py) | ![screenshot](documentation/validation-py-urls-py-5.png) |
+| tutor_market | views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/views.py) | ![screenshot](documentation/validation-py-views-py-4.png) |
+| tutor_market | test_views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/benschaf/gipfel-tutor/main/tutor_market/test_views.py) | ![screenshot](documentation/validation-py-test-views-py-4.png) |
 
 Additionaly to the final testing, pycodestyle was used frequently to test python files locally.
 
