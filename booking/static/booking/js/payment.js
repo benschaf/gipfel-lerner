@@ -15,21 +15,21 @@ const options = {
     appearance: {
     theme: 'flat'
     }
-}
+};
 
 // Set up Stripe.js and Elements to use in checkout form, passing the client secret obtained in a previous step
-const elements = stripe.elements(options)
+const elements = stripe.elements(options);
 
 // Create and mount the Payment Element
-const paymentElement = elements.create('payment')
-paymentElement.mount('#payment-element')
+const paymentElement = elements.create('payment');
+paymentElement.mount('#payment-element');
 
 // Submit the payment to Stripe
-const form = document.getElementById('payment-form')
+const form = document.getElementById('payment-form');
 
 
 form.addEventListener('submit', async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     $('#submit').attr('disabled', true);
 
     const csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
@@ -51,7 +51,7 @@ form.addEventListener('submit', async (event) => {
 
 
     $.post(cachePaymentDataUrl, postData).done(async function() {
-    console.log('starting stripe function')
+    console.log('starting stripe function');
     const { error } = await stripe.confirmPayment({
         //`Elements` instance that was used to create the Payment Element
         elements,
@@ -59,16 +59,16 @@ form.addEventListener('submit', async (event) => {
         // change this url to dynamic when deploying
         return_url: return_url,
         }
-    })
+    });
 
     if (error) {
         // This point will only be reached if there is an immediate error when
         // confirming the payment. Show error to your customer (for example, payment
         // details incomplete)
-        const messageContainer = document.querySelector('#error-message')
-        messageContainer.classList.add('alert', 'alert-danger')
-        messageContainer.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + error.message
-        $('#submit').attr('disabled', false)
+        const messageContainer = document.querySelector('#error-message');
+        messageContainer.classList.add('alert', 'alert-danger');
+        messageContainer.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + error.message;
+        $('#submit').attr('disabled', false);
     } else {
         // Your customer will be redirected to your `return_url`. For some payment
         // methods like iDEAL, your customer will be redirected to an intermediate

@@ -26,15 +26,15 @@ const stripe = Stripe(STRIPE_PUBLIC_KEY);
 
 // Retrieve the "payment_intent_client_secret" query parameter appended to
 // your return_url by Stripe.js
-const clientSecret = new URLSearchParams(window.location.search).get('payment_intent_client_secret')
+const clientSecret = new URLSearchParams(window.location.search).get('payment_intent_client_secret');
 
 // Retrieve the PaymentIntent
 stripe.retrievePaymentIntent(clientSecret).then(({
     paymentIntent
 }) => {
-    const message = document.querySelector('#message')
+    const message = document.querySelector('#message');
 
-    console.log(paymentIntent)
+    console.log(paymentIntent);
 
     // Inspect the PaymentIntent `status` to indicate the status of the payment
     // to your customer.
@@ -45,23 +45,23 @@ stripe.retrievePaymentIntent(clientSecret).then(({
     // [0]: https://stripe.com/docs/payments/payment-methods#payment-notification
     switch (paymentIntent.status) {
         case 'succeeded':
-            message.innerText = 'Success! Payment received.'
+            message.innerText = 'Success! Payment received.';
             fillOutForm(paymentIntent);
-            break
+            break;
 
         case 'processing':
-            message.innerText = "Payment processing. We'll update you when payment is received."
+            message.innerText = "Payment processing. We'll update you when payment is received.";
             fillOutForm(paymentIntent);
-            break
+            break;
 
         case 'requires_payment_method':
-            message.innerText = 'Payment failed. Please try another payment method.'
+            message.innerText = 'Payment failed. Please try another payment method.';
             // Redirect your user back to your payment page to attempt collecting
             // payment again
-            break
+            break;
 
         default:
-            message.innerText = 'Something went wrong.'
-            break
+            message.innerText = 'Something went wrong.';
+            break;
     }
 });
