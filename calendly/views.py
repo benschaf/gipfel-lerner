@@ -18,8 +18,8 @@ def connect_calendly(request: HttpRequest) -> HttpResponse:
     client_id = settings.CALENDLY_CLIENT_ID
     redirect_uri = settings.CALENDLY_REDIRECT_URI
 
-    url = f'https://calendly.com/oauth/authorize?client_id={
-        client_id}&redirect_uri={redirect_uri}&response_type=code'
+    url = f'https://calendly.com/oauth/authorize?client_id={client_id}&redirec'
+    f't_uri={redirect_uri}&response_type=code'
 
     return redirect(url)
 

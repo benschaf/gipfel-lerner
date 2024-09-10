@@ -262,8 +262,8 @@ def cancel_session_view(request, pk):
             session.save()
 
         else:
-            messages.warning(request, f'{response_data["title"]}: {
-                             response_data["message"]}')
+            messages.warning(request, f'{response_data["title"]}: '
+                             f'{response_data["message"]}')
 
         return redirect('dashboard', pk=student.pk)
 

@@ -92,15 +92,15 @@ class StripeWH_Handler:
                         if payment:
                             payment.delete()
                         return HttpResponse(
-                            content=f'Webhook received: {
-                                event["type"]} | ERROR: {e}',
+                            content=f'Webhook received: {event["type"]} | '
+                            f'ERROR: {e}',
                             status=500,
                         )
                     return HttpResponse(
                         content=f'Webhook received: {event["type"]} | '
                         f'SUCCESS: Payment does not exist after '
                         f'{max_attempts} attempts - created new '
-                        f'payment in database'
+                        f'payment in database',
                         status=200,
                     )
 

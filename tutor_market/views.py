@@ -138,8 +138,9 @@ def tutor_detail_view(request, pk):
 
         response_data = introspect_access_token(tutor)
         if 'error' in response_data:
-            messages.warning(request, f"{response_data['error']}: {
-                             response_data['error_description']}")
+            messages.warning(
+                request, f"{response_data['error']}: "
+                f"{response_data['error_description']}")
             messages.warning(
                 request, 'There seems to be an issue with this Tutor\'s '
                 'Calendly connection. Please contact us for more information.')

@@ -77,16 +77,16 @@ class TutorListViewTestCases(TestCase):
     def test_tutor_list_view_subject_filter(self):
         """Test the subject filter of the TutorListView view."""
         self.tutor1.subjects.add(self.subject.id)
-        response = self.client.get(reverse('tutor_list'), {
-                                   'subject': self.subject.name})
+        response = self.client.get(
+            reverse('tutor_list'), {'subject': self.subject.name})
         self.assertEqual(len(response.context['tutor_list']), 1)
         self.assertEqual(response.context['tutor_list'][0], self.tutor1)
 
     def test_tutor_list_view_teachingvalue_filter(self):
         """Test the teaching value filter of the TutorListView view."""
         self.tutor1.values.add(self.value.id)
-        response = self.client.get(reverse('tutor_list'), {
-                                   'teachingvalue': self.value.name})
+        response = self.client.get(
+            reverse('tutor_list'), {'teachingvalue': self.value.name})
         self.assertEqual(len(response.context['tutor_list']), 1)
         self.assertEqual(response.context['tutor_list'][0], self.tutor1)
 
@@ -105,29 +105,29 @@ class TutorListViewTestCases(TestCase):
 
     def test_tutor_list_view_cheapest_sorting(self):
         """Test the sorting of the TutorListView view by hourly rate."""
-        response = self.client.get(reverse('tutor_list'), {
-                                   'sorting': 'cheapest'})
+        response = self.client.get(
+            reverse('tutor_list'), {'sorting': 'cheapest'})
         self.assertEqual(response.context['tutor_list'][0], self.tutor2)
         self.assertEqual(response.context['tutor_list'][1], self.tutor1)
 
     def test_tutor_list_view_highest_rated_sorting(self):
         """Test the sorting of the TutorListView view by highest rated."""
-        response = self.client.get(reverse('tutor_list'), {
-                                   'sorting': 'highest_rated'})
+        response = self.client.get(
+            reverse('tutor_list'), {'sorting': 'highest_rated'})
         self.assertEqual(response.context['tutor_list'][0], self.tutor1)
         self.assertEqual(response.context['tutor_list'][1], self.tutor2)
 
     def test_tutor_list_view_most_reviews_sorting(self):
         """Test the sorting of the TutorListView view by most reviews."""
-        response = self.client.get(reverse('tutor_list'), {
-                                   'sorting': 'most_reviews'})
+        response = self.client.get(
+            reverse('tutor_list'), {'sorting': 'most_reviews'})
         self.assertEqual(response.context['tutor_list'][0], self.tutor1)
         self.assertEqual(response.context['tutor_list'][1], self.tutor2)
 
     def test_tutor_list_view_most_expensive_sorting(self):
         """Test the sorting of the TutorListView view by most expensive."""
-        response = self.client.get(reverse('tutor_list'), {
-                                   'sorting': 'most_expensive'})
+        response = self.client.get(
+            reverse('tutor_list'), {'sorting': 'most_expensive'})
         self.assertEqual(response.context['tutor_list'][0], self.tutor1)
         self.assertEqual(response.context['tutor_list'][1], self.tutor2)
 
