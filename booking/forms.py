@@ -30,5 +30,6 @@ class CancelForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(CancelForm, self).__init__(*args, **kwargs)
-        self.fields['cancel_reason'].label = 'Let your tutor know why you are '
-        'cancelling the session (not required)'
+        self.fields['cancel_reason'].label = (
+            'Let us know why you are cancelling the session (not required)'
+        )

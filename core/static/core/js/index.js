@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     // Make the value submit button visible only when a value is selected
     const submitButton = $('#values-submit-btn');
-    const input = $('input[type="checkbox"]');
+    const input = $('input[type="radio"]');
     input.change(function () {
         submitButton.addClass('value-btn-visible');
         submitButton.removeClass('value-btn-hidden');

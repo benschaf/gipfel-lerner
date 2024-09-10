@@ -126,8 +126,9 @@ def tutor_detail_view(request, pk):
     # Check if the tutor's profile is activated
     if not tutor.profile_status:
         messages.warning(
-            request, 'To activate your profile, please connect your Calendly '
-            'account via your Dashboard.')
+            request, ('To activate your profile, please connect your Calendly '
+                      'account via your Dashboard.')
+        )
         return redirect(reverse('tutor_list'))
 
     if request.user.is_authenticated:
@@ -142,8 +143,10 @@ def tutor_detail_view(request, pk):
                 request, f"{response_data['error']}: "
                 f"{response_data['error_description']}")
             messages.warning(
-                request, 'There seems to be an issue with this Tutor\'s '
-                'Calendly connection. Please contact us for more information.')
+                request, ('There seems to be an issue with this Tutor\'s '
+                          'Calendly connection. Please contact us for more '
+                          'information.')
+            )
             # Only print a message if there is an error.
 
     # Handle POST request for adding a review
@@ -285,8 +288,9 @@ class TutorUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             return True
         else:
             messages.warning(
-                self.request, 'You do not have permission to update this '
-                'profile.')
+                self.request, ('You do not have permission to update this '
+                               'profile.')
+            )
             return False
 
     def get_success_url(self):
@@ -339,8 +343,9 @@ class TutorDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         else:
             messages.warning(
-                self.request, 'You do not have permission to delete this '
-                'profile.')
+                self.request, ('You do not have permission to delete this '
+                               'profile.')
+            )
             return False
 
 
@@ -441,8 +446,9 @@ def dashboard_view(request, pk):
 
     if request.user != user:
         messages.warning(
-            request, 'You do not have permission to view this dashboard. We '
-            'redirected you to your own dashboard.')
+            request, ('You do not have permission to view this dashboard. We '
+                      'redirected you to your own dashboard.')
+        )
         return redirect('dashboard', pk=request.user.pk)
 
     if connected_tutor_profile:

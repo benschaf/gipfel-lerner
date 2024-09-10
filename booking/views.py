@@ -81,8 +81,8 @@ def _get_json_from_calendly_uri(uri, tutor, request):
         print(f"Response: {json.dumps(response.json(), indent=4)}")
         if request:
             messages.warning(
-                request, f'An error occurred while loading the event data. '
-                f'{response}'
+                request, f'''An error occurred while loading the event data.
+                {response}'''
             )
             print(f"Error: {response}")
         return response
@@ -180,8 +180,8 @@ def fetch_calendly_data_view(request: HttpRequest, pk: int) -> HttpResponse:
 
     if (event_data_response.status_code != 200 or
             invitee_data_response.status_code != 200):
-        messages.warning(request, 'Something went wrong while fetching the '
-                         'data from Calendly.')
+        messages.warning(request, '''Something went wrong while fetching the
+                         data from Calendly.''')
         return redirect('tutor_detail', pk=pk)
 
     event_data = event_data_response.json()
@@ -262,8 +262,8 @@ def cancel_session_view(request, pk):
             session.save()
 
         else:
-            messages.warning(request, f'{response_data["title"]}: '
-                             f'{response_data["message"]}')
+            messages.warning(request, f'''{response_data["title"]}:
+                             {response_data["message"]}''')
 
         return redirect('dashboard', pk=student.pk)
 

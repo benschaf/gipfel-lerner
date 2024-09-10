@@ -353,8 +353,9 @@ class TutorUpdateViewTestCases(TestCase):
         messages = list(response.wsgi_request._messages)
         self.assertEqual(len(messages), 1)
         self.assertEqual(
-            str(messages[0]), 'You do not have permission to update this '
-            'profile.')
+            str(messages[0]), ('You do not have permission to update this '
+                               'profile.')
+        )
 
     def test_update_view_form_valid(self):
         """Test that the update view handles valid form data."""
@@ -437,8 +438,9 @@ class TutorDeleteViewTestCases(TestCase):
         messages = list(response.wsgi_request._messages)
         self.assertEqual(len(messages), 1)
         self.assertEqual(
-            str(messages[0]), 'You do not have permission to delete this '
-            'profile.')
+            str(messages[0]), ('You do not have permission to delete this '
+                               'profile.')
+        )
 
     def test_delete_view_success(self):
         """Test that the owner can delete the tutor profile."""
@@ -536,8 +538,9 @@ class DashboardViewTestCases(TestCase):
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(len(messages), 1)
         self.assertEqual(str(
-            messages[0]), 'You do not have permission to view this dashboard. '
-            'We redirected you to your own dashboard.')
+            messages[0]), ('You do not have permission to view this dashboard.'
+                           ' We redirected you to your own dashboard.')
+        )
 
     def test_tutor_profile_status_update(self):
         """Test that the tutor's profile status is updated correctly."""
@@ -621,8 +624,9 @@ class UpdateSessionStatusViewTestCases(TestCase):
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(len(messages), 1)
         self.assertEqual(
-            str(messages[0]), 'You do not have permission to update this '
-            'session.')
+            str(messages[0]), ('You do not have permission to update this '
+                               'session.')
+        )
 
     def test_update_session_status_invalid_session(self):
         """Test that a 404 error is raised if the session does not exist."""
