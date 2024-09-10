@@ -36,8 +36,8 @@
   --bs-success-shaded: #2CAE6A;
 
   --bs-border-style: none;
-  --bs-border-radius: 1.125rem;
-  --bs-border-radius-lg: 2rem;
+  --bs-border-radius: 1rem;
+  --bs-border-radius-lg: 1.5rem;
 
   --bs-font-sans-serif: "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
