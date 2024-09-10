@@ -85,12 +85,12 @@ I have used the recommended [CSS Jigsaw Validator](https://jigsaw.w3.org/css-val
 
 | Directory | File | Screenshot | Notes |
 | --- | --- | --- | --- |
-| static | base.css | ![screenshot](documentation/validation_css_base_css.png) | |
-| static | custom_bootstrap.css | ![screenshot](documentation/validation_css_custom_bootstrap_css.png) | |
+| static | base.css | ![screenshot](documentation/validation-css-base-css.png) | All warnings are either about third party css or vendor prefixes. |
+| static | custom_bootstrap.css | ![screenshot](documentation/validation-css-custom-bootstrap-css.png) | The only warning is about jigsaw not being able to validate css import statements using @ |
 
-The warnings are due to the vendor prefixes that are used in the CSS file. I added the prefixes using the [Autoprefixer](https://autoprefixer.github.io) tool. The prefixes are necessary for the CSS to work on all browsers.
+Most warnings are due to the vendor prefixes that are used in the CSS files. I added the prefixes using the [Autoprefixer](https://autoprefixer.github.io) tool. The prefixes are necessary for the CSS to work on all browsers.
 
-There were no other issues with the CSS file.
+There were no other issues with the CSS files.
 
 ### JavaScript
 
