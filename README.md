@@ -111,7 +111,7 @@ The user stories are based on the user personas (To be found at the bottom of th
 Each user story is followed by a set of acceptance criteria that must be met for the story to be considered complete.
 
 > [!IMPORTANT]
-> Make sure to also check out the [**User Story Map**](https://github.com/users/benschaf/projects/12/views/3) which was used extensively during the development process. It provides a more visual representation of the user stories and shows them **grouped by epic** along with their **priority** and **status**.
+> Make sure to also check out the [**User Story Map**](https://github.com/users/benschaf/projects/12/views/3) on GitHub Projects which was used extensively during the development process. It provides a more visual representation of the user stories and shows them **grouped by epic** along with their **priority** and **status**.
 > ![screenshot](documentation/gh-user-story-map.png)
 
 <details>
@@ -188,9 +188,6 @@ I've used [draw.io](https://balsamiq.com/wireframes) to design my site wireframe
 
 View the [original draw.io file](https://drive.google.com/file/d/1OUjOdhZI-Dq6OR5pPkPgPQIQ4jyU9k51/view?usp=sharing) of the wireframes. (click on the "Open with" button and select "draw.io")
 
-> [!IMPORTANT]
-> NOT FINISHED YET - images are missing
-
 <details>
 <summary>Click to expand wireframes</summary>
 
@@ -218,7 +215,7 @@ When first visiting the site, users are greeted with a clean, modern and invitin
 
 The interactive Section is designed using a bento box layout, which is a modern and engaging way to present information. It allows users to quickly get an overview of the site's features and benefits.
 
-The landing page is designed to be simple and user-friendly, providing a quick overview of the site's purpose and functionality. It encourages users to explore the site further and get started with their waste management journey.
+The landing page is designed to be simple and user-friendly, providing a quick overview of the site's purpose and functionality. It encourages users to explore the site further and get started with their learning journey.
 
 ![screenshot](documentation/feature-landing.png)
 
@@ -1355,40 +1352,41 @@ The script was written by me, with much help from the Microsoft Edge Copilot.
 | File | Notes | Source |
 | --- | --- | --- |
 | [models.py: Line 18](https://github.com/benschaf/gipfel-tutor/blob/main/booking/models.py#L18) | model.SET_NULL | [stackoverflow.com](https://stackoverflow.com/questions/70395921/is-there-any-other-option-for-on-delete-other-than-models-cascade-for-a-foreignk) |
-| [views.py: Line 301](https://github.com/benschaf/gipfel-tutor/blob/main/booking/views.py#L301) | Stripe integration | [stripe.com](https://stripe.com/docs/payments/accept-a-payment) |
-| [views.py: Line 315](https://github.com/benschaf/gipfel-tutor/blob/main/booking/views.py#L315) | quantize | [docs.python.org](https://docs.python.org/3/library/decimal.html) |
-| [views.py: Line 356](https://github.com/benschaf/gipfel-tutor/blob/main/booking/views.py#L356) | Decimal conversion | [stackoverflow.com](https://stackoverflow.com/questions/316238/python-float-to-decimal-conversion) |
-| [webhook_handler.py: Line 7](https://github.com/benschaf/gipfel-tutor/blob/main/booking/webhook_handler.py#L7) | the webhook handler class goes to Code Institute Tutorials | [github.com](https://github.com/Code-Institute-Solutions/Boutique-Ado/tree/master) |
+| [views.py: Line 323](https://github.com/benschaf/gipfel-tutor/blob/main/booking/views.py#L323) | Stripe integration | [stripe.com](https://stripe.com/docs/payments/accept-a-payment) |
+| [views.py: Line 337](https://github.com/benschaf/gipfel-tutor/blob/main/booking/views.py#L337) | quantize | [docs.python.org](https://docs.python.org/3/library/decimal.html) |
+| [views.py: Line 378](https://github.com/benschaf/gipfel-tutor/blob/main/booking/views.py#L378) | Decimal conversion | [stackoverflow.com](https://stackoverflow.com/questions/316238/python-float-to-decimal-conversion) |
+| [webhook_handler.py: Line 6](https://github.com/benschaf/gipfel-tutor/blob/main/booking/webhook_handler.py#L6) | the webhook handler class goes to Code Institute Tutorials | [github.com](https://github.com/Code-Institute-Solutions/Boutique-Ado/tree/master) |
 | [webhooks.py: Line 10](https://github.com/benschaf/gipfel-tutor/blob/main/booking/webhooks.py#L10) | the webhook handling | [docs.stripe.com](https://docs.stripe.com/webhooks/quickstart) |
 | [payment_create.js: Line 10](https://github.com/benschaf/gipfel-tutor/blob/main/booking/static/booking/js/payment_create.js#L10) | setting form values | [www.w3schools.com](https://www.w3schools.com/jsref/dom_obj_form.asp) |
-| [views.py: Line 29](https://github.com/benschaf/gipfel-tutor/blob/main/calendly/views.py#L29) | base64 encodeing | [www.geeksforgeeks.org](https://www.geeksforgeeks.org/encoding-and-decoding-base64-strings-in-python/) |
+| [views.py: Line 33](https://github.com/benschaf/gipfel-tutor/blob/main/calendly/views.py#L33) | base64 encodeing | [www.geeksforgeeks.org](https://www.geeksforgeeks.org/encoding-and-decoding-base64-strings-in-python/) |
 | [index.js: Line 25](https://github.com/benschaf/gipfel-tutor/blob/main/core/static/core/js/index.js#L25) | the aria-expanded attribute check | [getbootstrap.com](https://getbootstrap.com/docs/5.3/components/navbar/#scrolling) |
 | [index.html: Line 3](https://github.com/benschaf/gipfel-tutor/blob/main/core/templates/core/index.html#L3) | adaptable page header | [github.com](https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/master/home/templates/home/index.html) |
 | [index.html: Line 40](https://github.com/benschaf/gipfel-tutor/blob/main/core/templates/core/index.html#L40) | CSS Grid (generation) | [cssgrid-generator.netlify.app](https://cssgrid-generator.netlify.app/) |
-| [settings.py: Line 86](https://github.com/benschaf/gipfel-tutor/blob/main/gipfel_tutor/settings.py#L86) | retrieving the email address | [github.com](https://github.com/pennersr/django-allauth/issues/330) |
-| [base.css: Line 87](https://github.com/benschaf/gipfel-tutor/blob/main/static/css/base.css#L87) | Gradient text | [cssgradient.io](https://cssgradient.io/blog/css-gradient-text/) |
+| [settings.py: Line 85](https://github.com/benschaf/gipfel-tutor/blob/main/gipfel_tutor/settings.py#L85) | retrieving the email address | [github.com](https://github.com/pennersr/django-allauth/issues/330) |
+| [base.css: Line 88](https://github.com/benschaf/gipfel-tutor/blob/main/static/css/base.css#L88) | Gradient text | [cssgradient.io](https://cssgradient.io/blog/css-gradient-text/) |
 | [base.html: Line 30](https://github.com/benschaf/gipfel-tutor/blob/main/templates/base.html#L30) | favicon | [fontawesome.com](https://fontawesome.com/icons/mountain-sun?f=classic&s=solid) |
 | [base.html: Line 69](https://github.com/benschaf/gipfel-tutor/blob/main/templates/base.html#L69) | admin url name | [forum.djangoproject.com](https://forum.djangoproject.com/t/cant-create-link-to-admin-page-in-my-template/12533/8) |
 | [base.html: Line 145](https://github.com/benschaf/gipfel-tutor/blob/main/templates/base.html#L145) | capfirst filter | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#capfirst) |
 | [base.html: Line 167](https://github.com/benschaf/gipfel-tutor/blob/main/templates/base.html#L167) | footer adapted from bootstrap | [getbootstrap.com](https://getbootstrap.com/docs/5.3/examples/footers/) |
 | [average_rating.html: Line 2](https://github.com/benschaf/gipfel-tutor/blob/main/templates/includes/average_rating.html#L2) | floatformat template filter | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#floatformat) |
 | [provider_list.html: Line 17](https://github.com/benschaf/gipfel-tutor/blob/main/templates/socialaccount/snippets/provider_list.html#L17) | google sign in button | [developers.google.com](https://developers.google.com/identity/branding-guidelines?hl=de) |
-| [forms.py: Line 14](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/forms.py#L14) | testing IBAN | [ibanvalidieren.de](https://ibanvalidieren.de/beispiele.html) |
-| [models.py: Line 34](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/models.py#L34) | decimal fields | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/models/fields/#decimalfield) |
-| [test_views.py: Line 235](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/test_views.py#L235) | testing for django messages | [stackoverflow.com](https://stackoverflow.com/a/57998247) |
+| [forms.py: Line 15](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/forms.py#L15) | testing IBAN | [ibanvalidieren.de](https://ibanvalidieren.de/beispiele.html) |
+| [models.py: Line 37](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/models.py#L37) | decimal fields | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/models/fields/#decimalfield) |
+| [test_views.py: Line 237](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/test_views.py#L237) | testing for django messages | [stackoverflow.com](https://stackoverflow.com/a/57998247) |
 | [views.py: Line 51](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/views.py#L51) | getting values from a list of query parameters | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/request-response/#querydict-objects) |
 | [views.py: Line 55](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/views.py#L55) | special add operator | [stackoverflow.com](https://stackoverflow.com/questions/29399653/python-operator-meaning) |
 | [views.py: Line 68](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/views.py#L68) | returning distinct results | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/models/querysets/#distinct) |
 | [views.py: Line 78](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/views.py#L78) | default value in Avg | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.1/ref/models/database-functions/#coalesce) |
 | [views.py: Line 82](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/views.py#L82) | distinct results in annotations | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/topics/db/aggregation/#combining-multiple-aggregations) |
-| [views.py: Line 201](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/views.py#L201) | reversing the order of a dictionary | [www.geeksforgeeks.org](https://www.geeksforgeeks.org/ordereddict-in-python/) |
-| [views.py: Line 359](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/views.py#L359) | greater or equal to lookup (gte) | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/models/querysets/#gte) |
+| [views.py: Line 205](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/views.py#L205) | reversing the order of a dictionary | [www.geeksforgeeks.org](https://www.geeksforgeeks.org/ordereddict-in-python/) |
+| [views.py: Line 365](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/views.py#L365) | greater or equal to lookup (gte) | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/models/querysets/#gte) |
 | [tutor_detail.js: Line 10](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/static/tutor_market/js/tutor_detail.js#L10) | posting a form using javascript | [stackoverflow.com](https://stackoverflow.com/questions/133925/javascript-post-request-like-a-form-submit) |
 | [tutor_detail.js: Line 18](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/static/tutor_market/js/tutor_detail.js#L18) | submitting a form and setting values | [www.w3schools.com](https://www.w3schools.com/jsref/dom_obj_form.asp) |
 | [edit_tutor.html: Line 8](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/templates/tutor_market/edit_tutor.html#L8) | enctype attribute | [www.geeksforgeeks.org](https://www.geeksforgeeks.org/define-multipart-form-data/) |
 | [tutor_dashboard.html: Line 85](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/templates/tutor_market/tutor_dashboard.html#L85) | slicing the string | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#slice) |
 | [tutor_dashboard.html: Line 104](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/templates/tutor_market/tutor_dashboard.html#L104) | slicing the string | [docs.djangoproject.com](https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#slice) |
 | [tutor_dashboard.html: Line 198](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/templates/tutor_market/tutor_dashboard.html#L198) | iterating over dictionaries (tuples) | [forum.djangoproject.com](https://forum.djangoproject.com/t/loop-through-dictionary-of-lists/2849) |
+| [tutor_detail.html: Line 10](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/templates/tutor_market/tutor_detail.html#L10) | include with | [www.w3schools.com](https://www.w3schools.com/django/django_tags_include.php) |
 | [tutor_detail.html: Line 20](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/templates/tutor_market/tutor_detail.html#L20) | reviews section | [github.com](https://github.com/benschaf/waste-schedule/blob/main/wasteschedules/templates/wasteschedules/schedule_detail.html) |
 | [tutor_detail.html: Line 30](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/templates/tutor_market/tutor_detail.html#L30) | bootstrap bars | [getbootstrap.com](https://getbootstrap.com/docs/5.3/components/progress/) |
 | [tutor_detail.html: Line 59](https://github.com/benschaf/gipfel-tutor/blob/main/tutor_market/templates/tutor_market/tutor_detail.html#L59) | crispy forms | [github.com](https://github.com/Code-Institute-Solutions/blog/tree/main/12_views_part_3/01_posting_to_database) |
