@@ -32,6 +32,8 @@ I have used the recommended [HTML W3C Validator](https://validator.w3.org) to va
 | tutor_market | tutor_detail.html | ![screenshot](documentation/validation-html-tutor-detail.png) |
 | tutor_market | tutor_list.html | ![screenshot](documentation/validation-html-tutor-list.png) |
 
+**Note about Mailchimp form:** The mailchimp form contains inline styles that pass validation but usually aren't good practice. Moving the styles to the base.css file came with bugs becase of the mailchimp javascript and css files. The form is working as intended and the inline styles are kept for now. Compare issue [#126](https://github.com/benschaf/gipfel-tutor/issues/126).
+
 No validation issues are present in the HTML files.
 
 ### CSS
