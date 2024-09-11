@@ -159,9 +159,9 @@
       </div>
     {% endif %}
     <main>
-      {% block page_header %}<div class="container header-container"></div>{% endblock %}
-      {% block content %}{% endblock %}
-      {% block post_content %}{% endblock %}
+      {% block page_header %}<div class="container header-container"></div>{% endblock page_header %}
+      {% block content %}{% endblock content %}
+      {% block post_content %}{% endblock content %}
     </main>
     <!-- Footer -->
     <!-- -> Credit for footer adapted from bootstrap: https://getbootstrap.com/docs/5.3/examples/footers/ -->
