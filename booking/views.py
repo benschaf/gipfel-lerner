@@ -75,16 +75,13 @@ def _get_json_from_calendly_uri(uri, tutor, request):
     headers = {'Authorization': f'Bearer {calendly_access_token}'}
     response = requests.get(uri, headers=headers)
     if response.status_code == 200:
-        print(f"Response: {json.dumps(response.json(), indent=4)}")
         return response
     else:
-        print(f"Response: {json.dumps(response.json(), indent=4)}")
         if request:
             messages.warning(
                 request, f'''An error occurred while loading the event data.
                 {response}'''
             )
-            print(f"Error: {response}")
         return response
 
 
@@ -169,8 +166,6 @@ def fetch_calendly_data_view(request: HttpRequest, pk: int) -> HttpResponse:
     # get the uris
     event_uri = form.cleaned_data['event_uri']
     invitee_uri = form.cleaned_data['invitee_uri']
-    print(f"Event URI: {event_uri}")
-    print(f"Invitee URI: {invitee_uri}")
 
     # get the data from the uris using the calendly api2
     event_data_response = _get_json_from_calendly_uri(
@@ -209,7 +204,6 @@ def cancel_session_view(request, pk):
             exist.
     """
     session = get_object_or_404(TutoringSession, pk=pk)
-    print(f"Session: {session.tutor.user}, {session.student}, {request.user}")
     tutor = session.tutor
     student = session.student
 
@@ -247,9 +241,6 @@ def cancel_session_view(request, pk):
         headers = {'Authorization': f'Bearer {calendly_access_token}'}
 
         response = requests.request("POST", url, json=payload, headers=headers)
-
-        print(f"Response: {response}")
-        print(f"Response text: {response.text}")
 
         import json  # Ensure this import is at the top of your file
 

@@ -44,7 +44,6 @@ class StripeWH_Handler:
             HttpResponse: The response indicating the handling of the webhook
             event.
         """
-        print("webhook received")
         intent = event.data.object
         session_ids = intent.metadata.sessions.split(",")
 
@@ -62,9 +61,6 @@ class StripeWH_Handler:
                     status=200,
                 )
             except Payment.DoesNotExist:
-                print(
-                    f"Attempt {attempt + 1}: Payment does not exist. "
-                    f"Retrying...")
                 if attempt < max_attempts - 1:
                     time.sleep(delay_between_attempts)
                 else:

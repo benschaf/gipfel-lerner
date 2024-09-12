@@ -30,7 +30,6 @@ def webhook(request):
     try:
         event = json.loads(request.body)
     except json.decoder.JSONDecodeError as e:
-        print('⚠️  Webhook error while parsing basic request.' + str(e))
         return JsonResponse({'success': False}, status=400)
 
     if endpoint_secret:
@@ -40,7 +39,6 @@ def webhook(request):
                 request.body, sig_header, endpoint_secret
             )
         except stripe.error.SignatureVerificationError as e:
-            print('⚠️  Webhook signature verification failed.' + str(e))
             return JsonResponse({'success': False}, status=400)
 
     handler = StripeWH_Handler(request)

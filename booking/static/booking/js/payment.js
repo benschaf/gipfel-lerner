@@ -13,7 +13,7 @@ const options = {
     clientSecret: clientSecret,
     // Fully customizable with appearance API.
     appearance: {
-    theme: 'flat'
+        theme: 'flat'
     }
 };
 
@@ -35,10 +35,10 @@ form.addEventListener('submit', async (event) => {
     const csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
 
     const postData = {
-    csrfmiddlewaretoken: csrfToken,
-    client_secret: options.clientSecret,
-    user: userId,
-    sessions: sessionIds,
+        csrfmiddlewaretoken: csrfToken,
+        client_secret: options.clientSecret,
+        user: userId,
+        sessions: sessionIds,
     };
 
     const development = developmentString === 'True' ? true : false;
@@ -50,31 +50,30 @@ form.addEventListener('submit', async (event) => {
     }
 
 
-    $.post(cachePaymentDataUrl, postData).done(async function() {
-    console.log('starting stripe function');
-    const { error } = await stripe.confirmPayment({
-        //`Elements` instance that was used to create the Payment Element
-        elements,
-        confirmParams: {
-        // change this url to dynamic when deploying
-        return_url: return_url,
-        }
-    });
+    $.post(cachePaymentDataUrl, postData).done(async function () {
+        const {
+            error
+        } = await stripe.confirmPayment({
+            //`Elements` instance that was used to create the Payment Element
+            elements,
+            confirmParams: {
+                // change this url to dynamic when deploying
+                return_url: return_url,
+            }
+        });
 
-    if (error) {
-        // This point will only be reached if there is an immediate error when
-        // confirming the payment. Show error to your customer (for example, payment
-        // details incomplete)
-        const messageContainer = document.querySelector('#error-message');
-        messageContainer.classList.add('alert', 'alert-danger');
-        messageContainer.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + error.message;
-        $('#submit').attr('disabled', false);
-    } else {
-        // Your customer will be redirected to your `return_url`. For some payment
-        // methods like iDEAL, your customer will be redirected to an intermediate
-        // site first to authorize the payment, then redirected to the `return_url`.
-    }
-    }).fail(function(jqXHR, textStatus, errorThrown) {
-    console.log('error');
-    });
+        if (error) {
+            // This point will only be reached if there is an immediate error when
+            // confirming the payment. Show error to your customer (for example, payment
+            // details incomplete)
+            const messageContainer = document.querySelector('#error-message');
+            messageContainer.classList.add('alert', 'alert-danger');
+            messageContainer.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + error.message;
+            $('#submit').attr('disabled', false);
+        } else {
+            // Your customer will be redirected to your `return_url`. For some payment
+            // methods like iDEAL, your customer will be redirected to an intermediate
+            // site first to authorize the payment, then redirected to the `return_url`.
+        }
+    }).fail(function (jqXHR, textStatus, errorThrown) {});
 });

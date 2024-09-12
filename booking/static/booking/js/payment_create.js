@@ -21,7 +21,6 @@ function fillOutForm(paymentIntent) {
 
 // Initialize Stripe.js using your publishable key
 const STRIPE_PUBLIC_KEY = JSON.parse(document.getElementById('stripe-public-key').textContent);
-console.log("STRIPE_PUBLIC_KEY: ", STRIPE_PUBLIC_KEY);
 const stripe = Stripe(STRIPE_PUBLIC_KEY);
 
 // Retrieve the "payment_intent_client_secret" query parameter appended to
@@ -33,8 +32,6 @@ stripe.retrievePaymentIntent(clientSecret).then(({
     paymentIntent
 }) => {
     const message = document.querySelector('#message');
-
-    console.log(paymentIntent);
 
     // Inspect the PaymentIntent `status` to indicate the status of the payment
     // to your customer.

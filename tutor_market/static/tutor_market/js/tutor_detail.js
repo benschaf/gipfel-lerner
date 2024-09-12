@@ -10,7 +10,6 @@ function isCalendlyEvent(e) {
 // -> Credit for posting a form using javascript: https://stackoverflow.com/questions/133925/javascript-post-request-like-a-form-submit
 window.addEventListener('message', function (e) {
     if (isCalendlyEvent(e) && e.data.event === 'calendly.event_scheduled') {
-        console.log('Event was scheduled');
         const eventUri = e.data.payload.event.uri;
         const inviteeUri = e.data.payload.invitee.uri;
         const form = document.getElementById('calendly_form_hidden');

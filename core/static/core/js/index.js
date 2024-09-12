@@ -12,7 +12,6 @@ $(document).ready(function () {
     $('.navbar').removeClass('bg-body-tertiary');
     $('.navbar-container').removeClass('bg-body-tertiary');
     $(window).scroll(function () {
-        console.log($(this).scrollTop());
         if ($(this).scrollTop() == 0) {
             $('.navbar').removeClass('bg-body-tertiary');
             $('.navbar-container').removeClass('bg-body-tertiary');
