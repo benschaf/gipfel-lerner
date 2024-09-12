@@ -17,24 +17,28 @@ class StripeWH_Handler:
     def __init__(self, request):
         self.request = request
 
-    def _send_confirmation_email(self, payment):
+    def _send_confirmation_email(payment):
         """
         Send the user a confirmation email
         """
         print("Sending email")
         cust_email = payment.user.email
+        print(cust_email)
         subject = render_to_string(
             'booking/confirmation_emails/confirmation_email_subject.txt',
             {'payment': payment})
+        print(subject)
         body = render_to_string(
             'booking/confirmation_emails/confirmation_email_body.txt',
             {'payment': payment, 'contact_email': settings.DEFAULT_FROM_EMAIL})
+        print(body)
         send_mail(
             subject,
             body,
             settings.DEFAULT_FROM_EMAIL,
             [cust_email]
         )
+        print("Email sent")
 
     def handle_event(self, event):
         """
