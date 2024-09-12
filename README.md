@@ -1178,7 +1178,7 @@ python3 manage.py migrate
     - Secret Key: `Your Google Client Secret`
     - Sites: `localhost` and `Heroku`
 
-> [!INFO]
+> [!TIP]
 > For troubleshooting, refer to the [Allauth Socialaccount Documentation](https://docs.allauth.org/en/latest/socialaccount/index.html).
 
 
