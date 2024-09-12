@@ -21,9 +21,6 @@ class StripeWH_Handler:
         """
         Send the user a confirmation email
         """
-        logger.info(f'Sending email to {cust_email}')
-        logger.info(f'Subject: {subject}')
-        logger.info(f'Body: {body}')
         print("Sending email")
         cust_email = payment.student.email
         subject = render_to_string(
@@ -78,6 +75,7 @@ class StripeWH_Handler:
                     stripe_id=intent.id,
                 )
                 print("Payment already exists")
+                print("going to send email")
                 self._send_confirmation_email(payment)
                 return HttpResponse(
                     content=(f'Webhook received: {event["type"]} | SUCCESS: '

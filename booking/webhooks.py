@@ -26,6 +26,7 @@ def webhook(request):
             the webhook event handling.
     """
     event = None
+    print('Webhook received')
 
     try:
         event = json.loads(request.body)
