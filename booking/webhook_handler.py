@@ -2,6 +2,10 @@ import time
 from django.http import HttpResponse
 from django.contrib import auth
 from booking.models import Payment, TutoringSession
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.conf import settings
+
 
 # -> Credit for the webhook handler class goes to Code Institute Tutorials: https://github.com/Code-Institute-Solutions/Boutique-Ado/tree/master  # noqa
 
@@ -17,10 +21,11 @@ class StripeWH_Handler:
     def __init__(self, request):
         self.request = request
 
-    def _send_confirmation_email(payment):
+    def _send_confirmation_email(self, payment):
         """
         Send the user a confirmation email
         """
+        sessions = payment.sessions.all()
         print("Sending email")
         cust_email = payment.user.email
         print(cust_email)
@@ -30,7 +35,7 @@ class StripeWH_Handler:
         print(subject)
         body = render_to_string(
             'booking/confirmation_emails/confirmation_email_body.txt',
-            {'payment': payment, 'contact_email': settings.DEFAULT_FROM_EMAIL})
+            {'sessions': sessions, 'payment': payment, 'contact_email': settings.DEFAULT_FROM_EMAIL})
         print(body)
         send_mail(
             subject,
