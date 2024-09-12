@@ -21,6 +21,10 @@ class StripeWH_Handler:
         """
         Send the user a confirmation email
         """
+        logger.info(f'Sending email to {cust_email}')
+        logger.info(f'Subject: {subject}')
+        logger.info(f'Body: {body}')
+        print("Sending email")
         cust_email = payment.student.email
         subject = render_to_string(
             'booking/confirmation_emails/confirmation_email_subject.txt',
@@ -73,7 +77,8 @@ class StripeWH_Handler:
                 payment = Payment.objects.get(
                     stripe_id=intent.id,
                 )
-                self.send_confirmation_email(payment)
+                print("Payment already exists")
+                self._send_confirmation_email(payment)
                 return HttpResponse(
                     content=(f'Webhook received: {event["type"]} | SUCCESS: '
                              f'Verified payment already in database'),
@@ -111,7 +116,8 @@ class StripeWH_Handler:
                                      f'ERROR: {e}'),
                             status=500,
                         )
-                    self.send_confirmation_email(payment)
+                    print("Payment created")
+                    self._send_confirmation_email(payment)
                     return HttpResponse(
                         content=(f'Webhook received: {event["type"]} | '
                                  f'SUCCESS: Payment does not exist after '
