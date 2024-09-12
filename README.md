@@ -345,7 +345,7 @@ All Calendly OAuth2.0 related code is stored in the [calendly](calendly) app and
 
 ### Payments with Stripe
 
-The Payments with Stripe feature allows users to pay for lessons online. Users can choose, when they want to pay for the lessons that they have booked. If they choose to go to the payment page either from their dashboard or from the tutor detail page, they will be redirected to the payment page. There they will see a list of all their upcoming lessons and the total amount they have to pay. They can then enter their credit card details and pay for the lessons. If they are signed in using their google account, they can also use the google pay feature.
+The Payments with Stripe feature allows users to pay for lessons online. Users can choose, when they want to pay for the lessons that they have booked. If they choose to go to the payment page either from their dashboard or from the tutor detail page, they will be redirected to the payment page. There they will see a list of all their upcoming lessons and the total amount they have to pay. They can then enter their credit card details and pay for the lessons. If they are signed in using their google account that has Google Pay set up, they can also use the Google Pay feature.
 
 The Payments with Stripe feature is implemented using [Custom payment flow documented by Stripe](https://docs.stripe.com/payments/quickstart) and includes **webhook hadnling** to ensure the payment status is updated in the site's database.
 
