@@ -431,4 +431,4 @@ At the moment of submission, there are no known bugs that are still open.
 
 ### Open issues
 
-At this time, any issues that are still open are User stories that have been labeled as either should have, could have or won't have. These issues are deliberately left open.
+At this time, any issues that are still open are User stories that have been labeled as either should have, could have or won't have. These issues are deliberately left open. As mentioned in the README.md, these issues are deliberately left with their could have or should have labels as they are frozen at the end of the last iteration (Compare [README.md](README.md#github-projects)).
