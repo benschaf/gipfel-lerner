@@ -485,7 +485,7 @@ These Permissions should allow staff members to manage the site effectively, pro
 
 ⤴️ Screenshot of the Admin Panel
 
-relevant project files: [allauth_groups_fixture.json](fixtures/allauth_groups_fixture.json)
+relevant project files: [allauth_groups_fixture.json](core/fixtures/allauth_groups_fixture.json)
 
 ### Mailchimp Newsletter form
 
