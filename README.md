@@ -349,7 +349,7 @@ The Payments with Stripe feature allows users to pay for lessons online. Users c
 
 The Payments with Stripe feature is implemented using [Custom payment flow documented by Stripe](https://docs.stripe.com/payments/quickstart) and includes **webhook hadnling** to ensure the payment status is updated in the site's database.
 
-Once a users payment is successful, they are redirected to a success page on the site. The user does not yet receive a confirmation email from the site, but this feature is planned for a future update.
+Once a users payment is successful, they are redirected to a success page on the site. An email is sent to the user confirming the payment and the payment is displayed in the user's dashboard.
 
 ![screenshot](documentation/feature-payment.png)
 
