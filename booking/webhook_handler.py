@@ -83,8 +83,6 @@ class StripeWH_Handler:
                 payment = Payment.objects.get(
                     stripe_id=intent.id,
                 )
-                print("Payment already exists")
-                print("going to send email")
                 self._send_confirmation_email(payment)
                 return HttpResponse(
                     content=(f'Webhook received: {event["type"]} | SUCCESS: '
@@ -123,7 +121,6 @@ class StripeWH_Handler:
                                      f'ERROR: {e}'),
                             status=500,
                         )
-                    print("Payment created")
                     self._send_confirmation_email(payment)
                     return HttpResponse(
                         content=(f'Webhook received: {event["type"]} | '
