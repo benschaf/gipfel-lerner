@@ -115,7 +115,12 @@
                   </form>
                 </div>
               {% else %}
-                <p>You can't book lessons with a testing tutor profile</p>
+                <div class="alert alert-danger" role="alert">
+                  <i class="fas fa-exclamation-circle me-2"></i> Testing Profile!
+                  <p class="mb-0">
+                    You can't book lessons with a testing tutor profile. The Warning messages at the bottom are intentional.
+                  </p>
+                </div>
               {% endif %}
             {% else %}
               <a href="{% url 'account_login' %}?next={{ request.path }}"
