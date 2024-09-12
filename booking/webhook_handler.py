@@ -22,7 +22,7 @@ class StripeWH_Handler:
         Send the user a confirmation email
         """
         print("Sending email")
-        cust_email = payment.student.email
+        cust_email = payment.user.email
         subject = render_to_string(
             'booking/confirmation_emails/confirmation_email_subject.txt',
             {'payment': payment})
