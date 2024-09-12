@@ -12,3 +12,4 @@ sass/
 staticfiles/
 fixtures_sensitive/
 test_accounts.txt
+backup_private_fixture.json
