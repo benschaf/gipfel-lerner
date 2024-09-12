@@ -679,6 +679,9 @@ Throughout the development process, user stories were reevaluated after each ite
 
 All in all the User Story Map was of immense help to plan in between iterations and the Kanban Board served as a progress measuring tool while in the middle of a sprint.
 
+> [!NOTE]
+> The User Story Map is frozen at the end of the last iteration. All user stories that are marked as `could-have` or `should-have` will be moved to the next iteration and reevaluated. The User Story Map is frozen like this to demonstrate what the Board would look like throughout the development process.
+
 ![screenshot](documentation/gh-user-story-map.png)
 
 ⤴️ Screenshot of the User Story Map
