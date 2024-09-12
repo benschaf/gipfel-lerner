@@ -511,6 +511,20 @@ Django messages are used to provide feedback to users after they perform an acti
 
 relevant project files: [base.html](templates/base.html)
 
+### Custom 404 and 500 error pages
+
+Custom 404 and 500 error pages are used to provide users with a better experience when they encounter an error on the site. The pages include a brief message explaining the error and a link to the homepage. The pages are designed to be simple and user-friendly, providing users with a quick way to get back to the site's main content.
+
+![screenshot](documentation/feature-error-404.png)
+
+⤴️ Screenshot of the Custom 404 error page
+
+![screenshot](documentation/feature-error-500.png)
+
+⤴️ Screenshot of the Custom 500 error page
+
+relevant project files: [404.html](templates/404.html), [500.html](templates/500.html)
+
 ### Responsive Design
 
 The site is designed to be responsive and work on all devices. It includes breakpoints for mobile, tablet, and desktop sizes. The site is designed using the Bootstrap framework, which provides a responsive grid system and components. The site is tested on multiple devices and browsers to ensure compatibility.
