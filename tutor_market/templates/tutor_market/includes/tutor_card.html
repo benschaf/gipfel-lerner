@@ -70,9 +70,15 @@
         <div class="col">{{ tutor.catch_phrase }}</div>
         {% if not page %}
           <div class="col d-flex justify-content-end align-items-center">
-            <a href="{% url 'tutor_detail' tutor.pk %}"
-               class="btn btn-primary"
-               aria-label="Book a trial lesson">Book a trial lesson!</a>
+            {% if not tutor.testing_profile %}
+              <a href="{% url 'tutor_detail' tutor.pk %}"
+                 class="btn btn-primary"
+                 aria-label="Book a trial lesson">Book a trial lesson!</a>
+            {% else %}
+              <a href="{% url 'tutor_detail' tutor.pk %}"
+                 class="btn btn-primary"
+                 aria-label="View tutor details">View tutor details</a>
+            {% endif %}
           </div>
         {% endif %}
       </div>
